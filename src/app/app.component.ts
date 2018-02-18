@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {geoJSON, icon, latLng, layerGroup, LayerGroup, map, Marker, marker, TileLayer} from 'leaflet';
+import {geoJSON, icon, latLng, layerGroup, LayerGroup, LeafletEvent, map, Marker, marker, TileLayer} from 'leaflet';
 import {DataService} from './data.service';
 import {Geojsonmodel} from './geojsonmodel';
 import * as L from 'leaflet';
@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
   long = 0;
   mymap: L.Map;
   popup = L.popup();
+  isShowed = false;
 
   drawOptions = {
     position: 'topright',
@@ -53,8 +54,10 @@ export class AppComponent implements OnInit {
 
     console.log('refresh')
     this.dataService.getJson().subscribe(data => {
-      this.fullGeoLayer = geoJSON(data.json());
-      this.onlyStreetGeoModel = this.dataService.getOnlyStreet(data.json());
+      this.fullGeoLayer = geoJSON(<any> data);
+      // this.fullGeoLayer = geoJSON(data.json());
+      this.onlyStreetGeoModel = this.dataService.getOnlyStreet(<any> data);
+      // this.onlyStreetGeoModel = this.dataService.getOnlyStreet(data.json());
       this.onlyStreetGeoLayer = geoJSON(JSON.parse(JSON.stringify(this.onlyStreetGeoModel)));
 
       this.mainLayer = this.dataService.prepareMainLayer();
@@ -74,24 +77,32 @@ export class AppComponent implements OnInit {
     });
   }
 
-  onMapReady(map1: L.Map) {
+  onMapReady(readyMap: L.Map) {
     console.log('Map is ready');
-    this.mymap = map1;
-
-
-    this.mymap.on('click', (data) => {
+    this.mymap = readyMap;
+    this.mymap.on('click', (data: LeafletEvent) => {
       const latlng = data.latlng;
       this.lat = latlng.lat;
       this.long = latlng.lng;
-      console.log(this.lat)
-      console.log(this.long)
+      console.log(this.lat);
+      console.log(this.long);
       this.popup
         .setLatLng(latlng)
         .setContent(latlng.toString())
         .openOn(this.mymap);
 
     });
+  }
 
+  showFields() {
+    if (this.lat !== 0 && this.long !== 0) {
+      this.isShowed = true;
+    }
+  }
 
+  addMarker() {
+    L.marker({lat: this.lat, lng: this.long}).addTo(this.mymap);
+    console.log('added marker');
+    this.ngOnInit();
   }
 }

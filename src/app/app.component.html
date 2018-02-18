@@ -7,8 +7,9 @@
      [leafletDrawOptions]="drawOptions"
      [leafletLayersControl]="layersControl">
 </div>
-
-<div>
-  lon: <input [(ngModel)]="lat">
-  lat: <input [(ngModel)]="long">
+<button (click)="showFields()">Add</button>
+<div *ngIf="isShowed">
+  lon: <input [(ngModel)]="lat" disabled>
+  lat: <input [(ngModel)]="long" disabled>
+  <button (click)="addMarker()">Add threat</button>
 </div>

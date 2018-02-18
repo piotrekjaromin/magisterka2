@@ -5,8 +5,8 @@ import { LeafletDrawModule } from '@asymmetrik/ngx-leaflet-draw';
 import { AppComponent } from './app.component';
 import {SpeedService} from './speed.service';
 import {DataService} from './data.service';
-import {HttpModule} from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpClientModule,
     LeafletModule.forRoot(),
     LeafletDrawModule.forRoot(),
     FormsModule

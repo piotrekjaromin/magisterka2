@@ -1,20 +1,27 @@
 import {Injectable} from '@angular/core';
 
-import {Http} from '@angular/http';
+
+import { HttpHeaders, HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import {Geojsonmodel} from './geojsonmodel';
 import {Feature} from './feature';
 import {icon, latLng, LayerGroup, marker, Marker, tileLayer, TileLayer} from 'leaflet';
 import {SpeedService} from './speed.service';
+import {CustomMarker} from './models/customMarker';
+import {Road} from './models/road';
+import {GeometryModel} from './models/geometryModel';
+import {PropertiesModel} from './models/propertiesModel';
 
 @Injectable()
 export class DataService {
 
-  constructor(private http: Http) {
+  roadHttp = 'http://localhost:5000/roads';
+
+  constructor(private http: HttpClient) {
   }
 
   getJson() {
-    return this.http.get('../assets/map_small.geojson');
+    return this.http.get('../assets/map_medium.geojson');
   }
 
   getOnlyStreet(geoModel: Geojsonmodel): Geojsonmodel {
@@ -73,37 +80,46 @@ export class DataService {
 
   prepareMarkersLayer(features: [Feature]): LayerGroup {
 
-    var markers: [Marker] = <[Marker]>[];
+    const markers: [Marker] = <[Marker]>[];
 
-    for (let feature of features) {
+    for (const feature of features) {
+      const roadMarkers: [CustomMarker] = <[CustomMarker]>[];
+
       const arrayOfLengths = this.getStreetLength(feature.geometry.coordinates);
       const totalLengthOfStreet = arrayOfLengths[arrayOfLengths.length - 3];
 
-      var currentLength = 0;
-      var maxSpeed = SpeedService.getMaxSpeed(feature, totalLengthOfStreet * 111196.672);
-      for (var i = 0; i < arrayOfLengths.length; i += 3) {
+      let currentLength = 0;
+      const maxSpeed = SpeedService.getMaxSpeed(feature, totalLengthOfStreet * 111196.672);
+      for (let i = 0; i < arrayOfLengths.length; i += 3) {
         currentLength += arrayOfLengths[i];
 
+
         if (currentLength >= (totalLengthOfStreet / 2)) {
-          markers.push(marker([arrayOfLengths[i + 1], arrayOfLengths[i + 2]], {
+          roadMarkers.push(new CustomMarker(arrayOfLengths[i + 1], arrayOfLengths[i + 2], '', maxSpeed));
+
+          const tmpMarker = marker([arrayOfLengths[i + 1], arrayOfLengths[i + 2]], {
             icon: icon({
               iconSize: [25, 25],
               iconAnchor: [0, 0],
               iconUrl: 'assets/' + maxSpeed + '.png'
-            })
-          }).on('click', (data) => console.log(data)));
+            })});
+
+          markers.push(tmpMarker.on('click', (data) => console.log(data)));
+          feature.markers = roadMarkers;
           break;
         }
       }
+    //  this.saveRoadToDB(feature, roadMarkers);
+    //   this.loadRoadsFromDB();
     }
     return new LayerGroup(markers);
   }
 
   private getStreetLength(coordinates: [[number, number]]): [number, number, number] {
-    var arrayOfLength: [number, number, number] = <[number, number, number]>[];
-    var totalLength = 0;
+    const arrayOfLength: [number, number, number] = <[number, number, number]>[];
+    let totalLength = 0;
 
-    for (var i = 0; i < coordinates.length - 1; i++) {
+    for (let i = 0; i < coordinates.length - 1; i++) {
       let x0 = coordinates[i][0];
       let x1 = coordinates[i + 1][0];
 
@@ -131,7 +147,7 @@ export class DataService {
       arrayOfLength.push(length, latCoordinate, longCoordinate);
       totalLength += length;
     }
-    arrayOfLength.push(totalLength, 0, 0)
+    arrayOfLength.push(totalLength, 0, 0);
     return arrayOfLength;
   }
 
@@ -157,6 +173,18 @@ export class DataService {
         labels: ['National Cycle Route', 'Regional Cycle Route', 'Local Cycle Network', 'Cycleway']
       },
     };
+  }
+
+  saveRoadToDB(feature: Feature, markers: [CustomMarker]) {
+    const geometryModel = new GeometryModel(feature.geometry.type, feature.geometry.coordinates);
+    const propertiesModel = new PropertiesModel(feature.properties.highway, feature.properties.surface);
+    const road =  new Road(feature.id, feature.type, propertiesModel, geometryModel, markers);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.post(this.roadHttp, road, {headers}).subscribe();
+  }
+
+  loadRoadsFromDB() {
+    this.http.get(this.roadHttp).subscribe(data => console.log(data));
   }
 
 }
