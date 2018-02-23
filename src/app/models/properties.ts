@@ -1,6 +1,4 @@
-import {PropertiesInterface} from './propertiesInterface';
-
-export class Properties implements PropertiesInterface{
+export class Properties{
   constructor(public timestamp: string,
               public version: string,
               public changeset: string,

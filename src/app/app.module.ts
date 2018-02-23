@@ -7,6 +7,7 @@ import {SpeedService} from './services/speed.service';
 import {DataService} from './services/data.service';
 import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {DbDataService} from './services/dbData.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import {HttpClientModule} from '@angular/common/http';
     LeafletDrawModule.forRoot(),
     FormsModule
   ],
-  providers: [DataService, SpeedService],
+  providers: [DataService, SpeedService, DbDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

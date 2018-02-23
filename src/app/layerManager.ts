@@ -5,6 +5,7 @@ import {SpeedService} from './services/speed.service';
 import {Feature} from './models/feature';
 import {CustomMarker} from './models/customMarker';
 import {MapDataOperations} from './mapDataOperations';
+import {DbDataService} from './services/dbData.service';
 
 export class LayerManager {
   private allObjectLayer: Layer;
@@ -14,7 +15,7 @@ export class LayerManager {
   public layersControl: any;
   public options: any;
 
-  constructor(private dataService: DataService, data: any) {
+  constructor(private dataService: DataService, private dbDataService: DbDataService, data: any) {
     this.allObjectLayer = geoJSON(data);
     const onlyStreetGeoModel = dataService.getOnlyStreet(data);
     this.onlyStreetLayer = geoJSON(JSON.parse(JSON.stringify(onlyStreetGeoModel)));
@@ -84,7 +85,9 @@ export class LayerManager {
           break;
         }
       }
+      //this.dbDataService.saveRoadToDB(feature, roadMarkers);
     }
+
     return new LayerGroup(markers);
   }
 

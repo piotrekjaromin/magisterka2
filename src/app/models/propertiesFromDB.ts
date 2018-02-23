@@ -1,6 +1,4 @@
-import {PropertiesInterface} from './propertiesInterface';
-
-export class PropertiesModel implements PropertiesInterface{
+export class PropertiesFromDB {
   constructor(public highway: string,
               public surface: string
 ) {}

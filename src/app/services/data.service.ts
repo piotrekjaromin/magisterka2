@@ -5,17 +5,11 @@ import { HttpHeaders, HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import {Geojsonmodel} from '../models/geojsonmodel';
 import {Feature} from '../models/feature';
-import {icon, latLng, LayerGroup, marker, Marker, tileLayer, TileLayer} from 'leaflet';
-import {SpeedService} from './speed.service';
-import {CustomMarker} from '../models/customMarker';
 
 @Injectable()
 export class DataService {
 
-  roadHttp = 'http://localhost:5000/roads';
-
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   getJson() {
     return this.http.get('../assets/map_medium.geojson');
@@ -73,19 +67,5 @@ export class DataService {
     geoModel.features = filteredFeatures;
     return geoModel;
   }
-
-
-
-  // saveRoadToDB(feature: Feature, markers: [CustomMarker]) {
-  //   const geometryModel = new GeometryModel(feature.geometry.type, feature.geometry.coordinates);
-  //   const propertiesModel = new PropertiesModel(feature.properties.highway, feature.properties.surface);
-  //   const road =  new Road(feature.id, feature.type, propertiesModel, geometryModel, markers);
-  //   const headers = new HttpHeaders().set('Content-Type', 'application/json');
-  //   this.http.post(this.roadHttp, road, {headers}).subscribe();
-  // }
-  //
-  // loadRoadsFromDB() {
-  //   return this.http.get(this.roadHttp);
-  // }
 
 }

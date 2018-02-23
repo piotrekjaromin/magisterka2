@@ -3,6 +3,9 @@ import {LeafletEvent} from 'leaflet';
 import {DataService} from '../services/data.service';
 import * as L from 'leaflet';
 import {LayerManager} from '../layerManager';
+import {DbDataService} from '../services/dbData.service';
+import {collectExternalReferences} from '@angular/compiler';
+import {DbLayerManager} from '../dbLayerManager';
 
 declare var $: any;
 
@@ -22,21 +25,33 @@ export class AppComponent implements OnInit {
   isShowed = false;
   drawOptions: any;
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, private dbDataService: DbDataService) {
   }
 
 
   ngOnInit(): void {
-    this.getDataFromFile();
+    this.getDataFromDB();
+    //this.getDataFromFile();
+  }
+
+  getDataFromDB() {
+    this.dbDataService.loadRoadsFromDB().subscribe(data => {
+      const layerManager = new DbLayerManager(this.dataService, <any>data);
+      this.prepareDataToGenerateMap(layerManager);
+    });
   }
 
   getDataFromFile() {
     this.dataService.getJson().subscribe(data => {
-      const layerManager = new LayerManager(this.dataService, <any>data);
-      this.drawOptions = layerManager.drawOnMapOptions;
-      this.options = layerManager.options;
-      this.layersControl = layerManager.layersControl;
+      const layerManager = new LayerManager(this.dataService, this.dbDataService, <any>data);
+      this.prepareDataToGenerateMap(layerManager);
     });
+  }
+
+  prepareDataToGenerateMap(layerManager: any) {
+    this.drawOptions = layerManager.drawOnMapOptions;
+    this.options = layerManager.options;
+    this.layersControl = layerManager.layersControl;
   }
 
   onMapReady(readyMap: L.Map) {

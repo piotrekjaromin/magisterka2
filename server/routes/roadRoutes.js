@@ -84,8 +84,6 @@ roadRouter.get('/:id', function (req, res) {
 });
 
 roadRouter.post('/', function (req, res) {
-
-  console.log(req.body);
   var road = new Road(req.body);
 
   Road.find({id: req.body.id}, function (err, foundedRoutes) {
