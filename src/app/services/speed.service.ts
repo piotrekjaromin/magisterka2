@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
-import {Feature} from './feature';
+import {Feature} from '../models/feature';
 
 @Injectable()
 export class SpeedService {
   public static getMaxSpeed(feature: Feature, streetLength: number) {
     if (feature.properties.maxSpeed !== undefined) {
       return Number(feature.properties.maxSpeed);
-    }
-    else if (this.getMaxSpeedByGround(feature) !== 0) {
+    } else
+      if (this.getMaxSpeedByGround(feature) !== 0) {
       return this.getMaxSpeedByGround(feature);
     }
     else if (this.getMaxSpeedByStreetType(feature) !== 0) {

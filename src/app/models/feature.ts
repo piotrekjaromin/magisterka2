@@ -1,10 +1,10 @@
-import {Properties} from './properties';
 import {Geometry} from './geometry';
-import {CustomMarker} from './models/customMarker';
+import {CustomMarker} from './customMarker';
+import {Properties} from './properties';
 
 export class Feature {
-  constructor(public type: string,
-              public id: string,
+  constructor(public id: string,
+              public type: string,
               public properties: Properties,
               public geometry: Geometry,
               public markers: [CustomMarker]
