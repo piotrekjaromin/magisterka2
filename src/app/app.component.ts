@@ -3,6 +3,8 @@ import {geoJSON, icon, latLng, layerGroup, LayerGroup, LeafletEvent, map, Marker
 import {DataService} from './data.service';
 import {Geojsonmodel} from './geojsonmodel';
 import * as L from 'leaflet';
+import {AllMapData} from './models/allMapData';
+import {Road} from './models/road';
 
 declare var $: any;
 
@@ -51,12 +53,13 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-    console.log('refresh')
-    this.dataService.getJson().subscribe(data => {
-      this.fullGeoLayer = geoJSON(<any> data);
+    this.dataService.loadRoadsFromDB().subscribe(data => { console.log(data);
+      var allMapData = new AllMapData('FeatureCollection', <any> data);
+      console.log(allMapData)
+      // this.dataService.getJson().subscribe(data => {
+      this.fullGeoLayer = geoJSON(<any> allMapData);
       // this.fullGeoLayer = geoJSON(data.json());
-      this.onlyStreetGeoModel = this.dataService.getOnlyStreet(<any> data);
+      this.onlyStreetGeoModel = this.dataService.getOnlyStreet(<any> allMapData);
       // this.onlyStreetGeoModel = this.dataService.getOnlyStreet(data.json());
       this.onlyStreetGeoLayer = geoJSON(JSON.parse(JSON.stringify(this.onlyStreetGeoModel)));
 

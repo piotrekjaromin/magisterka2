@@ -184,7 +184,7 @@ export class DataService {
   }
 
   loadRoadsFromDB() {
-    this.http.get(this.roadHttp).subscribe(data => console.log(data));
+    return this.http.get(this.roadHttp);
   }
 
 }
