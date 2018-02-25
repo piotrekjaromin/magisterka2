@@ -56,19 +56,20 @@ export class AppComponent implements OnInit {
   }
 
   onMapReady(readyMap: L.Map) {
-    console.log('Map is ready');
     this.mymap = readyMap;
     this.mymap.on('click', (data: LeafletEvent) => {
       const latlng = data.latlng;
       this.lat = latlng.lat;
       this.long = latlng.lng;
-      console.log(this.lat);
-      console.log(this.long);
       this.popup
         .setLatLng(latlng)
         .setContent(latlng.toString())
         .openOn(this.mymap);
     });
+  }
+
+  showFields() {
+    this.isShowed = true;
   }
 
   addMarker() {

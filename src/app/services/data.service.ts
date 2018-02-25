@@ -6,7 +6,6 @@ import 'rxjs/add/operator/map';
 import {Geojsonmodel} from '../models/geojsonmodel';
 import {Feature} from '../models/feature';
 import {DbDataService} from './dbData.service';
-import {CustomMarker} from '../models/customMarker';
 
 @Injectable()
 export class DataService {
@@ -136,12 +135,9 @@ export class DataService {
         && feature.properties.highway !== 'footway'
         && feature.properties.highway !== 'platform'
       ) {
-        counter++;
-        console.log(feature);
         filteredFeatures.push(feature);
       }
     }
-    console.log(counter)
     geoModel.features = filteredFeatures;
     return geoModel;
   }
@@ -167,7 +163,6 @@ export class DataService {
     const features: [Feature] = result.features;
     const filteredFeatures: [Feature] = <[Feature]>[];
     for (const feature of features) {
-      console.log();
       if (feature.properties.amenity === 'university') {
         feature.properties.description = 'university';
         filteredFeatures.push(feature);
