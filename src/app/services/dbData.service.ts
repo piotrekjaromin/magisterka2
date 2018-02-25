@@ -11,19 +11,20 @@ import {FeatureFromDB} from '../models/featureFromDB';
 
 @Injectable()
 export class DbDataService {
-  roadHttp = 'http://localhost:5000/roads';
+  public static roadHttp = 'http://localhost:5000/roads';
+  public static objectHttp = 'http://localhost:5000/objects';
 
   constructor(private http: HttpClient) {}
 
-  saveRoadToDB(feature: Feature, markers: [CustomMarker]) {
+  saveObjectToDB(feature: Feature, markers: [CustomMarker], url: string) {
     const geometryModel = new Geometry(feature.geometry.type, feature.geometry.coordinates);
     const propertiesModel = new PropertiesFromDB(feature.properties.highway, feature.properties.surface);
-    const road =  new FeatureFromDB(feature.id, feature.type, propertiesModel, geometryModel, markers);
+    const object =  new FeatureFromDB(feature.id, feature.type, propertiesModel, geometryModel, markers);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.roadHttp, road, {headers}).subscribe();
+    this.http.post(url, object, {headers}).subscribe();
   }
 
-  loadRoadsFromDB() {
-    return this.http.get(this.roadHttp);
+  loadObjectFromDB(url: string) {
+    return this.http.get(url);
   }
 }

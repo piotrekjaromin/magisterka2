@@ -2,10 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {LeafletEvent} from 'leaflet';
 import {DataService} from '../services/data.service';
 import * as L from 'leaflet';
-import {LayerManager} from '../layerManager';
+import {FileLayerManager} from '../layerManagers/fileLayerManager';
 import {DbDataService} from '../services/dbData.service';
-import {collectExternalReferences} from '@angular/compiler';
-import {DbLayerManager} from '../dbLayerManager';
+import {DbLayerManager} from '../layerManagers/dbLayerManager';
 
 declare var $: any;
 
@@ -31,19 +30,21 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDataFromDB();
-    //this.getDataFromFile();
+    // this.getDataFromFile();
   }
 
   getDataFromDB() {
-    this.dbDataService.loadRoadsFromDB().subscribe(data => {
-      const layerManager = new DbLayerManager(this.dataService, <any>data);
-      this.prepareDataToGenerateMap(layerManager);
+    this.dbDataService.loadObjectFromDB(DbDataService.roadHttp).subscribe(roadsData => {
+      this.dbDataService.loadObjectFromDB(DbDataService.objectHttp).subscribe(objectData => {
+        const layerManager = new DbLayerManager(this.dataService, <any>roadsData, <any> objectData);
+        this.prepareDataToGenerateMap(layerManager);
+      });
     });
   }
 
   getDataFromFile() {
     this.dataService.getJson().subscribe(data => {
-      const layerManager = new LayerManager(this.dataService, this.dbDataService, <any>data);
+      const layerManager = new FileLayerManager(this.dataService, this.dbDataService, <any>data);
       this.prepareDataToGenerateMap(layerManager);
     });
   }

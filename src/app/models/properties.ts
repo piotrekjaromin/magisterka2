@@ -35,6 +35,12 @@ export class Properties{
               public power: string,
               public description: string,
               public advertising: string,
+              public leisure: string,
+              public landuse: string,
+              public region_category: string,
+              public historic: string,
+              public place: string,
+              public bus: string,
               public playground: string
   ) {}
 }
