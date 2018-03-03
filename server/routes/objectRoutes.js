@@ -1,16 +1,16 @@
 var express = require('express');
 var app = express();
 
-var roadRouter = express.Router();
+var objectRouter = express.Router();
 
-var Road = require('../models/road');
-var User = require('../models/road');
+var Object = require('../models/object');
+var User = require('../models/object');
 
 /////////////////////////////////////////////////////////
 
-roadRouter.get('/', function (req, res) {
+objectRouter.get('/', function (req, res) {
 
-  Road.find(function (err, roads) {
+  Object.find(function (err, roads) {
     if (err) throw err;
     res.status(200).send(roads).end();
   })
@@ -18,18 +18,18 @@ roadRouter.get('/', function (req, res) {
 
 /////////////////////////////////////////////////////////
 
-roadRouter.get('/fullnames', function (req, res) {
-  Road.find().distinct('fullName', function (error, fullnames) {
+objectRouter.get('/fullnames', function (req, res) {
+  Object.find().distinct('fullName', function (error, fullnames) {
     res.status(200).send(fullnames).end();
   });
 });
 
 //////////////////////////////////////////////////////////
 
-roadRouter.get('/realized', function (req, res) {
+objectRouter.get('/realized', function (req, res) {
   User.find({token: req.headers['token']}, function (err, user) {
       if (user.length !== 0 && user[0].role === 'Admin') {
-        Road.find({isRealised: true}, function (error, fullnames) {
+        Object.find({isRealised: true}, function (error, fullnames) {
           res.status(200).send(fullnames).end();
         });
       } else {
@@ -42,11 +42,11 @@ roadRouter.get('/realized', function (req, res) {
 
 ////////////////////////////////////////////////////////////
 
-roadRouter.get('/notrealized', function (req, res) {
+objectRouter.get('/notrealized', function (req, res) {
   User.find({token: req.headers['token'], role: 'Admin'}, function (err, user) {
       console.log(user);
       if (user.length !== 0) {
-        Road.find({isRealised: false}, function (error, fullnames) {
+        Object.find({isRealised: false}, function (error, fullnames) {
           console.log(fullnames);
           res.status(200).send(fullnames).end();
         });
@@ -59,8 +59,8 @@ roadRouter.get('/notrealized', function (req, res) {
 
 //////////////////////////////////////////////////////////
 
-roadRouter.get('/realized/users/:login', function (req, res) {
-  Road.find({isRealised: true, login: req.params.login}, function (error, fullnames) {
+objectRouter.get('/realized/users/:login', function (req, res) {
+  Object.find({isRealised: true, login: req.params.login}, function (error, fullnames) {
     res.status(200).send(fullnames).end();
   });
 });
@@ -68,25 +68,25 @@ roadRouter.get('/realized/users/:login', function (req, res) {
 
 ////////////////////////////////////////////////////////////
 
-roadRouter.get('/notrealized/users/:login', function (req, res) {
-  Road.find({isRealised: false, login: req.params.login}, function (error, fullnames) {
+objectRouter.get('/notrealized/users/:login', function (req, res) {
+  Object.find({isRealised: false, login: req.params.login}, function (error, fullnames) {
     res.status(200).send(fullnames).end();
   });
 });
 
 /////////////////////////////////////////////////////////
 
-roadRouter.get('/:id', function (req, res) {
-  Road.findById(req.params.id, function (err, road) {
+objectRouter.get('/:id', function (req, res) {
+  Object.findById(req.params.id, function (err, road) {
     if (err) throw err;
     res.status(200).send(road).end();
   });
 });
 
-roadRouter.post('/', function (req, res) {
-  var road = new Road(req.body);
+objectRouter.post('/', function (req, res) {
+  var road = new Object(req.body);
 
-  Road.find({id: req.body.id}, function (err, foundedRoutes) {
+  Object.find({id: req.body.id}, function (err, foundedRoutes) {
       if (foundedRoutes.length === 0) {
         road.save(function (err) {
           if (err) throw err;
@@ -94,7 +94,7 @@ roadRouter.post('/', function (req, res) {
         });
         res.status(200).send('Added road.').end();
       } else {
-        res.status(200).send('Road exists')
+        res.status(200).send('Object exists')
       }
     }
   );
@@ -104,10 +104,10 @@ roadRouter.post('/', function (req, res) {
 
 /////////////////////////////////////////////////////////
 
-roadRouter.put('/approve', function (req, res) {
+objectRouter.put('/approve', function (req, res) {
   User.find({token: req.headers['token']}, function (err, user) {
     if (user.length !== 0 && user[0].role === 'Admin') {
-      Road.findById(req.body._id, function (err, ord) {
+      Object.findById(req.body._id, function (err, ord) {
         console.log(ord);
         ord.isRealised = true;
         ord.save(function (err) {
@@ -121,4 +121,4 @@ roadRouter.put('/approve', function (req, res) {
   });
 });
 
-module.exports = roadRouter;
+module.exports = objectRouter;
