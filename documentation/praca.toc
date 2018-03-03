@@ -1,0 +1,18 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\select@language {polish}
+\contentsline {chapter}{\numberline {1}Wprowadzenie}{7}
+\contentsline {section}{\numberline {1.1}Cele pracy}{7}
+\contentsline {subsection}{\numberline {1.1.1}Jaki\IeC {\'s} tytu\IeC {\l }}{7}
+\contentsline {subsubsection}{\numberline {1.1.1.1}Jaki\IeC {\'s} tytu\IeC {\l } w subsubsection}{7}
+\contentsline {subsection}{\numberline {1.1.2}Jaki\IeC {\'s} tytu\IeC {\l } 2}{7}
+\contentsline {section}{\numberline {1.2}Zawarto\IeC {\'s}\IeC {\'c} pracy}{7}
+\contentsline {chapter}{\numberline {2}Przyk\IeC {\l }ady element\IeC {\'o}w pracy dyplomowej}{9}
+\contentsline {section}{\numberline {2.1}Liczba}{9}
+\contentsline {section}{\numberline {2.2}Rysunek}{9}
+\contentsline {section}{\numberline {2.3}Tabela}{9}
+\contentsline {section}{\numberline {2.4}Wzory matematyczne}{10}
+\contentsline {chapter}{\numberline {3}Pierwszy dokument}{11}
+\contentsline {section}{\numberline {3.1}Struktura dokumentu}{11}
+\contentsline {section}{\numberline {3.2}Kompilacja}{12}
+\contentsline {section}{\numberline {3.3}Narz\IeC {\k e}dzia}{12}
+\contentsline {section}{\numberline {3.4}Przygotowanie dokumentu}{13}
