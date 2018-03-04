@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.3.3)  3 MAR 2018 10:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.3.3)  4 MAR 2018 12:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1387,7 +1387,8 @@ Package csquotes Info: Redefining alias 'default' -> 'polish'.
 LaTeX Warning: Unused global option(s):
     [11pt].
 
-No file praca.aux.
+(./praca.aux (./rozdzial1.aux) (./rozdzial3_example.aux)
+(./rozdzial2_example.aux))
 \openout1 = `praca.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 142.
@@ -1403,6 +1404,7 @@ LaTeX Font Info:    ... okay on input line 142.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 142.
 LaTeX Font Info:    ... okay on input line 142.
 LaTeX Font Info:    Try loading font information for T1+ptm on input line 142.
+
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
@@ -1636,25 +1638,27 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
 Rozdzia\l  1.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 1.
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 12.
+[7]
+<picture1.png, id=33, 983.675pt x 681.54625pt>
+File: picture1.png Graphic file (type png)
+<use picture1.png>
+Package pdftex.def Info: picture1.png  used on input line 36. on input line 36.
 
-LaTeX Warning: Citation 'Dil00' on page 7 undefined on input line 4.
-
-
-LaTeX Warning: Citation 'Lam92' on page 7 undefined on input line 4.
-
+Package pdftex.def Info: Requested size: 455.24411pt x 315.4182pt on input line
+ 36.
+ [8 <./picture1.png>]
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 16.
-
-LaTeX Warning: Reference `cha:pierwszyDokument' on page 7 undefined on input li
-ne 28.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 49.
 
 
-LaTeX Warning: Citation 'Alvis2011' on page 7 undefined on input line 28.
+LaTeX Warning: Citation 'Alvis2011' on page 9 undefined on input line 61.
 
-) [7]
+) [9]
 \openout2 = `rozdzial3_example.aux'.
 
- (./rozdzial3_example.tex [8
+ (./rozdzial3_example.tex [10
 
 
 
@@ -1673,39 +1677,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--14
 
  []
 
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 28.
-
-LaTeX Warning: Reference `sub@subfigure_a' on page 9 undefined on input line 28
-.
-
-
-LaTeX Warning: Reference `sub@subfigure_b' on page 9 undefined on input line 28
-.
-
-
-LaTeX Warning: Reference `sub@subfigure_a' on page 9 undefined on input line 28
-.
-
-
-LaTeX Warning: Reference `sub@subfigure_b' on page 9 undefined on input line 28
-.
-
 
 Underfull \hbox (badness 10000) in paragraph at lines 33--34
 
  []
 
-[9]) [10]
+[11]) [12]
 \openout2 = `rozdzial2_example.aux'.
 
  (./rozdzial2_example.tex
 Rozdzia\l  3.
-[11
+[13
 
 
 
-] [12]) [13]
+] [14]) [15]
 
 LaTeX Warning: Empty bibliography on input line 174.
 
@@ -1727,10 +1713,10 @@ Package logreq Info: Writing requests to 'praca.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 26298 strings out of 492990
- 485656 string characters out of 6135006
+ 26316 strings out of 492990
+ 485939 string characters out of 6135006
  732242 words of memory out of 5000000
- 29487 multiletter control sequences out of 15000+600000
+ 29496 multiletter control sequences out of 15000+600000
  615830 words of font info for 116 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  44i,24n,51p,10383b,1721s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1745,10 +1731,10 @@ are/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/
 utmri8a.pfb>
-Output written on praca.pdf (13 pages, 216731 bytes).
+Output written on praca.pdf (15 pages, 339799 bytes).
 PDF statistics:
- 93 PDF objects out of 1000 (max. 8388607)
- 65 compressed objects within 1 object stream
+ 102 PDF objects out of 1000 (max. 8388607)
+ 70 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
