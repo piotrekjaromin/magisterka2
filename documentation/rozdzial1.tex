@@ -1,6 +1,10 @@
 \chapter{Wprowadzenie}
 \label{cha:wprowadzenie}
 
+
+\section{Wstęp}
+\label{sec:wstep}
+
 Bezpieczeństwo na drogach stanowi jedno z podstawowych celów postawionych zarówno przez budowniczych dróg, producentów samochodów ich użytkowników a także osób znajdujących się pobliżu. Aby zredukować liczbę wypadków, niezbędne jest uwględnienie ogromnej liczby czynników wpływających na bezpieczeńśtwo na drogach. Należy wziąć pod uwagę warunki atmosferyczne występujące w danej okolicy, ukształtowanie terenu, roślinność która może niekorzystnie wpłynąć na widoczność, drzewa znajdujące się w pobliżu tras oraz samo oznakowanie dróg. Nie należy także lekceważyć statystyk dotyczących wypadków na danych odcinkach dróg. Na bezpieczeństwo na drogach wpływ mają również producenci projazdów. Rozwijane przez nich inteligentne czujniki, systemy wspomagania jazdy mają kluczowe znaczenie w redukcji ryzyka popełnienia błędu przez człowieka.
 
 W tabeli 1.1 znajduje się zestawienie przedstawiające tolerancje biomechaniczną człowieka dla różnych typów pojazdów.
@@ -43,26 +47,36 @@ Z Rys.1.1. odczytać można, że liczba wypadków, z jednym wyjątkiem (z roku 2
 \section{Cele pracy}
 \label{sec:celePracy}
 
+Głownym celem niniejszej pracy dyplomowej jest stworzenie inteligentnego systemu, mającego za zadanie predykcję dopuszczalnych prędkości w ruchu drogowym. Ponadto zostaną opracowane modele i narzędzia pozwalające na obliczenie prędkości ma drogach. Rozwiązanie bazować będzie na metodach automatycznego wnioskowania, modelach matematycznych i informacjach geoprzestrzennych. Dzięki temu, możliwe będzie wyznaczenie optymalnego rozwiązania dla złożonego, wielokryterialnego problemu, w którym kluczowe znaczenie będzie miało bezpieczeństwo uczestników ruchu drogowego, przy zachowaniu maksymalnej przepustowości infrastruktury drogowej.
 
-Celem poniższej pracy jest zapoznanie studentów z systemem \LaTeX~w zakresie umożliwiającym im samodzielne, profesjonalne złożenie pracy dyplomowej w systemie \LaTeX.
+Aglorytm predykcji dopuszczalnych prędkości w ruchu drogowym będzie wykorzystywał następujące informacje
 
-\subsection{Jakiś tytuł}
+\begin{itemize}
+\item \textbf{pojedyńcze poziome zakręty} - zostaną podzielone na trzy grupy, według długości promienia skrętu:
+ \begin{itemize}
+ 	\item \textbf{mały promień skrętu} - o maksymalnej długości promienia 300m
+ 	\item \textbf{średni promień skrętu} - o długości promienia powyżej 300m i poniżej 600m
+ 	\item \textbf{duży promień skrętu} - o długości promieniu powyżej 600m 
+ \end{itemize}
+\item \textbf{połączone poziome zakręty} - będące połączone prostą o długości nie przekraczają 200m. Zostaną podzielone na dwie grupy, według długości promienia skrętu:
+ \begin{itemize}
+ 	\item \textbf{najpierw zakręt o większym promieniu, następnie o mniejszym}
+ 	\item \textbf{najpierw zakręt o miejszym promieniu, następnie o większym}
+ \end{itemize}
+\item \textbf{pobliże szkół i miejsc zabaw} - w takich przypadkach prędkość musi zostać dobrana, aby kierowca bez przeszkód mógł zatrzymać się nie powodując zagrożenia dla zdrowia i życia osób niepełnoletnich
+\item \textbf{pobliże sklepów i miejsc kultów religijnych} - dostosowanie prędkości do większego niż zwykle ruchu pieszych jak i pojazdów mechanicznych
+\item \textbf{pobliże przystanków autobusowych i tramwajowych} - zdażają się szczególne sytuacje, gdy pasażerowie komunikacji zbiorowej, bez patrzenia biegną  do już odjeżdzającej autobusu czy tramwaju. W takim przypadku szczególnie ważne jest dostosowanie prędkości, żeby kierowca mógł bez przeszkód odpowiednio wcześniej zareagować na taką ewentualność
+\item \textbf{przejścia dla pieszych} - w sytuacjach jak powyżej, z tą różnicą, że zamiast na autobus, przebiegają na "późnym zielonym" lub czasem już czerwonym.
+\item \textbf{tunele i mosty} - są to szczególne typy dróg, gdzie w tunelu są inne warunki oświetleniowe, a mosty zazwyczaj sie są tak szerokie jak pozostałe drogi
+\item \textbf{ilość pasów ruchu} - prędkość będzie większa na kilkupasmowej drodze, w porównaniu z jednopasmową
+\item \textbf{typ nawierzchni} - jest to bardzo ważny czynnik, ponieważ poruszając się z nieodpowiednią prędkością po nieprzystowowanej do tego nawierzchni, np. żwirowej, bardzo łatwo jest uszkodzić podwozie samochodu
+\item \textbf{typ drogi} - autostrady, drogi osiedlowe, eksresowe, główne itp.
+\item \textbf{zmiana prędkości między poszczególnymi strefami ograniczeń predkości} - płynna jazda jest znacznie mniej ryzykowna niż nagła zmiana prędkości pojazdu. Dlatego w sytuacjach, gdy na drodzę znajdue np. przejście dla pieszych, należy stopiowo ustawiać coraz to niższe wartości znaków sygnalizującuch ograniczenie prędkości
+\item \textbf{przejazdy kolejowe} - w takich sytuacjach należy zachować szczególną ostrożność, dlatego też prędkość musi być odpowiednio niższa
+\item \textbf{historia wypadkow} - również jest to dość istotny czynnik, który aglorytm powinien uwględniać
+\end{itemize}
 
-\subsubsection{Jakiś tytuł w subsubsection}
-
-
-\subsection{Jakiś tytuł 2}
-
-%---------------------------------------------------------------------------
-
-\section{Zawartość pracy}
-\label{sec:zawartoscPracy}
-
-W rodziale~\ref{cha:pierwszyDokument} przedstawiono podstawowe informacje dotyczące struktury dokumentów w \LaTeX u. Alvis~\cite{Alvis2011} jest językiem 
-
-
-
-
+Oprócz danych pobranych z OpenStreetMap, apliacja musi posiadać możliwość manualnego - przez zwykłego użytkownika, definiowania obiektów i przeszkód na drodze. Jest to szczególnie istotne, gdy nie wszystkie dane umieszczone są OSM. Ponadto algorytm w sposób inteligenty, odpowiednio wcześniej, powinień informować o dopuszczalnej prędkości. Dlatego istotne jest miejsce umieszczenia znaków.
 
 %Raport o stanie bezpieczeństwa ruchu drogowego dla dróg krajowych w zarządzenie GDDKiA
 
