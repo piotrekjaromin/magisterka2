@@ -1,27 +1,23 @@
 import {Injectable} from '@angular/core';
 import {Feature} from '../models/feature';
+import {MapDataOperations} from '../mapDataOperations';
 
 @Injectable()
 export class SpeedService {
-  public static getMaxSpeed(feature: Feature, streetLength: number) {
+  public static getMaxSpeed(feature: Feature): number {
+
     if (feature.properties.maxSpeed !== undefined) {
       return Number(feature.properties.maxSpeed);
-    } else
-      if (this.getMaxSpeedByGround(feature) !== 0) {
+    } else if (this.getMaxSpeedByGround(feature) !== 0) {
       return this.getMaxSpeedByGround(feature);
-    }
-    else if (this.getMaxSpeedByStreetType(feature) !== 0) {
+    } else if (this.getMaxSpeedByStreetType(feature) !== 0) {
       return this.getMaxSpeedByStreetType(feature);
-    }
-    else if (this.getMaxSpeedByStreetLength(streetLength) !== 0) {
-      return this.getMaxSpeedByStreetLength(streetLength);
-    }
-    else {
-      return 5;
+    } else {
+      return this.getMaxSpeedByStreetLength(feature.geometry.coordinates);
     }
   }
 
-  public static getMaxSpeedByGround(feature: Feature): Number {
+  private static getMaxSpeedByGround(feature: Feature): number {
     if (feature.properties.surface === 'paving_stones'
       || feature.properties.surface === 'cobblestone'
       || feature.properties.surface === 'ground'
@@ -41,24 +37,35 @@ export class SpeedService {
     }
   }
 
-  public static getMaxSpeedByStreetLength(length: number): Number {
-    if (length < 100) return 30;
-    else if (length < 500) return 50;
-    else if (length < 1000) return 70;
-    else return 80;
+  private static getMaxSpeedByStreetLength(coordinates: [[number, number]]): number {
+    const arrayOfLengths = MapDataOperations.getStreetLength(coordinates);
+    const length = arrayOfLengths[arrayOfLengths.length - 3] * 111196.672;
+
+    if (length < 100) {
+      return 30;
+    } else if (length < 500) {
+      return 50;
+    } else if (length < 1000) {
+      return 70;
+    } else {
+      return 80;
+    }
   }
 
 
-  public static getMaxSpeedByStreetType(feature: Feature): Number {
-    if (feature.properties.highway === 'residential' || feature.properties.highway === 'living_street')
+  private static getMaxSpeedByStreetType(feature: Feature): number {
+    if (feature.properties.highway === 'residential' || feature.properties.highway === 'living_street') {
       return 30;
-    else  if (feature.properties.highway === 'motorway_link' || feature.properties.highway === 'secondary')
+    } else if (feature.properties.highway === 'motorway_link' || feature.properties.highway === 'secondary') {
       return 70;
-    else  if (feature.properties.highway === 'primary')
+    } else if (feature.properties.highway === 'primary') {
       return 80;
-    else  if (feature.properties.highway === 'motorway')
+    } else if (feature.properties.highway === 'motorway') {
       return 140;
+    }
 
     return 0;
   }
+
+
 }

@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   layers = null;
   lat = 0;
   long = 0;
+  type: string;
   mymap: L.Map;
   popup = L.popup();
   isShowed = false;
@@ -31,14 +32,26 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.getDataFromDB();
     // this.getDataFromFile();
+    // this.exportRoadsAndObjectsToDB();
   }
 
   getDataFromDB() {
-    this.dbDataService.loadObjectFromDB(DbDataService.roadHttp).subscribe(roadsData => {
-      this.dbDataService.loadObjectFromDB(DbDataService.objectHttp).subscribe(objectData => {
+    this.dbDataService.loadDataFromDB(this.dbDataService.roadHttp).subscribe(roadsData => {
+      this.dbDataService.loadDataFromDB(this.dbDataService.objectHttp).subscribe(objectData => {
+        console.log(roadsData);
+        console.log(objectData);
         const layerManager = new DbLayerManager(this.dataService, <any>roadsData, <any> objectData);
         this.prepareDataToGenerateMap(layerManager);
       });
+    });
+  }
+
+  exportRoadsAndObjectsToDB() {
+    this.dataService.getJson().subscribe(data => {
+      const layerManager = new FileLayerManager(this.dataService, this.dbDataService, <any>data);
+      const onlyRoadsFeatures = layerManager.prepareRoadsWithSpeedLimits();
+      const onlyObjectsFeatures = this.dataService.getObjects(<any>data).features;
+      this.dbDataService.saveAllDataToDB(onlyRoadsFeatures, onlyObjectsFeatures);
     });
   }
 
@@ -75,6 +88,6 @@ export class AppComponent implements OnInit {
   addMarker() {
     L.marker({lat: this.lat, lng: this.long}).addTo(this.mymap);
     console.log('added marker');
-    this.ngOnInit();
+    console.log(this.type);
   }
 }

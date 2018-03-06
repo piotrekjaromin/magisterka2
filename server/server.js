@@ -18,8 +18,14 @@ app.use(cors());
 
 var roadRouter = require('./routes/roadRoutes')
 app.use('/roads', roadRouter);
+
 var objectRouter = require('./routes/objectRoutes')
 app.use('/objects', objectRouter);
+
+var markerRouter = require('./routes/markerRoutes')
+app.use('/markers', markerRouter);
+
+
 //mongodb://<dbuser>:<dbpassword>@ds233748.mlab.com:33748/speed_limit
 //password1233
 mongoose.connect('mongodb://piotrekjaromin:password@ds233748.mlab.com:33748/speed_limit')

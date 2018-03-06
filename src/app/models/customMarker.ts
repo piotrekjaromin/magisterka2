@@ -1,7 +1,7 @@
 export class CustomMarker {
   constructor(public lat: number,
               public long: number,
-              public description: String,
+              public type: String,
               public speed: Number
   ) {}
 }

@@ -9,17 +9,7 @@ var geometrySchema = new Schema({
 var Object = new Schema({
   id: String,
   type: String,
-  properties: {
-    highway: String,
-    surface: String
-  },
-  geometry: geometrySchema,
-  markers: [{
-    lat: Number,
-    long: Number,
-    speed: Number,
-    description: String
-  }]
+  geometry: geometrySchema
 });
 
 module.exports = mongoose.model("Object", Object);

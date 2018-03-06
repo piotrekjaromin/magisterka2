@@ -10,61 +10,55 @@ import {BaseLayerManager} from './baseLayerManager';
 export class FileLayerManager {
   public layersControl: any;
   public options: any;
+  public data: any;
 
   constructor(private dataService: DataService, private dbDataService: DbDataService, data: any) {
-    const allObjectLayer = geoJSON(data);
-    const onlyStreetGeoModel = dataService.getOnlyStreet(data);
-    const onlyStreetLayer = geoJSON(JSON.parse(JSON.stringify(onlyStreetGeoModel)));
-    const mainLayer = BaseLayerManager.prepareMainLayer();
-    const speedLimitMarkersLayer = this.prepareSpeedLimitMarkersLayer(onlyStreetGeoModel.features);
-    const objectsGeoModel = dataService.getObject(data);
-    const objectsLayer = geoJSON(JSON.parse(JSON.stringify(objectsGeoModel)));
-    this.options = BaseLayerManager.prepareOptions(mainLayer);
+    this.options = BaseLayerManager.prepareOptions(BaseLayerManager.prepareMainLayer());
+    this.data = data;
 
     this.layersControl = {
       baseLayers: {
-        'Open Street Map': mainLayer
+        'Open Street Map': BaseLayerManager.prepareMainLayer()
       },
       overlays: {
-        'All objects': allObjectLayer,
-        'Only street': onlyStreetLayer,
-        'Speet limit': speedLimitMarkersLayer,
-        'Objects': objectsLayer
+        'All objects': this.prepareAllObjectsLayer(),
+        'Only street': this.prepareOnlyStreetLayer(),
+        'Speet limit': this.prepareSpeedLimitMarkersLayer(),
+        'Objects': this.prepareObjectLayer()
       }
     };
   }
 
-  private prepareSpeedLimitMarkersLayer(features: [Feature]): LayerGroup {
-
+  private prepareSpeedLimitMarkersLayer(): LayerGroup {
     const markers: [Marker] = <[Marker]>[];
 
-    for (const feature of features) {
-      const roadMarkers: [CustomMarker] = <[CustomMarker]>[];
+    for (const feature of this.prepareRoadsWithSpeedLimits()) {
+      markers.push(
+        this.prepareMarker(feature.markers[0].lat, feature.markers[0].long, feature.markers[0].speed.toString())
+          .on('click', (data) => console.log(data)));
 
-      const arrayOfLengths = MapDataOperations.getStreetLength(feature.geometry.coordinates);
-      const totalLengthOfStreet = arrayOfLengths[arrayOfLengths.length - 3];
-
-      let currentLength = 0;
-      const maxSpeed = SpeedService.getMaxSpeed(feature, totalLengthOfStreet * 111196.672);
-      for (let i = 0; i < arrayOfLengths.length; i += 3) {
-        currentLength += arrayOfLengths[i];
-
-        if (currentLength >= (totalLengthOfStreet / 2)) {
-          roadMarkers.push(new CustomMarker(arrayOfLengths[i + 1], arrayOfLengths[i + 2], '', maxSpeed));
-
-          const tmpMarker = this.prepareMarker(arrayOfLengths[i + 1], arrayOfLengths[i + 2], maxSpeed.toString());
-
-          markers.push(tmpMarker.on('click', (data) => console.log(data)));
-          feature.markers = roadMarkers;
-          break;
-        }
-      }
-      // this.dbDataService.saveObjectToDB(feature, roadMarkers, DbDataService.roadHttp);
+       // this.dbDataService.saveRoadToDB(feature);
     }
+
     return new LayerGroup(markers);
   }
 
-  prepareMarker(lat: number, long: number, markerName: string) {
+  prepareRoadsWithSpeedLimits(): [Feature] {
+    const onlyStreetGeoModel = this.dataService.getOnlyStreet(this.data);
+    const features = onlyStreetGeoModel.features;
+
+    for (const feature of features) {
+      feature.markers = <[CustomMarker]>[];
+      const maxSpeed = SpeedService.getMaxSpeed(feature);
+      const centerCoordinates = this.getCenterCoordinatesOfTheRoad(feature.geometry.coordinates);
+
+      feature.markers.push(new CustomMarker(centerCoordinates[0], centerCoordinates[1], '', maxSpeed));
+    }
+
+    return features;
+  }
+
+  private prepareMarker(lat: number, long: number, markerName: string) {
     return marker([lat, long], {
       icon: icon({
         iconSize: [25, 25],
@@ -73,4 +67,31 @@ export class FileLayerManager {
       })});
   }
 
+  private getCenterCoordinatesOfTheRoad(coordinates: [[number, number]]): [number, number] {
+    const arrayOfLengths = MapDataOperations.getStreetLength(coordinates);
+    const totalLengthOfStreet = arrayOfLengths[arrayOfLengths.length - 3];
+
+    let currentLength = 0;
+    for (let i = 0; i < arrayOfLengths.length; i += 3) {
+      currentLength += arrayOfLengths[i];
+      if (currentLength >= (totalLengthOfStreet / 2)) {
+        return [arrayOfLengths[i + 1], arrayOfLengths[i + 2]];
+      }
+    }
+    console.log('Error computing center of the road');
+  }
+
+  private prepareOnlyStreetLayer() {
+    const onlyStreetGeoModel = this.dataService.getOnlyStreet(this.data);
+    return geoJSON(JSON.parse(JSON.stringify(onlyStreetGeoModel)));
+  }
+
+  private prepareObjectLayer() {
+    const objectsGeoModel = this.dataService.getObjects(this.data);
+    return geoJSON(JSON.parse(JSON.stringify(objectsGeoModel)));
+  }
+
+  private prepareAllObjectsLayer() {
+    return geoJSON(this.data);
+  }
 }

@@ -178,7 +178,7 @@ export class DataService {
     return result;
   }
 
-  getObject(geoModel: Geojsonmodel): Geojsonmodel {
+  getObjects(geoModel: Geojsonmodel): Geojsonmodel {
     const schools = this.getSchools(geoModel);
     const busStops = this.getBusStops(geoModel);
     const result = schools;
