@@ -5,6 +5,7 @@ import * as L from 'leaflet';
 import {FileLayerManager} from '../layerManagers/fileLayerManager';
 import {DbDataService} from '../services/dbData.service';
 import {DbLayerManager} from '../layerManagers/dbLayerManager';
+import {CustomMarker} from '../models/customMarker';
 
 declare var $: any;
 
@@ -38,10 +39,10 @@ export class AppComponent implements OnInit {
   getDataFromDB() {
     this.dbDataService.loadDataFromDB(this.dbDataService.roadHttp).subscribe(roadsData => {
       this.dbDataService.loadDataFromDB(this.dbDataService.objectHttp).subscribe(objectData => {
-        console.log(roadsData);
-        console.log(objectData);
-        const layerManager = new DbLayerManager(this.dataService, <any>roadsData, <any> objectData);
-        this.prepareDataToGenerateMap(layerManager);
+        this.dbDataService.loadDataFromDB(this.dbDataService.customMarkerHttp).subscribe(customMarkerData => {
+          const layerManager = new DbLayerManager(this.dataService, <any>roadsData, <any> objectData, customMarkerData);
+          this.prepareDataToGenerateMap(layerManager);
+        });
       });
     });
   }
@@ -87,7 +88,7 @@ export class AppComponent implements OnInit {
 
   addMarker() {
     L.marker({lat: this.lat, lng: this.long}).addTo(this.mymap);
-    console.log('added marker');
-    console.log(this.type);
+    const customMarker = new CustomMarker(this.lat, this.long, this.type, 0);
+    this.dbDataService.saveCustomMarkerToDB(customMarker);
   }
 }

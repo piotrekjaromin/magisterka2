@@ -6,11 +6,13 @@ import {PropertiesFromDB} from '../models/propertiesFromDB';
 import {Geometry} from '../models/geometry';
 import {FeatureFromDB} from '../models/featureFromDB';
 import {SimpleObject} from '../models/simpleObject';
+import {CustomMarker} from '../models/customMarker';
 
 @Injectable()
 export class DbDataService {
   public roadHttp = 'http://localhost:5000/roads';
   public objectHttp = 'http://localhost:5000/objects';
+  public customMarkerHttp = 'http://localhost:5000/markers';
 
   constructor(private http: HttpClient) {}
 
@@ -39,6 +41,11 @@ export class DbDataService {
     const object = new SimpleObject(feature.id, feature.type, geometryModel);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.objectHttp, object, {headers}).subscribe();
+  }
+
+  saveCustomMarkerToDB(marker: CustomMarker) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.post(this.customMarkerHttp, marker, {headers}).subscribe();
   }
 
   loadDataFromDB(url: string) {
