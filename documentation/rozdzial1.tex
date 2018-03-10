@@ -5,7 +5,7 @@
 \section{Wstęp}
 \label{sec:wstep}
 
-Bezpieczeństwo na drogach stanowi jedno z podstawowych celów postawionych zarówno przez budowniczych dróg, producentów samochodów ich użytkowników a także osób znajdujących się pobliżu. Aby zredukować liczbę wypadków, niezbędne jest uwględnienie ogromnej liczby czynników wpływających na bezpieczeńśtwo na drogach. Należy wziąć pod uwagę warunki atmosferyczne występujące w danej okolicy, ukształtowanie terenu, roślinność która może niekorzystnie wpłynąć na widoczność, drzewa znajdujące się w pobliżu tras oraz samo oznakowanie dróg. Nie należy także lekceważyć statystyk dotyczących wypadków na danych odcinkach dróg. Na bezpieczeństwo na drogach wpływ mają również producenci projazdów. Rozwijane przez nich inteligentne czujniki, systemy wspomagania jazdy mają kluczowe znaczenie w redukcji ryzyka popełnienia błędu przez człowieka.
+Bezpieczeństwo na drogach stanowi jedno z podstawowych celów postawionych zarówno przez budowniczych dróg, producentów samochodów ich użytkowników a także osób znajdujących się pobliżu. Aby zredukować liczbę wypadków, niezbędne jest uwględnienie ogromnej liczby czynników wpływających na bezpieczeńśtwo na drogach. Należy wziąć pod uwagę warunki atmosferyczne występujące w danej okolicy, ukształtowanie terenu, roślinność która może niekorzystnie wpłynąć na widoczność, drzewa znajdujące się w pobliżu tras oraz samo oznakowanie dróg. Ważne są także pojazdy, jakie biorą udział w ruchu, funkcje jakie spełnia droga, liczba pasów ruchu i ich szerokość, liczba zakrętów i ich promień skrętu oraz typ nawierzni, z której skłąda się droga. Nie należy także lekceważyć statystyk dotyczących wypadków na danych odcinkach dróg. Na bezpieczeństwo na drogach wpływ mają również producenci projazdów. Rozwijane przez nich inteligentne czujniki, systemy wspomagania jazdy mają kluczowe znaczenie w redukcji ryzyka popełnienia błędu przez człowieka.
 
 W tabeli 1.1 znajduje się zestawienie przedstawiające tolerancje biomechaniczną człowieka dla różnych typów pojazdów.
 
@@ -99,7 +99,90 @@ Kluczową kwestią działanie algorytmu są również miejsce w których powinie
 	
 \section{Przegląd literatury}
 \label{sec:przegladLiteratury}	
+
+C. Ham w  ''Best Practice for Variable Speed Limits: Literature Review'' podaje przykład, jak zmiana prędkości wpływa na bezpieczeństwo i płynność jazdy. Jeśli kierowca napotka zbyt wiele stref prędkości z obrębie krótkiego odcinka drogi lub zbyt wiele zmian ograniczeń prędkości w sąsiedztwie danej strefy, to wtedy może poczuć dezorientację. Wzraca uwagę, jak ważne jest rozmieszczenie odpowiednich znaków, dla zredukowania poziomu stresu kierowcy.
+
+C. Jurewicz w '' Model National Guidelines for Setting Speed Limits at High-risk Locations'' wskazuje bezpośrednią relację pomiędzy prędkością a ryzykiem wypadku. W sytuacji gdy prędkość jest zmiejszana,  liczba wypadków i rannych spada w 85 procentach przypadków. Gdy prędkość jest zwiększana, liczba wypadków i rannych wzrasta w 71 procentach przypadków. Największym dowodem na to są tak zwane badania 'przed i po'. W latach 1980 ograniczenie prędkości dla wiejskich i zewnętrznych autostrad w metropolii zostało zwiększone ze 100 km/h do 110 km/h, ale zostało spowrotem zredukowane do 100 km/h z powodu obaw o bezpieczeństwo. Badanie 'przed, w trakcie i po' zostało prowadzone na przestrzeni 2,5 roku. W sytuacji, gdy ograniczenie prędkości zostało zwiększone do 110 km/h, wskaźnik ofiar wypadków wzróst o prawie 25 procent i gdy prędkość ponownie została zmiejszona do 100 km/h wskaźnik zmalał o prawie 20 procent.
+
+	Levasseur i Mitchell w ''Expanded Operating Speed Model'' skupiają się na dostosowaniu prędkości na drogach w przypadku gdy występują na nich różnego rodzaju zakręty. Tabela 1.2 przedstawia pogrupowane średnie prędkości dla poszczególnych promieni skrętu.
 	
+\begin{table}[ht]
+\centering
+\caption{Średnie prędkości dla poszczególnych zakrętów}
+\label{my-label}
+\begin{tabular}{| l | c |}
+\hline
+\textbf{zakres prędkości}                    & \textbf{promień skrętu} \\ \hline
+od 55 do 75 km/h          & od 50 do mniej niż 100 m \\ \hline
+od 75 do 85 km/h          & od 50 do mniej niż 150 m  \\ \hline
+od 85 do 95 km/h  &  od 50 do mniej niż 200 m\\ \hline
+od 95 do 105 km/h  &  od 50 do mniej niż 250 m\\ \hline
+
+\end{tabular}
+\source{Na podstawie Expanded Operating Speed Model}
+\end{table}
+
+
+G. J. Forbes w ''Methods and Practices for Setting Speed Limits: An Informational Report'' wspomina o relacji pomiędzy prędkością a ryzykiem wypadku dla prędkośći między 25 km/h a 120 km/h. Gdy średnia prędkość ruchu jest zmiejszona, liczba wypadków i  poziom niebezpieczeńśtwa urazów prawie zawsze maleje. Gdy średnia prędkość ruchu wzrasta, liczba wypadków i poziom niebezpieczeństwa urazów  przeważnie rośnie. Relacja między srednią prędkością a ryzykiem wypadków może być adekwatnie opisana według poniższego modelu:
+
+\begin{equation}
+CMF = (V_a / V_b)^X
+\end{equation}
+gdzie
+\begin{eqwhere}[2cm]
+	\item[$CMF$] Współczynnik modyfikacji wypadku
+	\item[$V_a$] średnia prędkość przed warunkiem
+	\item[$V_b$] średnia prędkość po warunkiem
+	\item[$X$] \begin{itemize}
+		3.6 dla częstotliwości wypadków, w których pojawiły się ofiary śmiertelne
+		
+		2.0 dla częstotliwości wypadków, w których nie było ofiar śmiertelnych
+		
+		1.0 dla częstotliwości gdzie uszkodzeniu uległy tylko pojazdy
+		
+		4.5 dla ofiar śmiertelnych
+		
+		2.7 dla których poszkodowani ponieśli tylko obrażenia ciała
+	\end{itemize}
+
+\end{eqwhere}
+Porównuje także ograniczenia prędkości dla poszczególnych obszarów znajdujących sie w USA. Ich wynik znajduje sie w tabeli 1.3
+
+\begin{table}[ht]
+\centering
+\caption{Ograniczenia prędkości w różnych stanach}
+\label{my-label}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Stan}                    & \textbf{Prędkość} & \textbf{Obszar} \\ \hline
+\multirow{5}{*}{Delaware}   & 40 km/h & dowolna dzielnica biznesowa \\ \cline{2-3}
+& 40 km/h & dowolna dzielnica mieszkalna \\ \cline{2-3}
+& 30 km/h & wszystkie strefach szkolnych \\ \cline{2-3}
+& 80 km/h & dwupasmowa jezdnia \\ \cline{2-3}
+& 90 km/h & czteropasmowa jezdnia \\ \hline
+
+\multirow{6}{*}{Minneasota}   & 15 km/h & alejki \\ \cline{2-3}
+& 50 km/h & ulice dzielnic miejskich \\ \cline{2-3}
+& 110 km/h & wiejskie autostrady międzystanowe \\ \cline{2-3}
+& 105 km/h & miejskie autostrady międzystanowe \\ \cline{2-3}
+& 105 km/h & drogi ekspresowe \\ \cline{2-3}
+& 90 km/h & pozostałe drogi \\ \hline
+
+\multirow{5}{*}{Delaware}   & 25 km/h & alejki, wąskie uliczki mieszkalne  \\ \cline{2-3}
+& 30 km/h & dzielnice biznesowe, strefy szkolne \\ \cline{2-3}
+& 40 km/h & dzielnice mieszkalne, parki publiczne, brzegi oceanu \\ \cline{2-3}
+& 90 km/h & wiejskie autostrady, ciężarówki na międzystanowych autostradach \\ \cline{2-3}
+& 105 km/h & pojazdy pasażerskie, lekkie cięzarówki na miedzystanowych autostradach\\ \hline
+\end{tabular}
+\source{Na podstawie Methods and Practices for Setting Speed Limits: An Informational Report}
+\end{table} 
+
+
+C. Han w ''Best Practice for Variable Speed Limits: Best Practice Recommendations'' zwraca uwagę, jak pora dnia wpływa na ruch na drodzę. W godzinach porannych, gdy osoby pracujące jadą do pracy, osoby nieletnie do szkół oraz w godzinach popołudniowych, gdy wracają do domów. Obserwowany jest wzmożony ruch na drogach. Więcej pojazdów na drodze, oznacza większe korki, a co za tym idzie, zmiejszenie rzeczywistej prędkści. Natomiast w pozostałych porach dnia, gdy ruch jest mniejszy, możliwe jest szybsze poruszanie się po drodze. C. Han opisuje także jak prawidłowo ustawiać znaki drogowe. Oznakowanie powinno być umieszczone w każdym odpiewiednim punkcie wdłuż drogi, np. wokół potencjalnych punktów konfliktowych, zwęrzedniach i rozwidleniach dróg, zmianie ich nawierzchni itp. Powtórzenia znaków, najlepiej żeby były w odległości 1000m na autostradach. W obszarach miejskich, rekomendowana odległość to 400-500 m
+ 
+
+
+	\newpage
 \section{Układ pracy}
 \label{sec:ukladPracy}
 
@@ -112,3 +195,13 @@ Praca składa się z N rozdziałów.
 \item Czwarty...
 \end{itemize}
 
+
+[1] M. Levasseur, B. Mitchell, Expanded Operating Speed Model, Austroads Ltd, 287 Elizabeth Street, Sydney NSW 2000 Australia, 4 2013. 
+
+[2] C. Han, J. Luk, V. Pyta, P. Cairney, Best Practice for Variable Speed Limits: Literature Review, Austroads Incorporated, 287 Elizabeth Street, Sydney NSW 2000 Australia, 7 2009.
+
+[3] C. Han, V. Pyta, J. Luk, Best Practice for Variable Speed Limits: Best Practice Recommendations, Austroads Incorporated, 287 Elizabeth Street, Sydney NSW 2000 Australia, 7 2009.
+
+[4] C. Jurewicz, C. Philips, M. Tziotis, B. Turner, Model National Guidelines for Setting Speed Limits at High-risk Locations, Austroads Ltd, 287 Elizabeth Street, Sydney NSW 2000 Australia, 3 2014. 
+
+[5] G. J. Forbes, P.end, Methods and Practices for Setting Speed Limits: An Informational Report, Institute of Transportation Engineers 11627 Eye Street, NW, Suite 600 Washington, 4 2012
