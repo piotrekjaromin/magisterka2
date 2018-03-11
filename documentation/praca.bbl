@@ -16,5 +16,960 @@
   {}
 \endgroup
 
-\sortlist[entry]{none/global/}\endsortlist
+\sortlist[entry]{none/global/}
+  \entry{EOSM}{report}{}
+    \name{author}{2}{}{%
+      {{hash=LM}{%
+         family={Levasseur},
+         familyi={L\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=MB}{%
+         family={Mitchell},
+         familyi={M\bibinitperiod},
+         given={B.},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LMMB1}
+    \strng{fullhash}{LMMB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{number}{AP-T229-13}
+    \field{title}{Expanded Operating Speed Model}
+    \list{institution}{1}{%
+      {Austroads Ltd}%
+    }
+    \field{type}{techreport}
+    \field{year}{2013}
+  \endentry
+
+  \entry{BPFVSLLR}{report}{}
+    \name{author}{4}{}{%
+      {{hash=HC}{%
+         family={Han},
+         familyi={H\bibinitperiod},
+         given={C.},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=PV}{%
+         family={Pyta},
+         familyi={P\bibinitperiod},
+         given={V.},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=LJ}{%
+         family={Luk},
+         familyi={L\bibinitperiod},
+         given={J.},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=CP}{%
+         family={Cairney},
+         familyi={C\bibinitperiod},
+         given={P.},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HC+1}
+    \strng{fullhash}{HCPVLJCP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{number}{APâ€“R342/09}
+    \field{title}{Best Practice for Variable Speed Limits: Literature Review}
+    \list{institution}{1}{%
+      {Austroads Incorporated}%
+    }
+    \field{type}{techreport}
+    \field{year}{2009}
+  \endentry
+
+  \entry{BPFVSLBPR}{report}{}
+    \name{author}{3}{}{%
+      {{hash=HC}{%
+         family={Han},
+         familyi={H\bibinitperiod},
+         given={C.},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=PV}{%
+         family={Pyta},
+         familyi={P\bibinitperiod},
+         given={V.},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=LJ}{%
+         family={Luk},
+         familyi={L\bibinitperiod},
+         given={J.},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HCPVLJ1}
+    \strng{fullhash}{HCPVLJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{number}{APâ€“R344/09}
+    \field{title}{Best Practice for Variable Speed Limits: Best Practice
+  Recommendations}
+    \list{institution}{1}{%
+      {Austroads Incorporated}%
+    }
+    \field{type}{techreport}
+    \field{year}{2009}
+  \endentry
+
+  \entry{MNGFSSLAHL}{report}{}
+    \name{author}{4}{}{%
+      {{hash=JC}{%
+         family={Jurewicz},
+         familyi={J\bibinitperiod},
+         given={C.},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=PC}{%
+         family={Philips},
+         familyi={P\bibinitperiod},
+         given={C.},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=TM}{%
+         family={Tziotis},
+         familyi={T\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=TB}{%
+         family={Turner},
+         familyi={T\bibinitperiod},
+         given={B.},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{JC+1}
+    \strng{fullhash}{JCPCTMTB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{number}{AP-R455-14}
+    \field{title}{Model National Guidelines for Setting Speed Limits at
+  High-risk Locations}
+    \list{institution}{1}{%
+      {Austroads Ltd}%
+    }
+    \field{type}{techreport}
+    \field{year}{2014}
+  \endentry
+
+  \entry{MAPFSSLAIR}{report}{}
+    \name{author}{4}{}{%
+      {{hash=FG}{%
+         family={Forbes},
+         familyi={F\bibinitperiod},
+         given={G.},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=GT}{%
+         family={Gardner},
+         familyi={G\bibinitperiod},
+         given={T.},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=MH}{%
+         family={McGee},
+         familyi={M\bibinitperiod},
+         given={H.},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=SR}{%
+         family={Srinivasan},
+         familyi={S\bibinitperiod},
+         given={R.},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FG+1}
+    \strng{fullhash}{FGGTMHSR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{number}{FHWA-SA-12-004}
+    \field{title}{Methods and Practices for Setting Speed Limits: An
+  Informational Report}
+    \list{institution}{1}{%
+      {Institute of Transportation Engineers}%
+    }
+    \field{type}{techreport}
+    \field{year}{2012}
+  \endentry
+
+  \entry{Jagerbrand2016}{article}{}
+    \name{author}{2}{}{%
+      {{hash=JAK}{%
+         family={J{\"a}gerbrand},
+         familyi={J\bibinitperiod},
+         given={Annika\bibnamedelima K.},
+         giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+      {{hash=SJ}{%
+         family={Sj{\"o}bergh},
+         familyi={S\bibinitperiod},
+         given={Jonas},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{JAKSJ1}
+    \strng{fullhash}{JAKSJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1186/s40064-016-2124-6
+    \endverb
+    \field{issn}{2193-1801}
+    \field{number}{1}
+    \field{pages}{505}
+    \field{title}{Effects of weather conditions, light conditions, and road
+  lighting on vehicle speed}
+    \verb{url}
+    \verb https://doi.org/10.1186/s40064-016-2124-6
+    \endverb
+    \field{volume}{5}
+    \field{journaltitle}{SpringerPlus}
+    \field{month}{04}
+    \field{year}{2016}
+  \endentry
+
+  \entry{Nama2016}{article}{}
+    \name{author}{5}{}{%
+      {{hash=NS}{%
+         family={Nama},
+         familyi={N\bibinitperiod},
+         given={Suresh},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=MAK}{%
+         family={Maurya},
+         familyi={M\bibinitperiod},
+         given={Akhilesh\bibnamedelima K.},
+         giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+      {{hash=MA}{%
+         family={Maji},
+         familyi={M\bibinitperiod},
+         given={Avijit},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=EP}{%
+         family={Edara},
+         familyi={E\bibinitperiod},
+         given={Praveen},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=SPK}{%
+         family={Sahu},
+         familyi={S\bibinitperiod},
+         given={Prasanta\bibnamedelima K.},
+         giveni={P\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{NS+1}
+    \strng{fullhash}{NSMAKMAEPSPK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1007/s40890-016-0028-3
+    \endverb
+    \field{issn}{2199-9295}
+    \field{number}{2}
+    \field{pages}{23}
+    \field{title}{Vehicle Speed Characteristics and Alignment Design
+  Consistency for Mountainous Roads}
+    \verb{url}
+    \verb https://doi.org/10.1007/s40890-016-0028-3
+    \endverb
+    \field{volume}{2}
+    \field{journaltitle}{Transportation in Developing Economies}
+    \field{month}{09}
+    \field{year}{2016}
+  \endentry
+
+  \entry{Marzoug2016}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=MR}{%
+         family={Marzoug},
+         familyi={M\bibinitperiod},
+         given={Rachid},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=EH}{%
+         family={Echab},
+         familyi={E\bibinitperiod},
+         given={Hicham},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=LN}{%
+         family={Lakouari},
+         familyi={L\bibinitperiod},
+         given={Noureddine},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=EZH}{%
+         family={Ez-Zahraouy},
+         familyi={E\bibinitperiod-Z\bibinitperiod},
+         given={Hamid},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \name{editor}{3}{}{%
+      {{hash=EYS}{%
+         family={El\bibnamedelima Yacoubi},
+         familyi={E\bibinitperiod\bibinitdelim Y\bibinitperiod},
+         given={Samira},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=WJ}{%
+         family={W{\k{a}}s},
+         familyi={W\bibinitperiod},
+         given={Jaroslaw},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=BS}{%
+         family={Bandini},
+         familyi={B\bibinitperiod},
+         given={Stefania},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer International Publishing}%
+    }
+    \strng{namehash}{MR+1}
+    \strng{fullhash}{MREHLNEZH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{booktitle}{Cellular Automata}
+    \field{isbn}{978-3-319-44365-2}
+    \field{pages}{303\bibrangedash 311}
+    \field{title}{Car Accidents at the Intersection with Speed Limit Zone and
+  Open Boundary Conditions}
+    \list{location}{1}{%
+      {Cham}%
+    }
+    \field{year}{2016}
+  \endentry
+
+  \entry{Peltola2016}{article}{}
+    \name{author}{2}{}{%
+      {{hash=PH}{%
+         family={Peltola},
+         familyi={P\bibinitperiod},
+         given={Harri},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=LJ}{%
+         family={Luoma},
+         familyi={L\bibinitperiod},
+         given={Juha},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PHLJ1}
+    \strng{fullhash}{PHLJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1007/s12544-016-0220-x
+    \endverb
+    \field{issn}{1866-8887}
+    \field{number}{1}
+    \field{pages}{3}
+    \field{title}{Comparison of road safety in Finland and Sweden}
+    \verb{url}
+    \verb https://doi.org/10.1007/s12544-016-0220-x
+    \endverb
+    \field{volume}{9}
+    \field{journaltitle}{European Transport Research Review}
+    \field{month}{12}
+    \field{year}{2016}
+  \endentry
+
+  \entry{Gundolf2017}{inproceedings}{}
+    \name{author}{1}{}{%
+      {{hash=JG}{%
+         family={Jakob},
+         familyi={J\bibinitperiod},
+         given={Gundolf},
+         giveni={G\bibinitperiod},
+      }}%
+    }
+    \name{editor}{2}{}{%
+      {{hash=ME}{%
+         family={Macioszek},
+         familyi={M\bibinitperiod},
+         given={El{\.{z}}bieta},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=SG}{%
+         family={Sierpi{\'{n}}ski},
+         familyi={S\bibinitperiod},
+         given={Grzegorz},
+         giveni={G\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer International Publishing}%
+    }
+    \strng{namehash}{JG1}
+    \strng{fullhash}{JG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{booktitle}{Contemporary Challenges of Transport Systems and Traffic
+  Engineering}
+    \field{isbn}{978-3-319-43985-3}
+    \field{pages}{169\bibrangedash 180}
+    \field{title}{Impact of Different Lengths of Urban Road Segments on
+  Speed-Volume Relationship}
+    \list{location}{1}{%
+      {Cham}%
+    }
+    \field{year}{2017}
+  \endentry
+
+  \entry{Bratu2017}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=BCA}{%
+         family={Bratu},
+         familyi={B\bibinitperiod},
+         given={Constantin\bibnamedelima Alexandru},
+         giveni={C\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=CD}{%
+         family={Covaciu},
+         familyi={C\bibinitperiod},
+         given={Dinu},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \name{editor}{2}{}{%
+      {{hash=CA}{%
+         family={Chiru},
+         familyi={C\bibinitperiod},
+         given={Anghel},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=IN}{%
+         family={Ispas},
+         familyi={I\bibinitperiod},
+         given={Nicolae},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer International Publishing}%
+    }
+    \strng{namehash}{BCACD1}
+    \strng{fullhash}{BCACD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{booktitle}{CONAT 2016 International Congress of Automotive and
+  Transport Engineering}
+    \field{isbn}{978-3-319-45447-4}
+    \field{pages}{710\bibrangedash 720}
+    \field{title}{Study on the Influence of Intersections with Forest Roads
+  upon the Traffic Flows on Highways}
+    \list{location}{1}{%
+      {Cham}%
+    }
+    \field{year}{2017}
+  \endentry
+
+  \entry{Zhao2016}{article}{}
+    \name{author}{4}{}{%
+      {{hash=ZX}{%
+         family={Zhao},
+         familyi={Z\bibinitperiod},
+         given={Xiaohua},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=LJ}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Jiahui},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=MJ}{%
+         family={Ma},
+         familyi={M\bibinitperiod},
+         given={Jianming},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=RJ}{%
+         family={Rong},
+         familyi={R\bibinitperiod},
+         given={Jian},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ZX+1}
+    \strng{fullhash}{ZXLJMJRJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1186/s40064-016-2396-x
+    \endverb
+    \field{number}{1}
+    \field{pages}{789}
+    \field{title}{Evaluation of the effects of school zone signs and markings
+  on speed reduction: a driving simulator study}
+    \verb{url}
+    \verb https://doi.org/10.1186/s40064-016-2396-x
+    \endverb
+    \field{volume}{5}
+    \field{journaltitle}{SpringerPlus}
+    \field{month}{06}
+    \field{year}{2016}
+  \endentry
+
+  \entry{Saha2017}{article}{}
+    \name{author}{4}{}{%
+      {{hash=SP}{%
+         family={Saha},
+         familyi={S\bibinitperiod},
+         given={Pritam},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=RN}{%
+         family={Roy},
+         familyi={R\bibinitperiod},
+         given={Nabanita},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=SAK}{%
+         family={Sarkar},
+         familyi={S\bibinitperiod},
+         given={Ashoke\bibnamedelima Kumar},
+         giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+      {{hash=PM}{%
+         family={Pal},
+         familyi={P\bibinitperiod},
+         given={Manish},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SP+1}
+    \strng{fullhash}{SPRNSAKPM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1007/s40030-017-0208-0
+    \endverb
+    \field{issn}{2250-2157}
+    \field{number}{1}
+    \field{pages}{107\bibrangedash 113}
+    \field{title}{Speed Distribution on Two-Lane Rural Highways with Mixed
+  Traffic: A Case Study in North East India}
+    \verb{url}
+    \verb https://doi.org/10.1007/s40030-017-0208-0
+    \endverb
+    \field{volume}{98}
+    \field{journaltitle}{Journal of The Institution of Engineers (India):
+  Series A}
+    \field{month}{06}
+    \field{year}{2017}
+  \endentry
+
+  \entry{HOSSEINLOU201536}{article}{}
+    \name{author}{3}{}{%
+      {{hash=HMH}{%
+         family={Hosseinlou},
+         familyi={H\bibinitperiod},
+         given={Mansour\bibnamedelima Hadji},
+         giveni={M\bibinitperiod\bibinitdelim H\bibinitperiod},
+      }}%
+      {{hash=KSA}{%
+         family={Kheyrabadi},
+         familyi={K\bibinitperiod},
+         given={Salman\bibnamedelima Aghidi},
+         giveni={S\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=ZA}{%
+         family={Zolfaghari},
+         familyi={Z\bibinitperiod},
+         given={Abbas},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \keyw{Speed limit, Societal cost, Environment pollutants, Travel time,
+  Traffic accidents, Fuel consumption}
+    \strng{namehash}{HMHKSAZA1}
+    \strng{fullhash}{HMHKSAZA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb https://doi.org/10.1016/j.iatssr.2014.08.003
+    \endverb
+    \field{issn}{0386-1112}
+    \field{number}{1}
+    \field{pages}{36 \bibrangedash  41}
+    \field{title}{Determining optimal speed limits in traffic networks}
+    \verb{url}
+    \verb http://www.sciencedirect.com/science/article/pii/S0386111214000259
+    \endverb
+    \field{volume}{39}
+    \field{journaltitle}{IATSS Research}
+    \field{year}{2015}
+  \endentry
+
+  \entry{Elvik2012}{article}{}
+    \name{author}{1}{}{%
+      {{hash=ER}{%
+         family={Elvik},
+         familyi={E\bibinitperiod},
+         given={Rune},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ER1}
+    \strng{fullhash}{ER1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1146/annurev-publhealth-031811-124634
+    \endverb
+    \field{number}{1}
+    \field{pages}{225\bibrangedash 238}
+    \field{title}{Speed Limits, Enforcement, and Health Consequences}
+    \verb{url}
+    \verb https://doi.org/10.1146/annurev-publhealth-031811-124634
+    \endverb
+    \field{volume}{33}
+    \field{journaltitle}{Annual Review of Public Health}
+    \field{year}{2012}
+  \endentry
+
+  \entry{MAURYA2016428}{article}{}
+    \name{author}{4}{}{%
+      {{hash=MAK}{%
+         family={Maurya},
+         familyi={M\bibinitperiod},
+         given={Akhilesh\bibnamedelima Kumar},
+         giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+      {{hash=DS}{%
+         family={Das},
+         familyi={D\bibinitperiod},
+         given={Sanhita},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=DS}{%
+         family={Dey},
+         familyi={D\bibinitperiod},
+         given={Shreya},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=NS}{%
+         family={Nama},
+         familyi={N\bibinitperiod},
+         given={Suresh},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \keyw{Speed distribution, Headway distribution, Heterogeneous traffic,
+  Bi-directional road}
+    \strng{namehash}{MAK+1}
+    \strng{fullhash}{MAKDSDSNS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb https://doi.org/10.1016/j.trpro.2016.11.084
+    \endverb
+    \field{issn}{2352-1465}
+    \field{note}{International Conference on Transportation Planning and
+  Implementation Methodologies for Developing Countries (12th TPMDC) Selected
+  Proceedings, IIT Bombay, Mumbai, India, 10-12 December 2014}
+    \field{pages}{428 \bibrangedash  437}
+    \field{title}{Study on Speed and Time-headway Distributions on Two-lane
+  Bidirectional Road in Heterogeneous Traffic Condition}
+    \verb{url}
+    \verb http://www.sciencedirect.com/science/article/pii/S2352146516306998
+    \endverb
+    \field{volume}{17}
+    \field{journaltitle}{Transportation Research Procedia}
+    \field{year}{2016}
+  \endentry
+
+  \entry{DHAMANIYA2013342}{article}{}
+    \name{author}{2}{}{%
+      {{hash=DA}{%
+         family={Dhamaniya},
+         familyi={D\bibinitperiod},
+         given={Ashish},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=CS}{%
+         family={Chandra},
+         familyi={C\bibinitperiod},
+         given={Satish},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \keyw{Traffic volume, speed, density, urban arterial}
+    \strng{namehash}{DACS1}
+    \strng{fullhash}{DACS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb https://doi.org/10.1016/j.sbspro.2013.11.127
+    \endverb
+    \field{issn}{1877-0428}
+    \field{note}{2nd Conference of Transportation Research Group of India (2nd
+  CTRG)}
+    \field{pages}{342 \bibrangedash  351}
+    \field{title}{Speed Prediction Models for Urban Arterials Under Mixed
+  Traffic Conditions}
+    \verb{url}
+    \verb http://www.sciencedirect.com/science/article/pii/S1877042813045187
+    \endverb
+    \field{volume}{104}
+    \field{journaltitle}{Procedia - Social and Behavioral Sciences}
+    \field{year}{2013}
+  \endentry
+
+  \entry{VADEBY201834}{article}{}
+    \name{author}{2}{}{%
+      {{hash=VA}{%
+         family={Vadeby},
+         familyi={V\bibinitperiod},
+         given={Anna},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=ÃF}{%
+         prefix={Ã…sa},
+         prefixi={Ã\bibinitperiod},
+         family={Forsman},
+         familyi={F\bibinitperiod},
+      }}%
+    }
+    \keyw{Speed limits, Mean speed, Power model, Speed compliance, Traffic
+  safety, Vision zero}
+    \strng{namehash}{VAFÃ1}
+    \strng{fullhash}{VAFÃ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb https://doi.org/10.1016/j.aap.2017.02.003
+    \endverb
+    \field{issn}{0001-4575}
+    \field{note}{Road Safety on Five Continents 2016 - Conference in Rio de
+  Janeiro, Brazil.}
+    \field{pages}{34 \bibrangedash  39}
+    \field{title}{Traffic safety effects of new speed limits in Sweden}
+    \verb{url}
+    \verb http://www.sciencedirect.com/science/article/pii/S0001457517300532
+    \endverb
+    \field{volume}{114}
+    \field{journaltitle}{Accident Analysis and Prevention}
+    \field{year}{2018}
+  \endentry
+
+  \entry{GACA20164170}{article}{}
+    \name{author}{2}{}{%
+      {{hash=GS}{%
+         family={Gaca},
+         familyi={G\bibinitperiod},
+         given={Stanislaw},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=KM}{%
+         family={Kiec},
+         familyi={K\bibinitperiod},
+         given={Mariusz},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \keyw{Local roads, speed, speed management, speed prediction model, rural
+  roads, road safety}
+    \strng{namehash}{GSKM1}
+    \strng{fullhash}{GSKM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb https://doi.org/10.1016/j.trpro.2016.05.388
+    \endverb
+    \field{issn}{2352-1465}
+    \field{note}{Transport Research Arena TRA2016}
+    \field{pages}{4170 \bibrangedash  4179}
+    \field{title}{Speed Management for Local and Regional Rural Roads}
+    \verb{url}
+    \verb http://www.sciencedirect.com/science/article/pii/S2352146516303945
+    \endverb
+    \field{volume}{14}
+    \field{journaltitle}{Transportation Research Procedia}
+    \field{year}{2016}
+  \endentry
+
+  \entry{OVIEDOTRESPALACIOS201767}{article}{}
+    \name{author}{4}{}{%
+      {{hash=OTO}{%
+         family={Oviedo-Trespalacios},
+         familyi={O\bibinitperiod-T\bibinitperiod},
+         given={Oscar},
+         giveni={O\bibinitperiod},
+      }}%
+      {{hash=HMM}{%
+         family={Haque},
+         familyi={H\bibinitperiod},
+         given={Md.\bibnamedelima Mazharul},
+         giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=KM}{%
+         family={King},
+         familyi={K\bibinitperiod},
+         given={Mark},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=WS}{%
+         family={Washington},
+         familyi={W\bibinitperiod},
+         given={Simon},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \keyw{Road infrastructure, Traffic complexity, Mobile phone distraction,
+  High-fidelity driving simulator, Driver behaviour, Decision tree}
+    \strng{namehash}{OTO+1}
+    \strng{fullhash}{OTOHMMKMWS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb https://doi.org/10.1016/j.aap.2017.01.018
+    \endverb
+    \field{issn}{0001-4575}
+    \field{pages}{67 \bibrangedash  77}
+    \field{title}{Effects of road infrastructure and traffic complexity in
+  speed adaptation behaviour of distracted drivers}
+    \verb{url}
+    \verb http://www.sciencedirect.com/science/article/pii/S0001457517300453
+    \endverb
+    \field{volume}{101}
+    \field{journaltitle}{Accident Analysis and Prevention}
+    \field{year}{2017}
+  \endentry
+
+  \entry{GORALZIK20172061}{article}{}
+    \name{author}{2}{}{%
+      {{hash=GA}{%
+         family={Goralzik},
+         familyi={G\bibinitperiod},
+         given={Anne},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=VM}{%
+         family={Vollrath},
+         familyi={V\bibinitperiod},
+         given={Mark},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \keyw{Speed choice, road traffic safety, speed limit, curvature, lane
+  width, gender, driving experience, passenger presence, driving simulation}
+    \strng{namehash}{GAVM1}
+    \strng{fullhash}{GAVM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb https://doi.org/10.1016/j.trpro.2017.05.400
+    \endverb
+    \field{issn}{2352-1465}
+    \field{note}{World Conference on Transport Research - WCTR 2016 Shanghai.
+  10-15 July 2016}
+    \field{pages}{2061 \bibrangedash  2075}
+    \field{title}{The effects of road, driver, and passenger presence on
+  driversâ€™ choice of speed: a driving simulator study}
+    \verb{url}
+    \verb http://www.sciencedirect.com/science/article/pii/S235214651730707X
+    \endverb
+    \field{volume}{25}
+    \field{journaltitle}{Transportation Research Procedia}
+    \field{year}{2017}
+  \endentry
+
+  \entry{SORIGUERA2017257}{article}{}
+    \name{author}{4}{}{%
+      {{hash=SF}{%
+         family={Soriguera},
+         familyi={S\bibinitperiod},
+         given={Francesc},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=MI}{%
+         family={MartÃ­nez},
+         familyi={M\bibinitperiod},
+         given={Irene},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Sala},
+         familyi={S\bibinitperiod},
+         given={Marcel},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=MM}{%
+         family={MenÃ©ndez},
+         familyi={M\bibinitperiod},
+         given={MÃ³nica},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \keyw{Variable speed limits, Freeway capacity, Traffic homogeneity, Lane
+  flow distribution, Lane changing}
+    \strng{namehash}{SF+1}
+    \strng{fullhash}{SFMISMMM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb https://doi.org/10.1016/j.trc.2017.01.024
+    \endverb
+    \field{issn}{0968-090X}
+    \field{pages}{257 \bibrangedash  274}
+    \field{title}{Effects of low speed limits on freeway traffic flow}
+    \verb{url}
+    \verb http://www.sciencedirect.com/science/article/pii/S0968090X17300396
+    \endverb
+    \field{volume}{77}
+    \field{journaltitle}{Transportation Research Part C: Emerging Technologies}
+    \field{year}{2017}
+  \endentry
+
+  \entry{VANBENTHEM201544}{article}{}
+    \name{author}{1}{}{%
+      {{hash=vBA}{%
+         prefix={van},
+         prefixi={v\bibinitperiod},
+         family={Benthem},
+         familyi={B\bibinitperiod},
+         given={Arthur},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \keyw{Speed limit, Travel time, Accidents, Pollution, Infant health, Value
+  of a statistical life, Value of time, Externalities}
+    \strng{namehash}{BAv1}
+    \strng{fullhash}{BAv1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb https://doi.org/10.1016/j.jpubeco.2015.02.001
+    \endverb
+    \field{issn}{0047-2727}
+    \field{pages}{44 \bibrangedash  62}
+    \field{title}{What is the optimal speed limit on freeways?}
+    \verb{url}
+    \verb http://www.sciencedirect.com/science/article/pii/S0047272715000146
+    \endverb
+    \field{volume}{124}
+    \field{journaltitle}{Journal of Public Economics}
+    \field{year}{2015}
+  \endentry
+\endsortlist
 \endinput
