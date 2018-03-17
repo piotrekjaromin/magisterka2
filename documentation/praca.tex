@@ -27,7 +27,7 @@ sorting=none,
 language=autobib,
 autolang=other,
 % Zapisuj datę dostępu do strony WWW w formacie RRRR-MM-DD.
-urldate=iso8601,
+urldate=edtf,
 % Nie dodawaj numerów stron, na których występuje cytowanie.
 backref=false,
 % Podawaj ISBN.
@@ -38,12 +38,24 @@ url=false,
 % Ustawienia związane z polskimi normami dla bibliografii.
 maxbibnames=3,
 % Jeżeli używamy BibTeXa:
-backend=bibtex
+backend=bibtex,
+seconds=true
 ]{biblatex}
 
 \usepackage{csquotes}
 % Ponieważ `csquotes` nie posiada polskiego stylu, można skorzystać z mocno zbliżonego stylu chorwackiego.
 \DeclareQuoteAlias{croatian}{polish}
+
+\begin{filecontents}{bibliografia.bib}
+@online{Bonding,
+  author = {Stu Borman},
+  title = {Spying On Bond Making In Solution},
+  date = {2015-02-19},
+  url = {http://cen.acs.org/articles/93/i8/Spying-Bond-Making-Solution.html},
+  urldate = {2015-03-03},
+  addendum= {All about dicyanoaurate, has links to papers.}
+}
+\end{filecontents}
 
 \addbibresource{bibliografia.bib}
 
@@ -158,6 +170,8 @@ backend=bibtex
 \clearpage
 
 \include{rozdzial1}
+\include{rozdzial2}
+\include{harmonogram}
 
 
 
@@ -166,29 +180,8 @@ backend=bibtex
 % \include{dodatekA}
 % \include{dodatekB}
 % itd.
-\nocite{EOSM}
-\nocite{BPFVSLLR}
-\nocite{BPFVSLBPR}
-\nocite{MNGFSSLAHL}
-\nocite{MAPFSSLAIR}
-\nocite{Jagerbrand2016}
-\nocite{Nama2016}
-\nocite{Marzoug2016}
-\nocite{Peltola2016}
-\nocite{Gundolf2017}
-\nocite{Bratu2017}
-\nocite{Zhao2016}
-\nocite{Saha2017}
-\nocite{HOSSEINLOU201536}
-\nocite{Elvik2012}
-\nocite{MAURYA2016428}
-\nocite{DHAMANIYA2013342}
-\nocite{VADEBY201834}
-\nocite{GACA20164170}
-\nocite{OVIEDOTRESPALACIOS201767}
-\nocite{GORALZIK20172061}
-\nocite{SORIGUERA2017257}
-\nocite{VANBENTHEM201544}
+
+
 
 \printbibliography
 

@@ -6,3 +6,7 @@
 \contentsline {section}{\numberline {1.3}Wykorzystane technologie}{11}
 \contentsline {section}{\numberline {1.4}Przegl\IeC {\k a}d literatury}{11}
 \contentsline {section}{\numberline {1.5}Uk\IeC {\l }ad pracy}{15}
+\contentsline {chapter}{\numberline {2}Interfejs u\IeC {\.z}ytkownika}{17}
+\contentsline {section}{\numberline {2.1}Ekran g\IeC {\l }\IeC {\'o}wny}{17}
+\contentsline {chapter}{\numberline {3}Harmonogram}{19}
+\contentsline {section}{\numberline {3.1}Harnomogram}{19}

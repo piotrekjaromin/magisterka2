@@ -1,10 +1,8 @@
 <div id="map" *ngIf="options != null " class="map"
      leaflet
-     leafletDraw
      [leafletOptions]="options"
      (leafletMapReady)="onMapReady($event)"
      [leafletLayers]="layers"
-     [leafletDrawOptions]="drawOptions"
      [leafletLayersControl]="layersControl">
 </div>
 <button (click)="showFields()">Add</button>
