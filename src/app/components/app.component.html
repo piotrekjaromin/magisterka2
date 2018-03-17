@@ -5,8 +5,8 @@
      [leafletLayers]="layers"
      [leafletLayersControl]="layersControl">
 </div>
-<button (click)="showFields()">Add</button>
-<div *ngIf="isShowed">
+<button *ngIf="" (click)="showFields()">Add</button>
+<div *ngIf="isShowedField">
   lon: <input [(ngModel)]="lat" disabled>
   lat: <input [(ngModel)]="long" disabled>
   type: <select [(ngModel)]="type">

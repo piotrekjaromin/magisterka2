@@ -23,7 +23,8 @@ export class AppComponent implements OnInit {
   type: string;
   mymap: L.Map;
   popup = L.popup();
-  isShowed = false;
+  isShowedField = false;
+  isShowedAddButton = false;
   drawOptions: any;
 
   constructor(private dataService: DataService, private dbDataService: DbDataService) {
@@ -72,6 +73,7 @@ export class AppComponent implements OnInit {
   onMapReady(readyMap: L.Map) {
     this.mymap = readyMap;
     this.mymap.on('click', (data: LeafletEvent) => {
+      this.isShowedAddButton = true;
       const latlng = data.latlng;
       this.lat = latlng.lat;
       this.long = latlng.lng;
@@ -83,7 +85,7 @@ export class AppComponent implements OnInit {
   }
 
   showFields() {
-    this.isShowed = true;
+    this.isShowedField = true;
   }
 
   addMarker() {
