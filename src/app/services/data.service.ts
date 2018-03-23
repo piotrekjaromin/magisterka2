@@ -17,6 +17,7 @@ export class DataService {
   }
 
   getOnlyStreet(geoModel: Geojsonmodel): Geojsonmodel {
+    var counter = 0;
     const result: Geojsonmodel = JSON.parse(JSON.stringify(geoModel));
     const features: [Feature] = result.features;
     const filteredFeatures: [Feature] = <[Feature]>[];
@@ -64,6 +65,12 @@ export class DataService {
       ) {
         // console.log(feature.properties);
         filteredFeatures.push(feature);
+
+        // if (counter === 0) {
+        //   filteredFeatures.push(feature);
+        //   console.log(feature.geometry.coordinates[0]);
+        // }
+        counter++;
       }
     }
     result.features = filteredFeatures;
@@ -181,16 +188,53 @@ export class DataService {
   getObjects(geoModel: Geojsonmodel): Geojsonmodel {
     const schools = this.getSchools(geoModel);
     const busStops = this.getBusStops(geoModel);
-    const result = schools;
-
-    for (let feature of busStops.features) {
-      result.features.push(feature);
-    }
+    const trafficSignal = this.getTrafficSignal(geoModel);
+    // const result = schools;
+    const result = trafficSignal;
+    // for (let feature of busStops.features) {
+    //   result.features.push(feature);
+    // }
+    //
+    // for (let feature of trafficSignal.features) {
+    //   result.features.push(feature);
+    // }
 
     // for (let feature of result.features) {
     //   this.dbDataService.saveObjectToDB(feature, <[CustomMarker]>[], DbDataService.objectHttp);
     // }
 
+    return result;
+  }
+
+  getTrafficSignal(geoModel: Geojsonmodel): Geojsonmodel {
+    const result: Geojsonmodel = JSON.parse(JSON.stringify(geoModel));
+    const features: [Feature] = result.features;
+    const filteredFeatures: [Feature] = <[Feature]>[];
+    for (const feature of features) {
+      if (feature.properties.highway === 'traffic_signals' ) {
+        feature.properties.description = 'traffic_signals';
+        filteredFeatures.push(feature);
+      }
+    }
+    result.features = filteredFeatures;
+    return result;
+  }
+
+  getPedestrialCrossing(geoModel: Geojsonmodel): Geojsonmodel {
+    var counter = 0;
+    const result: Geojsonmodel = JSON.parse(JSON.stringify(geoModel));
+    const features: [Feature] = result.features;
+    const filteredFeatures: [Feature] = <[Feature]>[];
+    for (const feature of features) {
+      if (feature.properties.crossing !== undefined
+        && feature.geometry.type === 'Point'
+        && feature.properties.crossing === 'uncontrolled') {
+        feature.properties.description = 'crossing';
+        filteredFeatures.push(feature);
+        counter++;
+      }
+    }
+    result.features = filteredFeatures;
     return result;
   }
 

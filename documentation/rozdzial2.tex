@@ -1,6 +1,6 @@
 \chapter{Interfejs użytkownika}
 \label{cha:UI}
-W niniejszym rozdziale skupię się na szczegółowym opisie interfejsu użytkownika. Zostaną przedstawione najważniejsze funkcję, które pomogą użytkownikowi w korzystaniu z programu. Omówinone zostaną poszczególne warstwy wyświetlone na mapie, przełączanie między nimi oraz tworzenie własnych warst, przedstawiających dodaną przez użytkownika informację.
+W niniejszym rozdziale skupię się na szczegółowym opisie interfejsu użytkownika. Zostaną przedstawione najważniejsze funkcję, które pomogą użytkownikowi w korzystaniu z programu. Omówinone zostaną poszczególne warstwy wyświetlone na mapie, przełączanie między nimi oraz tworzenie własnych warst, przedstawiających dodaną przez użytkownika informację. W pierwszej sekcji przedstawiony zostanie widok główny aplikacji wraz z dokładnym omówieniem. W dalszych częsciach tego rozdziału, opisane zostaną kolejne warstwy. Na końcu przedstawiony zostanie sposób, jak dodawać własne obiekty, żeby były widoczne na mapie.
 \newpage
 \section{Widok główny aplikacji}
 \label{sec:mainView}
@@ -79,6 +79,15 @@ Na mapie z Rys. \ref{sec:speedLimitMap}, zostały umieszczone ograniczenia pręd
 \section{Widok istotnych obiektów pobranych z OSM}
 \label{sec:objects}
 
+Rys. \ref{sec:objectsMap} przedstawia istotne, z puktu widzenia algorytmu, obiekty pobrane z OpenStreetMap. W ich skład wchodzą:
+\begin{itemize}
+\item przedszkola i szkoły
+\item przystanki autobusowe i tramwajowe
+\item przejścia dla pieszczych
+\item sklepy i miejsca kultu religijnego
+\item place zabaw
+\end{itemize}
+
 \begin{figure}[h]
 \caption{Widok istotnych obiektów pobranych z OSM}
 \label{sec:objectsMap}
@@ -89,3 +98,7 @@ Na mapie z Rys. \ref{sec:speedLimitMap}, zostały umieszczone ograniczenia pręd
 \newpage
 \section{Widok obiektów zdefiniowanych przez użytkownika}
 \label{sec:customObjects}
+
+\newpage
+\section{Dodawanie własnych obiektów}
+\label{sec:addedCustomObjects}

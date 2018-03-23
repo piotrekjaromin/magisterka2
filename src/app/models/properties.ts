@@ -41,6 +41,8 @@ export class Properties{
               public historic: string,
               public place: string,
               public bus: string,
-              public playground: string
+              public playground: string,
+              public crossing: string,
+              public footway: string
   ) {}
 }

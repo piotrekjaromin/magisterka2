@@ -13,5 +13,19 @@
 \contentsline {section}{\numberline {2.4}Widok dopuszczalnych ogranicze\IeC {\'n} pr\IeC {\k e}dko\IeC {\'s}ci}{21}
 \contentsline {section}{\numberline {2.5}Widok istotnych obiekt\IeC {\'o}w pobranych z OSM}{22}
 \contentsline {section}{\numberline {2.6}Widok obiekt\IeC {\'o}w zdefiniowanych przez u\IeC {\.z}ytkownika}{23}
-\contentsline {chapter}{\numberline {3}Harmonogram}{25}
-\contentsline {section}{\numberline {3.1}Harnomogram}{25}
+\contentsline {section}{\numberline {2.7}Dodawanie w\IeC {\l }asnych obiekt\IeC {\'o}w}{24}
+\contentsline {chapter}{\numberline {3}Algorytm}{25}
+\contentsline {section}{\numberline {3.1}Umiejscowienie znak\IeC {\'o}w na drodze}{26}
+\contentsline {section}{\numberline {3.2}Zakr\IeC {\k e}ty}{27}
+\contentsline {section}{\numberline {3.3}Szko\IeC {\l }y i miesca zabaw}{28}
+\contentsline {section}{\numberline {3.4}Sklepy i miejsca kult\IeC {\'o}w religijnych}{29}
+\contentsline {section}{\numberline {3.5}Przystanki autobusowe i tramwajowe}{30}
+\contentsline {section}{\numberline {3.6}Przej\IeC {\'s}cia dla pieszych}{31}
+\contentsline {section}{\numberline {3.7}Liczba pas\IeC {\'o}w ruchu}{32}
+\contentsline {section}{\numberline {3.8}Typ nawierzchni}{33}
+\contentsline {section}{\numberline {3.9}Rodzaj drogi}{34}
+\contentsline {section}{\numberline {3.10}P\IeC {\l }ynna zmiana pr\IeC {\k e}dko\IeC {\'s}ci pojazd\IeC {\'o}w}{35}
+\contentsline {section}{\numberline {3.11}Przejazdy kolejowe}{36}
+\contentsline {section}{\numberline {3.12}Historia wypadk\IeC {\'o}w}{37}
+\contentsline {chapter}{\numberline {4}Harmonogram}{39}
+\contentsline {section}{\numberline {4.1}Harnomogram}{39}

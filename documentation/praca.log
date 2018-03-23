@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.3.3)  17 MAR 2018 12:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.3.3)  18 MAR 2018 08:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1387,6 +1387,37 @@ LaTeX Warning: Unused global option(s):
 
 LaTeX Warning: Label `sec:mainView' multiply defined.
 
+) (./rozdzial3.aux
+
+LaTeX Warning: Label `sec:zakr\IeC {\k e}ty' multiply defined.
+
+
+LaTeX Warning: Label `sec:zakr\IeC {\k e}ty' multiply defined.
+
+
+LaTeX Warning: Label `sec:zakr\IeC {\k e}ty' multiply defined.
+
+
+LaTeX Warning: Label `sec:zakr\IeC {\k e}ty' multiply defined.
+
+
+LaTeX Warning: Label `sec:zakr\IeC {\k e}ty' multiply defined.
+
+
+LaTeX Warning: Label `sec:zakr\IeC {\k e}ty' multiply defined.
+
+
+LaTeX Warning: Label `sec:zakr\IeC {\k e}ty' multiply defined.
+
+
+LaTeX Warning: Label `sec:zakr\IeC {\k e}ty' multiply defined.
+
+
+LaTeX Warning: Label `sec:zakr\IeC {\k e}ty' multiply defined.
+
+
+LaTeX Warning: Label `sec:zakr\IeC {\k e}ty' multiply defined.
+
 ) (./harmonogram.aux))
 \openout1 = `praca.aux'.
 
@@ -1617,27 +1648,27 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 169.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 169.
- (./praca.toc)
+ (./praca.toc [5
+
+])
 \tf@toc=\write5
 \openout5 = `praca.toc'.
 
 
-[5
-
-]
+[6]
 \openout2 = `rozdzial1.aux'.
 
- (./rozdzial1.tex [6
-
-
-
-]
+ (./rozdzial1.tex
 Rozdzia\l  1.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 1.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 16.
-[7]
+[7
+
+
+
+]
 <picture1.png, id=33, 983.675pt x 681.54625pt>
 File: picture1.png Graphic file (type png)
 <use picture1.png>
@@ -1714,28 +1745,61 @@ Overfull \hbox (13.65675pt too wide) in paragraph at lines 75--76
 <objects.png, id=91, 957.5775pt x 714.67pt>
 File: objects.png Graphic file (type png)
 <use objects.png>
-Package pdftex.def Info: objects.png  used on input line 86. on input line 86.
+Package pdftex.def Info: objects.png  used on input line 95. on input line 95.
 Package pdftex.def Info: Requested size: 468.90086pt x 349.95145pt on input lin
-e 86.
+e 95.
 
-Overfull \hbox (13.65675pt too wide) in paragraph at lines 86--87
+Overfull \hbox (13.65675pt too wide) in paragraph at lines 95--96
  [][] 
  []
 
-[22 <./objects.png>]) [23]
+[22 <./objects.png>] [23]) [24]
+\openout2 = `rozdzial3.aux'.
+
+ (./rozdzial3.tex
+Rozdzia\l  3.
+[25
+
+
+
+] [26] [27] [28] [29] [30]
+<dlugoscPktOdProstej.jpg, id=121, 261.97874pt x 182.6825pt>
+File: dlugoscPktOdProstej.jpg Graphic file (type jpg)
+<use dlugoscPktOdProstej.jpg>
+Package pdftex.def Info: dlugoscPktOdProstej.jpg  used on input line 43. on inp
+ut line 43.
+Package pdftex.def Info: Requested size: 182.09486pt x 126.98207pt on input lin
+e 43.
+
+Underfull \hbox (badness 10000) in paragraph at lines 50--51
+
+ []
+
+<PrzejscieDrogi.png, id=122, 671.50874pt x 529.98pt>
+File: PrzejscieDrogi.png Graphic file (type png)
+<use PrzejscieDrogi.png>
+Package pdftex.def Info: PrzejscieDrogi.png  used on input line 63. on input li
+ne 63.
+Package pdftex.def Info: Requested size: 364.19667pt x 287.43839pt on input lin
+e 63.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[31 <./dlugoscPktOdProstej.jpg>] [32 <./PrzejscieDrogi.png>] [33] [34] [35]
+[36]) [37]
 \openout2 = `harmonogram.aux'.
 
- (./harmonogram.tex [24
+ (./harmonogram.tex [38
 
 
 
 ]
-Rozdzia\l  3.
-) [25] [26
+Rozdzia\l  4.
+) [39] [40
 
 
-] [27] [28] [29] (./praca.aux (./rozdzial1.aux) (./rozdzial2.aux)
-(./harmonogram.aux))
+] [41] [42] [43] (./praca.aux (./rozdzial1.aux) (./rozdzial2.aux)
+(./rozdzial3.aux) (./harmonogram.aux))
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -1744,27 +1808,30 @@ Package logreq Info: Writing requests to 'praca.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 26100 strings out of 492990
- 486506 string characters out of 6135006
- 729257 words of memory out of 5000000
- 29289 multiletter control sequences out of 15000+600000
+ 26125 strings out of 492990
+ 486997 string characters out of 6135006
+ 730257 words of memory out of 5000000
+ 29305 multiletter control sequences out of 15000+600000
  605083 words of font info for 91 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  45i,12n,50p,10383b,2723s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/hel
-vetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8
-a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/urw/times/utmri8a.pfb>
-Output written on praca.pdf (29 pages, 2079794 bytes).
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uh
+vb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
+rw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8
+a.pfb>
+Output written on praca.pdf (43 pages, 2310263 bytes).
 PDF statistics:
- 152 PDF objects out of 1000 (max. 8388607)
- 97 compressed objects within 1 object stream
+ 215 PDF objects out of 1000 (max. 8388607)
+ 139 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 36 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -32,8 +32,8 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getDataFromDB();
-    // this.getDataFromFile();
+    // this.getDataFromDB();
+     this.getDataFromFile();
     // this.exportRoadsAndObjectsToDB();
   }
 
