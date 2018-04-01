@@ -89,6 +89,7 @@ export class DataService {
 
     for (const feature of allRoads.features) {
       if (feature.properties.oneway === 'yes') {
+        feature.properties.description = 'one_way'
         filteredFeatures.push(feature);
       }
     }
@@ -176,7 +177,7 @@ export class DataService {
 
     for (const feature of features) {
       if ( feature.properties.highway === 'bus_stop'  || feature.properties.bus === 'yes') {
-        feature.properties.description = 'bus stop';
+        feature.properties.description = 'bus_stop';
         filteredFeatures.push(feature);
       }
     }
@@ -232,14 +233,13 @@ export class DataService {
     const filteredFeatures: [Feature] = <[Feature]>[];
     for (const feature of features) {
       if (feature.properties.highway === 'traffic_signals' ) {
-        feature.properties.description = 'traffic_signals';
+        feature.properties.description = 'traffic_signal';
         filteredFeatures.push(feature);
       }
     }
     result.features = filteredFeatures;
     return result;
   }
-
 
   getPedestrialCrossing(geoModel: Geojsonmodel): Geojsonmodel {
     var counter = 0;
@@ -250,7 +250,7 @@ export class DataService {
       if (feature.properties.crossing !== undefined
         && feature.geometry.type === 'Point'
         && feature.properties.crossing === 'uncontrolled') {
-        feature.properties.description = 'crossing';
+        feature.properties.description = 'pedestrian_crossing';
         filteredFeatures.push(feature);
         counter++;
       }

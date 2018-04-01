@@ -1,39 +1,40 @@
-import {geoJSON, icon, latLng, Layer, LayerGroup, Marker, marker, tileLayer, TileLayer} from 'leaflet';
+import {geoJSON, icon, LayerGroup, Marker, marker} from 'leaflet';
 import {DataService} from '../services/data.service';
 import {SpeedService} from '../services/speed.service';
 import {Feature} from '../models/feature';
 import {CustomMarker} from '../models/customMarker';
-import {MapDataOperations} from '../mapDataOperations';
 import {DbDataService} from '../services/dbData.service';
 import {BaseLayerManager} from './baseLayerManager';
 import {Geojsonmodel} from '../models/geojsonmodel';
-import {StreetAndPoint} from '../mathematicalOperations/streetAndPoint';
+import {Mathematical} from '../calculationOperations/mathematical';
+import {GeometryOperations} from '../calculationOperations/geometryOperations';
 
 export class FileLayerManager {
   public layersControl: any;
   public options: any;
   public data: any;
+  public allStreetWithObjects: Geojsonmodel;
 
   constructor(private dataService: DataService, private dbDataService: DbDataService, data: any) {
     this.options = BaseLayerManager.prepareOptions(BaseLayerManager.prepareMainLayer());
     this.data = data;
-
+    this.allStreetWithObjects = this.addAllObjectsToStreets();
     this.layersControl = {
       baseLayers: {
         'Open Street Map': BaseLayerManager.prepareMainLayer()
       },
       overlays: {
         'All objects': this.prepareAllObjectsLayer(),
-        'Only streets': this.prepareOnlyStreetLayer(),
+        'Only streets2': this.parseGeoJsonToGeojsonmodel(this.allStreetWithObjects),
         'One way streets': this.prepareOneWayStreetLayer(),
         'Speed limit': this.prepareSpeedLimitMarkersLayer(),
         'Speed limit before pedestrian crossing': this.prepareSpeedLimitBeforePedestrianCrossingMarkersLayer(),
-        'Traffic signals': this.prepareTrafficSignalsMarkersLayer(),
-        'Streets contain traffic signals': this.getStreetsContainTrafficSignal(),
-        'Rail crossing': this.prepareRailCrossingMarkersLayer(),
-        'Streets contains rail crossing': this.getStreetsContainRailCrossing(),
-        'Pedestrian crossing': this.preparePedestrianCrossingMarkersLayer(),
-        'Streets contain pedestrian crossing': this.getStreetsContainPedestrianCrossing(),
+        'Traffic signals': this.prepareObjectMarkersLayer('traffic_signal'),
+        'Streets contain traffic signals': this.parseGeoJsonToGeojsonmodel(this.getStreetsContains('traffic_signal')),
+        'Rail crossing': this.prepareObjectMarkersLayer( 'rail_crossing'),
+        'Streets contains rail crossing': this.parseGeoJsonToGeojsonmodel(this.getStreetsContains('rail_crossing')),
+        'Pedestrian crossing': this.prepareObjectMarkersLayer('pedestrian_crossing'),
+        'Streets contain pedestrian crossing': this.parseGeoJsonToGeojsonmodel(this.getStreetsContains('pedestrian_crossing')),
         'Bus stops': this.prepareBusStopLayer(),
         'Customer objects': this.prepareObjectLayer()
       }
@@ -44,43 +45,29 @@ export class FileLayerManager {
 
   private prepareSpeedLimitBeforePedestrianCrossingMarkersLayer(): LayerGroup {
     const markers: [Marker] = <[Marker]>[];
-
-    const onlyStreetGeoModel: Geojsonmodel = this.insertObjectsToStreets(this.dataService.getPedestrialCrossing(this.data), 'pedestrian crossing')
+    const onlyStreetGeoModel: Geojsonmodel = this.getStreetsContains('pedestrian_crossing');
     const features = onlyStreetGeoModel.features;
 
-   for (const feature of features) {
-     for (const customMarker of feature.markers) {
-       const centerCoordinates = this.getCoordinatesBeforePoint([customMarker.lat, customMarker.long], feature.geometry.coordinates, 50);
-       if (centerCoordinates[0] > centerCoordinates[1]) {
-          const tmp = centerCoordinates[0];
-          centerCoordinates[0] = centerCoordinates[1];
-          centerCoordinates[1] = tmp;
-       }
-       markers.push(
-         this.prepareMarker(centerCoordinates[1], centerCoordinates[0], feature.markers[0].speed.toString())
-           .on('click', (data) => console.log(data)));
+    for (const feature of features) {
+      for (const customMarker of feature.markers) {
 
-     }
-   }
-    return new LayerGroup(markers);
-  }
+        const beforeCoordinates = GeometryOperations.getCoordinatesBeforePoint([customMarker.lat, customMarker.long], feature.geometry.coordinates, 50);
 
+        markers.push(
+          this.prepareMarker(beforeCoordinates[1], beforeCoordinates[0], feature.markers[0].speed.toString())
+            .on('click', (data) => console.log(1)));
 
-  prepareRoadsWithSpeedLimitsBeforePedestrianCrossing(): [Feature] {
-   const onlyStreetGeoModel: Geojsonmodel = this.insertObjectsToStreets(this.dataService.getPedestrialCrossing(this.data), 'pedestrian crossing')
-   const features = onlyStreetGeoModel.features;
+        // if (Mathematical.getDistanceBetweenPointAndEndOfRoad([customMarker.lat, customMarker.long], Mathematical.revertCoordinates(feature.geometry.coordinates)) > 100) {
+          const afterCoordinates = GeometryOperations.
+          getCoordinatesAfterPoint([customMarker.lat, customMarker.long], feature.geometry.coordinates, 10);
 
-   for (const feature of features) {
-     feature.markers = <[CustomMarker]>[];
-     const maxSpeed = 30;
-      // const centerCoordinates = this.getCenterCoordinatesOfTheRoad(feature.geometry.coordinates);
-      const centerCoordinates = this.getCoordinatesBeforePoint([feature.markers[0].lat, feature.markers[0].lat], feature.geometry.coordinates, 50);
-
-
-      feature.markers.push(new CustomMarker(centerCoordinates[0], centerCoordinates[1], '', maxSpeed));
+          markers.push(
+            this.prepareMarker(afterCoordinates[1], afterCoordinates[0], feature.properties.defaultSpeedLimit)
+              .on('click', (data) => console.log(2)));
+        // }
+      }
     }
-    return features;
-    // return <[Feature]>[];
+    return new LayerGroup(markers);
   }
 
   ///////////////////////////////////////////////////////////////////////////////////////////
@@ -104,56 +91,25 @@ export class FileLayerManager {
     const onlyStreetGeoModel = this.dataService.getOnlyStreet(this.data);
     const features = onlyStreetGeoModel.features;
 
+
     for (const feature of features) {
       feature.markers = <[CustomMarker]>[];
-      const maxSpeed = SpeedService.getMaxSpeed(feature);
-      // const centerCoordinates = this.getCenterCoordinatesOfTheRoad(feature.geometry.coordinates);
-      const centerCoordinates = this.getBeginningCoordinates(feature.geometry.coordinates);
-
-      feature.markers.push(new CustomMarker(centerCoordinates[0], centerCoordinates[1], '', maxSpeed));
+      const centerCoordinates = GeometryOperations.getBeginningCoordinates(feature.geometry.coordinates);
+      feature.markers.push(new CustomMarker(centerCoordinates[0], centerCoordinates[1], 'speed_limit', +feature.properties.defaultSpeedLimit));
     }
 
     return features;
   }
 
-  ///////////////////////////////////////////////////////////////////////////////////////////
-
-  private prepareTrafficSignalsMarkersLayer(): LayerGroup {
-    return this.prepareObjectMarkersLayer(this.dataService.getTrafficSignal(this.data), 'traffic_signals');
-  }
-
-  private prepareRailCrossingMarkersLayer(): LayerGroup {
-    return this.prepareObjectMarkersLayer(this.dataService.getRailCrossing(this.data), 'rail_crossing');
-  }
-
-  private preparePedestrianCrossingMarkersLayer(): LayerGroup {
-    return this.prepareObjectMarkersLayer(this.dataService.getPedestrialCrossing(this.data), 'crossing');
-  }
-
-  private prepareObjectMarkersLayer(object: Geojsonmodel, description: string): LayerGroup {
-    const coordinatesOfMarkers = this.getCoordinatesOfMarkers(object);
+  private prepareObjectMarkersLayer(type: string): LayerGroup {
     const markers: [Marker] = <[Marker]>[];
 
-    for (const feature of coordinatesOfMarkers) {
+    for (const marker of this.getMarkers(type)) {
       markers.push(
-        this.prepareMarker(feature.markers[0].lat, feature.markers[0].long, description)
-          .on('click', (data) => console.log(feature.properties)));
+        this.prepareMarker(marker.long, marker.lat, type)
+          .on('click', (data) => console.log(type)));
     }
     return new LayerGroup(markers);
-  }
-
-  getCoordinatesOfMarkers(objects: Geojsonmodel): [Feature] {
-    const features = objects.features;
-
-    for (const feature of features) {
-      feature.markers = <[CustomMarker]>[];
-      const maxSpeed = 5;
-      const coordinates = feature.geometry.coordinates;
-      if (coordinates.length === 2) {
-        feature.markers.push(new CustomMarker(<any>coordinates[1], <any>coordinates[0], '', maxSpeed));
-      }
-    }
-    return features;
   }
 
   ///////////////////////////////////////////////////////////////////////////////////////////
@@ -161,8 +117,8 @@ export class FileLayerManager {
   private prepareMarker(lat: number, long: number, markerName: string) {
     let iconSize;
 
-    if (markerName === 'crossing' || markerName === 'traffic_signals') {
-      iconSize = 13;
+    if (markerName === 'pedestrian_crossing' || markerName === 'traffic_signals') {
+      iconSize = 16;
     } else {
       iconSize = 25;
     }
@@ -173,29 +129,6 @@ export class FileLayerManager {
         iconAnchor: [0, 0],
         iconUrl: 'assets/' + markerName + '.png'
       })});
-  }
-
-  private getCenterCoordinatesOfTheRoad(coordinates: [[number, number]]): [number, number] {
-    const arrayOfLengths = MapDataOperations.getStreetLength(coordinates);
-    const totalLengthOfStreet = arrayOfLengths[arrayOfLengths.length - 3];
-
-    let currentLength = 0;
-    for (let i = 0; i < arrayOfLengths.length; i += 3) {
-      currentLength += arrayOfLengths[i];
-      if (currentLength >= (totalLengthOfStreet / 2)) {
-        return [arrayOfLengths[i + 1], arrayOfLengths[i + 2]];
-      }
-    }
-    console.log('Error computing center of the road');
-  }
-
-  private getBeginningCoordinates(coordinates: [[number, number]]): [number, number] {
-    return [coordinates[0][1], coordinates[0][0]];
-  }
-
-  private prepareOnlyStreetLayer() {
-    const onlyStreetGeoModel = this.dataService.getOnlyStreet(this.data);
-    return geoJSON(JSON.parse(JSON.stringify(onlyStreetGeoModel)));
   }
 
   private prepareOneWayStreetLayer() {
@@ -217,78 +150,64 @@ export class FileLayerManager {
     return geoJSON(this.data);
   }
 
-  private getStreetsContainPedestrianCrossing() {
-    return this.getStreetContainsPointObject(this.dataService.getPedestrialCrossing(this.data), 'pedestrian crossing');
+  private getStreetsContains(type: string) {
+    const result = new Geojsonmodel('FeatureCollection', <[Feature]>[]);
+
+     for (const feature of this.allStreetWithObjects.features) {
+       if (feature.markers === undefined) {
+         continue;
+       }
+       for (const marker2 of feature.markers) {
+         if (marker2.type === type) {
+           result.features.push(feature);
+           break;
+         }
+       }
+     }
+    return result;
   }
 
-  private getStreetsContainRailCrossing() {
-    return this.getStreetContainsPointObject(this.dataService.getRailCrossing(this.data), 'rail crossing');
+  private getFeatures(description: string) {
+    const result = new Geojsonmodel('FeatureCollection', <[Feature]>[]);
+    for (const feature of this.allStreetWithObjects.features) {
+      console.log(feature.properties.description);
+      if (feature.properties.description === description) {
+        result.features.push(feature);
+      }
+    }
+    return result;
+
   }
 
-  private getStreetsContainTrafficSignal() {
-    return this.getStreetContainsPointObject(this.dataService.getTrafficSignal(this.data), 'traffic signal');
-  }
+  private getMarkers(type: string) {
+    const result: [CustomMarker] = <[CustomMarker]>[];
 
-  private getCoordinatesBeforePoint(point: [number, number], streetCoordinates: [[number, number]], distanceBefore: number): [number, number] {
-    for (let i = 0; i < streetCoordinates.length - 1; i++) {
-      if ( this.isBetweenPoint(streetCoordinates[i][0], streetCoordinates[i + 1][0], point[0])
-        && this.isBetweenPoint(streetCoordinates[i][1], streetCoordinates[i + 1][1], point[1])) {
-
-        let distanceBetweenPoints = StreetAndPoint.distanceBetweenPoints([streetCoordinates[i][0], streetCoordinates[i][1]], point);
-
-        while (true) {
-          if (distanceBetweenPoints >= distanceBefore) {
-            const x1 = streetCoordinates[i][0];
-            const y1 = streetCoordinates[i][1];
-            const x2 = streetCoordinates[i + 1][0];
-            const y2 = streetCoordinates[i + 1][1];
-
-            const distance = StreetAndPoint.distanceBetweenPoints([x1, y1], [x2, y2]);
-
-            const x0 = x2 - ( (distanceBefore * (x2 - x1)) / distance);
-            const y0 = y2 - ( (distanceBefore * (y2 - y1)) / distance);
-            console.log(x0 + ': ' + y0);
-            return [x0, y0];
-          } else {
-            distanceBefore = distanceBefore - distanceBetweenPoints;
-            if (i === 0) {
-              return this.getBeginningCoordinates(streetCoordinates);
-            } else {
-              distanceBetweenPoints = StreetAndPoint.distanceBetweenPoints(
-                [streetCoordinates[i - 1][0], streetCoordinates[i - 1][1]],
-                  [streetCoordinates[i][0], streetCoordinates[i][1]]);
-              i = i - 1;
-            }
-          }
+    for (const feature of this.allStreetWithObjects.features) {
+      if (feature.markers === undefined) {
+        continue;
+      }
+      for (const marker of feature.markers) {
+        if (marker.type === type) {
+          result.push(marker);
         }
       }
     }
-    return [-1, -1];
+    return result;
   }
 
-  private isBetweenPoint(from: number, to: number, toCheck: number): boolean {
-    if (from <= toCheck && to >= toCheck) {
-      return true;
-    } else if (to <= toCheck && from >= toCheck) {
-      return true;
-    }
-    return false;
+  private parseGeoJsonToGeojsonmodel(data: Geojsonmodel) {
+    return geoJSON(JSON.parse(JSON.stringify(data)));
   }
 
-  private getStreetContainsPointObject(objects: Geojsonmodel, type: string) {
-    return geoJSON(JSON.parse(JSON.stringify(this.insertObjectsToStreets(objects, type))));
-  }
-
-  private insertObjectsToStreets(objects: Geojsonmodel, type: string): Geojsonmodel {
+  private insertObjectsToStreets(streets: Geojsonmodel, objects: Geojsonmodel, type: string) {
     const objectFeatures = objects.features;
-    const streetFeatures = this.dataService.getOnlyStreet(this.data);
-    const filteredFeatures = <[Feature]>[];
+    const streetFeatures: Geojsonmodel = streets;
 
     for (const objectFeature of objectFeatures) {
       for (const streetFeature of streetFeatures.features) {
-        const streetContainsObject = StreetAndPoint.pointInRectangle(streetFeature.geometry.coordinates, <any>objectFeature.geometry.coordinates);
+        const streetContainsObject = Mathematical.pointInRectangle(streetFeature.geometry.coordinates, <any>objectFeature.geometry.coordinates);
         if (streetContainsObject) {
-          const customMarker = new CustomMarker(<any>objectFeature.geometry.coordinates[0], <any>objectFeature.geometry.coordinates[1], type, 30);
+          const customMarker = new CustomMarker(<any>objectFeature.geometry.coordinates[0], <any>objectFeature.geometry.coordinates[1], objectFeature.properties.description, 30);
 
           if (streetFeature.markers === undefined) {
             const customMarkers: [CustomMarker] = <[CustomMarker]>[];
@@ -297,14 +216,25 @@ export class FileLayerManager {
           } else {
             streetFeature.markers.push(customMarker);
           }
-          filteredFeatures.push(streetFeature);
         }
       }
     }
-    streetFeatures.features = filteredFeatures;
-
     return streetFeatures;
   }
 
+  private addAllObjectsToStreets(): Geojsonmodel {
+    const allStreets: Geojsonmodel = this.dataService.getOnlyStreet(this.data);
+    this.insertObjectsToStreets(allStreets, this.dataService.getTrafficSignal(this.data), 'traffic_signal');
+    this.insertObjectsToStreets(allStreets, this.dataService.getRailCrossing(this.data), 'rail_crossing');
+    this.insertObjectsToStreets(allStreets, this.dataService.getPedestrialCrossing(this.data), 'pedestrian_crossing');
+    this.insertDefaultSpeedLimitToStreets(allStreets);
 
+    return allStreets;
+  }
+
+  private insertDefaultSpeedLimitToStreets(allStreets: Geojsonmodel) {
+    for (const feature of allStreets.features) {
+      feature.properties.defaultSpeedLimit = SpeedService.getMaxSpeed(feature).toString();
+    }
+  }
 }

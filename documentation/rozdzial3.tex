@@ -157,9 +157,15 @@ Algorytm umieszcza znaki ograniczenia prędkości:
 \item w przypadku, gdy przejście dla pieszych znajduje się w odległości mniejszej niż 50m lub 150m (w zależności od maksymalnej prędkości), znak zostanie umieszczony na początku drogi
 \item w przypadku drogi jednokierunkowej, tylko przed przejściem
 \item w przypadku drogi dwukierunkowej, zarówno przed, jak i za przejściem
-\item bezpośrednio za przejściem zostanie ustawiony znak przywracającą poprzednie ograniczenie prędkości 
+\item bezpośrednio za przejściem zostanie ustawiony znak przywracającą poprzednie ograniczenie prędkości, za wyjątkiem sytuacji, gdy droga za przejściem dla pieszych jest krótsza niż 100m. W takim wypadku, nie ma sensu zmieniać prędkości. 
 \end{itemize}
 
+\begin{figure}[h]
+\caption{Ograniczenia prędkości przy przejściach dla pieszych.}
+\label{sec:przejsciePredkosci}
+\centering
+\includegraphics[width=0.9\textwidth]{pedestrian_speed}
+\end{figure}
 
 \newpage
 \section{Przejazdy kolejowe}
