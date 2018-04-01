@@ -6,9 +6,14 @@ import 'rxjs/add/operator/map';
 import {Geojsonmodel} from '../models/geojsonmodel';
 import {Feature} from '../models/feature';
 import {DbDataService} from './dbData.service';
+import {CustomMarker} from '../models/customMarker';
 
 @Injectable()
 export class DataService {
+
+  public static coordinatesToMeters(distanceInDegree: number): number {
+    return distanceInDegree * 111196.672;
+  }
 
   constructor(private http: HttpClient, private dbDataService: DbDataService) {}
 
@@ -65,14 +70,29 @@ export class DataService {
       ) {
         // console.log(feature.properties);
         filteredFeatures.push(feature);
-
-        // if (counter === 0) {
-        //   filteredFeatures.push(feature);
-        //   console.log(feature.geometry.coordinates[0]);
-        // }
-        counter++;
+       //
+       //  if (counter === 7) {
+       //    filteredFeatures.push(feature);
+       //    console.log(feature);
+       //  }
+       //  counter++;
       }
     }
+    result.features = filteredFeatures;
+    return result;
+  }
+
+  getOneWayRoads(geoModel: Geojsonmodel): Geojsonmodel {
+    const allRoads = this.getOnlyStreet(geoModel);
+    const filteredFeatures: [Feature] = <[Feature]>[];
+    const result: Geojsonmodel = JSON.parse(JSON.stringify(geoModel));
+
+    for (const feature of allRoads.features) {
+      if (feature.properties.oneway === 'yes') {
+        filteredFeatures.push(feature);
+      }
+    }
+
     result.features = filteredFeatures;
     return result;
   }
@@ -220,18 +240,34 @@ export class DataService {
     return result;
   }
 
+
   getPedestrialCrossing(geoModel: Geojsonmodel): Geojsonmodel {
     var counter = 0;
     const result: Geojsonmodel = JSON.parse(JSON.stringify(geoModel));
     const features: [Feature] = result.features;
     const filteredFeatures: [Feature] = <[Feature]>[];
-    for (const feature of features) {
+    for (let feature of features) {
       if (feature.properties.crossing !== undefined
         && feature.geometry.type === 'Point'
         && feature.properties.crossing === 'uncontrolled') {
         feature.properties.description = 'crossing';
         filteredFeatures.push(feature);
         counter++;
+      }
+    }
+    result.features = filteredFeatures;
+    return result;
+  }
+
+  getRailCrossing(geoModel: Geojsonmodel): Geojsonmodel {
+    const result: Geojsonmodel = JSON.parse(JSON.stringify(geoModel));
+    const features: [Feature] = result.features;
+    const filteredFeatures: [Feature] = <[Feature]>[];
+    for (const feature of features) {
+      if (feature.properties.railway === 'level_crossing'
+        && feature.geometry.type === 'Point' ) {
+        feature.properties.description = 'rail_crossing';
+        filteredFeatures.push(feature);
       }
     }
     result.features = filteredFeatures;

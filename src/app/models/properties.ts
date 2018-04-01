@@ -43,6 +43,7 @@ export class Properties{
               public bus: string,
               public playground: string,
               public crossing: string,
-              public footway: string
+              public footway: string,
+              public oneway: string
   ) {}
 }

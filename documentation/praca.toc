@@ -6,26 +6,36 @@
 \contentsline {section}{\numberline {1.3}Wykorzystane technologie}{11}
 \contentsline {section}{\numberline {1.4}Przegl\IeC {\k a}d literatury}{11}
 \contentsline {section}{\numberline {1.5}Uk\IeC {\l }ad pracy}{15}
-\contentsline {chapter}{\numberline {2}Interfejs u\IeC {\.z}ytkownika}{17}
-\contentsline {section}{\numberline {2.1}Widok g\IeC {\l }\IeC {\'o}wny aplikacji}{18}
-\contentsline {section}{\numberline {2.2}Menu wyboru warstw}{19}
-\contentsline {section}{\numberline {2.3}Widok zaznaczonych ulic}{20}
-\contentsline {section}{\numberline {2.4}Widok dopuszczalnych ogranicze\IeC {\'n} pr\IeC {\k e}dko\IeC {\'s}ci}{21}
-\contentsline {section}{\numberline {2.5}Widok istotnych obiekt\IeC {\'o}w pobranych z OSM}{22}
-\contentsline {section}{\numberline {2.6}Widok obiekt\IeC {\'o}w zdefiniowanych przez u\IeC {\.z}ytkownika}{23}
-\contentsline {section}{\numberline {2.7}Dodawanie w\IeC {\l }asnych obiekt\IeC {\'o}w}{24}
-\contentsline {chapter}{\numberline {3}Algorytm}{25}
-\contentsline {section}{\numberline {3.1}Umiejscowienie znak\IeC {\'o}w na drodze}{26}
-\contentsline {section}{\numberline {3.2}Zakr\IeC {\k e}ty}{27}
-\contentsline {section}{\numberline {3.3}Szko\IeC {\l }y i miesca zabaw}{28}
-\contentsline {section}{\numberline {3.4}Sklepy i miejsca kult\IeC {\'o}w religijnych}{29}
-\contentsline {section}{\numberline {3.5}Przystanki autobusowe i tramwajowe}{30}
-\contentsline {section}{\numberline {3.6}Przej\IeC {\'s}cia dla pieszych}{31}
-\contentsline {section}{\numberline {3.7}Liczba pas\IeC {\'o}w ruchu}{32}
-\contentsline {section}{\numberline {3.8}Typ nawierzchni}{33}
-\contentsline {section}{\numberline {3.9}Rodzaj drogi}{34}
-\contentsline {section}{\numberline {3.10}P\IeC {\l }ynna zmiana pr\IeC {\k e}dko\IeC {\'s}ci pojazd\IeC {\'o}w}{35}
-\contentsline {section}{\numberline {3.11}Przejazdy kolejowe}{36}
-\contentsline {section}{\numberline {3.12}Historia wypadk\IeC {\'o}w}{37}
-\contentsline {chapter}{\numberline {4}Harmonogram}{39}
-\contentsline {section}{\numberline {4.1}Harnomogram}{39}
+\contentsline {chapter}{\numberline {2}Harmonogram}{17}
+\contentsline {section}{\numberline {2.1}Harnomogram}{17}
+\contentsline {chapter}{\numberline {3}Interfejs u\IeC {\.z}ytkownika - TODO}{19}
+\contentsline {section}{\numberline {3.1}Widok g\IeC {\l }\IeC {\'o}wny aplikacji}{20}
+\contentsline {section}{\numberline {3.2}Menu wyboru warstw}{21}
+\contentsline {section}{\numberline {3.3}Widok zaznaczonych ulic}{22}
+\contentsline {section}{\numberline {3.4}Widok dopuszczalnych ogranicze\IeC {\'n} pr\IeC {\k e}dko\IeC {\'s}ci}{23}
+\contentsline {section}{\numberline {3.5}Widok istotnych obiekt\IeC {\'o}w pobranych z OSM}{24}
+\contentsline {section}{\numberline {3.6}Widok obiekt\IeC {\'o}w zdefiniowanych przez u\IeC {\.z}ytkownika}{25}
+\contentsline {section}{\numberline {3.7}Dodawanie w\IeC {\l }asnych obiekt\IeC {\'o}w}{26}
+\contentsline {chapter}{\numberline {4}Algorytm - TODO}{27}
+\contentsline {section}{\numberline {4.1}Przyporz\IeC {\k a}dkowanie obiekt\IeC {\'o}w reprezentowanych przez punkty, do poszczeg\IeC {\'o}lnych dr\IeC {\'o}g}{28}
+\contentsline {section}{\numberline {4.2}Wyznaczanie wsp\IeC {\'o}\IeC {\l }rz\IeC {\k e}dnych punktu znajduj\IeC {\k a}cego si\IeC {\k e} na drodze, odleg\IeC {\l }ego o n metr\IeC {\'o}w od innego punktu}{29}
+\contentsline {section}{\numberline {4.3}Przyporz\IeC {\k a}dkowanie obiekt\IeC {\'o}w reprezentowanych przez wielok\IeC {\k a}ty, do poszczeg\IeC {\'o}lnych dr\IeC {\'o}g}{31}
+\contentsline {section}{\numberline {4.4}Przej\IeC {\'s}cia dla pieszych}{32}
+\contentsline {subsection}{\numberline {4.4.1}Przyporz\IeC {\k a}dkowywanie przej\IeC {\'s}\IeC {\'c} dla pieszych do poszczeg\IeC {\'o}lnych dr\IeC {\'o}g}{32}
+\contentsline {subsection}{\numberline {4.4.2}Wyznaczanie pr\IeC {\k e}dko\IeC {\'s}ci i umieszczanie jej w odpowiednim miejscu na mapie}{33}
+\contentsline {section}{\numberline {4.5}Przejazdy kolejowe}{34}
+\contentsline {subsection}{\numberline {4.5.1}Przyporz\IeC {\k a}dkowywanie przejazd\IeC {\'o}w kolejowych do poszczeg\IeC {\'o}lnych dr\IeC {\'o}g}{34}
+\contentsline {subsection}{\numberline {4.5.2}Wyznaczanie pr\IeC {\k e}dko\IeC {\'s}ci i umieszczanie jej w odpowiednim miejscu na mapie}{35}
+\contentsline {section}{\numberline {4.6}Sygnalizacja \IeC {\'s}wietlna}{36}
+\contentsline {subsection}{\numberline {4.6.1}Przyporz\IeC {\k a}dkowywanie sygnalizacji \IeC {\'s}wietlnej do poszczeg\IeC {\'o}lnych dr\IeC {\'o}g}{36}
+\contentsline {subsection}{\numberline {4.6.2}Wyznaczanie pr\IeC {\k e}dko\IeC {\'s}ci i umieszczanie jej w odpowiednim miejscu na mapie}{37}
+\contentsline {section}{\numberline {4.7}Przystanki autobusowe i tramwajowe}{38}
+\contentsline {section}{\numberline {4.8}Szko\IeC {\l }y i miesca zabaw}{39}
+\contentsline {section}{\numberline {4.9}Sklepy i miejsca kult\IeC {\'o}w religijnych}{40}
+\contentsline {section}{\numberline {4.10}Liczba pas\IeC {\'o}w ruchu}{41}
+\contentsline {section}{\numberline {4.11}Typ nawierzchni}{42}
+\contentsline {section}{\numberline {4.12}Rodzaj drogi}{43}
+\contentsline {section}{\numberline {4.13}P\IeC {\l }ynna zmiana pr\IeC {\k e}dko\IeC {\'s}ci pojazd\IeC {\'o}w}{44}
+\contentsline {section}{\numberline {4.14}Historia wypadk\IeC {\'o}w}{45}
+\contentsline {section}{\numberline {4.15}Zakr\IeC {\k e}ty}{46}
+\contentsline {section}{\numberline {4.16}Umiejscowienie znak\IeC {\'o}w na drodze}{46}
