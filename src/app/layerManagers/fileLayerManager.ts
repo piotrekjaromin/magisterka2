@@ -16,9 +16,9 @@ export class FileLayerManager {
   public allStreetWithObjects: Geojsonmodel;
 
   constructor(private dataService: DataService, private dbDataService: DbDataService, data: any) {
-    this.options = BaseLayerManager.prepareOptions(BaseLayerManager.prepareMainLayer());
     this.data = data;
     this.allStreetWithObjects = this.addAllObjectsToStreets();
+    this.options = BaseLayerManager.prepareOptions(BaseLayerManager.prepareMainLayer());
     this.layersControl = {
       baseLayers: {
         'Open Street Map': BaseLayerManager.prepareMainLayer()
@@ -75,30 +75,15 @@ export class FileLayerManager {
   private prepareSpeedLimitMarkersLayer(): LayerGroup {
     const markers: [Marker] = <[Marker]>[];
 
-    for (const feature of this.prepareRoadsWithSpeedLimits()) {
-      markers.push(
-        this.prepareMarker(feature.markers[0].lat, feature.markers[0].long, feature.markers[0].speed.toString())
-          .on('click', (data) => console.log(data)));
-
+    for (const feature of this.allStreetWithObjects.features) {
+        const coordinates = GeometryOperations.getBeginningCoordinates(feature.geometry.coordinates);
+          markers.push(
+            this.prepareMarker(coordinates[1], coordinates[0], feature.properties.defaultSpeedLimit)
+              .on('click', (data) => console.log(data)));
        // this.dbDataService.saveRoadToDB(feature);
     }
 
     return new LayerGroup(markers);
-  }
-
-
-  prepareRoadsWithSpeedLimits(): [Feature] {
-    const onlyStreetGeoModel = this.dataService.getOnlyStreet(this.data);
-    const features = onlyStreetGeoModel.features;
-
-
-    for (const feature of features) {
-      feature.markers = <[CustomMarker]>[];
-      const centerCoordinates = GeometryOperations.getBeginningCoordinates(feature.geometry.coordinates);
-      feature.markers.push(new CustomMarker(centerCoordinates[0], centerCoordinates[1], 'speed_limit', +feature.properties.defaultSpeedLimit));
-    }
-
-    return features;
   }
 
   private prepareObjectMarkersLayer(type: string): LayerGroup {
@@ -112,7 +97,6 @@ export class FileLayerManager {
     return new LayerGroup(markers);
   }
 
-  ///////////////////////////////////////////////////////////////////////////////////////////
 
   private prepareMarker(lat: number, long: number, markerName: string) {
     let iconSize;
@@ -170,7 +154,6 @@ export class FileLayerManager {
   private getFeatures(description: string) {
     const result = new Geojsonmodel('FeatureCollection', <[Feature]>[]);
     for (const feature of this.allStreetWithObjects.features) {
-      console.log(feature.properties.description);
       if (feature.properties.description === description) {
         result.features.push(feature);
       }
@@ -228,7 +211,6 @@ export class FileLayerManager {
     this.insertObjectsToStreets(allStreets, this.dataService.getRailCrossing(this.data), 'rail_crossing');
     this.insertObjectsToStreets(allStreets, this.dataService.getPedestrialCrossing(this.data), 'pedestrian_crossing');
     this.insertDefaultSpeedLimitToStreets(allStreets);
-
     return allStreets;
   }
 

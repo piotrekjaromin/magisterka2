@@ -168,6 +168,36 @@ Algorytm umieszcza znaki ograniczenia prędkości:
 \end{figure}
 
 \newpage
+\section{Typ nawierzchni}
+\label{sec:surfaceType}
+
+W celu zadbania o bezpieczeństwo osób, ale również o dobrą kondycję techniczną pojazdów poruszających się po drogach, niezbędne jest uwzględnienie typu nawierzchni. Nie można dopuścić do sytuacji, gdy na nawierzchni składającej się głównie że żwiru, znajdowało się znak ograniczenia prędkości o wysokiej wartości. Wtedy ulec awarii może zarówno zawieszenie, jak również pojazdy jadące przed nimi pojazdami. Aby zapoabiec tego typu problemom, podzieliłem typ nawierzchni na kilka rodzajów:
+
+\begin{itemize}
+\item kostka brukowa
+\item żwir
+\item drobny żwir
+\item nieutwardzana
+\item błotnista
+\item płyty  betowowe
+\item droga gruntowa
+\item piasek
+\item asfalt
+\end{itemize}
+
+Najbardziej problematyczna dla kierowów droga to taka, która pokryta jest żwirem, drobnym żwirem, składająca się z piasku lub jest błotnista. W takich przypadkach ograniczyłem prędkość do 10 km/h. Niewiele lepsza nawierzchnia to taka, która wyłożona jest zarówno kostką brukową oraz płytami betonowymi. Dla nich, odpowiednia prędkość wynosi 20 km/h. W przypadku drogi nieutwardzanej oraz gruntowej, ograniczenie prędkości wynosi 30 km/h. Dla asfaltu, ze względu na jego strukturę, ograniczenie prędkości praktycznie nie występuje. 
+
+Na Rys. \ref{sec:surfaceTypePhoto} zostały umieszczone ograniczenia prędkości dla dróg, których nawierzchnia pokryta jest materiałem innym niż asfalt. Dla celów demonstracyjnych, został on specjalnie pominięty, ponieważ więszkość dróg jest nim pokryta, przez co Rys. \ref{sec:surfaceTypePhoto} stałby się mało czytelny. Oczywiście ogólny algorytm uwzględnia asfalt.
+
+\newpage
+\begin{figure}[h]
+\caption{Ograniczenia prędkości ze względu na rodzaj nawierzchni.}
+\label{sec:surfaceTypePhoto}
+\centering
+\includegraphics[width=0.9\textwidth]{surfaceType}
+\end{figure}
+
+\newpage
 \section{Przejazdy kolejowe}
 \subsection{Przyporządkowywanie przejazdów kolejowych do poszczególnych dróg}
 
@@ -229,10 +259,6 @@ Rys. \ref{sec:PrzejazdyKolejowe} ukazuje sposób działania algorytmu przypisuj�
 
 \newpage
 \section{Liczba pasów ruchu}
-\label{sec:zakręty}
-
-\newpage
-\section{Typ nawierzchni}
 \label{sec:zakręty}
 
 \newpage

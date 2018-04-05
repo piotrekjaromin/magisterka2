@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.3.3)  1 APR 2018 21:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.3.3)  2 APR 2018 11:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1424,9 +1424,6 @@ LaTeX Warning: Label `sec:zakr\IeC {\k e}ty' multiply defined.
 
 LaTeX Warning: Label `sec:zakr\IeC {\k e}ty' multiply defined.
 
-
-LaTeX Warning: Label `sec:zakr\IeC {\k e}ty' multiply defined.
-
 ))
 \openout1 = `praca.aux'.
 
@@ -1870,32 +1867,41 @@ Package pdftex.def Info: pedestrian_speed.png  used on input line 167. on input
  line 167.
 Package pdftex.def Info: Requested size: 409.71692pt x 318.57756pt on input lin
 e 167.
- [33 <./pedestrian_speed.png>]
-<railCrossing.png, id=141, 808.01875pt x 610.28pt>
+ [33 <./pedestrian_speed.png>] [34]
+<surfaceType.png, id=144, 557.08125pt x 532.99126pt>
+File: surfaceType.png Graphic file (type png)
+<use surfaceType.png>
+Package pdftex.def Info: surfaceType.png  used on input line 197. on input line
+ 197.
+Package pdftex.def Info: Requested size: 409.71692pt x 392.0082pt on input line
+ 197.
+
+[35 <./surfaceType.png>]
+<railCrossing.png, id=149, 808.01875pt x 610.28pt>
 File: railCrossing.png Graphic file (type png)
 <use railCrossing.png>
-Package pdftex.def Info: railCrossing.png  used on input line 183. on input lin
-e 183.
+Package pdftex.def Info: railCrossing.png  used on input line 213. on input lin
+e 213.
 Package pdftex.def Info: Requested size: 455.24411pt x 343.84038pt on input lin
-e 183.
- [34 <./railCrossing.png>] [35]
-<traffic_sight.png, id=149, 883.3pt x 612.2875pt>
+e 213.
+ [36 <./railCrossing.png>] [37]
+<traffic_sight.png, id=158, 883.3pt x 612.2875pt>
 File: traffic_sight.png Graphic file (type png)
 <use traffic_sight.png>
-Package pdftex.def Info: traffic_sight.png  used on input line 206. on input li
-ne 206.
+Package pdftex.def Info: traffic_sight.png  used on input line 236. on input li
+ne 236.
 Package pdftex.def Info: Requested size: 500.77129pt x 347.12961pt on input lin
-e 206.
+e 236.
 
-Overfull \hbox (45.52718pt too wide) in paragraph at lines 206--207
+Overfull \hbox (45.52718pt too wide) in paragraph at lines 236--237
  [][] 
  []
 
-[36 <./traffic_sight.png>] [37] [38] [39] [40] [41] [42] [43] [44] [45])
-[46] [47
+[38 <./traffic_sight.png>] [39] [40] [41] [42] [43] [44] [45] [46]) [47]
+[48
 
 
-] [48] [49] (./praca.aux (./rozdzial1.aux) (./harmonogram.aux)
+] [49] [50] [51] (./praca.aux (./rozdzial1.aux) (./harmonogram.aux)
 (./rozdzial2.aux) (./rozdzial3.aux))
 
 LaTeX Warning: There were multiply-defined labels.
@@ -1905,10 +1911,10 @@ Package logreq Info: Writing requests to 'praca.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 26167 strings out of 492990
- 487801 string characters out of 6135006
- 730257 words of memory out of 5000000
- 29342 multiletter control sequences out of 15000+600000
+ 26174 strings out of 492990
+ 487934 string characters out of 6135006
+ 729257 words of memory out of 5000000
+ 29348 multiletter control sequences out of 15000+600000
  607886 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  45i,12n,50p,10383b,2723s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1925,10 +1931,10 @@ xlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8
 a.pfb>
-Output written on praca.pdf (49 pages, 3096133 bytes).
+Output written on praca.pdf (51 pages, 3359442 bytes).
 PDF statistics:
- 242 PDF objects out of 1000 (max. 8388607)
- 152 compressed objects within 2 object streams
+ 250 PDF objects out of 1000 (max. 8388607)
+ 156 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 66 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 71 words of extra memory for PDF output out of 10000 (max. 10000000)
 
