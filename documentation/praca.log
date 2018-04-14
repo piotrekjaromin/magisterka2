@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.3.3)  2 APR 2018 11:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.3.3)  14 APR 2018 16:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1383,7 +1383,7 @@ Package csquotes Info: Redefining alias 'default' -> 'polish'.
 LaTeX Warning: Unused global option(s):
     [11pt].
 
-(./praca.aux (./rozdzial1.aux) (./harmonogram.aux) (./rozdzial2.aux
+(./praca.aux (./rozdzial1.aux) (./rozdzial2.aux
 
 LaTeX Warning: Label `sec:mainView' multiply defined.
 
@@ -1399,6 +1399,21 @@ LaTeX Warning: Label `eq:cosEBF' multiply defined.
 
 
 LaTeX Warning: Label `eq:cosEBF' multiply defined.
+
+
+LaTeX Warning: Label `sec:powiekszoneWierzcholek' multiply defined.
+
+
+LaTeX Warning: Label `sec:powiekszoneWierzcholek' multiply defined.
+
+
+LaTeX Warning: Label `sec:powiekszoneWierzcholek' multiply defined.
+
+
+LaTeX Warning: Label `sec:powiekszoneWierzcholek' multiply defined.
+
+
+LaTeX Warning: Label `sec:powiekszoneWierzcholek' multiply defined.
 
 
 LaTeX Warning: Label `sec:PrzejazdyKolejowe' multiply defined.
@@ -1693,25 +1708,16 @@ Underfull \vbox (badness 3668) has occurred while \output is active []
 
  [11]
 [12] [13] [14]) [15]
-\openout2 = `harmonogram.aux'.
+\openout2 = `rozdzial2.aux'.
 
- (./harmonogram.tex [16
+ (./rozdzial2.tex [16
 
 
 
 ]
 Rozdzia\l  2.
-) [17]
-\openout2 = `rozdzial2.aux'.
-
- (./rozdzial2.tex [18
-
-
-
-]
-Rozdzia\l  3.
-[19]
-<mainScreen.png, id=77, 957.5775pt x 714.67pt>
+[17]
+<mainScreen.png, id=70, 957.5775pt x 714.67pt>
 File: mainScreen.png Graphic file (type png)
 <use mainScreen.png>
 Package pdftex.def Info: mainScreen.png  used on input line 14. on input line 1
@@ -1723,16 +1729,16 @@ Overfull \hbox (45.52718pt too wide) in paragraph at lines 14--15
  [][] 
  []
 
-[20 <./mainScreen.png>]
-<layerMenu.png, id=82, 130.4875pt x 126.4725pt>
+[18 <./mainScreen.png>]
+<layerMenu.png, id=75, 130.4875pt x 126.4725pt>
 File: layerMenu.png Graphic file (type png)
 <use layerMenu.png>
 Package pdftex.def Info: layerMenu.png  used on input line 28. on input line 28
 .
 Package pdftex.def Info: Requested size: 182.09486pt x 176.49484pt on input lin
 e 28.
- [21 <./layerMenu.png>]
-<onlyStreet.png, id=87, 957.5775pt x 721.69624pt>
+ [19 <./layerMenu.png>]
+<onlyStreet.png, id=81, 957.5775pt x 721.69624pt>
 File: onlyStreet.png Graphic file (type png)
 <use onlyStreet.png>
 Package pdftex.def Info: onlyStreet.png  used on input line 61. on input line 6
@@ -1744,8 +1750,8 @@ Overfull \hbox (13.65675pt too wide) in paragraph at lines 61--62
  [][] 
  []
 
-[22 <./onlyStreet.png>]
-<speedLimit.png, id=92, 954.56625pt x 719.68875pt>
+[20 <./onlyStreet.png>]
+<speedLimit.png, id=86, 954.56625pt x 719.68875pt>
 File: speedLimit.png Graphic file (type png)
 <use speedLimit.png>
 Package pdftex.def Info: speedLimit.png  used on input line 75. on input line 7
@@ -1757,8 +1763,8 @@ Overfull \hbox (13.65675pt too wide) in paragraph at lines 75--76
  [][] 
  []
 
-[23 <./speedLimit.png>]
-<objects.png, id=97, 957.5775pt x 714.67pt>
+[21 <./speedLimit.png>]
+<objects.png, id=91, 957.5775pt x 714.67pt>
 File: objects.png Graphic file (type png)
 <use objects.png>
 Package pdftex.def Info: objects.png  used on input line 95. on input line 95.
@@ -1769,17 +1775,17 @@ Overfull \hbox (13.65675pt too wide) in paragraph at lines 95--96
  [][] 
  []
 
-[24 <./objects.png>] [25]) [26]
+[22 <./objects.png>] [23]) [24]
 \openout2 = `rozdzial3.aux'.
 
  (./rozdzial3.tex
-Rozdzia\l  4.
-[27
+Rozdzia\l  3.
+[25
 
 
 
 ]
-<dlugoscPktOdProstej.jpg, id=112, 261.97874pt x 182.6825pt>
+<dlugoscPktOdProstej.jpg, id=106, 261.97874pt x 182.6825pt>
 File: dlugoscPktOdProstej.jpg Graphic file (type jpg)
 <use dlugoscPktOdProstej.jpg>
 Package pdftex.def Info: dlugoscPktOdProstej.jpg  used on input line 34. on inp
@@ -1791,8 +1797,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 42--43
 
  []
 
-[28 <./dlugoscPktOdProstej.jpg>]
-<distance.png, id=119, 389.455pt x 291.0875pt>
+[26 <./dlugoscPktOdProstej.jpg>]
+<distance.png, id=113, 389.455pt x 291.0875pt>
 File: distance.png Graphic file (type png)
 <use distance.png>
 Package pdftex.def Info: distance.png  used on input line 63. on input line 63.
@@ -1819,7 +1825,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 84--85
 
  []
 
-[29 <./distance.png>]
+[27 <./distance.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 90--91
 
  []
@@ -1849,60 +1855,138 @@ Underfull \hbox (badness 10000) in paragraph at lines 117--118
 
  []
 
-[30] [31]
+[28]
+
+Package caption Warning: \label without proper reference on input line 136.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `sec:firstBB' on page 29 undefined on input line 133.
+
+<minBoundingBoxFirst.png, id=121, 462.72874pt x 265.99374pt>
+File: minBoundingBoxFirst.png Graphic file (type png)
+<use minBoundingBoxFirst.png>
+Package pdftex.def Info: minBoundingBoxFirst.png  used on input line 139. on in
+put line 139.
+Package pdftex.def Info: Requested size: 364.19667pt x 209.35753pt on input lin
+e 139.
+[29 <./minBoundingBoxFirst.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 153--154
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--162
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 169--170
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 178--179
+
+ []
+
+
+Package caption Warning: \label without proper reference on input line 184.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `sec:secondtBB' on page 30 undefined on input line 180
+.
+
+[30]
+<minBoundingBox.png, id=129, 511.9125pt x 299.1175pt>
+File: minBoundingBox.png Graphic file (type png)
+<use minBoundingBox.png>
+Package pdftex.def Info: minBoundingBox.png  used on input line 187. on input l
+ine 187.
+Package pdftex.def Info: Requested size: 409.71692pt x 239.40385pt on input lin
+e 187.
+
+
+Package caption Warning: \label without proper reference on input line 225.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `sec:thirdBB' on page 31 undefined on input line 221.
+
+[31 <./minBoundingBox.png>]
+<BoundingBoxExtended.png, id=136, 574.145pt x 367.3725pt>
+File: BoundingBoxExtended.png Graphic file (type png)
+<use BoundingBoxExtended.png>
+Package pdftex.def Info: BoundingBoxExtended.png  used on input line 228. on in
+put line 228.
+Package pdftex.def Info: Requested size: 364.19667pt x 233.03789pt on input lin
+e 228.
+ [32 <./BoundingBoxExtended.png>]
+<minBoundingBoxWay.png, id=141, 659.46375pt x 428.60126pt>
+File: minBoundingBoxWay.png Graphic file (type png)
+<use minBoundingBoxWay.png>
+Package pdftex.def Info: minBoundingBoxWay.png  used on input line 252. on inpu
+t line 252.
+Package pdftex.def Info: Requested size: 364.19667pt x 236.70586pt on input lin
+e 252.
+ [33 <./minBoundingBoxWay.png>]
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 126.
-<PrzejscieDrogi.png, id=131, 671.50874pt x 529.98pt>
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 258.
+<PrzejscieDrogi.png, id=146, 671.50874pt x 529.98pt>
 File: PrzejscieDrogi.png Graphic file (type png)
 <use PrzejscieDrogi.png>
-Package pdftex.def Info: PrzejscieDrogi.png  used on input line 144. on input l
-ine 144.
+Package pdftex.def Info: PrzejscieDrogi.png  used on input line 276. on input l
+ine 276.
 Package pdftex.def Info: Requested size: 409.71692pt x 323.36009pt on input lin
-e 144.
- [32 <./PrzejscieDrogi.png>]
-<pedestrian_speed.png, id=136, 920.43875pt x 715.67375pt>
+e 276.
+ [34 <./PrzejscieDrogi.png>]
+<pedestrian_speed.png, id=151, 920.43875pt x 715.67375pt>
 File: pedestrian_speed.png Graphic file (type png)
 <use pedestrian_speed.png>
-Package pdftex.def Info: pedestrian_speed.png  used on input line 167. on input
- line 167.
+Package pdftex.def Info: pedestrian_speed.png  used on input line 299. on input
+ line 299.
 Package pdftex.def Info: Requested size: 409.71692pt x 318.57756pt on input lin
-e 167.
- [33 <./pedestrian_speed.png>] [34]
-<surfaceType.png, id=144, 557.08125pt x 532.99126pt>
+e 299.
+ [35 <./pedestrian_speed.png>] [36]
+<surfaceType.png, id=159, 557.08125pt x 532.99126pt>
 File: surfaceType.png Graphic file (type png)
 <use surfaceType.png>
-Package pdftex.def Info: surfaceType.png  used on input line 197. on input line
- 197.
+Package pdftex.def Info: surfaceType.png  used on input line 329. on input line
+ 329.
 Package pdftex.def Info: Requested size: 409.71692pt x 392.0082pt on input line
- 197.
+ 329.
 
-[35 <./surfaceType.png>]
-<railCrossing.png, id=149, 808.01875pt x 610.28pt>
+[37 <./surfaceType.png>]
+<railCrossing.png, id=165, 808.01875pt x 610.28pt>
 File: railCrossing.png Graphic file (type png)
 <use railCrossing.png>
-Package pdftex.def Info: railCrossing.png  used on input line 213. on input lin
-e 213.
+Package pdftex.def Info: railCrossing.png  used on input line 345. on input lin
+e 345.
 Package pdftex.def Info: Requested size: 455.24411pt x 343.84038pt on input lin
-e 213.
- [36 <./railCrossing.png>] [37]
-<traffic_sight.png, id=158, 883.3pt x 612.2875pt>
+e 345.
+ [38 <./railCrossing.png>] [39]
+<traffic_sight.png, id=173, 883.3pt x 612.2875pt>
 File: traffic_sight.png Graphic file (type png)
 <use traffic_sight.png>
-Package pdftex.def Info: traffic_sight.png  used on input line 236. on input li
-ne 236.
+Package pdftex.def Info: traffic_sight.png  used on input line 368. on input li
+ne 368.
 Package pdftex.def Info: Requested size: 500.77129pt x 347.12961pt on input lin
-e 236.
+e 368.
 
-Overfull \hbox (45.52718pt too wide) in paragraph at lines 236--237
+Overfull \hbox (45.52718pt too wide) in paragraph at lines 368--369
  [][] 
  []
 
-[38 <./traffic_sight.png>] [39] [40] [41] [42] [43] [44] [45] [46]) [47]
-[48
+[40 <./traffic_sight.png>] [41] [42] [43] [44] [45] [46] [47] [48]) [49]
+[50
 
 
-] [49] [50] [51] (./praca.aux (./rozdzial1.aux) (./harmonogram.aux)
-(./rozdzial2.aux) (./rozdzial3.aux))
+] [51] [52] [53] (./praca.aux (./rozdzial1.aux) (./rozdzial2.aux)
+(./rozdzial3.aux))
+
+LaTeX Warning: There were undefined references.
+
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -1911,30 +1995,30 @@ Package logreq Info: Writing requests to 'praca.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 26174 strings out of 492990
- 487934 string characters out of 6135006
- 729257 words of memory out of 5000000
- 29348 multiletter control sequences out of 15000+600000
+ 26192 strings out of 492990
+ 488444 string characters out of 6135006
+ 730257 words of memory out of 5000000
+ 29369 multiletter control sequences out of 15000+600000
  607886 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 45i,12n,50p,10383b,2723s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 45i,15n,50p,10383b,2723s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uh
-vb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
-rw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8
-a.pfb>
-Output written on praca.pdf (51 pages, 3359442 bytes).
+sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/time
+s/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on praca.pdf (53 pages, 3391055 bytes).
 PDF statistics:
- 250 PDF objects out of 1000 (max. 8388607)
- 156 compressed objects within 2 object streams
+ 268 PDF objects out of 1000 (max. 8388607)
+ 163 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 71 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 91 words of extra memory for PDF output out of 10000 (max. 10000000)
 

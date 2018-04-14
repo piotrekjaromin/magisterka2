@@ -15,6 +15,10 @@ export class DataService {
     return distanceInDegree * 111196.672;
   }
 
+  public static metersToCoordinates(distanceInMeters: number): number {
+    return distanceInMeters / 111196.672;
+  }
+
   constructor(private http: HttpClient, private dbDataService: DbDataService) {}
 
   getJson() {
@@ -191,17 +195,19 @@ export class DataService {
     const features: [Feature] = result.features;
     const filteredFeatures: [Feature] = <[Feature]>[];
     for (const feature of features) {
-      if (feature.properties.amenity === 'university') {
-        feature.properties.description = 'university';
-        filteredFeatures.push(feature);
-      } else if (feature.properties.amenity === 'kindergarten' || feature.properties.building === 'kindergarten') {
-        feature.properties.description = 'kindergarten';
-        filteredFeatures.push(feature);
-      } else if (feature.properties.amenity === 'school' || feature.properties.building === 'school') {
-        feature.properties.description = 'school';
-        filteredFeatures.push(feature);
+
+        if (feature.properties.amenity === 'university') {
+          feature.properties.description = 'university';
+          filteredFeatures.push(feature);
+        } else if (feature.properties.amenity === 'kindergarten' || feature.properties.building === 'kindergarten') {
+          feature.properties.description = 'kindergarten';
+          filteredFeatures.push(feature);
+        } else if (feature.properties.amenity === 'school' || feature.properties.building === 'school') {
+          feature.properties.description = 'school';
+          filteredFeatures.push(feature);
+
+        }
       }
-    }
     result.features = filteredFeatures;
     return result;
   }

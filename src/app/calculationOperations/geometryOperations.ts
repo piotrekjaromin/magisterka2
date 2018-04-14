@@ -1,10 +1,12 @@
 import {Mathematical} from './mathematical';
 import {MapDataOperations} from '../mapDataOperations';
+import {Feature} from '../models/feature';
+import {DataService} from '../services/data.service';
 
 export class GeometryOperations {
   public static getCoordinatesBeforePoint(point: [number, number], streetCoordinates: [[number, number]], distanceBefore: number): [number, number] {
     for (let i = 0; i < streetCoordinates.length - 1; i++) {
-      if ( Mathematical.isBetweenPoint(streetCoordinates[i][0], streetCoordinates[i + 1][0], point[0])
+      if (Mathematical.isBetweenPoint(streetCoordinates[i][0], streetCoordinates[i + 1][0], point[0])
         && Mathematical.isBetweenPoint(streetCoordinates[i][1], streetCoordinates[i + 1][1], point[1])) {
 
         let distanceBetweenPoints = Mathematical.distanceBetweenPoints([streetCoordinates[i][0], streetCoordinates[i][1]], point);
@@ -18,8 +20,8 @@ export class GeometryOperations {
 
             const distance = Mathematical.distanceBetweenPoints([x1, y1], [x2, y2]);
 
-            const x0 = x2 - ( (distanceBefore * (x2 - x1)) / distance);
-            const y0 = y2 - ( (distanceBefore * (y2 - y1)) / distance);
+            const x0 = x2 - ((distanceBefore * (x2 - x1)) / distance);
+            const y0 = y2 - ((distanceBefore * (y2 - y1)) / distance);
             return [x0, y0];
           } else {
             distanceBefore = distanceBefore - distanceBetweenPoints;
@@ -61,4 +63,31 @@ export class GeometryOperations {
     }
     console.log('Error computing center of the road');
   }
+
+  public static getBoundingBox(feature: Feature, distanceInMeters: number): [[number, number]] {
+    const distanceInDegree = DataService.metersToCoordinates(distanceInMeters);
+    let minLong = 9999;
+    let maxLong = 0;
+    let minLat = 9999;
+    let maxLat = 0;
+    for (const coordinates of feature.geometry.coordinates) {
+      for (const coordinate of coordinates) {
+
+        if (minLong > coordinate[0]) { minLong = coordinate[0]; }
+
+        if (maxLong < coordinate[0]) { maxLong = coordinate[0]; }
+
+        if (minLat > coordinate[1]) { minLat = coordinate[1]; }
+
+        if (maxLat < coordinate[1]) { maxLat = coordinate[1]; }
+
+      }
+    }
+    minLong = minLong - distanceInDegree;
+    maxLong = maxLong + distanceInDegree;
+    minLat = minLat - distanceInDegree;
+    maxLat = maxLat + distanceInDegree;
+    return [[minLong, minLat], [maxLong, minLat], [maxLong, maxLat], [minLong, maxLat]];
+  }
+
 }

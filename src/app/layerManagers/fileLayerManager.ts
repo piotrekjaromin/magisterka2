@@ -8,6 +8,7 @@ import {BaseLayerManager} from './baseLayerManager';
 import {Geojsonmodel} from '../models/geojsonmodel';
 import {Mathematical} from '../calculationOperations/mathematical';
 import {GeometryOperations} from '../calculationOperations/geometryOperations';
+import {Geometry} from '../models/geometry';
 
 export class FileLayerManager {
   public layersControl: any;
@@ -36,7 +37,9 @@ export class FileLayerManager {
         'Pedestrian crossing': this.prepareObjectMarkersLayer('pedestrian_crossing'),
         'Streets contain pedestrian crossing': this.parseGeoJsonToGeojsonmodel(this.getStreetsContains('pedestrian_crossing')),
         'Bus stops': this.prepareBusStopLayer(),
-        'Customer objects': this.prepareObjectLayer()
+        'Customer objects': this.prepareObjectLayer(),
+        'Schools': this.prepareSchoolsLayer(),
+        'Bounding box': this.boundingBoxLayer()
       }
     };
   }
@@ -130,6 +133,11 @@ export class FileLayerManager {
     return geoJSON(JSON.parse(JSON.stringify(objectsGeoModel)));
   }
 
+  private prepareSchoolsLayer() {
+    const objectsGeoModel = this.dataService.getSchools(this.data);
+    return geoJSON(JSON.parse(JSON.stringify(objectsGeoModel)));
+  }
+
   private prepareAllObjectsLayer() {
     return geoJSON(this.data);
   }
@@ -218,5 +226,24 @@ export class FileLayerManager {
     for (const feature of allStreets.features) {
       feature.properties.defaultSpeedLimit = SpeedService.getMaxSpeed(feature).toString();
     }
+  }
+
+  private boundingBoxLayer() {
+    const objectsGeoModel = this.dataService.getSchools(this.data);
+    const schoolsFeatures = objectsGeoModel.features;
+    const resultFeatures = <[Feature]>[];
+
+    for (const feature of schoolsFeatures) {
+      if (feature.geometry.type !== 'Point') {
+        const geometry = new Geometry('Polygon', <any>[GeometryOperations.getBoundingBox(feature, 30)]);
+        const boundingBox = new Feature('', 'Feature', null, geometry, <[CustomMarker]>[]);
+        console.log(feature.geometry.coordinates);
+        console.log(geometry.coordinates);
+        resultFeatures.push(boundingBox);
+      }
+    }
+
+    objectsGeoModel.features = resultFeatures;
+    return geoJSON(JSON.parse(JSON.stringify(objectsGeoModel)));
   }
 }

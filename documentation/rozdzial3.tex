@@ -120,6 +120,138 @@ Przez powyższe obliczenia, wyznaczone zostały wspórzędne poszukiwanego punkt
 \section{Przyporządkowanie obiektów reprezentowanych przez wielokąty, do poszczególnych dróg}
 \label{sec:polygonLineDistance}
 
+W niniejszej sekcji skupię się na rozwiązaniu problemu przyporządkowania obiektów reprezentowanych przez wielokątny do poszczególnych dróg. Wykorzystywane jest w sytuacjach, gdy trzeba określić dokładne współrzędne początku i końca strefy, na której obowiązuje ograniczonej prędkości. Obiekty na mapie, reprezentowane przez wielokąty:
+\begin{itemize}
+\item szkoły
+\item parki
+\item place zabaw
+\item przystanki autobusowe i tramwajowe
+\item sklepy
+\item miejsca kultu
+\end{itemize}
+
+Rys. \ref{sec:firstBB} przedstawia przykładowy wielokąt reprezentujący interesujący nas obiekt pobrany z OpenStreetMap.  
+
+\begin{figure}[h]
+\label{sec:firstBB}
+\caption{Przykładowy wielokąt reprezentujący obiekt na mapie}
+\centering
+\includegraphics[width=0.8\textwidth]{minBoundingBoxFirst}
+\end{figure}
+
+\newpage
+
+W pierwszej kolejności algorytm znajduje minimalny obszar pokrywający (eng. minimum bounding box) dany obiekt. W tym celu niezbędne jest wyznaczenie czterech współrzędnych (x1, y1), (x2, y2), (x3, y3), (x4, y4) reprezentuących cztery wierzchołki prostokąta.
+
+W celu wyznaczenia wierzchołka północno-zachodniego, należy obliczyć minimalną wartość współrzędnej x oraz maksymalną wartość współrzędnej y. 
+
+\begin{equation} \label{sec:drugiWierzcholek}
+\begin{split}
+x1 = min(x_a, x_b, x_c, x_d, x_e, x_f, x_g) \\
+y1 = min(y_a, y_b, y_c, y_d, y_e, y_f, y_g)
+\end{split}
+\end{equation}\newline
+
+Żeby wyznaczyć wierzchołek północno-wschodni, należy obliczyć maksymalną wartość współrzędnej x i y. 
+\begin{equation} \label{sec:trzeciWierzcholek}
+\begin{split}
+x2 = max(x_a, x_b, x_c, x_d, x_e, x_f, x_g)  \\
+y2 = max(y_a, y_b, y_c, y_d, y_e, y_f, y_g)
+\end{split}
+\end{equation}\newline
+
+Wierzchołek południowo-wschodni obliczamy jako maksymalną wartość współrzędnej x oraz minimalną wartość wsółrzędnej y. 
+\begin{equation} \label{sec:czwartyWierzcholek}
+\begin{split}
+x3 = max(x_a, x_b, x_c, x_d, x_e, x_f, x_g) \\
+y3 = min(y_a, y_b, y_c, y_d, y_e, y_f, y_g)
+\end{split}
+\end{equation}\newline
+
+Aby wyznaczyć południowo-zachodni wierzchołek, należy obliczyć minimalną wartość współrzędnej x i y.
+
+\begin{equation} \label{sec:pierwszyWierzcholek}
+\begin{split}
+x4 = min(x_a, x_b, x_c, x_d, x_e, x_f, x_g) \\
+y4 = min(y_a, y_b, y_c, y_d, y_e, y_f, y_g)
+\end{split}
+\end{equation}\newline
+
+Po wyznaczeniu powyższych współrzędnych minimalny obszar pokrywający wygląda tak, jak na rysunku \ref{sec:secondtBB} 
+
+\newpage
+\begin{figure}[h]
+\label{sec:secondtBB}
+\caption{Minimalny obszar pokrywający dany obiekt}
+\centering
+\includegraphics[width=0.9\textwidth]{minBoundingBox}
+\end{figure}
+
+Następnym krokiem jest powiększenie tak wyznaczonego obszaru o n metrów. Dzięki takiemu zabiegowi, możliwe będzie wyznaczenie strefy ogroniczonej prędkości. 
+
+
+\begin{equation} \label{sec:powiekszoneWierzcholek}
+\begin{split}
+x1' = x1 - n \\
+y1' = y1 + n \\
+\end{split}
+\end{equation}
+
+\begin{equation} \label{sec:powiekszoneWierzcholek}
+\begin{split}
+x2' = x2 + n \\ 
+y2' = y2 + n \\
+\end{split}
+\end{equation}
+
+\begin{equation} \label{sec:powiekszoneWierzcholek}
+\begin{split}
+x3' = x3 + n \\
+y3' = y3 - n \\
+\end{split}
+\end{equation}
+
+\begin{equation} \label{sec:powiekszoneWierzcholek}
+\begin{split}
+x4' = x4 - n \\
+y4' = y4 - n \\
+\end{split}
+\end{equation}
+
+Rys. \ref{sec:thirdBB} przedstawia minimalny obszar pokrywający powiększony o n metrów względem pierwotnego. Oczywiście obszar można dowolnie powiększać, w zależności od obiektu, który się w nim znajduje. Tak więc dla placów zabaw czy przedszkoli będzie znacznie większy, w porównaniu do np. przystanków autobusowych.
+
+\newpage
+\begin{figure}[h]
+\label{sec:thirdBB}
+\caption{Minimalny obszar pokrywający dany obiekt powiększony o n metrów}
+\centering
+\includegraphics[width=0.8\textwidth]{BoundingBoxExtended}
+\end{figure}
+
+Ostatnim krokiem jest wyznaczenie współrzędnych punktów przecięcia drogi i zaznaczonego obszaru. Do tego celu wykorzystam równanie:
+
+\begin{equation} \label{sec:powiekszoneWierzcholek}
+\begin{split}
+xp = ... \\
+yp = ... \\
+\end{split}
+\end{equation}
+
+\begin{equation} \label{sec:powiekszoneWierzcholek}
+\begin{split}
+xq = ... \\
+yq = ... \\
+\end{split}
+\end{equation}
+
+\newpage
+\begin{figure}[h]
+\label{sec:fourthBB}
+\caption{Droga przebiegająca przez wybrany obszar}
+\centering
+\includegraphics[width=0.8\textwidth]{minBoundingBoxWay}
+\end{figure}
+
 \newpage
 \section{Przejścia dla pieszych}
 \label{sec:pedestrialCrossing}
