@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.3.3)  14 APR 2018 16:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.3.3)  15 APR 2018 18:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1416,6 +1416,27 @@ LaTeX Warning: Label `sec:powiekszoneWierzcholek' multiply defined.
 LaTeX Warning: Label `sec:powiekszoneWierzcholek' multiply defined.
 
 
+LaTeX Warning: Label `sec:powiekszoneWierzcholek' multiply defined.
+
+
+LaTeX Warning: Label `sec:powiekszoneWierzcholek' multiply defined.
+
+
+LaTeX Warning: Label `sec:prostaKierunkowaX' multiply defined.
+
+
+LaTeX Warning: Label `sec:prostaKierunkowaX' multiply defined.
+
+
+LaTeX Warning: Label `eq:distanceBetweenTwoPoint' multiply defined.
+
+
+LaTeX Warning: Label `eq:distanceBetweenTwoPointAB' multiply defined.
+
+
+LaTeX Warning: Label `sec:PrzejazdyKolejowe' multiply defined.
+
+
 LaTeX Warning: Label `sec:PrzejazdyKolejowe' multiply defined.
 
 
@@ -1871,119 +1892,177 @@ put line 139.
 Package pdftex.def Info: Requested size: 364.19667pt x 209.35753pt on input lin
 e 139.
 [29 <./minBoundingBoxFirst.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 153--154
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 144.
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--156
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 161--162
+Underfull \hbox (badness 10000) in paragraph at lines 163--164
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 169--170
+Underfull \hbox (badness 10000) in paragraph at lines 171--172
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--179
+Underfull \hbox (badness 10000) in paragraph at lines 180--181
 
  []
 
 
-Package caption Warning: \label without proper reference on input line 184.
+Package caption Warning: \label without proper reference on input line 186.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `sec:secondtBB' on page 30 undefined on input line 180
+LaTeX Warning: Reference `sec:secondtBB' on page 30 undefined on input line 182
 .
 
 [30]
 <minBoundingBox.png, id=129, 511.9125pt x 299.1175pt>
 File: minBoundingBox.png Graphic file (type png)
 <use minBoundingBox.png>
-Package pdftex.def Info: minBoundingBox.png  used on input line 187. on input l
-ine 187.
+Package pdftex.def Info: minBoundingBox.png  used on input line 189. on input l
+ine 189.
 Package pdftex.def Info: Requested size: 409.71692pt x 239.40385pt on input lin
-e 187.
+e 189.
 
 
-Package caption Warning: \label without proper reference on input line 225.
+Package caption Warning: \label without proper reference on input line 229.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `sec:thirdBB' on page 31 undefined on input line 221.
+LaTeX Warning: Reference `sec:thirdBB' on page 31 undefined on input line 225.
 
 [31 <./minBoundingBox.png>]
 <BoundingBoxExtended.png, id=136, 574.145pt x 367.3725pt>
 File: BoundingBoxExtended.png Graphic file (type png)
 <use BoundingBoxExtended.png>
-Package pdftex.def Info: BoundingBoxExtended.png  used on input line 228. on in
-put line 228.
+Package pdftex.def Info: BoundingBoxExtended.png  used on input line 232. on in
+put line 232.
 Package pdftex.def Info: Requested size: 364.19667pt x 233.03789pt on input lin
-e 228.
+e 232.
  [32 <./BoundingBoxExtended.png>]
-<minBoundingBoxWay.png, id=141, 659.46375pt x 428.60126pt>
+
+Package caption Warning: \label without proper reference on input line 311.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `sec:pointSegment' on page 33 undefined on input line 
+307.
+
+[33]
+<pointInSegment.png, id=145, 408.52625pt x 214.8025pt>
+File: pointInSegment.png Graphic file (type png)
+<use pointInSegment.png>
+Package pdftex.def Info: pointInSegment.png  used on input line 314. on input l
+ine 314.
+Package pdftex.def Info: Requested size: 273.14923pt x 143.6285pt on input line
+ 314.
+
+Underfull \hbox (badness 10000) in paragraph at lines 320--321
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 326--327
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 331--332
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 336--337
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 342--343
+
+ []
+
+[34 <./pointInSegment.png>]
+<minBoundingBoxWay.png, id=150, 659.46375pt x 428.60126pt>
 File: minBoundingBoxWay.png Graphic file (type png)
 <use minBoundingBoxWay.png>
-Package pdftex.def Info: minBoundingBoxWay.png  used on input line 252. on inpu
-t line 252.
+Package pdftex.def Info: minBoundingBoxWay.png  used on input line 353. on inpu
+t line 353.
 Package pdftex.def Info: Requested size: 364.19667pt x 236.70586pt on input lin
-e 252.
- [33 <./minBoundingBoxWay.png>]
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 258.
-<PrzejscieDrogi.png, id=146, 671.50874pt x 529.98pt>
+e 353.
+ [35 <./minBoundingBoxWay.png>]
+<PrzejscieDrogi.png, id=155, 671.50874pt x 529.98pt>
 File: PrzejscieDrogi.png Graphic file (type png)
 <use PrzejscieDrogi.png>
-Package pdftex.def Info: PrzejscieDrogi.png  used on input line 276. on input l
-ine 276.
+Package pdftex.def Info: PrzejscieDrogi.png  used on input line 377. on input l
+ine 377.
 Package pdftex.def Info: Requested size: 409.71692pt x 323.36009pt on input lin
-e 276.
- [34 <./PrzejscieDrogi.png>]
-<pedestrian_speed.png, id=151, 920.43875pt x 715.67375pt>
+e 377.
+ [36 <./PrzejscieDrogi.png>]
+<pedestrian_speed.png, id=160, 920.43875pt x 715.67375pt>
 File: pedestrian_speed.png Graphic file (type png)
 <use pedestrian_speed.png>
-Package pdftex.def Info: pedestrian_speed.png  used on input line 299. on input
- line 299.
+Package pdftex.def Info: pedestrian_speed.png  used on input line 400. on input
+ line 400.
 Package pdftex.def Info: Requested size: 409.71692pt x 318.57756pt on input lin
-e 299.
- [35 <./pedestrian_speed.png>] [36]
-<surfaceType.png, id=159, 557.08125pt x 532.99126pt>
+e 400.
+ [37 <./pedestrian_speed.png>] [38]
+<surfaceType.png, id=169, 557.08125pt x 532.99126pt>
 File: surfaceType.png Graphic file (type png)
 <use surfaceType.png>
-Package pdftex.def Info: surfaceType.png  used on input line 329. on input line
- 329.
+Package pdftex.def Info: surfaceType.png  used on input line 430. on input line
+ 430.
 Package pdftex.def Info: Requested size: 409.71692pt x 392.0082pt on input line
- 329.
-
-[37 <./surfaceType.png>]
-<railCrossing.png, id=165, 808.01875pt x 610.28pt>
+ 430.
+ [39 <./surfaceType.png>]
+<railCrossing.png, id=174, 808.01875pt x 610.28pt>
 File: railCrossing.png Graphic file (type png)
 <use railCrossing.png>
-Package pdftex.def Info: railCrossing.png  used on input line 345. on input lin
-e 345.
+Package pdftex.def Info: railCrossing.png  used on input line 446. on input lin
+e 446.
 Package pdftex.def Info: Requested size: 455.24411pt x 343.84038pt on input lin
-e 345.
- [38 <./railCrossing.png>] [39]
-<traffic_sight.png, id=173, 883.3pt x 612.2875pt>
+e 446.
+ [40 <./railCrossing.png>]
+<streetBeforeRail.png, id=179, 679.53876pt x 588.1975pt>
+File: streetBeforeRail.png Graphic file (type png)
+<use streetBeforeRail.png>
+Package pdftex.def Info: streetBeforeRail.png  used on input line 473. on input
+ line 473.
+Package pdftex.def Info: Requested size: 318.66948pt x 275.83357pt on input lin
+e 473.
+ [41 <./streetBeforeRail.png>]
+<traffic_sight.png, id=184, 883.3pt x 612.2875pt>
 File: traffic_sight.png Graphic file (type png)
 <use traffic_sight.png>
-Package pdftex.def Info: traffic_sight.png  used on input line 368. on input li
-ne 368.
+Package pdftex.def Info: traffic_sight.png  used on input line 488. on input li
+ne 488.
 Package pdftex.def Info: Requested size: 500.77129pt x 347.12961pt on input lin
-e 368.
+e 488.
 
-Overfull \hbox (45.52718pt too wide) in paragraph at lines 368--369
+Overfull \hbox (45.52718pt too wide) in paragraph at lines 488--489
  [][] 
  []
 
-[40 <./traffic_sight.png>] [41] [42] [43] [44] [45] [46] [47] [48]) [49]
-[50
+[42 <./traffic_sight.png>]
+<speedBeforeSignals.png, id=189, 502.87875pt x 540.0175pt>
+File: speedBeforeSignals.png Graphic file (type png)
+<use speedBeforeSignals.png>
+Package pdftex.def Info: speedBeforeSignals.png  used on input line 514. on inp
+ut line 514.
+Package pdftex.def Info: Requested size: 364.19667pt x 391.09477pt on input lin
+e 514.
+ [43 <./speedBeforeSignals.png>] [44] [45] [46]
+[47] [48] [49] [50]) [51] [52
 
 
-] [51] [52] [53] (./praca.aux (./rozdzial1.aux) (./rozdzial2.aux)
-(./rozdzial3.aux))
+] [53] [54] [55] (./praca.aux (./rozdzial1.aux)
+(./rozdzial2.aux) (./rozdzial3.aux))
 
 LaTeX Warning: There were undefined references.
 
@@ -1995,30 +2074,31 @@ Package logreq Info: Writing requests to 'praca.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 26192 strings out of 492990
- 488444 string characters out of 6135006
+ 26221 strings out of 492990
+ 489112 string characters out of 6135006
  730257 words of memory out of 5000000
- 29369 multiletter control sequences out of 15000+600000
+ 29395 multiletter control sequences out of 15000+600000
  607886 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  45i,15n,50p,10383b,2723s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/time
-s/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on praca.pdf (53 pages, 3391055 bytes).
+/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8
+a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on praca.pdf (55 pages, 3605525 bytes).
 PDF statistics:
- 268 PDF objects out of 1000 (max. 8388607)
- 163 compressed objects within 2 object streams
+ 285 PDF objects out of 1000 (max. 8388607)
+ 171 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 91 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 106 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -63,8 +63,8 @@ Do rozwiązania tego zadania, posłużyłem się własnościami trygonometryczny
 \includegraphics[width=0.5\textwidth]{distance}
 \end{figure}
 
-Wiadomym jest, że odległość między dwoma punktami a i b wynosi:
-\begin{equation} \label{eq:coordinatesFromPoint}
+Odległość między dwoma punktami a i b wynosi:
+\begin{equation} \label{eq:distanceBetweenTwoPoint}
 d_1 = \sqrt{(x1 - x2)^2 + (y1 - y2)^2}
 \end{equation}\newline
 
@@ -141,6 +141,8 @@ Rys. \ref{sec:firstBB} przedstawia przykładowy wielokąt reprezentujący intere
 
 \newpage
 
+\subsection{Wyznaczanie minimalnego obszaru pokrywającego}
+
 W pierwszej kolejności algorytm znajduje minimalny obszar pokrywający (eng. minimum bounding box) dany obiekt. W tym celu niezbędne jest wyznaczenie czterech współrzędnych (x1, y1), (x2, y2), (x3, y3), (x4, y4) reprezentuących cztery wierzchołki prostokąta.
 
 W celu wyznaczenia wierzchołka północno-zachodniego, należy obliczyć minimalną wartość współrzędnej x oraz maksymalną wartość współrzędnej y. 
@@ -187,6 +189,8 @@ Po wyznaczeniu powyższych współrzędnych minimalny obszar pokrywający wyglą
 \includegraphics[width=0.9\textwidth]{minBoundingBox}
 \end{figure}
 
+\subsection{Powiększanie wyznaczonego obszaru pokrywającego}
+
 Następnym krokiem jest powiększenie tak wyznaczonego obszaru o n metrów. Dzięki takiemu zabiegowi, możliwe będzie wyznaczenie strefy ogroniczonej prędkości. 
 
 
@@ -228,21 +232,118 @@ Rys. \ref{sec:thirdBB} przedstawia minimalny obszar pokrywający powiększony o 
 \includegraphics[width=0.8\textwidth]{BoundingBoxExtended}
 \end{figure}
 
-Ostatnim krokiem jest wyznaczenie współrzędnych punktów przecięcia drogi i zaznaczonego obszaru. Do tego celu wykorzystam równanie:
+\subsection{Wyznaczanie obszarów drogi znajdujących się w pobliżu interesującego nas obiektu}
+
+Ostatnim krokiem jest wyliczenie, które drogi znajdują się o obrębie danego obszaru. Należy zaznaczyć, że Open Street Map, w przypadku łuków czy zakrętów, przedstawia je jako zbiór odcinków. Możemy tutaj wyróżnić dwa przypadki:
+\begin{itemize}
+\item żaden ze zbioru odcinków nie należy do danego obszaru
+\item jeden lub pewna część odcinków znajduje się w obrębie danego obszaru. W takiej sytuacji należy wyznaczyć wszystkie współrzędne przecięcia, a później określić interesujące nas fragmenty drogi.
+\end{itemize}
+
+
+\subsubsection{Znajdowanie punktów przecięcia}
+
+W celu znalezienia punktów przecięcia, wykorzystam fakt, że droga reprezentowana jest zbiór odcinków, oraz że interesujący nas obszar jest prostokątem - a więc posiada cztery boki. 
+
+W pierwszej kolejności algorytm będzie iterował po zbiorze odcinków. Każdy odcinek lub bok prostokąta reprezentowany jest przez dwie współrzędne: 
 
 \begin{equation} \label{sec:powiekszoneWierzcholek}
 \begin{split}
-xp = ... \\
-yp = ... \\
+(x_a, y_a) \\
+(x_b, y_b) \\
 \end{split}
 \end{equation}
 
+Dzięki temu, bez problemu można określić równanie prostej przechodzącej przez te dwa punkty:
+
 \begin{equation} \label{sec:powiekszoneWierzcholek}
-\begin{split}
-xq = ... \\
-yq = ... \\
-\end{split}
+(y - y_a) (x_b-x_a) - (y_b - y_a) (x - x_a) = 0
 \end{equation}
+
+Oraz równanie w postaci kierunkowej:
+
+\begin{equation} \label{sec:prostaKierunkowa}
+y=\frac{y_a - y_b}{x_a - x_b}x + (y_a - \frac{y_a - y_b}{x_a - x_b}x_a)
+\end{equation}
+
+W celu wyznaczenia współrzędnej x punktu przecięcia wystarczy porównać oba równania:
+
+\begin{equation} \label{sec:powiekszoneWierzcholek}
+\frac{y_c - y_d}{x_c - x_d}x + (y_c - \frac{y_c - y_d}{x_c - x_d}x_c)=\frac{y_a - y_b}{x_a - x_b}x + (y_a - \frac{y_a - y_b}{x_a - x_b}x_a)
+\end{equation}
+
+W wyniku czego otrzymujemy:
+
+\begin{equation} \label{sec:powiekszoneWierzcholek}
+x = \frac{(y_a - \frac{y_a - y_b}{x_a - x_b}x_a) - (y_c - \frac{y_c - y_d}{x_c - x_d}x_c)}{\frac{y_c - y_d}{x_c - x_d} - \frac{y_a - y_b}{x_a - x_b}}
+\end{equation}
+
+Aby wyznaczyc współrzędną y, należy przekształcić równanie \ref{sec:prostaKierunkowa} do postaci:
+
+\begin{equation} \label{sec:prostaKierunkowaX}
+x=\frac{y - (y_a - \frac{y_a - y_b}{x_a - x_b}x_a)}{\frac{y_a - y_b}{x_a - x_b}}
+\end{equation}
+
+Następnie porównać równania obu prostych:
+
+\begin{equation} \label{sec:prostaKierunkowaX}
+\frac{y - (y_a - \frac{y_a - y_b}{x_a - x_b}x_a)}{\frac{y_a - y_b}{x_a - x_b}}=\frac{y - (y_c - \frac{y_c - y_d}{x_c - x_d}x_c)}{\frac{y_c - y_d}{x_c - x_d}}
+\end{equation}
+
+W wyniku czego otrzymujemy wzór na współrzędną y przecinającą obie proste:
+\begin{equation} \label{sec:prostaKierunkowaX}
+y = \frac{(y_a - \frac{y_a - y_b}{x_a - x_b}x_a)(\frac{y_c - y_d}{x_c - x_d}) - (\frac{y_a - y_b}{x_a - x_b})(y_c - \frac{y_c - y_d}{x_c - x_d}x_c)}
+{(\frac{y_c - y_d}{x_c - x_d})(\frac{y_a - y_b}{x_a - x_b})}
+\end{equation}
+
+\subsubsection{Sprawdzanie, czy punkt przecięcia należy do odcinka}
+
+W celu sprawdzenia, czy punkt przecięcia należy do odcinka, posłużę się własnością, że suma długości mierzonej od początku odcinka do danego punktu oraz od danego punktu, do końca odcinka jest równa całkowitej długości odcinka. 
+
+\begin{equation} \label{eq:pointInSegment}
+|AC| + |CB| = |AB|
+\end{equation}
+
+W celu lepszego zobrazowania, posłuże się rysunkiem \ref{sec:pointSegment}
+
+\newpage
+\begin{figure}[h]
+\label{sec:pointSegment}
+\caption{Punkt wewnątrz odcinka}
+\centering
+\includegraphics[width=0.6\textwidth]{pointInSegment}
+\end{figure}
+
+Odległość między dwoma punktami a i b wynosi:
+\begin{equation} \label{eq:distanceBetweenTwoPoint}
+d = \sqrt{(x1 - x2)^2 + (y1 - y2)^2}
+\end{equation}\newline
+
+Długość odcinka AC wynosi:
+
+\begin{equation} \label{eq:distanceBetweenTwoPointAC}
+d_{AC} = \sqrt{(xa - xc)^2 + (ya - yc)^2}
+\end{equation}\newline
+
+Długość odcinka CB wynosi:
+\begin{equation} \label{eq:distanceBetweenTwoPointCB}
+d_{CB} = \sqrt{(xc - xb)^2 + (yc - yb)^2}
+\end{equation}\newline
+
+Oraz długość odcinka AB wynosi:
+\begin{equation} \label{eq:distanceBetweenTwoPointAB}
+d_{AB} = \sqrt{(xa - xb)^2 + (ya - yb)^2}
+\end{equation}\newline
+
+Zgodnie z równaniem \ref{eq:pointInSegment}, aby punkt nalezał do odcinka, musi spełniać warunek:
+
+\begin{equation} \label{eq:distanceBetweenTwoPointAB}
+\sqrt{(xa - xb)^2 + (ya - yb)^2} = \sqrt{(xa - xb)^2 + (ya - yb)^2} + \sqrt{(xc - xb)^2 + (yc - yb)^2}
+\end{equation}\newline
+
+\subsubsection{Wyznaczenie obszarów drogi znajdujących się w pobliżu danego obiektu}
+
+
 
 \newpage
 \begin{figure}[h]
@@ -354,6 +455,25 @@ Rys. \ref{sec:PrzejazdyKolejowe} obrazuje wynik przypisania przejazdów kolejowy
 \newpage
 \subsection{Wyznaczanie prędkości i umieszczanie jej w odpowiednim miejscu na mapie}
 
+Podobnie jak miało to miejsce w rozdziale \ref{sec:pedestrialCrossing}, umiejscowienie znaków przed przejazdem będzie zależało od kilku czynników:
+\begin{itemize}
+\item na  drodze z ograniczeniem prędkości do 60 km/h, znak zostanie umieszczony 50m przed przejazdem kolejowym
+\item w przypadku prędkości powyżej 60 km/h, znak zostanie umieszczony w odległości 150m przed przejazdem kolejowym
+\item w przypadku drogi jednokierunkowej, tylko przed przejazdem kolejowym
+\item w przypadku drogi dwukierunkowej, zarówno przed, jak i za przejazdem
+\item bezpośrednio za przejazdem zostanie ustawiony znak przywracającą poprzednie ograniczenie prędkości, za wyjątkiem sytuacji, gdy droga za przejazdem kolejowym jest krótsza niż 100m. W takim wypadku, nie ma sensu zmieniać prędkości. 
+\end{itemize}
+
+Rys. \ref{sec:PrzejazdyKolejowe} obrazuje przejazd kolejowy znajdujący się na dwukierunkowej drodze, na której obowiązuje ograniczenie prędkości do 80 km/h. Dlatego znaki 30 km/h zostały umieszczone 150m przed przejazdem, a zaraz po nim znaki przywracające poprzednią prędkość 80 km/h. Znaki są po obu stronach, gdyż jest do droga dwukierunkowa
+
+\begin{figure}[h]
+\caption{Umiejscowienie znaków przed i za przejazdem kolejowym.}
+\label{sec:PrzejazdyKolejowe}
+\centering
+\includegraphics[width=0.7\textwidth]{streetBeforeRail}
+\end{figure}
+
+
 \newpage
 \section{Sygnalizacja świetlna}
 \subsection{Przyporządkowywanie sygnalizacji świetlnej do poszczególnych dróg}
@@ -376,6 +496,23 @@ Rys. \ref{sec:PrzejazdyKolejowe} ukazuje sposób działania algorytmu przypisuj�
 
 \newpage
 \subsection{Wyznaczanie prędkości i umieszczanie jej w odpowiednim miejscu na mapie}
+
+Algorytm umieszcza znaki ograniczenia prędkości w następujący spasób:
+\begin{itemize}
+\item 50m przed sygnalizacją na drodze z ograniczeniem prędkości do 60 km/h
+\item 150m przed sygnalizacją na drodze z ograniczeniem prędkości powyżej 60 km/h
+\item w przypadku drogi dwukierunkowej, zarówno przed, jak i za przejazdem
+\end{itemize}
+
+
+Rys. \ref{sec:znakiSwiatla} obrazuje fragment skrzyżowania na której znajduje się sygnalizacja świetlna. Ograniczenie prędkości na drogach wynosi od 70 do 80 km/h, dlatego algorytm umieścił znak ograniczenia prędkości do 50 km/h, 150m przed sygnalizacją oraz znak przywracający poprzednią prędkość zaraz za sygnalizacją.
+
+\begin{figure}[h]
+\caption{Ograniczenie predkości przed i za światłami drogowymi}
+\label{sec:znakiSwiatla}
+\centering
+\includegraphics[width=0.8\textwidth]{speedBeforeSignals}
+\end{figure}
 
 \newpage
 \section{Przystanki autobusowe i tramwajowe}

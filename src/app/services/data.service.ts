@@ -7,6 +7,7 @@ import {Geojsonmodel} from '../models/geojsonmodel';
 import {Feature} from '../models/feature';
 import {DbDataService} from './dbData.service';
 import {CustomMarker} from '../models/customMarker';
+import {Mathematical} from '../calculationOperations/mathematical';
 
 @Injectable()
 export class DataService {

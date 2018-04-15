@@ -1,6 +1,5 @@
 import {DataService} from '../services/data.service';
-import {GeometryObject} from 'geojson';
-import {GeometryOperations} from './geometryOperations';
+import {Geometry} from '../models/geometry';
 
 export class Mathematical {
 
@@ -74,5 +73,73 @@ export class Mathematical {
       reversedCoordinates.push(coordinates[i]);
     }
     return reversedCoordinates;
+  }
+
+  public static getCrossPointOfRoadAndRectangle(road: Geometry, rectangle: Geometry) {
+    const result = <[[number, number]]>[];
+
+    for (let i = 0; i < road.coordinates.length - 1; i++) {
+
+      const x1 = road.coordinates[i][0];
+      const y1 = road.coordinates[i][1];
+      const x2 = road.coordinates[i + 1][0];
+      const y2 = road.coordinates[i + 1][1];
+
+      for (let j = 0; j < rectangle.coordinates[0].length - 1; j++) {
+        const tmp = rectangle.coordinates[0];
+        const x3 = tmp[j][0];
+        const y3 = tmp[j][1];
+        const x4 = tmp[j + 1][0];
+        const y4 = tmp[j + 1][1];
+        const crossPoint = this.getCrossPoint([[x1, y1], [x2, y2]], [[x3, y3], [x4, y4]]);
+        if (this.checkIfPointIsBetweenPoints([x1, y1], [x2, y2], crossPoint) === true) {
+          if (this.checkIfPointIsBetweenPoints([x3, y3], [x4, y4], crossPoint) === true) {
+            result.push(crossPoint);
+          }
+        }
+      }
+    }
+    return result;
+  }
+
+  public static getCrossPoint(coordinates1: [[number, number]], coordinates2: [[number, number]]): [number, number] {
+    const x1 = coordinates1[0][0];
+    const y1 = coordinates1[0][1];
+    const x2 = coordinates1[1][0];
+    const y2 = coordinates1[1][1];
+
+    const x3 = coordinates2[0][0];
+    const y3 = coordinates2[0][1];
+    const x4 = coordinates2[1][0];
+    const y4 = coordinates2[1][1];
+    let x: number;
+    let y: number;
+    // y = Ax + B
+    const A = (y1 - y2) / (x1 - x2);
+    const B = (y1 - ( A * x1) );
+
+    // y = Cx + D
+    let C: number;
+    if (x3 - x4 === 0) {
+      x = x3;
+      y = ( (y1 - y2) / (x1 - x2) ) * x + (y1 - ((y1 - y2) / (x1 - x2)) * x1 );
+      return [x, y];
+    } else {
+      C = (y3 - y4) / (x3 - x4);
+    }
+    const D = (y3 - ( C * x3) );
+
+    x = (D - B) / (A - C);
+    y = ( (C * B) - (A * D) ) / (C - A);
+
+    return [x, y];
+  }
+
+  public static checkIfPointIsBetweenPoints(pointFrom: [number, number], pointTo: [number, number], checkPoint: [number, number]): boolean {
+    const distanceFromTo = this.distanceBetweenPoints(pointFrom, pointTo);
+    const distanceFromCheck = this.distanceBetweenPoints(pointFrom, checkPoint);
+    const distanceCheckTo = this.distanceBetweenPoints(checkPoint, pointTo);
+    const distance = distanceFromTo - (distanceFromCheck + distanceCheckTo);
+    return distance < 1 && distance > -1 ;
   }
 }

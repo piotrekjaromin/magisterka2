@@ -87,7 +87,7 @@ export class GeometryOperations {
     maxLong = maxLong + distanceInDegree;
     minLat = minLat - distanceInDegree;
     maxLat = maxLat + distanceInDegree;
-    return [[minLong, minLat], [maxLong, minLat], [maxLong, maxLat], [minLong, maxLat]];
+    return [[minLong, minLat], [maxLong, minLat], [maxLong, maxLat], [minLong, maxLat], [minLong, minLat]];
   }
 
 }

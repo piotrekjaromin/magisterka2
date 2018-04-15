@@ -18,22 +18,28 @@
 \contentsline {section}{\numberline {3.1}Przyporz\IeC {\k a}dkowanie obiekt\IeC {\'o}w reprezentowanych przez punkty, do poszczeg\IeC {\'o}lnych dr\IeC {\'o}g}{26}
 \contentsline {section}{\numberline {3.2}Wyznaczanie wsp\IeC {\'o}\IeC {\l }rz\IeC {\k e}dnych punktu znajduj\IeC {\k a}cego si\IeC {\k e} na drodze, odleg\IeC {\l }ego o n metr\IeC {\'o}w od innego punktu}{27}
 \contentsline {section}{\numberline {3.3}Przyporz\IeC {\k a}dkowanie obiekt\IeC {\'o}w reprezentowanych przez wielok\IeC {\k a}ty, do poszczeg\IeC {\'o}lnych dr\IeC {\'o}g}{29}
-\contentsline {section}{\numberline {3.4}Przej\IeC {\'s}cia dla pieszych}{34}
-\contentsline {subsection}{\numberline {3.4.1}Przyporz\IeC {\k a}dkowywanie przej\IeC {\'s}\IeC {\'c} dla pieszych do poszczeg\IeC {\'o}lnych dr\IeC {\'o}g}{34}
-\contentsline {subsection}{\numberline {3.4.2}Wyznaczanie pr\IeC {\k e}dko\IeC {\'s}ci i umieszczanie jej w odpowiednim miejscu na mapie}{35}
-\contentsline {section}{\numberline {3.5}Typ nawierzchni}{36}
-\contentsline {section}{\numberline {3.6}Przejazdy kolejowe}{38}
-\contentsline {subsection}{\numberline {3.6.1}Przyporz\IeC {\k a}dkowywanie przejazd\IeC {\'o}w kolejowych do poszczeg\IeC {\'o}lnych dr\IeC {\'o}g}{38}
-\contentsline {subsection}{\numberline {3.6.2}Wyznaczanie pr\IeC {\k e}dko\IeC {\'s}ci i umieszczanie jej w odpowiednim miejscu na mapie}{39}
-\contentsline {section}{\numberline {3.7}Sygnalizacja \IeC {\'s}wietlna}{40}
-\contentsline {subsection}{\numberline {3.7.1}Przyporz\IeC {\k a}dkowywanie sygnalizacji \IeC {\'s}wietlnej do poszczeg\IeC {\'o}lnych dr\IeC {\'o}g}{40}
-\contentsline {subsection}{\numberline {3.7.2}Wyznaczanie pr\IeC {\k e}dko\IeC {\'s}ci i umieszczanie jej w odpowiednim miejscu na mapie}{41}
-\contentsline {section}{\numberline {3.8}Przystanki autobusowe i tramwajowe}{42}
-\contentsline {section}{\numberline {3.9}Szko\IeC {\l }y i miesca zabaw}{43}
-\contentsline {section}{\numberline {3.10}Sklepy i miejsca kult\IeC {\'o}w religijnych}{44}
-\contentsline {section}{\numberline {3.11}Liczba pas\IeC {\'o}w ruchu}{45}
-\contentsline {section}{\numberline {3.12}Rodzaj drogi}{46}
-\contentsline {section}{\numberline {3.13}P\IeC {\l }ynna zmiana pr\IeC {\k e}dko\IeC {\'s}ci pojazd\IeC {\'o}w}{47}
-\contentsline {section}{\numberline {3.14}Historia wypadk\IeC {\'o}w}{48}
-\contentsline {section}{\numberline {3.15}Zakr\IeC {\k e}ty}{49}
-\contentsline {section}{\numberline {3.16}Umiejscowienie znak\IeC {\'o}w na drodze}{49}
+\contentsline {subsection}{\numberline {3.3.1}Wyznaczanie minimalnego obszaru pokrywaj\IeC {\k a}cego}{30}
+\contentsline {subsection}{\numberline {3.3.2}Powi\IeC {\k e}kszanie wyznaczonego obszaru pokrywaj\IeC {\k a}cego}{31}
+\contentsline {subsection}{\numberline {3.3.3}Wyznaczanie obszar\IeC {\'o}w drogi znajduj\IeC {\k a}cych si\IeC {\k e} w pobli\IeC {\.z}u interesuj\IeC {\k a}cego nas obiektu}{32}
+\contentsline {subsubsection}{\numberline {3.3.3.1}Znajdowanie punkt\IeC {\'o}w przeci\IeC {\k e}cia}{32}
+\contentsline {subsubsection}{\numberline {3.3.3.2}Sprawdzanie, czy punkt przeci\IeC {\k e}cia nale\IeC {\.z}y do odcinka}{33}
+\contentsline {subsubsection}{\numberline {3.3.3.3}Wyznaczenie obszar\IeC {\'o}w drogi znajduj\IeC {\k a}cych si\IeC {\k e} w pobli\IeC {\.z}u danego obiektu}{34}
+\contentsline {section}{\numberline {3.4}Przej\IeC {\'s}cia dla pieszych}{36}
+\contentsline {subsection}{\numberline {3.4.1}Przyporz\IeC {\k a}dkowywanie przej\IeC {\'s}\IeC {\'c} dla pieszych do poszczeg\IeC {\'o}lnych dr\IeC {\'o}g}{36}
+\contentsline {subsection}{\numberline {3.4.2}Wyznaczanie pr\IeC {\k e}dko\IeC {\'s}ci i umieszczanie jej w odpowiednim miejscu na mapie}{37}
+\contentsline {section}{\numberline {3.5}Typ nawierzchni}{38}
+\contentsline {section}{\numberline {3.6}Przejazdy kolejowe}{40}
+\contentsline {subsection}{\numberline {3.6.1}Przyporz\IeC {\k a}dkowywanie przejazd\IeC {\'o}w kolejowych do poszczeg\IeC {\'o}lnych dr\IeC {\'o}g}{40}
+\contentsline {subsection}{\numberline {3.6.2}Wyznaczanie pr\IeC {\k e}dko\IeC {\'s}ci i umieszczanie jej w odpowiednim miejscu na mapie}{41}
+\contentsline {section}{\numberline {3.7}Sygnalizacja \IeC {\'s}wietlna}{42}
+\contentsline {subsection}{\numberline {3.7.1}Przyporz\IeC {\k a}dkowywanie sygnalizacji \IeC {\'s}wietlnej do poszczeg\IeC {\'o}lnych dr\IeC {\'o}g}{42}
+\contentsline {subsection}{\numberline {3.7.2}Wyznaczanie pr\IeC {\k e}dko\IeC {\'s}ci i umieszczanie jej w odpowiednim miejscu na mapie}{43}
+\contentsline {section}{\numberline {3.8}Przystanki autobusowe i tramwajowe}{44}
+\contentsline {section}{\numberline {3.9}Szko\IeC {\l }y i miesca zabaw}{45}
+\contentsline {section}{\numberline {3.10}Sklepy i miejsca kult\IeC {\'o}w religijnych}{46}
+\contentsline {section}{\numberline {3.11}Liczba pas\IeC {\'o}w ruchu}{47}
+\contentsline {section}{\numberline {3.12}Rodzaj drogi}{48}
+\contentsline {section}{\numberline {3.13}P\IeC {\l }ynna zmiana pr\IeC {\k e}dko\IeC {\'s}ci pojazd\IeC {\'o}w}{49}
+\contentsline {section}{\numberline {3.14}Historia wypadk\IeC {\'o}w}{50}
+\contentsline {section}{\numberline {3.15}Zakr\IeC {\k e}ty}{51}
+\contentsline {section}{\numberline {3.16}Umiejscowienie znak\IeC {\'o}w na drodze}{51}

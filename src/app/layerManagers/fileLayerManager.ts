@@ -29,39 +29,42 @@ export class FileLayerManager {
         'Only streets2': this.parseGeoJsonToGeojsonmodel(this.allStreetWithObjects),
         'One way streets': this.prepareOneWayStreetLayer(),
         'Speed limit': this.prepareSpeedLimitMarkersLayer(),
-        'Speed limit before pedestrian crossing': this.prepareSpeedLimitBeforePedestrianCrossingMarkersLayer(),
+        'Speed limit before pedestrian crossing': this.prepareSpeedLimitBeforeBeforeAndAfterMarkersLayer('pedestrian_crossing'),
         'Traffic signals': this.prepareObjectMarkersLayer('traffic_signal'),
         'Streets contain traffic signals': this.parseGeoJsonToGeojsonmodel(this.getStreetsContains('traffic_signal')),
+        'Speed limit before pedestrian traffic signals': this.prepareSpeedLimitBeforeBeforeAndAfterMarkersLayer('traffic_signal'),
         'Rail crossing': this.prepareObjectMarkersLayer( 'rail_crossing'),
         'Streets contains rail crossing': this.parseGeoJsonToGeojsonmodel(this.getStreetsContains('rail_crossing')),
+        'Speed limit before rail crossing': this.prepareSpeedLimitBeforeBeforeAndAfterMarkersLayer('rail_crossing'),
         'Pedestrian crossing': this.prepareObjectMarkersLayer('pedestrian_crossing'),
         'Streets contain pedestrian crossing': this.parseGeoJsonToGeojsonmodel(this.getStreetsContains('pedestrian_crossing')),
         'Bus stops': this.prepareBusStopLayer(),
         'Customer objects': this.prepareObjectLayer(),
         'Schools': this.prepareSchoolsLayer(),
-        'Bounding box': this.boundingBoxLayer()
+        'Bounding box': this.boundingBoxLayer(),
+        'Bounding box all': this.getStreetContainsBoundingBox()
       }
     };
   }
 
   ///////////////////////////////////////////////////////////////////////////////////////////
 
-  private prepareSpeedLimitBeforePedestrianCrossingMarkersLayer(): LayerGroup {
+  private prepareSpeedLimitBeforeBeforeAndAfterMarkersLayer(type: string): LayerGroup {
     const markers: [Marker] = <[Marker]>[];
-    const onlyStreetGeoModel: Geojsonmodel = this.getStreetsContains('pedestrian_crossing');
+    const onlyStreetGeoModel: Geojsonmodel = this.getStreetsContains(type);
     const features = onlyStreetGeoModel.features;
 
     for (const feature of features) {
       for (const customMarker of feature.markers) {
 
-        const beforeCoordinates = GeometryOperations.getCoordinatesBeforePoint([customMarker.lat, customMarker.long], feature.geometry.coordinates, 50);
+        let beforeCoordinates = GeometryOperations.getCoordinatesBeforePoint([customMarker.lat, customMarker.long], feature.geometry.coordinates, 50);
 
         markers.push(
           this.prepareMarker(beforeCoordinates[1], beforeCoordinates[0], feature.markers[0].speed.toString())
             .on('click', (data) => console.log(1)));
 
         // if (Mathematical.getDistanceBetweenPointAndEndOfRoad([customMarker.lat, customMarker.long], Mathematical.revertCoordinates(feature.geometry.coordinates)) > 100) {
-          const afterCoordinates = GeometryOperations.
+          let afterCoordinates = GeometryOperations.
           getCoordinatesAfterPoint([customMarker.lat, customMarker.long], feature.geometry.coordinates, 10);
 
           markers.push(
@@ -190,7 +193,7 @@ export class FileLayerManager {
     return geoJSON(JSON.parse(JSON.stringify(data)));
   }
 
-  private insertObjectsToStreets(streets: Geojsonmodel, objects: Geojsonmodel, type: string) {
+  private insertObjectsToStreets(streets: Geojsonmodel, objects: Geojsonmodel, speed: string) {
     const objectFeatures = objects.features;
     const streetFeatures: Geojsonmodel = streets;
 
@@ -198,7 +201,7 @@ export class FileLayerManager {
       for (const streetFeature of streetFeatures.features) {
         const streetContainsObject = Mathematical.pointInRectangle(streetFeature.geometry.coordinates, <any>objectFeature.geometry.coordinates);
         if (streetContainsObject) {
-          const customMarker = new CustomMarker(<any>objectFeature.geometry.coordinates[0], <any>objectFeature.geometry.coordinates[1], objectFeature.properties.description, 30);
+          const customMarker = new CustomMarker(<any>objectFeature.geometry.coordinates[0], <any>objectFeature.geometry.coordinates[1], objectFeature.properties.description, Number(speed));
 
           if (streetFeature.markers === undefined) {
             const customMarkers: [CustomMarker] = <[CustomMarker]>[];
@@ -215,9 +218,9 @@ export class FileLayerManager {
 
   private addAllObjectsToStreets(): Geojsonmodel {
     const allStreets: Geojsonmodel = this.dataService.getOnlyStreet(this.data);
-    this.insertObjectsToStreets(allStreets, this.dataService.getTrafficSignal(this.data), 'traffic_signal');
-    this.insertObjectsToStreets(allStreets, this.dataService.getRailCrossing(this.data), 'rail_crossing');
-    this.insertObjectsToStreets(allStreets, this.dataService.getPedestrialCrossing(this.data), 'pedestrian_crossing');
+    this.insertObjectsToStreets(allStreets, this.dataService.getTrafficSignal(this.data), '50');
+    this.insertObjectsToStreets(allStreets, this.dataService.getRailCrossing(this.data), '30');
+    this.insertObjectsToStreets(allStreets, this.dataService.getPedestrialCrossing(this.data), '30');
     this.insertDefaultSpeedLimitToStreets(allStreets);
     return allStreets;
   }
@@ -228,22 +231,50 @@ export class FileLayerManager {
     }
   }
 
-  private boundingBoxLayer() {
+  private getBoundingBox() {
     const objectsGeoModel = this.dataService.getSchools(this.data);
     const schoolsFeatures = objectsGeoModel.features;
     const resultFeatures = <[Feature]>[];
-
+    let counter = 0;
     for (const feature of schoolsFeatures) {
       if (feature.geometry.type !== 'Point') {
+        counter++;
         const geometry = new Geometry('Polygon', <any>[GeometryOperations.getBoundingBox(feature, 30)]);
-        const boundingBox = new Feature('', 'Feature', null, geometry, <[CustomMarker]>[]);
-        console.log(feature.geometry.coordinates);
-        console.log(geometry.coordinates);
+        const boundingBox = new Feature(counter.toString(), 'Feature', null, geometry, <[CustomMarker]>[]);
         resultFeatures.push(boundingBox);
       }
     }
 
     objectsGeoModel.features = resultFeatures;
-    return geoJSON(JSON.parse(JSON.stringify(objectsGeoModel)));
+    return objectsGeoModel;
+  }
+
+  private boundingBoxLayer() {
+    return geoJSON(JSON.parse(JSON.stringify(this.getBoundingBox())));
+  }
+
+  private getStreetContainsBoundingBox() {
+    const boundingBoxFeatures = this.getBoundingBox().features;
+    const allStreetFeatures = this.dataService.getOnlyStreet(this.data).features;
+    const coordinates: [[number, number]] = <[[number, number]]>[];
+
+    for (const street of allStreetFeatures) {
+      for (const boundingBox of boundingBoxFeatures) {
+        for (const coordinate of Mathematical.getCrossPointOfRoadAndRectangle(street.geometry, boundingBox.geometry)) {
+          coordinates.push(coordinate);
+        }
+      }
+    }
+
+    const markers: [Marker] = <[Marker]>[];
+
+    for (const coordinate of coordinates) {
+      markers.push(
+        this.prepareMarker(coordinate[1], coordinate[0], '10')
+          .on('click', (data) => console.log(data)));
+      // this.dbDataService.saveRoadToDB(feature);
+    }
+
+    return new LayerGroup(markers);
   }
 }
