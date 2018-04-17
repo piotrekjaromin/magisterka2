@@ -33,7 +33,7 @@ export class FileLayerManager {
         'Traffic signals': this.prepareObjectMarkersLayer('traffic_signal'),
         'Streets contain traffic signals': this.parseGeoJsonToGeojsonmodel(this.getStreetsContains('traffic_signal')),
         'Speed limit before pedestrian traffic signals': this.prepareSpeedLimitBeforeBeforeAndAfterMarkersLayer('traffic_signal'),
-        'Rail crossing': this.prepareObjectMarkersLayer( 'rail_crossing'),
+        'Rail crossing': this.prepareObjectMarkersLayer('rail_crossing'),
         'Streets contains rail crossing': this.parseGeoJsonToGeojsonmodel(this.getStreetsContains('rail_crossing')),
         'Speed limit before rail crossing': this.prepareSpeedLimitBeforeBeforeAndAfterMarkersLayer('rail_crossing'),
         'Pedestrian crossing': this.prepareObjectMarkersLayer('pedestrian_crossing'),
@@ -42,7 +42,9 @@ export class FileLayerManager {
         'Customer objects': this.prepareObjectLayer(),
         'Schools': this.prepareSchoolsLayer(),
         'Bounding box': this.boundingBoxLayer(),
-        'Bounding box all': this.getStreetContainsBoundingBox()
+        'Bounding box all': this.getStreetContainsBoundingBox(),
+         'Combined bounding box': this.parseGeoJsonToGeojsonmodel(this.getCombinedBoundingBox())
+        // 'Combined bounding box': this.getCombinedBoundingBox()
       }
     };
   }
@@ -64,12 +66,11 @@ export class FileLayerManager {
             .on('click', (data) => console.log(1)));
 
         // if (Mathematical.getDistanceBetweenPointAndEndOfRoad([customMarker.lat, customMarker.long], Mathematical.revertCoordinates(feature.geometry.coordinates)) > 100) {
-          let afterCoordinates = GeometryOperations.
-          getCoordinatesAfterPoint([customMarker.lat, customMarker.long], feature.geometry.coordinates, 10);
+        let afterCoordinates = GeometryOperations.getCoordinatesAfterPoint([customMarker.lat, customMarker.long], feature.geometry.coordinates, 10);
 
-          markers.push(
-            this.prepareMarker(afterCoordinates[1], afterCoordinates[0], feature.properties.defaultSpeedLimit)
-              .on('click', (data) => console.log(2)));
+        markers.push(
+          this.prepareMarker(afterCoordinates[1], afterCoordinates[0], feature.properties.defaultSpeedLimit)
+            .on('click', (data) => console.log(2)));
         // }
       }
     }
@@ -82,11 +83,11 @@ export class FileLayerManager {
     const markers: [Marker] = <[Marker]>[];
 
     for (const feature of this.allStreetWithObjects.features) {
-        const coordinates = GeometryOperations.getBeginningCoordinates(feature.geometry.coordinates);
-          markers.push(
-            this.prepareMarker(coordinates[1], coordinates[0], feature.properties.defaultSpeedLimit)
-              .on('click', (data) => console.log(data)));
-       // this.dbDataService.saveRoadToDB(feature);
+      const coordinates = GeometryOperations.getBeginningCoordinates(feature.geometry.coordinates);
+      markers.push(
+        this.prepareMarker(coordinates[1], coordinates[0], feature.properties.defaultSpeedLimit)
+          .on('click', (data) => console.log(data)));
+      // this.dbDataService.saveRoadToDB(feature);
     }
 
     return new LayerGroup(markers);
@@ -118,7 +119,8 @@ export class FileLayerManager {
         iconSize: [iconSize, iconSize],
         iconAnchor: [0, 0],
         iconUrl: 'assets/' + markerName + '.png'
-      })});
+      })
+    });
   }
 
   private prepareOneWayStreetLayer() {
@@ -148,17 +150,17 @@ export class FileLayerManager {
   private getStreetsContains(type: string) {
     const result = new Geojsonmodel('FeatureCollection', <[Feature]>[]);
 
-     for (const feature of this.allStreetWithObjects.features) {
-       if (feature.markers === undefined) {
-         continue;
-       }
-       for (const marker2 of feature.markers) {
-         if (marker2.type === type) {
-           result.features.push(feature);
-           break;
-         }
-       }
-     }
+    for (const feature of this.allStreetWithObjects.features) {
+      if (feature.markers === undefined) {
+        continue;
+      }
+      for (const marker2 of feature.markers) {
+        if (marker2.type === type) {
+          result.features.push(feature);
+          break;
+        }
+      }
+    }
     return result;
   }
 
@@ -272,9 +274,148 @@ export class FileLayerManager {
       markers.push(
         this.prepareMarker(coordinate[1], coordinate[0], '10')
           .on('click', (data) => console.log(data)));
-      // this.dbDataService.saveRoadToDB(feature);
     }
-
+    this.getCombinedBoundingBox();
     return new LayerGroup(markers);
   }
+
+  private getCombinedBoundingBox() {
+    const boundingBoxModel = this.getBoundingBox();
+    const markers: [Marker] = <[Marker]>[];
+
+    const mergedRectangles: [Feature] = <[Feature]>[];
+
+    const foundedInnerBoundingBox: [string] = <[string]>[];
+
+    for (const innerBoundingBox of boundingBoxModel.features) {
+      for (const outherBoundingBox of boundingBoxModel.features) {
+        if (innerBoundingBox.id !== outherBoundingBox.id) {
+          const cornerInsideBox = this.checkIfCornerIsInsideRectangle(innerBoundingBox, outherBoundingBox);
+
+          // whole bounding box inside boundingBox2
+          if (foundedInnerBoundingBox.indexOf(innerBoundingBox.id) === -1 && cornerInsideBox.length === 4) {
+            foundedInnerBoundingBox.push(innerBoundingBox.id);
+          }
+
+          // two
+          if (foundedInnerBoundingBox.indexOf(innerBoundingBox.id) === -1 && cornerInsideBox.length === 2) {
+            mergedRectangles.push(this.getFeatureOfMergedTriangleOnlyWithOneSide(cornerInsideBox, innerBoundingBox, outherBoundingBox));
+          }
+
+        }
+      }
+    }
+    // return new LayerGroup(markers);
+
+    // const result: [Feature] = <[Feature]>[];
+    // for (const boundingFeature of boundingBoxModel.features) {
+    //   if ( foundedInnerBoundingBox.indexOf(boundingFeature.id) === -1) {
+    //     result.push(boundingFeature);
+    //   }
+    // }
+    //
+    // boundingBoxModel.features = result;
+     boundingBoxModel.features = mergedRectangles;
+    //
+    return boundingBoxModel;
+  }
+
+  private checkIfCornerIsInsideRectangle(rectangleInside: Feature, rectangle: Feature) {
+    const SWcorner = rectangle.geometry.coordinates[0][0];
+    const SEcorner = rectangle.geometry.coordinates[0][1];
+    const NEcorner = rectangle.geometry.coordinates[0][2];
+    const NWcorner = rectangle.geometry.coordinates[0][3];
+
+    const result: [[number, number]] = <[[number, number]]>[];
+
+    let counter = 0;
+    for (let i = 0; i < 4; i++) {
+      const point = rectangleInside.geometry.coordinates[0][i];
+      if (SWcorner[0] <= point[0] && NEcorner[0] >= point[0]) {
+        if (SWcorner[1] <= point[1] && NEcorner[1] >= point[1]) {
+          counter++;
+          result.push(<any>point);
+        }
+      }
+    }
+    return result;
+  }
+
+
+  private getFeatureOfMergedTriangleOnlyWithOneSide(cornerInsideBox: [[number, number]], innerBoundingBox: Feature, outherBoundingBox: Feature) {
+    let coordinates;
+
+    if (cornerInsideBox[0][0] === cornerInsideBox[1][0]) {
+      // left of right side of boundingBox
+
+      if (cornerInsideBox[0][0] === innerBoundingBox.geometry.coordinates[0][0][0]) {
+        // left side of the bounding box is inside outer box
+        const upperCrossPoint = [outherBoundingBox.geometry.coordinates[0][1][0], cornerInsideBox[1][1]];
+        const bellowCrossPoint = [outherBoundingBox.geometry.coordinates[0][1][0], cornerInsideBox[0][1]];
+        coordinates = [[
+          outherBoundingBox.geometry.coordinates[0][0],
+          outherBoundingBox.geometry.coordinates[0][1],
+          bellowCrossPoint,
+          innerBoundingBox.geometry.coordinates[0][1],
+          innerBoundingBox.geometry.coordinates[0][2],
+          upperCrossPoint,
+          outherBoundingBox.geometry.coordinates[0][2],
+          outherBoundingBox.geometry.coordinates[0][3],
+          outherBoundingBox.geometry.coordinates[0][0]]];
+      } else {
+        // right side of the bounding box is inside outer box
+        const upperCrossPoint = [outherBoundingBox.geometry.coordinates[0][0][0], cornerInsideBox[1][1]];
+        const bellowCrossPoint = [outherBoundingBox.geometry.coordinates[0][0][0], cornerInsideBox[0][1]];
+
+        coordinates = [[
+          outherBoundingBox.geometry.coordinates[0][0],
+          outherBoundingBox.geometry.coordinates[0][1],
+          outherBoundingBox.geometry.coordinates[0][2],
+          outherBoundingBox.geometry.coordinates[0][3],
+          upperCrossPoint,
+          innerBoundingBox.geometry.coordinates[0][3],
+          innerBoundingBox.geometry.coordinates[0][0],
+          bellowCrossPoint,
+          outherBoundingBox.geometry.coordinates[0][0]]];
+      }
+
+    } else {
+      // up or down side of bounding box
+      if (cornerInsideBox[0][1] === innerBoundingBox.geometry.coordinates[0][0][1]) {
+        // down side of the bounding box is inside outer box
+        const leftCrossPoint = [cornerInsideBox[0][0], outherBoundingBox.geometry.coordinates[0][0][1]];
+        const rightCrossPoint = [cornerInsideBox[1][0], outherBoundingBox.geometry.coordinates[0][0][1]];
+
+        coordinates = [[
+          outherBoundingBox.geometry.coordinates[0][0],
+          leftCrossPoint,
+          innerBoundingBox.geometry.coordinates[0][0],
+          innerBoundingBox.geometry.coordinates[0][1],
+          rightCrossPoint,
+          outherBoundingBox.geometry.coordinates[0][1],
+          outherBoundingBox.geometry.coordinates[0][2],
+          outherBoundingBox.geometry.coordinates[0][3],
+          outherBoundingBox.geometry.coordinates[0][0]]];
+      } else {
+        // up side of the bounding box is inside outer box
+        const leftCrossPoint = [cornerInsideBox[0][0], outherBoundingBox.geometry.coordinates[0][2][1]];
+        const rightCrossPoint = [cornerInsideBox[1][0], outherBoundingBox.geometry.coordinates[0][2][1]];
+
+        coordinates = [[
+          outherBoundingBox.geometry.coordinates[0][0],
+          outherBoundingBox.geometry.coordinates[0][1],
+          outherBoundingBox.geometry.coordinates[0][2],
+          rightCrossPoint,
+          innerBoundingBox.geometry.coordinates[0][2],
+          innerBoundingBox.geometry.coordinates[0][3],
+          leftCrossPoint,
+          outherBoundingBox.geometry.coordinates[0][3],
+          outherBoundingBox.geometry.coordinates[0][0]]];
+      }
+    }
+    const geometry: Geometry = new Geometry('Polygon', <any>coordinates);
+    const feature: Feature = new Feature('', 'Feature', null, geometry, <[CustomMarker]>[]);
+    return feature;
+  }
+
 }
