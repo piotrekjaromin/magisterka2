@@ -305,16 +305,19 @@ export class FileLayerManager {
         }
       }
     }
+
+
     // return new LayerGroup(markers);
 
-    // const result: [Feature] = <[Feature]>[];
-    // for (const boundingFeature of boundingBoxModel.features) {
-    //   if ( foundedInnerBoundingBox.indexOf(boundingFeature.id) === -1) {
-    //     result.push(boundingFeature);
-    //   }
-    // }
-    //
-    // boundingBoxModel.features = result;
+    const result: [Feature] = <[Feature]>[];
+    for (const boundingFeature of boundingBoxModel.features) {
+      if ( foundedInnerBoundingBox.indexOf(boundingFeature.id) === -1) {
+        result.push(boundingFeature);
+      }
+    }
+
+    boundingBoxModel.features = result;
+
      boundingBoxModel.features = mergedRectangles;
     //
     return boundingBoxModel;
@@ -344,6 +347,7 @@ export class FileLayerManager {
 
   private getFeatureOfMergedTriangleOnlyWithOneSide(cornerInsideBox: [[number, number]], innerBoundingBox: Feature, outherBoundingBox: Feature) {
     let coordinates;
+    coordinates = [[[0, 0], [1,1]]];
 
     if (cornerInsideBox[0][0] === cornerInsideBox[1][0]) {
       // left of right side of boundingBox
@@ -352,54 +356,40 @@ export class FileLayerManager {
         // left side of the bounding box is inside outer box
         const upperCrossPoint = [outherBoundingBox.geometry.coordinates[0][1][0], cornerInsideBox[1][1]];
         const bellowCrossPoint = [outherBoundingBox.geometry.coordinates[0][1][0], cornerInsideBox[0][1]];
-        coordinates = [[
-          outherBoundingBox.geometry.coordinates[0][0],
-          outherBoundingBox.geometry.coordinates[0][1],
-          bellowCrossPoint,
-          innerBoundingBox.geometry.coordinates[0][1],
-          innerBoundingBox.geometry.coordinates[0][2],
-          upperCrossPoint,
-          outherBoundingBox.geometry.coordinates[0][2],
-          outherBoundingBox.geometry.coordinates[0][3],
-          outherBoundingBox.geometry.coordinates[0][0]]];
+        // coordinates = [[
+        //   outherBoundingBox.geometry.coordinates[0][0],
+        //   outherBoundingBox.geometry.coordinates[0][1],
+        //   bellowCrossPoint,
+        //   innerBoundingBox.geometry.coordinates[0][1],
+        //   innerBoundingBox.geometry.coordinates[0][2],
+        //   upperCrossPoint,
+        //   outherBoundingBox.geometry.coordinates[0][2],
+        //   outherBoundingBox.geometry.coordinates[0][3],
+        //   outherBoundingBox.geometry.coordinates[0][0]]];
       } else {
         // right side of the bounding box is inside outer box
         const upperCrossPoint = [outherBoundingBox.geometry.coordinates[0][0][0], cornerInsideBox[1][1]];
         const bellowCrossPoint = [outherBoundingBox.geometry.coordinates[0][0][0], cornerInsideBox[0][1]];
 
-        coordinates = [[
-          outherBoundingBox.geometry.coordinates[0][0],
-          outherBoundingBox.geometry.coordinates[0][1],
-          outherBoundingBox.geometry.coordinates[0][2],
-          outherBoundingBox.geometry.coordinates[0][3],
-          upperCrossPoint,
-          innerBoundingBox.geometry.coordinates[0][3],
-          innerBoundingBox.geometry.coordinates[0][0],
-          bellowCrossPoint,
-          outherBoundingBox.geometry.coordinates[0][0]]];
+        // coordinates = [[
+        //   outherBoundingBox.geometry.coordinates[0][0],
+        //   outherBoundingBox.geometry.coordinates[0][1],
+        //   outherBoundingBox.geometry.coordinates[0][2],
+        //   outherBoundingBox.geometry.coordinates[0][3],
+        //   upperCrossPoint,
+        //   innerBoundingBox.geometry.coordinates[0][3],
+        //   innerBoundingBox.geometry.coordinates[0][0],
+        //   bellowCrossPoint,
+        //   outherBoundingBox.geometry.coordinates[0][0]]];
       }
 
     } else {
       // up or down side of bounding box
       if (cornerInsideBox[0][1] === innerBoundingBox.geometry.coordinates[0][0][1]) {
         // down side of the bounding box is inside outer box
-        const leftCrossPoint = [cornerInsideBox[0][0], outherBoundingBox.geometry.coordinates[0][0][1]];
-        const rightCrossPoint = [cornerInsideBox[1][0], outherBoundingBox.geometry.coordinates[0][0][1]];
-
-        coordinates = [[
-          outherBoundingBox.geometry.coordinates[0][0],
-          leftCrossPoint,
-          innerBoundingBox.geometry.coordinates[0][0],
-          innerBoundingBox.geometry.coordinates[0][1],
-          rightCrossPoint,
-          outherBoundingBox.geometry.coordinates[0][1],
-          outherBoundingBox.geometry.coordinates[0][2],
-          outherBoundingBox.geometry.coordinates[0][3],
-          outherBoundingBox.geometry.coordinates[0][0]]];
-      } else {
-        // up side of the bounding box is inside outer box
         const leftCrossPoint = [cornerInsideBox[0][0], outherBoundingBox.geometry.coordinates[0][2][1]];
-        const rightCrossPoint = [cornerInsideBox[1][0], outherBoundingBox.geometry.coordinates[0][2][1]];
+         const rightCrossPoint = [cornerInsideBox[1][0], outherBoundingBox.geometry.coordinates[0][2][1]];
+        // const rightCrossPoint = [innerBoundingBox.geometry.coordinates[0][1][0], innerBoundingBox.geometry.coordinates[0][1][1]];
 
         coordinates = [[
           outherBoundingBox.geometry.coordinates[0][0],
@@ -411,6 +401,22 @@ export class FileLayerManager {
           leftCrossPoint,
           outherBoundingBox.geometry.coordinates[0][3],
           outherBoundingBox.geometry.coordinates[0][0]]];
+      } else {
+        // up side of the bounding box is inside outer box
+        const leftCrossPoint = [cornerInsideBox[1][0], outherBoundingBox.geometry.coordinates[0][0][1]];
+        const rightCrossPoint = [cornerInsideBox[0][0], outherBoundingBox.geometry.coordinates[0][0][1]];
+
+        // coordinates = [[
+        //   outherBoundingBox.geometry.coordinates[0][0],
+        //   leftCrossPoint,
+        //   innerBoundingBox.geometry.coordinates[0][0],
+        //   innerBoundingBox.geometry.coordinates[0][1],
+        //   rightCrossPoint,
+        //   outherBoundingBox.geometry.coordinates[0][1],
+        //   outherBoundingBox.geometry.coordinates[0][2],
+        //   outherBoundingBox.geometry.coordinates[0][3],
+        //   outherBoundingBox.geometry.coordinates[0][0]
+        // ]];
       }
     }
     const geometry: Geometry = new Geometry('Polygon', <any>coordinates);

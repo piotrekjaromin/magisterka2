@@ -23,7 +23,7 @@ export class DataService {
   constructor(private http: HttpClient, private dbDataService: DbDataService) {}
 
   getJson() {
-    return this.http.get('../assets/map_medium.geojson');
+    return this.http.get('../assets/map.geojson');
   }
 
   getOnlyStreet(geoModel: Geojsonmodel): Geojsonmodel {
