@@ -38,11 +38,11 @@ W ''Raport o stanie bezpieczeństwa ruchu drogowego dla dróg krajowych w zarzą
 \caption{wypadki drogowe i ich skutki}
 \label{wypadkiSkutki}
 \centering
-\includegraphics[width=1.1\textwidth]{picture1}
+\includegraphics[width=1\textwidth]{picture1}
 \source{Raport o stanie bezpieczeństwa ruchu drogowego dla dróg krajowych w zarządzie GDDKiA.}
 \end{figure}
 
-Z Rys. \ref{wypadkiSkutki} odczytać można, że liczba wypadków, z jednym wyjątkiem (z roku 2016) nieustannie maleje. W 2007 roku miało miejsce 10562 wypadków, w których liczba zabitych wyniosła 2028 osób, natomiast rannych było 14975. W porównaniu z 2016 został odnotowany spadek o ok. 40 \%. Niewątpliwie jest to ogromny sukces, jednak liczba ta dalej jest zatrważająco wysoka. 
+Z Rys. \ref{wypadkiSkutki} odczytać można, że liczba wypadków, z jednym wyjątkiem (z roku 2016) nieustannie maleje. W 2007 roku miało miejsce 10562 wypadków, w których liczba zabitych wyniosła 2028 osób, natomiast rannych było 14975. W porównaniu z 2016 został odnotowany spadek o ok. 40 \%. Niewątpliwie jest to ogromny sukces, jednak liczba ta dalej jest zatrważająco wysoka.
 
 \newpage
 \section{Cele pracy}
@@ -57,7 +57,7 @@ Algorytm predykcji dopuszczalnych prędkości w ruchu drogowym będzie wykorzyst
  \begin{itemize}
  	\item \textbf{mały promień skrętu} - o maksymalnej długości promienia 300m
  	\item \textbf{średni promień skrętu} - o długości promienia powyżej 300m i poniżej 600m
- 	\item \textbf{duży promień skrętu} - o długości promienia powyżej 600m 
+ 	\item \textbf{duży promień skrętu} - o długości promienia powyżej 600m
  \end{itemize}
 \item \textbf{połączone poziome zakręty} - połączone prostą o długości nie przekraczają 200m. Zostaną podzielone na dwie grupy, według długości promienia skrętu:
  \begin{itemize}
@@ -71,14 +71,14 @@ Algorytm predykcji dopuszczalnych prędkości w ruchu drogowym będzie wykorzyst
 \item \textbf{przejścia dla pieszych} - w sytuacjach jak powyżej, z tą różnicą, że zamiast na autobus, przebiegają na ''późnym zielonym'' lub czasem już czerwonym. Do takich sytuacji najczęściej dochodzi w miastach, gdzie tempo życia jest bardzo duże. Należy pamiętać, że ok. 25\% wypadków na przejściach z sygnalizacją spowodowane jest wtargnięciem pieszego na czerwonym świetle
 \item \textbf{tunele i mosty} - szczególne typy dróg, gdzie w tunelach są inne warunki oświetleniowe, oraz stan nawierzchni w większości przypadków nie jest zależny od warunków atmosferycznych. Mosty zazwyczaj nie są tak szerokie jak ulice do nich prowadzące, dlatego trzeba być przygotowanym na np. zwężenia drogi.
 \item \textbf{ilość pasów ruchu} - prędkość będzie większa na kilku pasmowej drodze, w porównaniu z jednopasmową
-\item \textbf{typ nawierzchni} - jest to bardzo ważny czynnik, ponieważ pojazdy mechaniczne, poruszając się z nieodpowiednią prędkością po nieprzystosowanej do tego nawierzchni, np. żwirowej, bardzo szybko ulegają kosztownym uszkodzeniom 
+\item \textbf{typ nawierzchni} - jest to bardzo ważny czynnik, ponieważ pojazdy mechaniczne, poruszając się z nieodpowiednią prędkością po nieprzystosowanej do tego nawierzchni, np. żwirowej, bardzo szybko ulegają kosztownym uszkodzeniom
 \item \textbf{typ drogi} - w skład których wchodzą autostrady, drogi osiedlowe, ekspresowe, główne itp.
 \item \textbf{zmiana prędkości między poszczególnymi strefami ograniczeń prędkości} - płynna jazda jest znacznie mniej ryzykowna niż nagła zmiana prędkości pojazdu. Dlatego w sytuacjach, gdy na drodzę znajdue np. przejście dla pieszych, należy stopniowo ustawiać coraz to niższe wartości znaków sygnalizujących ograniczenie prędkości
 \item \textbf{przejazdy kolejowe} - są zarówno strzeżone jak i niestrzeżone. W obu przypadkach należy zachować szczególną ostrożność, dlatego też prędkość musi być odpowiednio niższa. Trzeba mieć na uwadze, że przez dużą masę pojazdów szynowych, wypadki kolejowe należą do jednych z najbardziej śmiercionośnych.
 \item \textbf{historia wypadkow}
 \end{itemize}
 
-Oprócz danych pobranych z OpenStreetMap, aplikacja musi posiadać możliwość manualnego, przez zwykłego użytkownika, definiowania obiektów i przeszkód na drodze. Jest to szczególnie istotne, gdyż nie wszystkie dane umieszczone są OSM. 
+Oprócz danych pobranych z OpenStreetMap, aplikacja musi posiadać możliwość manualnego, przez zwykłego użytkownika, definiowania obiektów i przeszkód na drodze. Jest to szczególnie istotne, gdyż nie wszystkie dane umieszczone są OSM.
 
 
 Kluczową kwestią działanie algorytmu są również miejsca, w których powinien umieszczać znaki ograniczenia prędkości. Kierowca odpowiednio wcześniej musi zostać poinformowany o przeszkodzie na drodze, żeby mieć wystarczającą ilość czasu na reakcję. Dla przykładu, niedopuszczalna jest sytuacja, podczas której kierowca podróżując z szybkością 90 km/h, natrafia na znak informujący o znajdującym się za nim przejściu dla pieszych. Prawidłowo działający algorytm, powinien informować o potrzebie stopniowej redukcji prędkości, poprzez umieszczanie znaków ograniczeń prędkości o coraz to mniejszych wartościach. Dzięki temu możliwe będzie zapewnienie płynność jazdy, przy zachowaniu odpowiedniego bezpieczeństwa.
@@ -90,22 +90,22 @@ Kluczową kwestią działanie algorytmu są również miejsca, w których powini
 
 \section{Wykorzystane technologie}
 \label{sec:wykorzystaneTechnologie}
-	Cała aplikacja bazować będzie na dynamicznej stronie internetowej. W tym celu zostanie wykorzystany stos technologiczny, bazujący na javascripcie, jakim jest MEAN stack. Miałem kilka powodów, dla którym wybrałem te konkretne technologie. Pierwszym jest rosnąca popularność tego stosu. Coraz więcej firm przekonuje się do tej technologii, więc popyt na programistów z tego zakresu rośnie z roku na rok. Drugim powodem jest fakt, że można go uruchomić na prawie każdym urządzeniu czy platformie, dzięki czemu jest zapewniona duża przenośność kodu. Dodatkowo MEAN stack idealnie nadaje sie do prostych, skalowalnych aplikacji webowych, w których nacisk kładziony jest na bazujący wymianę danych w czasie rzeczywistym na wielu urządzeniach. 
-	
-	Schemat działania aplikacji będzie wyglądał następująco. Dane zostaną pobrane z oficjalnej strony OpenStreetMap, 'www.openstreetmap.org'. Są one zapisane w formacie xml. W celu łatwiejszego ich przetwarzania, zostaną przekonwertowane do formatu GeoJson. Jest to rozszerzenia formatu Json o dane niezbędne do operowaniu na geograficznym typie danych. Przetworzone dane, będą przechowywane w mLab. Jest to w pełni zarządzana usługa bazy danych w chmurze, która hostuje bazy danych MongoDB. 
+	Cała aplikacja bazować będzie na dynamicznej stronie internetowej. W tym celu zostanie wykorzystany stos technologiczny, bazujący na javascripcie, jakim jest MEAN stack. Miałem kilka powodów, dla którym wybrałem te konkretne technologie. Pierwszym jest rosnąca popularność tego stosu. Coraz więcej firm przekonuje się do tej technologii, więc popyt na programistów z tego zakresu rośnie z roku na rok. Drugim powodem jest fakt, że można go uruchomić na prawie każdym urządzeniu czy platformie, dzięki czemu jest zapewniona duża przenośność kodu. Dodatkowo MEAN stack idealnie nadaje sie do prostych, skalowalnych aplikacji webowych, w których nacisk kładziony jest na bazujący wymianę danych w czasie rzeczywistym na wielu urządzeniach.
 
-	Back-end aplikacji zostanie napisany w Node.js. Jego głównym zadaniem będzie połączenie  się z mLabem w celu pobrania, zapisu, edycji i usuwania danych. Ponadto będzie komunikował się również z frontendem, po to, aby przekazywać pobrane dane.  Dodatkowo, w celu zmniejszenia objętości kodu i tym samym zwiększenia jego czytelności, zostanie użyty framework Express.js. 
+	Schemat działania aplikacji będzie wyglądał następująco. Dane zostaną pobrane z oficjalnej strony OpenStreetMap, 'www.openstreetmap.org'. Są one zapisane w formacie xml. W celu łatwiejszego ich przetwarzania, zostaną przekonwertowane do formatu GeoJson. Jest to rozszerzenia formatu Json o dane niezbędne do operowaniu na geograficznym typie danych. Przetworzone dane, będą przechowywane w mLab. Jest to w pełni zarządzana usługa bazy danych w chmurze, która hostuje bazy danych MongoDB.
 
-	Za zarządzanie front-endem odpowiedzialny będzie angular w wersji 5. Na nim zostanie uruchomiona biblioteka Leaflet. Umożliwia wyświetlenie interaktywnej mapy, którą zasilić można różnymi typami danych, np. w formacie GeoJson. Dzięki niej, użytkownik zyska możliwość wprowadzania swoich danych, przeglądania już istniejących czy dowiedzieć się, jakie prędkości są dozwolone na danych odcinkach dróg. Kolejną, dość istotną funkcjonalnością biblioteki Leaflet jest możliwość zarządzania wyświetlanymi obiektami. W prosty sposób można ukryć wszystkie dane, wyświetlać tylko drogi, tylko ograniczenia prędkości lub różne kombinację danych, które nas interesują. 
-	
+	Back-end aplikacji zostanie napisany w Node.js. Jego głównym zadaniem będzie połączenie  się z mLabem w celu pobrania, zapisu, edycji i usuwania danych. Ponadto będzie komunikował się również z frontendem, po to, aby przekazywać pobrane dane.  Dodatkowo, w celu zmniejszenia objętości kodu i tym samym zwiększenia jego czytelności, zostanie użyty framework Express.js.
+
+	Za zarządzanie front-endem odpowiedzialny będzie angular w wersji 5. Na nim zostanie uruchomiona biblioteka Leaflet. Umożliwia wyświetlenie interaktywnej mapy, którą zasilić można różnymi typami danych, np. w formacie GeoJson. Dzięki niej, użytkownik zyska możliwość wprowadzania swoich danych, przeglądania już istniejących czy dowiedzieć się, jakie prędkości są dozwolone na danych odcinkach dróg. Kolejną, dość istotną funkcjonalnością biblioteki Leaflet jest możliwość zarządzania wyświetlanymi obiektami. W prosty sposób można ukryć wszystkie dane, wyświetlać tylko drogi, tylko ograniczenia prędkości lub różne kombinację danych, które nas interesują.
+
 \section{Przegląd literatury}
-\label{sec:przegladLiteratury}	
+\label{sec:przegladLiteratury}
 
 Han(2009) podaje przykład, jak zmiana prędkości wpływa na bezpieczeństwo i płynność jazdy. Jeśli kierowca napotka zbyt wiele stref prędkości z obrębie krótkiego odcinka drogi lub zbyt wiele zmian ograniczeń prędkości w sąsiedztwie danej strefy, to wtedy może poczuć dezorientację. Zwraca uwagę, jak ważne jest rozmieszczenie odpowiednich znaków, dla zredukowania poziomu stresu kierowcy.
 
 Nama(2016) przedstawia jak kierowcy dostosowują prędkość w sytuacji gdy znajdują się na górzystej, nieregularnej drodze. Średnia wariancja prędkości w takim terenie wynosi ok. 55\%. Spowodowane jest to połączeniem cech geometrycznych zarówno poziomych jak i pionowych. Kierowcy na potrzeby bezpieczeństwa, w przypadku poziomych zakrętów, zmniejszają prędkość. Dodatkowym czynnikiem jest także ciągłe, zmieniające się nachylenie terenu. Uwzględnić należy również fakt, że zakręty znajdujące się na szczycie, wyglądają na znacznie bardziej niebezpieczne niż są w rzeczywistości. Wszystkie te czynniki w niekorzystny sposób wpływają na utrzymywanie stałej prędkości. Tabela \ref{predkosciPromienKrzywizny}. przedstawia średnią prędkość pojazdów w zależności od promienia krzywizny zakrętu, jego długości oraz nachylenia.
 
- 
+
 \begin{table}[ht]
 \centering
 \caption{Średnie prędkości pojazdów w zależności od promienia krzywizny, długości oraz nachylenia}
@@ -147,13 +147,13 @@ gdzie
 	\item[$V_b$] średnia prędkość po warunkiem
 	\item[$X$] \begin{itemize}
 		3.6 dla częstotliwości wypadków, w których pojawiły się ofiary śmiertelne
-		
+
 		2.0 dla częstotliwości wypadków, w których nie było ofiar śmiertelnych
-		
+
 		1.0 dla częstotliwości gdzie uszkodzeniu uległy tylko pojazdy
-		
+
 		4.5 dla ofiar śmiertelnych
-		
+
 		2.7 dla których poszkodowani ponieśli tylko obrażenia ciała
 	\end{itemize}
 
@@ -187,33 +187,33 @@ Porównuje także ograniczenia prędkości dla poszczególnych obszarów znajduj
 & 105 km/h & pojazdy pasażerskie, lekkie ciężarówki na międzystanowych autostradach\\ \hline
 \end{tabular}
 \source{Na podstawie Methods and Practices for Setting Speed Limits: An Informational Report}
-\end{table} 
+\end{table}
 
 
 Han(2009) zwraca uwagę, jak pora dnia wpływa na ruch na drodzę. W godzinach porannych, gdy osoby pracujące jadą do pracy, osoby nieletnie do szkół oraz w godzinach popołudniowych, gdy wracają do domów. Obserwowany jest wzmożony ruch na drogach. Więcej pojazdów na drodze, oznacza większe korki, a co za tym idzie, zmniejszenie rzeczywistej prędkości. Natomiast w pozostałych porach dnia, gdy ruch jest mniejszy, możliwe jest szybsze poruszanie się po drodze. C. Han opisuje także jak prawidłowo ustawiać znaki drogowe. Oznakowanie powinno być umieszczone w każdym odpowiednim punkcie wzdłuż drogi, np. wokół potencjalnych punktów konfliktowych, zwężeniach i rozwidleniach dróg, zmianie ich nawierzchni itp. Powtórzenia znaków, najlepiej żeby były w odległości 1000m na autostradach. W obszarach miejskich, rekomendowana odległość to 400-500 m.
 
 Jurewicz(2014) wskazuje bezpośrednią relację pomiędzy prędkością a ryzykiem wypadku. W sytuacji gdy prędkość jest zmniejszana,  liczba wypadków i rannych spada w 85 procentach przypadków. Gdy prędkość jest zwiększana, liczba wypadków i rannych wzrasta w 71 procentach przypadków. Największym dowodem na to są tak zwane badania 'przed i po'. W latach 1980 ograniczenie prędkości dla wiejskich i zewnętrznych autostrad w metropolii zostało zwiększone ze 100 km/h do 110 km/h, ale zostało  z powrotem zredukowane do 100 km/h z powodu obaw o bezpieczeństwo. Badanie 'przed, w trakcie i po' zostało prowadzone na przestrzeni 2,5 roku. W sytuacji, gdy ograniczenie prędkości zostało zwiększone do 110 km/h, wskaźnik ofiar wypadków wzrósł o prawie 25\%. Gdy prędkość ponownie została zmniejszona do 100 km/h wskaźnik zmalał o prawie 20\%.
 
-Vadeby i Frosman (2018) przeprowadzili badania na temat, jak nowe ograniczenia prędkości wpłynęły na bezpieczeństwo. Dla przykładu, gdy na wiejskich drogach została zmniejszona wartość dozwolonej prędkości z 90 km/h do 80 km/h, zauważono spadek liczby wypadków śmiertelnych o 14 w skali roku. Nie zauważono natomiast żadnych znaczących zmian dla liczby poważnych obrażeń ciała. Na autostradzie, po zwiększeniu dozwolonej prędkości do 120 km/h, zanotowano wzrost wypadków, w których doszło do poważnych obrażeń. Nie odnotowano natomiast znaczącej zmiany względem ofiar śmiertelnych. Wzrost liczby poważnych obrażeń ciała wystąpił na wszystkich rodzajach autostrad, jednak największy wzrost został zauważony na wąskich autostradach o szerokości 21.5 m. Dla dwupasmowych jezdni, po zmniejszeniu prędkości ze 110 do 100 km/h, doszło do zmniejszenia liczby wypadków z poważnymi obrażeniami ciała o 16 w skali roku. Vadeby i Frosman (2018) wskazują także na fakt, iż wzrost dozwolonej prędkości o 10 km/h spowodował średni wzrost prędkości pojazdów mechanicznych o ok. 2-3 km/h, a zmniejszenie dozwolonej prędkości o 10 km/h, spowodował zmniejszenie średniej prędkości pojazdów o 3 km/h. 
+Vadeby i Frosman (2018) przeprowadzili badania na temat, jak nowe ograniczenia prędkości wpłynęły na bezpieczeństwo. Dla przykładu, gdy na wiejskich drogach została zmniejszona wartość dozwolonej prędkości z 90 km/h do 80 km/h, zauważono spadek liczby wypadków śmiertelnych o 14 w skali roku. Nie zauważono natomiast żadnych znaczących zmian dla liczby poważnych obrażeń ciała. Na autostradzie, po zwiększeniu dozwolonej prędkości do 120 km/h, zanotowano wzrost wypadków, w których doszło do poważnych obrażeń. Nie odnotowano natomiast znaczącej zmiany względem ofiar śmiertelnych. Wzrost liczby poważnych obrażeń ciała wystąpił na wszystkich rodzajach autostrad, jednak największy wzrost został zauważony na wąskich autostradach o szerokości 21.5 m. Dla dwupasmowych jezdni, po zmniejszeniu prędkości ze 110 do 100 km/h, doszło do zmniejszenia liczby wypadków z poważnymi obrażeniami ciała o 16 w skali roku. Vadeby i Frosman (2018) wskazują także na fakt, iż wzrost dozwolonej prędkości o 10 km/h spowodował średni wzrost prędkości pojazdów mechanicznych o ok. 2-3 km/h, a zmniejszenie dozwolonej prędkości o 10 km/h, spowodował zmniejszenie średniej prędkości pojazdów o 3 km/h.
 
 Soriguera i inni (2017) przeprowadzili badanie, które wykazało, jak mała wartość ograniczenia prędkości wpływa na ruch uliczny. Jako rezultat, uzyskali następujące wyniki.
 
 \begin{itemize}
-\item Dla ograniczenia prędkości do 80 km/h, maksymalna przepustowość może wynieść 1972 samochodów na godzinę na jednym pasie ruchu, dla szerokiego zakresu zajętości jezdni (17.6 - 25.8\%) i średniej prędkości wahającej się między 51 a 73 km/h     
-\item Dla ograniczenia prędkości do 60 km/h, maksymalna przepustowość nie uległa dużej zmianie, wyniosła 1956 pojazdów na godzinę na jednym pasie ruchu. Zajętość jezdni utrzymywała się na wysokim poziomie 24.4 - 25.8\%. 
+\item Dla ograniczenia prędkości do 80 km/h, maksymalna przepustowość może wynieść 1972 samochodów na godzinę na jednym pasie ruchu, dla szerokiego zakresu zajętości jezdni (17.6 - 25.8\%) i średniej prędkości wahającej się między 51 a 73 km/h
+\item Dla ograniczenia prędkości do 60 km/h, maksymalna przepustowość nie uległa dużej zmianie, wyniosła 1956 pojazdów na godzinę na jednym pasie ruchu. Zajętość jezdni utrzymywała się na wysokim poziomie 24.4 - 25.8\%.
 \item Dla ograniczenia prędkości do 40 km/h, maksymalna przepustowość nieznacznie zmalała, do poziomu 1942 samochodów na godzinę na jednym pasie ruchu. Natomiast znacznie wzrosła zajętość jedni, wynosiła 32.0 - 34.7%.
 \end{itemize}
 
-Z powyższych wyników, można dojść do dwóch wniosków. Pierwszy jest taki, że zmniejszenie prędkości skutkuje znacznym zwiększeniem poziomu zajętości jezdni w warunkach swobodnego przepływu. W skrócie, zmniejszenie prędkości pozwala osiągnąć stabilny, wysoki poziom zajętości jezdni, zapobiegając tym samym różnym wypadkom i utrzymywaniem dużej akumulacji pojazdów na drodze. Drugi wniosek jest taki, że dla małej prędkości, jaką jest 40 km/h, średnia prędkość przepływu pojazdów, wynosząca 1942 pojazdów/h/pas, może zostać podtrzymana przez dłuższy okres. W praktyce oznacza to znaczne zmniejszenie prawdopodobieństwa wystąpienia korku na drodze.  
+Z powyższych wyników, można dojść do dwóch wniosków. Pierwszy jest taki, że zmniejszenie prędkości skutkuje znacznym zwiększeniem poziomu zajętości jezdni w warunkach swobodnego przepływu. W skrócie, zmniejszenie prędkości pozwala osiągnąć stabilny, wysoki poziom zajętości jezdni, zapobiegając tym samym różnym wypadkom i utrzymywaniem dużej akumulacji pojazdów na drodze. Drugi wniosek jest taki, że dla małej prędkości, jaką jest 40 km/h, średnia prędkość przepływu pojazdów, wynosząca 1942 pojazdów/h/pas, może zostać podtrzymana przez dłuższy okres. W praktyce oznacza to znaczne zmniejszenie prawdopodobieństwa wystąpienia korku na drodze.
 
 \section{Układ pracy}
 \label{sec:ukladPracy}
 
-Praca składa się z N rozdziałów. 
+Praca składa się z N rozdziałów.
 
 \begin{itemize}
-\item Pierwszy z nich zawiera wstęp, cele pracy, wykorzystane technologie oraz przegląd literatury. 
-\item Drugi składa się z ..., 
+\item Pierwszy z nich zawiera wstęp, cele pracy, wykorzystane technologie oraz przegląd literatury.
+\item Drugi składa się z ...,
 \item W trzecim zawarto informacje na temat...
 \item Czwarty...
 \end{itemize}

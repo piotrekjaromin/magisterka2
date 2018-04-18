@@ -15,7 +15,7 @@ Dodatkowo, w celu lepszej wizualizacji problemu, zostaną umieszczone zdjęcia, 
 \section{Przyporządkowanie obiektów reprezentowanych przez punkty, do poszczególnych dróg}
 \label{sec:ObiektyPunktDrogi}
 
-Jednym z kluczowych elementów działania algorytmu jest odpowiednie przyporządkowanie obiektów drogowych do poszczególnych dróg. W OpenStreetMap reprezentowane są zarówno przez punkty, jak również przez dwuwymiarowe obiekty geometryczne. 
+Jednym z kluczowych elementów działania algorytmu jest odpowiednie przyporządkowanie obiektów drogowych do poszczególnych dróg. W OpenStreetMap reprezentowane są zarówno przez punkty, jak również przez dwuwymiarowe obiekty geometryczne.
 
 
 Obiekty z OpenStreetMap reprezentowane przez punkty:
@@ -29,7 +29,6 @@ Obiekty z OpenStreetMap reprezentowane przez punkty:
 W niniejszej sekcji skupię się na rozwiązaniu problemu jakim jest przyporządkowanie obiektów przedstawianych jako punkty, do poszczególnych dróg. Do tego celu wykorzystam wzór \ref{eq:distancePointLineal}, wyznaczający odległość punktu od prostej.
 
 \begin{figure}[h]
-\label{odlegloscPktProsta}
 \centering
 \includegraphics[width=0.5\textwidth]{dlugoscPktOdProstej}
 \source{Na podstawie mathworld.wolfram.com}
@@ -42,9 +41,9 @@ d = \frac{| (x_2 - x_1)(y_1 - y_0) - (x_1 - x_0)(y_2 - y_1) |}{\sqrt{(x_2 - x_1)
 \end{equation}\newline
 
 \begin{itemize}
-\item Zmienne: x1, y1, x2, y2 oznaczają współrzędne geograficzne odpowiednio początku i końca drogi. 
+\item Zmienne: x1, y1, x2, y2 oznaczają współrzędne geograficzne odpowiednio początku i końca drogi.
 \item Zmienne x0, y0 oznaczają współrzędne punktu reprezentujące obiekt drogowy.
-\item Zmienna d oznacza najkrótszą odleglość punktu od drogi.  
+\item Zmienna d oznacza najkrótszą odleglość punktu od drogi.
 \end{itemize}
 
 
@@ -58,55 +57,54 @@ Do rozwiązania tego zadania, posłużyłem się własnościami trygonometryczny
 
 
 \begin{figure}[h]
-\label{odlegloscPktProsta}
 \centering
 \includegraphics[width=0.5\textwidth]{distance}
 \end{figure}
 
 Odległość między dwoma punktami a i b wynosi:
-\begin{equation} \label{eq:distanceBetweenTwoPoint}
+\begin{equation}
 d_1 = \sqrt{(x1 - x2)^2 + (y1 - y2)^2}
 \end{equation}\newline
 
 oraz sinus kąta abc:
-\begin{equation} \label{eq:sinABC}
+\begin{equation}
 sin_{abc} = \frac{x2 - x1}{d_1}
 \end{equation}\newline
 
 jak również sinus kąta ebf:
-\begin{equation} \label{eq:sinEBF}
+\begin{equation}
 sin_{ebf} = \frac{x2 - x0}{d_2}
 \end{equation}\newline
 
 oraz to, że sinusy tego samego kąta są równe:
-\begin{equation} \label{eq:sinEBF}
+\begin{equation}
 sin_{abc} = sin_{ebf} => \frac{x2 - x1}{d_1} = \frac{x2 - x0}{d_2}
 \end{equation}\newline
 
 przez proste przekształcenie, otrzymujemy wzór na współrzędną x0
 
-\begin{equation} \label{eq:x0Coordinates}
+\begin{equation}
 x0 = x2 - \frac{d_2*(x2 - x1)}{d_1}
 \end{equation}\newline
 
 Wyznaczenie wzoru na współrzędną y0 jest podobne do wyznaczania współrzędnej x0, z tą różnicą, że zamiast sinusa, liczymy cosinusa kąta abc:
 
-\begin{equation} \label{eq:cosABC}
+\begin{equation}
 cos_{abc} = \frac{y2 - y1}{d_1}
 \end{equation}\newline
 
 oraz cosinusa kąta ebf:
-\begin{equation} \label{eq:cosEBF}
+\begin{equation}
 cos_{ebf} = \frac{y2 - y0}{d_2}
 \end{equation}\newline
 
 a skoro cosinus tego samego kąta są równe:
-\begin{equation} \label{eq:cosEBF}
+\begin{equation}
 cos_{abc} = cos_{ebf} => \frac{y2 - y1}{d_1} = \frac{y2 - y0}{d_2}
 \end{equation}\newline
 
 otrzymujemy równanie współrzędnej y0:
-\begin{equation} \label{eq:cosEBF}
+\begin{equation}
 y0 = y2 - \frac{d_2*(y2 - y1)}{d_1}
 \end{equation}\newline
 
@@ -117,35 +115,22 @@ Przez powyższe obliczenia, wyznaczone zostały wspórzędne poszukiwanego punkt
 \end{equation}\newline
 
 \newpage
-\section{Przyporządkowanie obiektów reprezentowanych przez wielokąty, do poszczególnych dróg}
-\label{sec:polygonLineDistance}
+\section{Wyznaczanie minimalnego obszaru pokrywającego}
 
-W niniejszej sekcji skupię się na rozwiązaniu problemu przyporządkowania obiektów reprezentowanych przez wielokątny do poszczególnych dróg. Wykorzystywane jest w sytuacjach, gdy trzeba określić dokładne współrzędne początku i końca strefy, na której obowiązuje ograniczonej prędkości. Obiekty na mapie, reprezentowane przez wielokąty:
-\begin{itemize}
-\item szkoły
-\item parki
-\item place zabaw
-\item przystanki autobusowe i tramwajowe
-\item sklepy
-\item miejsca kultu
-\end{itemize}
+W niniejszej sekcji skupię się na sposobie w jaki algorytm wyznacza minimalny obszar pokrywający (eng. minimum bounding box). Będzie on wykorzystany w późniejszych obliczeniach, mających na celu przypisanie poszczególnych dróg do danych obszarów, na których obowiązuje ograniczenie prędkości.
 
-Rys. \ref{sec:firstBB} przedstawia przykładowy wielokąt reprezentujący interesujący nas obiekt pobrany z OpenStreetMap.  
+Rys. \ref{sec:minBoundingBoxFirst} przedstawia przykładowy wielokąt reprezentujący interesujący nas obiekt pobrany z OpenStreetMap.
 
 \begin{figure}[h]
-\label{sec:firstBB}
 \caption{Przykładowy wielokąt reprezentujący obiekt na mapie}
+\label{sec:minBoundingBoxFirst}
 \centering
 \includegraphics[width=0.8\textwidth]{minBoundingBoxFirst}
 \end{figure}
 
-\newpage
+W celu znalezienia minimalnego obszaru pokrywający niezbędne jest wyznaczenie czterech współrzędnych (x1, y1), (x2, y2), (x3, y3), (x4, y4) reprezentuących cztery wierzchołki prostokąta.
 
-\subsection{Wyznaczanie minimalnego obszaru pokrywającego}
-
-W pierwszej kolejności algorytm znajduje minimalny obszar pokrywający (eng. minimum bounding box) dany obiekt. W tym celu niezbędne jest wyznaczenie czterech współrzędnych (x1, y1), (x2, y2), (x3, y3), (x4, y4) reprezentuących cztery wierzchołki prostokąta.
-
-W celu wyznaczenia wierzchołka północno-zachodniego, należy obliczyć minimalną wartość współrzędnej x oraz maksymalną wartość współrzędnej y. 
+W celu wyznaczenia wierzchołka północno-zachodniego, należy obliczyć minimalną wartość współrzędnej x oraz maksymalną wartość współrzędnej y.
 
 \begin{equation} \label{sec:drugiWierzcholek}
 \begin{split}
@@ -154,7 +139,7 @@ y1 = min(y_a, y_b, y_c, y_d, y_e, y_f, y_g)
 \end{split}
 \end{equation}\newline
 
-Żeby wyznaczyć wierzchołek północno-wschodni, należy obliczyć maksymalną wartość współrzędnej x i y. 
+Żeby wyznaczyć wierzchołek północno-wschodni, należy obliczyć maksymalną wartość współrzędnej x i y.
 \begin{equation} \label{sec:trzeciWierzcholek}
 \begin{split}
 x2 = max(x_a, x_b, x_c, x_d, x_e, x_f, x_g)  \\
@@ -162,7 +147,7 @@ y2 = max(y_a, y_b, y_c, y_d, y_e, y_f, y_g)
 \end{split}
 \end{equation}\newline
 
-Wierzchołek południowo-wschodni obliczamy jako maksymalną wartość współrzędnej x oraz minimalną wartość wsółrzędnej y. 
+Wierzchołek południowo-wschodni obliczamy jako maksymalną wartość współrzędnej x oraz minimalną wartość wsółrzędnej y.
 \begin{equation} \label{sec:czwartyWierzcholek}
 \begin{split}
 x3 = max(x_a, x_b, x_c, x_d, x_e, x_f, x_g) \\
@@ -179,43 +164,43 @@ y4 = min(y_a, y_b, y_c, y_d, y_e, y_f, y_g)
 \end{split}
 \end{equation}\newline
 
-Po wyznaczeniu powyższych współrzędnych minimalny obszar pokrywający wygląda tak, jak na rysunku \ref{sec:secondtBB} 
+Po wyznaczeniu powyższych współrzędnych minimalny obszar pokrywający wygląda tak, jak na rysunku \ref{sec:secondtBB}
 
-\newpage
+
 \begin{figure}[h]
-\label{sec:secondtBB}
 \caption{Minimalny obszar pokrywający dany obiekt}
+\label{sec:secondtBB}
 \centering
 \includegraphics[width=0.9\textwidth]{minBoundingBox}
 \end{figure}
 
-\subsection{Powiększanie wyznaczonego obszaru pokrywającego}
+\newpage
+\section{Powiększanie wyznaczonego obszaru pokrywającego}
 
-Następnym krokiem jest powiększenie tak wyznaczonego obszaru o n metrów. Dzięki takiemu zabiegowi, możliwe będzie wyznaczenie strefy ogroniczonej prędkości. 
+Kolejnym krokiem niezbędnym do przyporządkowania dwuwymiarowych obiektów do poszczególnych dróg jest powiększenie wyznaczonego obszaru pokrywającego. W celu wyznaczenia wierzchołków powiększonego obszaru, skorzystam z poniżej podanych równań.
 
-
-\begin{equation} \label{sec:powiekszoneWierzcholek}
+\begin{equation}
 \begin{split}
 x1' = x1 - n \\
 y1' = y1 + n \\
 \end{split}
 \end{equation}
 
-\begin{equation} \label{sec:powiekszoneWierzcholek}
+\begin{equation}
 \begin{split}
-x2' = x2 + n \\ 
+x2' = x2 + n \\
 y2' = y2 + n \\
 \end{split}
 \end{equation}
 
-\begin{equation} \label{sec:powiekszoneWierzcholek}
+\begin{equation}
 \begin{split}
 x3' = x3 + n \\
 y3' = y3 - n \\
 \end{split}
 \end{equation}
 
-\begin{equation} \label{sec:powiekszoneWierzcholek}
+\begin{equation}
 \begin{split}
 x4' = x4 - n \\
 y4' = y4 - n \\
@@ -224,13 +209,230 @@ y4' = y4 - n \\
 
 Rys. \ref{sec:thirdBB} przedstawia minimalny obszar pokrywający powiększony o n metrów względem pierwotnego. Oczywiście obszar można dowolnie powiększać, w zależności od obiektu, który się w nim znajduje. Tak więc dla placów zabaw czy przedszkoli będzie znacznie większy, w porównaniu do np. przystanków autobusowych.
 
-\newpage
 \begin{figure}[h]
-\label{sec:thirdBB}
 \caption{Minimalny obszar pokrywający dany obiekt powiększony o n metrów}
+\label{sec:thirdBB}
 \centering
-\includegraphics[width=0.8\textwidth]{BoundingBoxExtended}
+\includegraphics[width=0.7\textwidth]{BoundingBoxExtended}
 \end{figure}
+
+\newpage
+\section{Łączenie powiększonych obszarów pokrywających}
+
+W celu przyszpieszenia części algorytmu odpowiedzialnego za przypisywanie danego odcinka drogi do obszaru w którym obowiązuje ograniczenie prędkości, niezbędne jest połączenie nachodzących na siebie obszarów oraz wyznaczenie jego konturu. Można rozróżnić kilka przypadków:
+\begin{itemize}
+\item gdy jeden obszar całkowicie znajduje się wewnątrz drugiego
+\item gdy dwa rogi obszaru mającego kształt prostokątu znajdują się wewnątrz innego obszaru
+\item gdy tylko jeden róg obszaru mającego kształt prostokątu znajdje się wewnątrz innego obszaru
+\end{itemize}
+W niniejszych podrozdziale skupię na dokładnej metodzie wyznaczania konturu dla każdego z powyższych przypadków.
+
+\subsection{Łączenie powiększonych obszarów pokrywających w przypadku gdy jeden obszar w całości znajduje się w drugim}
+
+Do sytuacji w której dany obszar pokrywający w całości znajduje się wewnątrz innego obszaru dochodzi gdy np. wokół przedszkola znajduje się plac zabaw. W takiej sytuacji
+można pominąć wewnętrzy obszar. Na rys \ref{fig:boundingBoxInside} został przedstawiony taki przypadek.
+
+\begin{figure}[h]
+\caption{Obszar pokrywający wewnątrz innego obszaru}
+\label{fig:boundingBoxInside}
+\centering
+\includegraphics[width=0.6\textwidth]{boundingBoxInside}
+\end{figure}
+
+W pierwszym kroku należy znaleźć takie obszary. W tym celu algorytm iteruje po wszystkich obszarach i sprawdza, czy współrzędne spełniają wszystkie niżej przedstawione warunki.
+
+\begin{equation}
+\begin{split}
+x4 <= x5 <= x2 \\
+x4 <= x7 <= x2 \\
+y4 <= y5 <= y2 \\
+y4 <= x7 <= y2
+\end{split}
+\end{equation}
+
+W następnym kroku algorytm usuwa tak znaleziony obszar. W wyniku czego na mapie pozostaje tylko obszar przestawiony na rys.\ref{fig:boundingBoxInsideRemoved}
+
+\begin{figure}[h]
+\caption{Wynik usunięcia obszaru pokrywającego wewnątrz innego obszaru}
+\label{fig:boundingBoxInsideRemoved}
+\centering
+\includegraphics[width=0.6\textwidth]{boundingBoxInsideRemoved}
+\end{figure}
+
+\newpage
+\subsection{Łączenie powiększonych obszarów pokrywających w przypadku gdy jeden obszar nachodzi w całości tylko jednym bokiem }
+
+W przypadku gdy jeden obszar pokrywający w całości nachodzi tylko jednym bokiem, algorytm rozróżnia cztery możliwe sytuacje. Wszystkie one zostały przestawione na rysunku \ref{fig:OneSideBounding}.
+
+
+
+\begin{figure}[h]
+\caption{Wszystkie możliwe sytuacje w których jeden obszar nachodzi na drugi tylko jednym  bokiem}
+\label{fig:OneSideBounding}
+\centering
+\includegraphics[width=0.8\textwidth]{OneSideBounding}
+\end{figure}
+
+W pierwszym kroku należy znaleźć takie obszary. W tym celu algorytm iteruje po wszystkich obszarach i sprawdza, czy współrzędne spełniają wszystkie niżej przedstawione warunki.
+
+Dla pierwszej ćwiarki z rys. \ref{fig:OneSideBounding}
+\begin{equation}
+\begin{split}
+x11 <= x15 <= x13 \\
+y13 <= y15 <= y11 \\
+y13 <= y18 <= y11 \\
+x13 < x16 \\
+\end{split}
+\end{equation}
+
+Dla drugiej ćwiarki z rys. \ref{fig:OneSideBounding}
+\begin{equation}
+\begin{split}
+x24 <= x26 <= x22 \\
+y23 <= y26 <= y21 \\
+y23 <= y27 <= y21 \\
+x25 < x21 \\
+\end{split}
+\end{equation}
+
+Dla trzeciej ćwiarki z rys. \ref{fig:OneSideBounding}
+\begin{equation}
+\begin{split}
+x31 <= x35 <= x33 \\
+x31 <= x36 <= x33 \\
+y33 <= y35 <= y11 \\
+y38 < x34 \\
+\end{split}
+\end{equation}
+
+Dla czwartek ćwiarki z rys. \ref{fig:OneSideBounding}
+\begin{equation}
+\begin{split}
+x41 <= x48 <= x43 \\
+x41 <= x47 <= x43 \\
+y43 <= y47 <= 411 \\
+y46 > x42 \\
+\end{split}
+\end{equation}
+
+W następnym kroku algorytm wyznacza punkty przecięcia. Z racji tego, że nachodzące obszary są prostokątami zrotowanymi pod takim samym kątem, to do ich wyznaczenia pobiera odpowiednie współrzędne już wyznaczonych obszarów.
+
+Dla pierwszej ćwiarki z rys. \ref{fig:OneSideBounding}
+
+\begin{equation}
+\begin{split}
+A = (x12, y15) \\
+B = (x12, y16)
+\end{split}
+\end{equation}
+
+Dla drugiej ćwiarki z rys. \ref{fig:OneSideBounding}
+
+\begin{equation}
+\begin{split}
+C = (x21, y25) \\
+D = (x21, y28)
+\end{split}
+\end{equation}
+
+Dla trzeciej ćwiarki z rys. \ref{fig:OneSideBounding}
+
+\begin{equation}
+\begin{split}
+E = (x35, y34) \\
+F = (x36, y34)
+\end{split}
+\end{equation}
+
+
+Dla czwartej ćwiarki z rys. \ref{fig:OneSideBounding}
+
+\begin{equation}
+\begin{split}
+G = (x46, y42) \\
+H = (x45, y42)
+\end{split}
+\end{equation}
+
+W ostatnim kroku algorytm wyznacza kontur tak przygodowanej figury, poprzez połączenie współrzędnych w odpowiedniej kolejności. Zostało to przedstawione w poniższym równaniu:
+
+Dla pierwszej ćwiarki z rys. \ref{fig:OneSideBounding}
+
+\begin{equation}
+\begin{split}
+(x11, y11) -> (x12, y12) -> (x12, y15) -> (x16, y16) ->  \\
+(x17, y17) -> (x12, y16) -> (x13, y13) -> (x14, y14)
+\end{split}
+\end{equation}
+
+Dla drugiej ćwiarki z rys. \ref{fig:OneSideBounding}
+
+\begin{equation}
+\begin{split}
+(x21, y21) -> (x22, y22) -> (x23, y23) -> (x24, y24) ->  \\
+(x21, y28) -> (x28, y28) -> (x25, y25) -> (x21, y25)
+\end{split}
+\end{equation}
+
+Dla trzeciej ćwiarki z rys. \ref{fig:OneSideBounding}
+
+\begin{equation}
+\begin{split}
+(x31, y31) -> (x32, 312) -> (x33, y33) -> (x36, y34) ->  \\
+(x37, y37) -> (x38, y38) -> (x35, y34) -> (x34, y34)
+\end{split}
+\end{equation}
+
+Dla czwartej ćwiarki z rys. \ref{fig:OneSideBounding}
+
+\begin{equation}
+\begin{split}
+(x41, y41) -> (x45, y42) -> (x45, y45) -> (x46, y46) ->  \\
+(x46, y42) -> (x42, y42) -> (x43, y43) -> (x44, y44)
+\end{split}
+\end{equation}
+
+W wyniku powyższego algorytmu, zostały wyznaczone kontury nachodzących na siebie obszarów. Zostały przedstawione na rys. \ref{fig:OneSideBoundingRemoved}
+
+\begin{figure}[h]
+\caption{Obrys nachodzących na siebie obszarów}
+\label{fig:OneSideBoundingRemoved}
+\centering
+\includegraphics[width=0.75\textwidth]{OneSideBoundingRemoved}
+\end{figure}
+
+\newpage
+\section{Przyporządkowanie obiektów reprezentowanych przez wielokąty, do poszczególnych dróg}
+\label{sec:polygonLineDistance}
+
+W niniejszej sekcji skupię się na rozwiązaniu problemu przyporządkowania obiektów reprezentowanych przez wielokątny do poszczególnych dróg. Wykorzystywane jest w sytuacjach, gdy trzeba określić dokładne współrzędne początku i końca strefy, na której obowiązuje ograniczonej prędkości. Obiekty na mapie, reprezentowane przez wielokąty:
+\begin{itemize}
+\item szkoły
+\item parki
+\item place zabaw
+\item przystanki autobusowe i tramwajowe
+\item sklepy
+\item miejsca kultu
+\end{itemize}
+
+
+
+
+W pierwszej kolejności algorytm znajduje minimalny obszar pokrywający (eng. minimum bounding box) dany obiekt. W tym celu
+
+\subsection{Powiększanie wyznaczonego obszaru pokrywającego}
+
+Następnym krokiem jest powiększenie tak wyznaczonego obszaru o n metrów. Dzięki takiemu zabiegowi, możliwe będzie wyznaczenie strefy ogroniczonej prędkości.
+
+
+
+
+\subsection{Łączenie powiększonych obszarów pokrywających}
+
+W celu przyszpieszenia części algorytmu odpowiedzialnego za przypisywanie danego odcinka drogi do obszaru w którym obowiązuje ograniczenie prędkości, niezbędne jest połączenie nachodzących na siebie obszarów oraz wyznaczenie jego konturu. Można rozróżnić kilka przypadków:
+
+
+
 
 \subsection{Wyznaczanie obszarów drogi znajdujących się w pobliżu interesującego nas obiektu}
 
@@ -243,11 +445,11 @@ Ostatnim krokiem jest wyliczenie, które drogi znajdują się o obrębie danego 
 
 \subsubsection{Znajdowanie punktów przecięcia}
 
-W celu znalezienia punktów przecięcia, wykorzystam fakt, że droga reprezentowana jest zbiór odcinków, oraz że interesujący nas obszar jest prostokątem - a więc posiada cztery boki. 
+W celu znalezienia punktów przecięcia, wykorzystam fakt, że droga reprezentowana jest zbiór odcinków, oraz że interesujący nas obszar jest prostokątem - a więc posiada cztery boki.
 
-W pierwszej kolejności algorytm będzie iterował po zbiorze odcinków. Każdy odcinek lub bok prostokąta reprezentowany jest przez dwie współrzędne: 
+W pierwszej kolejności algorytm będzie iterował po zbiorze odcinków. Każdy odcinek lub bok prostokąta reprezentowany jest przez dwie współrzędne:
 
-\begin{equation} \label{sec:powiekszoneWierzcholek}
+\begin{equation}
 \begin{split}
 (x_a, y_a) \\
 (x_b, y_b) \\
@@ -256,7 +458,7 @@ W pierwszej kolejności algorytm będzie iterował po zbiorze odcinków. Każdy 
 
 Dzięki temu, bez problemu można określić równanie prostej przechodzącej przez te dwa punkty:
 
-\begin{equation} \label{sec:powiekszoneWierzcholek}
+\begin{equation}
 (y - y_a) (x_b-x_a) - (y_b - y_a) (x - x_a) = 0
 \end{equation}
 
@@ -268,37 +470,37 @@ y=\frac{y_a - y_b}{x_a - x_b}x + (y_a - \frac{y_a - y_b}{x_a - x_b}x_a)
 
 W celu wyznaczenia współrzędnej x punktu przecięcia wystarczy porównać oba równania:
 
-\begin{equation} \label{sec:powiekszoneWierzcholek}
+\begin{equation}
 \frac{y_c - y_d}{x_c - x_d}x + (y_c - \frac{y_c - y_d}{x_c - x_d}x_c)=\frac{y_a - y_b}{x_a - x_b}x + (y_a - \frac{y_a - y_b}{x_a - x_b}x_a)
 \end{equation}
 
 W wyniku czego otrzymujemy:
 
-\begin{equation} \label{sec:powiekszoneWierzcholek}
+\begin{equation}
 x = \frac{(y_a - \frac{y_a - y_b}{x_a - x_b}x_a) - (y_c - \frac{y_c - y_d}{x_c - x_d}x_c)}{\frac{y_c - y_d}{x_c - x_d} - \frac{y_a - y_b}{x_a - x_b}}
 \end{equation}
 
 Aby wyznaczyc współrzędną y, należy przekształcić równanie \ref{sec:prostaKierunkowa} do postaci:
 
-\begin{equation} \label{sec:prostaKierunkowaX}
+\begin{equation}
 x=\frac{y - (y_a - \frac{y_a - y_b}{x_a - x_b}x_a)}{\frac{y_a - y_b}{x_a - x_b}}
 \end{equation}
 
 Następnie porównać równania obu prostych:
 
-\begin{equation} \label{sec:prostaKierunkowaX}
+\begin{equation}
 \frac{y - (y_a - \frac{y_a - y_b}{x_a - x_b}x_a)}{\frac{y_a - y_b}{x_a - x_b}}=\frac{y - (y_c - \frac{y_c - y_d}{x_c - x_d}x_c)}{\frac{y_c - y_d}{x_c - x_d}}
 \end{equation}
 
 W wyniku czego otrzymujemy wzór na współrzędną y przecinającą obie proste:
-\begin{equation} \label{sec:prostaKierunkowaX}
+\begin{equation}
 y = \frac{(y_a - \frac{y_a - y_b}{x_a - x_b}x_a)(\frac{y_c - y_d}{x_c - x_d}) - (\frac{y_a - y_b}{x_a - x_b})(y_c - \frac{y_c - y_d}{x_c - x_d}x_c)}
 {(\frac{y_c - y_d}{x_c - x_d})(\frac{y_a - y_b}{x_a - x_b})}
 \end{equation}
 
 \subsubsection{Sprawdzanie, czy punkt przecięcia należy do odcinka}
 
-W celu sprawdzenia, czy punkt przecięcia należy do odcinka, posłużę się własnością, że suma długości mierzonej od początku odcinka do danego punktu oraz od danego punktu, do końca odcinka jest równa całkowitej długości odcinka. 
+W celu sprawdzenia, czy punkt przecięcia należy do odcinka, posłużę się własnością, że suma długości mierzonej od początku odcinka do danego punktu oraz od danego punktu, do końca odcinka jest równa całkowitej długości odcinka.
 
 \begin{equation} \label{eq:pointInSegment}
 |AC| + |CB| = |AB|
@@ -308,14 +510,14 @@ W celu lepszego zobrazowania, posłuże się rysunkiem \ref{sec:pointSegment}
 
 \newpage
 \begin{figure}[h]
-\label{sec:pointSegment}
 \caption{Punkt wewnątrz odcinka}
+\label{sec:pointSegment}
 \centering
 \includegraphics[width=0.6\textwidth]{pointInSegment}
 \end{figure}
 
 Odległość między dwoma punktami a i b wynosi:
-\begin{equation} \label{eq:distanceBetweenTwoPoint}
+\begin{equation}
 d = \sqrt{(x1 - x2)^2 + (y1 - y2)^2}
 \end{equation}\newline
 
@@ -331,13 +533,13 @@ d_{CB} = \sqrt{(xc - xb)^2 + (yc - yb)^2}
 \end{equation}\newline
 
 Oraz długość odcinka AB wynosi:
-\begin{equation} \label{eq:distanceBetweenTwoPointAB}
+\begin{equation}
 d_{AB} = \sqrt{(xa - xb)^2 + (ya - yb)^2}
 \end{equation}\newline
 
 Zgodnie z równaniem \ref{eq:pointInSegment}, aby punkt nalezał do odcinka, musi spełniać warunek:
 
-\begin{equation} \label{eq:distanceBetweenTwoPointAB}
+\begin{equation}
 \sqrt{(xa - xb)^2 + (ya - yb)^2} = \sqrt{(xa - xb)^2 + (ya - yb)^2} + \sqrt{(xc - xb)^2 + (yc - yb)^2}
 \end{equation}\newline
 
@@ -347,8 +549,8 @@ Zgodnie z równaniem \ref{eq:pointInSegment}, aby punkt nalezał do odcinka, mus
 
 \newpage
 \begin{figure}[h]
-\label{sec:fourthBB}
 \caption{Droga przebiegająca przez wybrany obszar}
+\label{sec:fourthBB}
 \centering
 \includegraphics[width=0.8\textwidth]{minBoundingBoxWay}
 \end{figure}
@@ -358,7 +560,7 @@ Zgodnie z równaniem \ref{eq:pointInSegment}, aby punkt nalezał do odcinka, mus
 \label{sec:pedestrialCrossing}
 \subsection{Przyporządkowywanie przejść dla pieszych do poszczególnych dróg}
 
-Bardzo ważnym czynnikiem doboru prędkości jest obecność przejść dla pieszych. Te z sygnalizacją świetlną nie stanowią problemu, ponieważ ruch pieszych poruszających się na nich jest ograniczony tylko do sytuacji, gdy sygnalizacja świeci się na zielono. W przypadku przejść bez sygnalizacji, sprawa się komplikuje, ponieważ kierowca jest zobowiązany do zachowania szczególnej ostrożności i zmiejszenia prędkości od 30 km/h. 
+Bardzo ważnym czynnikiem doboru prędkości jest obecność przejść dla pieszych. Te z sygnalizacją świetlną nie stanowią problemu, ponieważ ruch pieszych poruszających się na nich jest ograniczony tylko do sytuacji, gdy sygnalizacja świeci się na zielono. W przypadku przejść bez sygnalizacji, sprawa się komplikuje, ponieważ kierowca jest zobowiązany do zachowania szczególnej ostrożności i zmiejszenia prędkości od 30 km/h.
 
 Do przyporządkowania przejść dla pieszych, do poszczególnych dróg, posłużyłem się wzorem \ref{eq:distancePointLineal} na odległość punktu od prostej, przedstawionym w sekcji \ref{sec:ObiektyPunktDrogi}.
 
@@ -367,7 +569,7 @@ Rezultatem wdrożenia powyższego wzoru do programu, są:
 \begin{itemize}
 \item na niebiesko zaznaczone drogi, na których znajdują się przejścia dla pieszych
 \item znakiem ''D-6'' zostały oznaczone przejścia dla pieszych
-\end{itemize} 
+\end{itemize}
 Wynik został przedstawiony na Rys. \ref{sec:PrzejscieDrogi}:
 
 \begin{figure}[h]
@@ -381,7 +583,7 @@ Dzięki tak zobrazowanej sytuacji, można ocenić skuteczność algorytmu przypo
 
 \subsection{Wyznaczanie prędkości i umieszczanie jej w odpowiednim miejscu na mapie}
 
-Bezpieczna prędkość w pobliżu nieoznakowanych przejść dla pieszych wynosi ok. 30 km/h. Zapewnia ona zarówno wystarczajacy czas reakcji, odpowiednio krótką drogę hamowania oraz zmiejsza ryzyko wystąpień potrąceń pieszych. 
+Bezpieczna prędkość w pobliżu nieoznakowanych przejść dla pieszych wynosi ok. 30 km/h. Zapewnia ona zarówno wystarczajacy czas reakcji, odpowiednio krótką drogę hamowania oraz zmiejsza ryzyko wystąpień potrąceń pieszych.
 
 Algorytm umieszcza znaki ograniczenia prędkości:
 \begin{itemize}
@@ -390,7 +592,7 @@ Algorytm umieszcza znaki ograniczenia prędkości:
 \item w przypadku, gdy przejście dla pieszych znajduje się w odległości mniejszej niż 50m lub 150m (w zależności od maksymalnej prędkości), znak zostanie umieszczony na początku drogi
 \item w przypadku drogi jednokierunkowej, tylko przed przejściem
 \item w przypadku drogi dwukierunkowej, zarówno przed, jak i za przejściem
-\item bezpośrednio za przejściem zostanie ustawiony znak przywracającą poprzednie ograniczenie prędkości, za wyjątkiem sytuacji, gdy droga za przejściem dla pieszych jest krótsza niż 100m. W takim wypadku, nie ma sensu zmieniać prędkości. 
+\item bezpośrednio za przejściem zostanie ustawiony znak przywracającą poprzednie ograniczenie prędkości, za wyjątkiem sytuacji, gdy droga za przejściem dla pieszych jest krótsza niż 100m. W takim wypadku, nie ma sensu zmieniać prędkości.
 \end{itemize}
 
 \begin{figure}[h]
@@ -418,7 +620,7 @@ W celu zadbania o bezpieczeństwo osób, ale również o dobrą kondycję techni
 \item asfalt
 \end{itemize}
 
-Najbardziej problematyczna dla kierowów droga to taka, która pokryta jest żwirem, drobnym żwirem, składająca się z piasku lub jest błotnista. W takich przypadkach ograniczyłem prędkość do 10 km/h. Niewiele lepsza nawierzchnia to taka, która wyłożona jest zarówno kostką brukową oraz płytami betonowymi. Dla nich, odpowiednia prędkość wynosi 20 km/h. W przypadku drogi nieutwardzanej oraz gruntowej, ograniczenie prędkości wynosi 30 km/h. Dla asfaltu, ze względu na jego strukturę, ograniczenie prędkości praktycznie nie występuje. 
+Najbardziej problematyczna dla kierowów droga to taka, która pokryta jest żwirem, drobnym żwirem, składająca się z piasku lub jest błotnista. W takich przypadkach ograniczyłem prędkość do 10 km/h. Niewiele lepsza nawierzchnia to taka, która wyłożona jest zarówno kostką brukową oraz płytami betonowymi. Dla nich, odpowiednia prędkość wynosi 20 km/h. W przypadku drogi nieutwardzanej oraz gruntowej, ograniczenie prędkości wynosi 30 km/h. Dla asfaltu, ze względu na jego strukturę, ograniczenie prędkości praktycznie nie występuje.
 
 Na Rys. \ref{sec:surfaceTypePhoto} zostały umieszczone ograniczenia prędkości dla dróg, których nawierzchnia pokryta jest materiałem innym niż asfalt. Dla celów demonstracyjnych, został on specjalnie pominięty, ponieważ więszkość dróg jest nim pokryta, przez co Rys. \ref{sec:surfaceTypePhoto} stałby się mało czytelny. Oczywiście ogólny algorytm uwzględnia asfalt.
 
@@ -461,14 +663,14 @@ Podobnie jak miało to miejsce w rozdziale \ref{sec:pedestrialCrossing}, umiejsc
 \item w przypadku prędkości powyżej 60 km/h, znak zostanie umieszczony w odległości 150m przed przejazdem kolejowym
 \item w przypadku drogi jednokierunkowej, tylko przed przejazdem kolejowym
 \item w przypadku drogi dwukierunkowej, zarówno przed, jak i za przejazdem
-\item bezpośrednio za przejazdem zostanie ustawiony znak przywracającą poprzednie ograniczenie prędkości, za wyjątkiem sytuacji, gdy droga za przejazdem kolejowym jest krótsza niż 100m. W takim wypadku, nie ma sensu zmieniać prędkości. 
+\item bezpośrednio za przejazdem zostanie ustawiony znak przywracającą poprzednie ograniczenie prędkości, za wyjątkiem sytuacji, gdy droga za przejazdem kolejowym jest krótsza niż 100m. W takim wypadku, nie ma sensu zmieniać prędkości.
 \end{itemize}
 
-Rys. \ref{sec:PrzejazdyKolejowe} obrazuje przejazd kolejowy znajdujący się na dwukierunkowej drodze, na której obowiązuje ograniczenie prędkości do 80 km/h. Dlatego znaki 30 km/h zostały umieszczone 150m przed przejazdem, a zaraz po nim znaki przywracające poprzednią prędkość 80 km/h. Znaki są po obu stronach, gdyż jest do droga dwukierunkowa
+Rys. \ref{sec:PrzejazdyKolejowe1} obrazuje przejazd kolejowy znajdujący się na dwukierunkowej drodze, na której obowiązuje ograniczenie prędkości do 80 km/h. Dlatego znaki 30 km/h zostały umieszczone 150m przed przejazdem, a zaraz po nim znaki przywracające poprzednią prędkość 80 km/h. Znaki są po obu stronach, gdyż jest do droga dwukierunkowa
 
 \begin{figure}[h]
 \caption{Umiejscowienie znaków przed i za przejazdem kolejowym.}
-\label{sec:PrzejazdyKolejowe}
+\label{sec:PrzejazdyKolejowe1}
 \centering
 \includegraphics[width=0.7\textwidth]{streetBeforeRail}
 \end{figure}
@@ -483,12 +685,12 @@ Aby kierowca bez problemu mógł zdążyć zareagować na zmieniające się swia
 
 \begin{figure}[h]
 \caption{Drogi na których znajduje się sygnalizacja świetlna.}
-\label{sec:PrzejazdyKolejowe}
+\label{sec:PrzejazdyKolejowe2}
 \centering
 \includegraphics[width=1.1\textwidth]{traffic_sight}
 \end{figure}
 
-Rys. \ref{sec:PrzejazdyKolejowe} ukazuje sposób działania algorytmu przypisującego do drogi sygnalizację świetlną. Zaznaczono na nim:
+Rys. \ref{sec:PrzejazdyKolejowe2} ukazuje sposób działania algorytmu przypisującego do drogi sygnalizację świetlną. Zaznaczono na nim:
 \begin{itemize}
 \item kolorem niebieskim drogi, na ktorych znajduje się sygnalizacja świetlna
 \item znakiem ''A-29'' zostały oznaczone sygnalizacje świetlne, pobrane z OpenStreetMap
@@ -516,35 +718,35 @@ Rys. \ref{sec:znakiSwiatla} obrazuje fragment skrzyżowania na której znajduje 
 
 \newpage
 \section{Przystanki autobusowe i tramwajowe}
-\label{sec:zakręty}
+
 
 \newpage
 \section{Szkoły i miesca zabaw}
-\label{sec:zakręty}
+
 
 \newpage
 \section{Sklepy i miejsca kultów religijnych}
-\label{sec:zakręty}
+
 
 \newpage
 \section{Liczba pasów ruchu}
-\label{sec:zakręty}
+
 
 \newpage
 \section{Rodzaj drogi}
-\label{sec:zakręty}
+
 
 \newpage
 \section{Płynna zmiana prędkości pojazdów}
-\label{sec:zakręty}
+
 
 \newpage
 \section{Historia wypadków}
-\label{sec:zakręty}
+
 
 \newpage
 \section{Zakręty}
-\label{sec:zakręty}
+
 
 \section{Umiejscowienie znaków na drodze}
 \label{sec:speedLimitLocalization}
