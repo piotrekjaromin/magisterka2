@@ -283,7 +283,7 @@ export class FileLayerManager {
     const boundingBoxModel = this.getBoundingBox();
     const markers: [Marker] = <[Marker]>[];
 
-    const mergedRectangles: [Feature] = <[Feature]>[];
+    let mergedRectangles: [Feature] = <[Feature]>[];
 
     const foundedInnerBoundingBox: [string] = <[string]>[];
 
@@ -309,7 +309,7 @@ export class FileLayerManager {
 
     // return new LayerGroup(markers);
 
-    const result: [Feature] = <[Feature]>[];
+     let result: [Feature] = <[Feature]>[];
     for (const boundingFeature of boundingBoxModel.features) {
       if ( foundedInnerBoundingBox.indexOf(boundingFeature.id) === -1) {
         result.push(boundingFeature);
@@ -318,12 +318,15 @@ export class FileLayerManager {
 
     boundingBoxModel.features = result;
 
+    const foundedTwoCornerBoundingBox: [string] = <[string]>[];
     for (const innerBoundingBox of boundingBoxModel.features) {
       for (const outherBoundingBox of boundingBoxModel.features) {
         if (innerBoundingBox.id !== outherBoundingBox.id) {
           const cornerInsideBox = this.checkIfCornerIsInsideRectangle(innerBoundingBox, outherBoundingBox);
           // two
           if (foundedInnerBoundingBox.indexOf(innerBoundingBox.id) === -1 && cornerInsideBox.length === 2) {
+            foundedTwoCornerBoundingBox.push(innerBoundingBox.id);
+            foundedTwoCornerBoundingBox.push(outherBoundingBox.id);
             mergedRectangles.push(this.getFeatureOfMergedTriangleOnlyWithOneSide(cornerInsideBox, innerBoundingBox, outherBoundingBox));
           }
 
@@ -331,17 +334,62 @@ export class FileLayerManager {
       }
     }
 
+    result = <[Feature]>[];
+    for (const boundingFeature of boundingBoxModel.features) {
+      if ( foundedTwoCornerBoundingBox.indexOf(boundingFeature.id) === -1) {
+        result.push(boundingFeature);
+      }
+    }
 
-     boundingBoxModel.features = mergedRectangles;
-    //
+    for (const mergedRectangle of mergedRectangles) {
+      result.push(mergedRectangle);
+    }
+
+    boundingBoxModel.features = result;
+    mergedRectangles = <[Feature]>[];
+
+    const foundedOneCornerBoundingBox: [string] = <[string]>[];
+    for (const innerBoundingBox of boundingBoxModel.features) {
+      for (const outherBoundingBox of boundingBoxModel.features) {
+        if (innerBoundingBox.id !== outherBoundingBox.id) {
+          const cornerInsideBox = this.checkIfCornerIsInsideRectangle(innerBoundingBox, outherBoundingBox);
+          // one
+          if (
+            // foundedInnerBoundingBox.indexOf(innerBoundingBox.id) === -1
+             cornerInsideBox.length === 1
+            && innerBoundingBox.geometry.coordinates[0].length === 5
+            && outherBoundingBox.geometry.coordinates[0].length === 5
+            && foundedOneCornerBoundingBox.indexOf(innerBoundingBox.id) === -1
+            && foundedOneCornerBoundingBox.indexOf(outherBoundingBox.id) === -1
+        ) {
+            foundedOneCornerBoundingBox.push(innerBoundingBox.id);
+            foundedOneCornerBoundingBox.push(outherBoundingBox.id);
+            mergedRectangles.push(this.getFeatureOfMergedTriangleOnlyWithOneCorner(innerBoundingBox, outherBoundingBox));
+          }
+
+        }
+      }
+    }
+
+    result = <[Feature]>[];
+    for (const boundingFeature of boundingBoxModel.features) {
+      if ( foundedOneCornerBoundingBox.indexOf(boundingFeature.id) === -1) {
+        result.push(boundingFeature);
+      }
+    }
+
+    for (const mergedRectangle of mergedRectangles) {
+      result.push(mergedRectangle);
+    }
+
+    boundingBoxModel.features = result;
+
     return boundingBoxModel;
   }
 
   private checkIfCornerIsInsideRectangle(rectangleInside: Feature, rectangle: Feature) {
     const SWcorner = rectangle.geometry.coordinates[0][0];
-    const SEcorner = rectangle.geometry.coordinates[0][1];
     const NEcorner = rectangle.geometry.coordinates[0][2];
-    const NWcorner = rectangle.geometry.coordinates[0][3];
 
     const result: [[number, number]] = <[[number, number]]>[];
 
@@ -433,6 +481,56 @@ export class FileLayerManager {
         ]];
       }
     }
+    const geometry: Geometry = new Geometry('Polygon', <any>coordinates);
+    const feature: Feature = new Feature('', 'Feature', null, geometry, <[CustomMarker]>[]);
+    return feature;
+  }
+
+  private getFeatureOfMergedTriangleOnlyWithOneCorner(innerBoundingBox: Feature, outherBoundingBox: Feature) {
+    let coordinates;
+
+    let cornerInsideBox1 = this.checkIfCornerIsInsideRectangle(innerBoundingBox, outherBoundingBox);
+    let cornerInsideBox2 = this.checkIfCornerIsInsideRectangle(outherBoundingBox, innerBoundingBox);
+    if (cornerInsideBox1[0][1] < cornerInsideBox2[0][1] ) {
+      const cornerTmp = cornerInsideBox1;
+      cornerInsideBox1 = cornerInsideBox2;
+      cornerInsideBox2 = cornerTmp;
+      const boundingBoxTmp = innerBoundingBox;
+      innerBoundingBox = outherBoundingBox;
+      outherBoundingBox = boundingBoxTmp;
+    }
+    if (cornerInsideBox1[0][0] === innerBoundingBox.geometry.coordinates[0][1][0]) {
+      // outer on the left
+      const leftCrossPoint = [cornerInsideBox2[0][0], cornerInsideBox1[0][1]];
+      const rightCrossPoint = [cornerInsideBox1[0][0], cornerInsideBox2[0][1]];
+      coordinates = [[
+        innerBoundingBox.geometry.coordinates[0][0],
+        innerBoundingBox.geometry.coordinates[0][1],
+        rightCrossPoint,
+        outherBoundingBox.geometry.coordinates[0][1],
+        outherBoundingBox.geometry.coordinates[0][2],
+        outherBoundingBox.geometry.coordinates[0][3],
+        leftCrossPoint,
+        innerBoundingBox.geometry.coordinates[0][3],
+        innerBoundingBox.geometry.coordinates[0][4]
+      ]];
+    } else {
+      // outer on the right
+      const rightCrossPoint = [cornerInsideBox2[0][0], cornerInsideBox1[0][1]];
+      const leftCrossPoint = [cornerInsideBox1[0][0], cornerInsideBox2[0][1]];
+      coordinates = [[
+        outherBoundingBox.geometry.coordinates[0][0],
+        leftCrossPoint,
+        innerBoundingBox.geometry.coordinates[0][0],
+        innerBoundingBox.geometry.coordinates[0][1],
+        innerBoundingBox.geometry.coordinates[0][2],
+        rightCrossPoint,
+        outherBoundingBox.geometry.coordinates[0][2],
+        outherBoundingBox.geometry.coordinates[0][3],
+        outherBoundingBox.geometry.coordinates[0][0]
+      ]];
+    }
+
     const geometry: Geometry = new Geometry('Polygon', <any>coordinates);
     const feature: Feature = new Feature('', 'Feature', null, geometry, <[CustomMarker]>[]);
     return feature;

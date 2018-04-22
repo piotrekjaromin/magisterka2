@@ -116,6 +116,7 @@ Przez powyższe obliczenia, wyznaczone zostały wspórzędne poszukiwanego punkt
 
 \newpage
 \section{Wyznaczanie minimalnego obszaru pokrywającego}
+\label{sec:Wyznaczanieminimalnegoobszarupokrywającego}
 
 W niniejszej sekcji skupię się na sposobie w jaki algorytm wyznacza minimalny obszar pokrywający (eng. minimum bounding box). Będzie on wykorzystany w późniejszych obliczeniach, mających na celu przypisanie poszczególnych dróg do danych obszarów, na których obowiązuje ograniczenie prędkości.
 
@@ -176,6 +177,7 @@ Po wyznaczeniu powyższych współrzędnych minimalny obszar pokrywający wyglą
 
 \newpage
 \section{Powiększanie wyznaczonego obszaru pokrywającego}
+\label{sec:Powiększanie wyznaczonegoobszarupokrywającego}
 
 Kolejnym krokiem niezbędnym do przyporządkowania dwuwymiarowych obiektów do poszczególnych dróg jest powiększenie wyznaczonego obszaru pokrywającego. W celu wyznaczenia wierzchołków powiększonego obszaru, skorzystam z poniżej podanych równań.
 
@@ -218,6 +220,7 @@ Rys. \ref{sec:thirdBB} przedstawia minimalny obszar pokrywający powiększony o 
 
 \newpage
 \section{Łączenie powiększonych obszarów pokrywających}
+\label{sec:laczeniepowiekszonychobszarwwpokrywajacych}
 
 W celu przyszpieszenia części algorytmu odpowiedzialnego za przypisywanie danego odcinka drogi do obszaru w którym obowiązuje ograniczenie prędkości, niezbędne jest połączenie nachodzących na siebie obszarów oraz wyznaczenie jego konturu. Można rozróżnić kilka przypadków:
 \begin{itemize}
@@ -402,52 +405,90 @@ W wyniku powyższego algorytmu, zostały wyznaczone kontury nachodzących na sie
 \end{figure}
 
 \newpage
-\section{Przyporządkowanie obiektów reprezentowanych przez wielokąty, do poszczególnych dróg}
-\label{sec:polygonLineDistance}
+\subsection{Łączenie powiększonych obszarów pokrywających w przypadku gdy jeden obszar nachodzi tylko jednym rogiem }
 
-W niniejszej sekcji skupię się na rozwiązaniu problemu przyporządkowania obiektów reprezentowanych przez wielokątny do poszczególnych dróg. Wykorzystywane jest w sytuacjach, gdy trzeba określić dokładne współrzędne początku i końca strefy, na której obowiązuje ograniczonej prędkości. Obiekty na mapie, reprezentowane przez wielokąty:
-\begin{itemize}
-\item szkoły
-\item parki
-\item place zabaw
-\item przystanki autobusowe i tramwajowe
-\item sklepy
-\item miejsca kultu
-\end{itemize}
+Trzecim przypadkiem nachodzenia dwóch obszarów pokrywających jest nachodzenie sie jednym rogiem. W takiej sytuacji możemy rozróżnić dwie możliwości widoczne na rys. \ref{fig:mergedKrawedzie} 
 
+\begin{figure}[h]
+\caption{Nachodzące na siebie obszary}
+\label{fig:mergedKrawedzie}
+\centering
+\includegraphics[width=1\textwidth]{mergedKrawedzie}
+\end{figure}
 
+W pierwszej kolejości należy znaleźć interesujące nas obszary które nachodzą na siebie. W pierwszym przypadku rys. \ref{fig:mergedKrawedzie} obszary muszą spełniać równania:
 
+\begin{equation}
+\begin{split}
+x8 <= x3 <= x7 \\
+y8 <= y3 <= y6 \\
+x4 < x8 \\
+y2 > y6
+\end{split}
+\end{equation}
 
-W pierwszej kolejności algorytm znajduje minimalny obszar pokrywający (eng. minimum bounding box) dany obiekt. W tym celu
+Natomiast w drugim przypadku z rys. \ref{fig:mergedKrawedzie}:
 
-\subsection{Powiększanie wyznaczonego obszaru pokrywającego}
+\begin{equation}
+\begin{split}
+x28 <= x22 <= x27 \\
+y28 <= y22 <= y25 \\
+x21 < x25 \\
+y23 < y28
+\end{split}
+\end{equation}
 
-Następnym krokiem jest powiększenie tak wyznaczonego obszaru o n metrów. Dzięki takiemu zabiegowi, możliwe będzie wyznaczenie strefy ogroniczonej prędkości.
+W następnym kroku algorytm wyznacza punkt przecięcia obu powierzchni. Z racji tego, że nachodzące obszary są prostokątami zrotowanymi pod takim samym kątem, to do ich wyznaczenia pobiera odpowiednie współrzędne już wyznaczonych obszarów. Dla pierwszego przypadku z rys. \ref{fig:mergedKrawedzie} punktu przecięcia A i B wynosi:
 
+\begin{equation}
+\begin{split}
+A = (x8, y3) //
+B = (x3, y6)
+\end{split}
+\end{equation}
 
+Oraz dla drugiego przypadku:
 
+\begin{equation}
+\begin{split}
+C = (x28, y21) //
+D = (x22, y28)
+\end{split}
+\end{equation}
 
-\subsection{Łączenie powiększonych obszarów pokrywających}
+W końcowej fazie algorytm wyznacza kontur nachodzących obszarów. W pierwszym przypadku kolejność współrzędnych konturu wygląda następująco:
+ 
+\begin{equation}
+\begin{split}
+(x1, y1) -> (x2, y2) -> (x3, y6) -> (x6, y6) ->  \\
+(x7, y7) -> (x8, y8) -> (x8, y3) -> (x4, y4)
+\end{split}
+\end{equation}
 
-W celu przyszpieszenia części algorytmu odpowiedzialnego za przypisywanie danego odcinka drogi do obszaru w którym obowiązuje ograniczenie prędkości, niezbędne jest połączenie nachodzących na siebie obszarów oraz wyznaczenie jego konturu. Można rozróżnić kilka przypadków:
+A w drugim: 
 
+\begin{equation}
+\begin{split}
+(x21, y21) -> (x28, y21) -> (x25, y25) -> (x26, y26) ->  \\
+(x27, y27) -> (x22, y28) -> (x23, y23) -> (x24, y24)
+\end{split}
+\end{equation}
 
+Wynik powyższych krókow został przestawiony na rys. \ref{fig:mergedKrawedzieKontur}
 
+\begin{figure}[h]
+\caption{Kontur nachodzących na siebie obszarów}
+\label{fig:mergedKrawedzieKontur}
+\centering
+\includegraphics[width=1.1\textwidth]{mergedKrawedzieKontur}
+\end{figure}
 
-\subsection{Wyznaczanie obszarów drogi znajdujących się w pobliżu interesującego nas obiektu}
+\newpage
+\section{Znajdowanie punktów przecięcia drogi i powiększonego obszaru}
 
-Ostatnim krokiem jest wyliczenie, które drogi znajdują się o obrębie danego obszaru. Należy zaznaczyć, że Open Street Map, w przypadku łuków czy zakrętów, przedstawia je jako zbiór odcinków. Możemy tutaj wyróżnić dwa przypadki:
-\begin{itemize}
-\item żaden ze zbioru odcinków nie należy do danego obszaru
-\item jeden lub pewna część odcinków znajduje się w obrębie danego obszaru. W takiej sytuacji należy wyznaczyć wszystkie współrzędne przecięcia, a później określić interesujące nas fragmenty drogi.
-\end{itemize}
+W celu znalezienia punktów przecięcia, wykorzystam fakt, że droga reprezentowana jest zbiór odcinków.
 
-
-\subsubsection{Znajdowanie punktów przecięcia}
-
-W celu znalezienia punktów przecięcia, wykorzystam fakt, że droga reprezentowana jest zbiór odcinków, oraz że interesujący nas obszar jest prostokątem - a więc posiada cztery boki.
-
-W pierwszej kolejności algorytm będzie iterował po zbiorze odcinków. Każdy odcinek lub bok prostokąta reprezentowany jest przez dwie współrzędne:
+W pierwszej kolejności algorytm będzie iterował po zbiorze odcinków. Każdy odcinek lub bok obszaru reprezentowany jest przez dwie współrzędne:
 
 \begin{equation}
 \begin{split}
@@ -498,7 +539,8 @@ y = \frac{(y_a - \frac{y_a - y_b}{x_a - x_b}x_a)(\frac{y_c - y_d}{x_c - x_d}) - 
 {(\frac{y_c - y_d}{x_c - x_d})(\frac{y_a - y_b}{x_a - x_b})}
 \end{equation}
 
-\subsubsection{Sprawdzanie, czy punkt przecięcia należy do odcinka}
+\newpage
+\section{Sprawdzanie, czy punkt przecięcia należy do odcinka}
 
 W celu sprawdzenia, czy punkt przecięcia należy do odcinka, posłużę się własnością, że suma długości mierzonej od początku odcinka do danego punktu oraz od danego punktu, do końca odcinka jest równa całkowitej długości odcinka.
 
@@ -508,12 +550,11 @@ W celu sprawdzenia, czy punkt przecięcia należy do odcinka, posłużę się w�
 
 W celu lepszego zobrazowania, posłuże się rysunkiem \ref{sec:pointSegment}
 
-\newpage
 \begin{figure}[h]
 \caption{Punkt wewnątrz odcinka}
 \label{sec:pointSegment}
 \centering
-\includegraphics[width=0.6\textwidth]{pointInSegment}
+\includegraphics[width=0.8\textwidth]{pointInSegment}
 \end{figure}
 
 Odległość między dwoma punktami a i b wynosi:
@@ -542,6 +583,38 @@ Zgodnie z równaniem \ref{eq:pointInSegment}, aby punkt nalezał do odcinka, mus
 \begin{equation}
 \sqrt{(xa - xb)^2 + (ya - yb)^2} = \sqrt{(xa - xb)^2 + (ya - yb)^2} + \sqrt{(xc - xb)^2 + (yc - yb)^2}
 \end{equation}\newline
+
+
+\newpage
+\section{Przyporządkowanie obiektów reprezentowanych przez wielokąty, do poszczególnych dróg}
+\label{sec:polygonLineDistance}
+
+W niniejszej sekcji skupię się na rozwiązaniu problemu przyporządkowania obiektów reprezentowanych przez wielokątny do poszczególnych dróg. Wykorzystywane jest w sytuacjach, gdy trzeba określić dokładne współrzędne początku i końca strefy, na której obowiązuje ograniczonej prędkości. Obiekty na mapie, reprezentowane przez wielokąty:
+\begin{itemize}
+\item szkoły
+\item parki
+\item place zabaw
+\item przystanki autobusowe i tramwajowe
+\item sklepy
+\item miejsca kultu
+\end{itemize}
+
+
+W pierwszej kolejności algorytm znajduje minimalny obszar pokrywający (eng. minimum bounding box) dany obiekt. Dokładny opis został przedstawiony w sekcji \ref{sec:Wyznaczanieminimalnegoobszarupokrywającego}
+
+Następnie, następuje powiększenie wyznaczonego obszaru pokrywającego w celu poszerzenia strefy ograniczonej prędkości. Szczegóły znajdują się w sekcji \ref{sec:Powiększanie wyznaczonegoobszarupokrywającego}
+
+Po wykonaniu powyższych operacji, w celu optymalizacji algorytmu, następuje łączenie nachodzących na siebie powiększonych obszarów.  Zostało dokładnie omówione w sekcji \ref{sec:laczeniepowiekszonychobszarwwpokrywajacych}
+
+
+Ostatnim krokiem jest wyliczenie, które drogi znajdują się o obrębie danego obszaru. Należy zaznaczyć, że Open Street Map, w przypadku łuków czy zakrętów, przedstawia je jako zbiór odcinków. Możemy tutaj wyróżnić dwa przypadki:
+\begin{itemize}
+\item żaden ze zbioru odcinków nie należy do danego obszaru
+\item jeden lub pewna część odcinków znajduje się w obrębie danego obszaru. W takiej sytuacji należy wyznaczyć wszystkie współrzędne przecięcia, a później określić interesujące nas fragmenty drogi.
+\end{itemize}
+
+
+
 
 \subsubsection{Wyznaczenie obszarów drogi znajdujących się w pobliżu danego obiektu}
 
