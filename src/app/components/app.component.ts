@@ -48,15 +48,6 @@ export class AppComponent implements OnInit {
     });
   }
 
-  exportRoadsAndObjectsToDB() {
-    this.dataService.getJson().subscribe(data => {
-      const layerManager = new FileLayerManager(this.dataService, this.dbDataService, <any>data);
-      // const onlyRoadsFeatures = layerManager.prepareRoadsWithSpeedLimits();
-      const onlyObjectsFeatures = this.dataService.getObjects(<any>data).features;
-      // this.dbDataService.saveAllDataToDB(onlyRoadsFeatures, onlyObjectsFeatures);
-    });
-  }
-
   getDataFromFile() {
     this.dataService.getJson().subscribe(data => {
       const layerManager = new FileLayerManager(this.dataService, this.dbDataService, <any>data);

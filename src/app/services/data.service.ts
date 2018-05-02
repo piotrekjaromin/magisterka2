@@ -94,11 +94,44 @@ export class DataService {
 
     for (const feature of allRoads.features) {
       if (feature.properties.oneway === 'yes') {
-        feature.properties.description = 'one_way'
+        feature.properties.description = 'one_way';
         filteredFeatures.push(feature);
       }
     }
 
+    result.features = filteredFeatures;
+    return result;
+  }
+
+  getTwoWaysRoads(geoModel: Geojsonmodel): Geojsonmodel {
+    const allRoads = this.getOnlyStreet(geoModel);
+    const filteredFeatures: [Feature] = <[Feature]>[];
+    const result: Geojsonmodel = JSON.parse(JSON.stringify(geoModel));
+
+    for (const feature of allRoads.features) {
+      if (feature.properties.oneway !== 'yes') {
+        feature.properties.description = 'two_ways';
+        filteredFeatures.push(feature);
+      }
+    }
+
+    result.features = filteredFeatures;
+    return result;
+  }
+
+  getShopsAndChurches(geoModel: Geojsonmodel): Geojsonmodel {
+    const result: Geojsonmodel = JSON.parse(JSON.stringify(geoModel));
+    const features: [Feature] = result.features;
+    const filteredFeatures: [Feature] = <[Feature]>[];
+
+    for (const feature of features) {
+      if (feature.properties.building === 'supermarket'
+        || feature.properties.building === 'chapel'
+        || feature.properties.building === 'church') {
+        feature.properties.description = 'shops_churches';
+        filteredFeatures.push(feature);
+      }
+    }
     result.features = filteredFeatures;
     return result;
   }
@@ -198,10 +231,10 @@ export class DataService {
     for (const feature of features) {
 
         if (feature.properties.amenity === 'university') {
-          feature.properties.description = 'university';
+          feature.properties.description = 'school';
           filteredFeatures.push(feature);
         } else if (feature.properties.amenity === 'kindergarten' || feature.properties.building === 'kindergarten') {
-          feature.properties.description = 'kindergarten';
+          feature.properties.description = 'school';
           filteredFeatures.push(feature);
         } else if (feature.properties.amenity === 'school' || feature.properties.building === 'school') {
           feature.properties.description = 'school';
