@@ -53,7 +53,7 @@ export class SpeedService {
   }
 
 
-  private static getMaxSpeedByStreetType(feature: Feature): number {
+  public static getMaxSpeedByStreetType(feature: Feature): number {
     if (feature.properties.highway === 'residential' || feature.properties.highway === 'living_street') {
       return 30;
     } else if (feature.properties.highway === 'motorway_link' || feature.properties.highway === 'secondary') {
@@ -63,7 +63,6 @@ export class SpeedService {
     } else if (feature.properties.highway === 'motorway') {
       return 140;
     }
-
     return 0;
   }
 

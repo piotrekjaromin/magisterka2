@@ -45,6 +45,7 @@ export class Properties{
               public crossing: string,
               public footway: string,
               public oneway: string,
+              public lanes: string,
               public defaultSpeedLimit: string
   ) {}
 }

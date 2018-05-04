@@ -43,8 +43,8 @@
 \contentsline {section}{\numberline {4.6}Szko\IeC {\l }y i miesca zabaw}{56}
 \contentsline {section}{\numberline {4.7}Sklepy i miejsca kult\IeC {\'o}w religijnych}{57}
 \contentsline {section}{\numberline {4.8}Liczba pas\IeC {\'o}w ruchu}{58}
-\contentsline {section}{\numberline {4.9}Rodzaj drogi}{59}
-\contentsline {section}{\numberline {4.10}P\IeC {\l }ynna zmiana pr\IeC {\k e}dko\IeC {\'s}ci pojazd\IeC {\'o}w}{60}
-\contentsline {section}{\numberline {4.11}Historia wypadk\IeC {\'o}w}{61}
-\contentsline {section}{\numberline {4.12}Zakr\IeC {\k e}ty}{62}
-\contentsline {section}{\numberline {4.13}Umiejscowienie znak\IeC {\'o}w na drodze}{62}
+\contentsline {section}{\numberline {4.9}Rodzaj drogi}{60}
+\contentsline {section}{\numberline {4.10}P\IeC {\l }ynna zmiana pr\IeC {\k e}dko\IeC {\'s}ci pojazd\IeC {\'o}w}{61}
+\contentsline {section}{\numberline {4.11}Historia wypadk\IeC {\'o}w}{62}
+\contentsline {section}{\numberline {4.12}Zakr\IeC {\k e}ty}{63}
+\contentsline {section}{\numberline {4.13}Umiejscowienie znak\IeC {\'o}w na drodze}{63}

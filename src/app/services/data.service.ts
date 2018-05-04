@@ -6,8 +6,6 @@ import 'rxjs/add/operator/map';
 import {Geojsonmodel} from '../models/geojsonmodel';
 import {Feature} from '../models/feature';
 import {DbDataService} from './dbData.service';
-import {CustomMarker} from '../models/customMarker';
-import {Mathematical} from '../calculationOperations/mathematical';
 
 @Injectable()
 export class DataService {
@@ -243,27 +241,6 @@ export class DataService {
         }
       }
     result.features = filteredFeatures;
-    return result;
-  }
-
-  getObjects(geoModel: Geojsonmodel): Geojsonmodel {
-    const schools = this.getSchools(geoModel);
-    const busStops = this.getBusStops(geoModel);
-    const trafficSignal = this.getTrafficSignal(geoModel);
-    // const result = schools;
-    const result = trafficSignal;
-    // for (let feature of busStops.features) {
-    //   result.features.push(feature);
-    // }
-    //
-    // for (let feature of trafficSignal.features) {
-    //   result.features.push(feature);
-    // }
-
-    // for (let feature of result.features) {
-    //   this.dbDataService.saveObjectToDB(feature, <[CustomMarker]>[], DbDataService.objectHttp);
-    // }
-
     return result;
   }
 

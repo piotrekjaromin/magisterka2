@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.3.3)  2 MAY 2018 23:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.3.3)  4 MAY 2018 09:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2003,22 +2003,47 @@ Overfull \hbox (45.52718pt too wide) in paragraph at lines 138--139
 <speedBeforeSignals.png, id=234, 502.87875pt x 540.0175pt>
 File: speedBeforeSignals.png Graphic file (type png)
 <use speedBeforeSignals.png>
-Package pdftex.def Info: speedBeforeSignals.png  used on input line 164. on inp
-ut line 164.
+Package pdftex.def Info: speedBeforeSignals.png  used on input line 165. on inp
+ut line 165.
 Package pdftex.def Info: Requested size: 364.19667pt x 391.09477pt on input lin
-e 164.
+e 165.
  [53 <./speedBeforeSignals.png>]
 <busStopBorder.png, id=239, 681.54625pt x 638.385pt>
 File: busStopBorder.png Graphic file (type png)
 <use busStopBorder.png>
-Package pdftex.def Info: busStopBorder.png  used on input line 176. on input li
-ne 176.
+Package pdftex.def Info: busStopBorder.png  used on input line 177. on input li
+ne 177.
 Package pdftex.def Info: Requested size: 409.71692pt x 383.77426pt on input lin
-e 176.
- [54 <./busStopBorder.png>] [55] [56] [57] [58] [59] [60] [61]) [62] [63
+e 177.
+ [54 <./busStopBorder.png>] [55] [56] [57]
+<laneNumber.png, id=254, 587.19376pt x 626.34pt>
+File: laneNumber.png Graphic file (type png)
+<use laneNumber.png>
+Package pdftex.def Info: laneNumber.png  used on input line 203. on input line 
+203.
+Package pdftex.def Info: Requested size: 409.71692pt x 437.03009pt on input lin
+e 203.
+ [58 <./laneNumber.png>]
+<laneNumberAfter.png, id=259, 575.14874pt x 641.39626pt>
+File: laneNumberAfter.png Graphic file (type png)
+<use laneNumberAfter.png>
+Package pdftex.def Info: laneNumberAfter.png  used on input line 212. on input 
+line 212.
+Package pdftex.def Info: Requested size: 409.71692pt x 456.92128pt on input lin
+e 212.
+ [59 <./laneNumberAfter.png>]
+<typeOfRoad.png, id=264, 785.93625pt x 757.83125pt>
+File: typeOfRoad.png Graphic file (type png)
+<use typeOfRoad.png>
+Package pdftex.def Info: typeOfRoad.png  used on input line 232. on input line 
+232.
+Package pdftex.def Info: Requested size: 318.66948pt x 307.27844pt on input lin
+e 232.
+
+[60 <./typeOfRoad.png>] [61] [62]) [63] [64
 
 
-] [64] [65] (./praca.aux
+] [65] [66] [67] (./praca.aux
 (./rozdzial1.aux) (./rozdzial2.aux) (./rozdzial3.aux) (./rozdzial4.aux))
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
@@ -2028,10 +2053,10 @@ Package logreq Info: Writing requests to 'praca.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 26267 strings out of 492990
- 490344 string characters out of 6135006
+ 26285 strings out of 492990
+ 490689 string characters out of 6135006
  730257 words of memory out of 5000000
- 29427 multiletter control sequences out of 15000+600000
+ 29442 multiletter control sequences out of 15000+600000
  607886 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  45i,15n,50p,10383b,2723s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2049,10 +2074,10 @@ ve/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8
 a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on praca.pdf (65 pages, 3905182 bytes).
+Output written on praca.pdf (67 pages, 4703965 bytes).
 PDF statistics:
- 330 PDF objects out of 1000 (max. 8388607)
- 192 compressed objects within 2 object streams
+ 343 PDF objects out of 1000 (max. 8388607)
+ 197 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 141 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 156 words of extra memory for PDF output out of 10000 (max. 10000000)
 

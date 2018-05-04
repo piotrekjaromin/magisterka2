@@ -68,7 +68,7 @@ export class BaseLayerManager {
     return new LayerGroup(markers);
   }
 
-  private static prepareMarker(lat: number, long: number, markerName: string) {
+  public static prepareMarker(lat: number, long: number, markerName: string) {
     let iconSize;
 
     if (markerName === 'pedestrian_crossing' || markerName === 'traffic_signals') {
@@ -76,7 +76,6 @@ export class BaseLayerManager {
     } else {
       iconSize = 25;
     }
-
     return marker([lat, long], {
       icon: icon({
         iconSize: [iconSize, iconSize],

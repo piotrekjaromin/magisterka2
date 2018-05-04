@@ -1,4 +1,4 @@
-import {geoJSON, icon, LayerGroup, marker, Marker} from 'leaflet';
+import {icon, LayerGroup, marker, Marker} from 'leaflet';
 import {GeometryOperations} from './geometryOperations';
 import {Mathematical} from './mathematical';
 import {CustomMarker} from '../models/customMarker';
@@ -26,10 +26,6 @@ export class BoundingBox {
     return objectsGeoModel;
   }
 
-  public static boundingBoxLayer(objects: Geojsonmodel, distanceInMeters: number) {
-    return geoJSON(JSON.parse(JSON.stringify(this.getBoundingBox(objects, distanceInMeters))));
-  }
-
   public static getStreetContainsBoundingBox(objects: Geojsonmodel, distanceInMeters: number, streetFeatures: [Feature]) {
     const boundingBoxFeatures = this.getBoundingBox(objects, distanceInMeters).features;
     // const allStreetFeatures = this.dataService.getOnlyStreet(this.data).features;
@@ -51,7 +47,6 @@ export class BoundingBox {
         this.prepareMarker(coordinate[1], coordinate[0], '10')
           .on('click', (data) => console.log(data)));
     }
-    this.getCombinedBoundingBox(objects, distanceInMeters);
     return new LayerGroup(markers);
   }
 

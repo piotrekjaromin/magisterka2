@@ -77,14 +77,14 @@ export class OneDimension {
           const beforeCoordinates = GeometryOperations.getCoordinatesBeforePoint([customMarker.lat, customMarker.long], feature.geometry.coordinates, 50);
 
           markers.push(
-            this.prepareMarker(beforeCoordinates[1], beforeCoordinates[0], feature.markers[0].speed.toString())
+            BaseLayerManager.prepareMarker(beforeCoordinates[1], beforeCoordinates[0], feature.markers[0].speed.toString())
               .on('click', (data) => console.log(1)));
 
           // if (Mathematical.getDistanceBetweenPointAndEndOfRoad([customMarker.lat, customMarker.long], Mathematical.revertCoordinates(feature.geometry.coordinates)) > 100) {
           const afterCoordinates = GeometryOperations.getCoordinatesAfterPoint([customMarker.lat, customMarker.long], feature.geometry.coordinates, 10);
 
           markers.push(
-            this.prepareMarker(afterCoordinates[1], afterCoordinates[0], feature.properties.defaultSpeedLimit)
+            BaseLayerManager.prepareMarker(afterCoordinates[1], afterCoordinates[0], feature.properties.defaultSpeedLimit)
               .on('click', (data) => console.log(2)));
           // }
         }
@@ -98,28 +98,10 @@ export class OneDimension {
 
     for (const markerFeature of this.getMarkers(type, allStreetWithObjects)) {
       markers.push(
-        this.prepareMarker(markerFeature.long, markerFeature.lat, type)
+        BaseLayerManager.prepareMarker(markerFeature.long, markerFeature.lat, type)
           .on('click', (data) => console.log(type)));
     }
     return new LayerGroup(markers);
-  }
-
-  private static prepareMarker(lat: number, long: number, markerName: string) {
-    let iconSize;
-
-    if (markerName === 'pedestrian_crossing' || markerName === 'traffic_signals') {
-      iconSize = 16;
-    } else {
-      iconSize = 25;
-    }
-
-    return marker([lat, long], {
-      icon: icon({
-        iconSize: [iconSize, iconSize],
-        iconAnchor: [0, 0],
-        iconUrl: 'assets/' + markerName + '.png'
-      })
-    });
   }
 
   private static getMarkers(type: string, allStreetWithObjects: Geojsonmodel) {

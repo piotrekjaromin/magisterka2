@@ -194,11 +194,43 @@ Najczęściej przystanki autobusowe i tramwajowe znajdują się na drogach o nie
 \newpage
 \section{Liczba pasów ruchu}
 
+Maksymalna dozwolona prędkość jest zależna również od liczby pasów ruchu. Im jest ich więcej, tym większą prędkość można rozwijać. Dlatego algorytm zwiększa dopuszczalną prędkość o 10 km/h w przypadku gdy liczba pasów ruchu jest większa niż jeden. Na rys \ref{sec:laneNumber} zostały zaznaczone ulice, których liczba pasów ruchu wynosi przynajmniej 2, oraz prędkości nie uwzględniające pasów ruchu. 
+
+\begin{figure}[h]
+\caption{Prędkość przy nie uwgzględnieniu liczby pasów ruchu}
+\label{sec:laneNumber}
+\centering
+\includegraphics[width=0.9\textwidth]{laneNumber}
+\end{figure}
+
+\newpage
+Na rys. \ref{sec:laneNumberAfter} zostały przedstawione prędkości już z uwzlędnioną liczbą pasów ruchu.
+\begin{figure}[h]
+\caption{Prędkość uwzględniająca liczbę pasów ruchu}
+\label{sec:laneNumberAfter}
+\centering
+\includegraphics[width=0.9\textwidth]{laneNumberAfter}
+\end{figure}
 
 \newpage
 \section{Rodzaj drogi}
+Algorytm rozróżnia sześć podstawowych typów dróg, w skład których wchodzą:
+\begin{itemize}
+\item dojazdowe
+\item lokalne
+\item główne
+\item główne przyspieszonego ruchu
+\item ekspresowe
+\item autostrady
+\end{itemize}
 
-
+Dla dróg dojazdowych i lokalnych ograniczenie prędkość wyznaczone przez algorytm wynosi 30 km/h. Dla dróg głównych ograniczenie prędkości wynosi 70 km/h, dla dróg głównych przyspieszonego ruchu 80 km/h, natomiast dla dróg ekspresowych 120 km/h oraz dla autostrad 140 km/h. Ograniczenia prędkości ze względu na typ drogi zostały przedstawione na rys \ref{sec:typeOfRoad}
+\begin{figure}[h]
+\caption{Ograniczenie prędkości w zależności od rodzajów dróg}
+\label{sec:typeOfRoad}
+\centering
+\includegraphics[width=0.7\textwidth]{typeOfRoad}
+\end{figure}
 \newpage
 \section{Płynna zmiana prędkości pojazdów}
 

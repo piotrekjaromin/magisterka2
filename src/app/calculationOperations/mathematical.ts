@@ -17,6 +17,15 @@ export class Mathematical {
     return result === 0;
   }
 
+  public static checkIfPointInRectangle(point: [number, number], rectangle: [[number, number]]) {
+    if (rectangle[0][0][0] <= point[0] && point[0] <= rectangle[0][1][0]) {
+      if (rectangle[0][0][1] <= point[1] && point[1] <= rectangle[0][2][1]) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   // https://stackoverflow.com/questions/910882/how-can-i-tell-if-a-point-is-nearby-a-certain-line
   public static distanceBetweenPointAndStreet(point1: [number, number], point2: [number, number],  point0: [number, number]) {
     const first = ((point2[0] - point1[0]) * (point1[1] - point0[1]) )

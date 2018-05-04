@@ -90,4 +90,23 @@ export class GeometryOperations {
     return [[minLong, minLat], [maxLong, minLat], [maxLong, maxLat], [minLong, maxLat], [minLong, minLat]];
   }
 
+  // tylko bardzo blisko wspolrzedne
+  public static calculateCoordinatesBetweenPoint(streetCoordinates: [[number, number]], point: [number, number]) {
+    let xToCalculate = 0;
+    let yToCalculate = 0;
+    for (let i = 0; i < streetCoordinates.length - 1; i++) {
+      if (Mathematical.isBetweenPoint(streetCoordinates[i][0], streetCoordinates[i + 1][0], point[0]) && Mathematical.isBetweenPoint(streetCoordinates[i][1], streetCoordinates[i + 1][1], point[1])) {
+        xToCalculate = streetCoordinates[i][0] + 0.00000001;
+        if (! Mathematical.isBetweenPoint(streetCoordinates[i][0], streetCoordinates[i + 1][0], xToCalculate)) {
+          xToCalculate = streetCoordinates[i][0] - 0.00000001;
+        }
+        yToCalculate = streetCoordinates[i][1] + 0.00000001;
+        if (! Mathematical.isBetweenPoint(streetCoordinates[i][1], streetCoordinates[i + 1][1], yToCalculate)) {
+          yToCalculate = streetCoordinates[i][1] - 0.00000001;
+        }
+      }
+    }
+    return [xToCalculate, yToCalculate];
+  }
+
 }
