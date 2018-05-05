@@ -5,8 +5,6 @@ import {Geojsonmodel} from '../models/geojsonmodel';
 import {TwoDimensions} from '../mapObjects/twoDimensions';
 import {OneDimension} from '../mapObjects/oneDimension';
 import {OtherObjects} from '../mapObjects/otherObjects';
-import {BoundingBox} from '../calculationOperations/boundingBox';
-import {Mathematical} from '../calculationOperations/mathematical';
 
 export class FileLayerManager {
   public layersControl: any;
@@ -21,9 +19,9 @@ export class FileLayerManager {
     this.allStreetWithObjects = OneDimension.addAllObjectsToStreets(dataService, data);
     this.all2dObjects = TwoDimensions.prepare2dObjects(dataService, data);
 
-    TwoDimensions.add2dObjectToStreet('bus_stop', this.allStreetWithObjects, 5, this.all2dObjects);
-    TwoDimensions.add2dObjectToStreet('school', this.allStreetWithObjects, 30, this.all2dObjects);
-    TwoDimensions.add2dObjectToStreet('shops_churches', this.allStreetWithObjects, 30, this.all2dObjects);
+    TwoDimensions.add2dObjectToStreet('bus_stop', 30, this.allStreetWithObjects, 5, this.all2dObjects);
+    TwoDimensions.add2dObjectToStreet('school', 30,  this.allStreetWithObjects, 30, this.all2dObjects);
+    TwoDimensions.add2dObjectToStreet('shops_churches', 40,  this.allStreetWithObjects, 30, this.all2dObjects);
 
     this.options = BaseLayerManager.prepareOptions(BaseLayerManager.prepareMainLayer());
 
@@ -34,7 +32,7 @@ export class FileLayerManager {
       this.dataService.getOneWayRoads(this.data),
       this.dataService.getTwoWaysRoads(this.data));
     const overlaysMapOneDimension =  OneDimension.createLayers(['pedestrian_crossing', 'rail_crossing', 'traffic_signal'], this.allStreetWithObjects);
-    const overlaysMapTwoDimensions = TwoDimensions.createLayers([['bus_stop', 5], ['school', 30], ['shops_churches', 30]], this.all2dObjects, this.allStreetWithObjects);
+    const overlaysMapTwoDimensions = TwoDimensions. createLayers([['bus_stop', 5], ['school', 30], ['shops_churches', 30]], this.all2dObjects, this.allStreetWithObjects);
     const overlaysMapTwoDimensionsPoint = TwoDimensions.createLayersOnlyPoints(['bus_stop', 'school', 'shops_churches'], this.allStreetWithObjects);
     const overlaysMapOther = OtherObjects.prepareOtherLayers(this.allStreetWithObjects);
 

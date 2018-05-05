@@ -18,6 +18,7 @@ export class Mathematical {
   }
 
   public static checkIfPointInRectangle(point: [number, number], rectangle: [[number, number]]) {
+
     if (rectangle[0][0][0] <= point[0] && point[0] <= rectangle[0][1][0]) {
       if (rectangle[0][0][1] <= point[1] && point[1] <= rectangle[0][2][1]) {
         return true;
@@ -48,20 +49,18 @@ export class Mathematical {
 
   public static getDistanceBetweenPointAndEndOfRoad(point: [number, number], streetCoordinates: [[number, number]]) {
     let result = 0;
-    let flag = false;
     for (let i = 0; i < streetCoordinates.length - 1; i++) {
       if (this.isBetweenPoint(streetCoordinates[i][0], streetCoordinates[i + 1][0], point[0])
         && this.isBetweenPoint(streetCoordinates[i][1], streetCoordinates[i + 1][1], point[1])) {
 
         result += this.distanceBetweenPoints(point, [streetCoordinates[i + 1][0], streetCoordinates[i + 1][1]]);
 
-        if (flag) {
+        for (let j = i + 1; j < streetCoordinates.length - 1; j++) {
           result += this.distanceBetweenPoints(
-            [streetCoordinates[i][0], streetCoordinates[i][1]],
-            [streetCoordinates[i + 1][0], streetCoordinates[i + 1][1]]);
+            [streetCoordinates[j][0], streetCoordinates[j][1]],
+            [streetCoordinates[j + 1][0], streetCoordinates[j + 1][1]]);
         }
-
-        flag = true;
+        return result;
       }
     }
     return result;
@@ -87,7 +86,7 @@ export class Mathematical {
   public static getCrossPointOfRoadAndRectangle(road: Geometry, rectangle: Geometry) {
     const result = <[[number, number]]>[];
 
-    for (let i = 0; i < road.coordinates.length - 1; i++) {
+    for (let i = 0; i < road.coordinates.length - 2; i++) {
 
       const x1 = road.coordinates[i][0];
       const y1 = road.coordinates[i][1];
@@ -95,6 +94,35 @@ export class Mathematical {
       const y2 = road.coordinates[i + 1][1];
 
       for (let j = 0; j < rectangle.coordinates[0].length - 1; j++) {
+        const tmp = rectangle.coordinates[0];
+        const x3 = tmp[j][0];
+        const y3 = tmp[j][1];
+        const x4 = tmp[j + 1][0];
+        const y4 = tmp[j + 1][1];
+        const crossPoint = this.getCrossPoint([[x1, y1], [x2, y2]], [[x3, y3], [x4, y4]]);
+        if (this.checkIfPointIsBetweenPoints([x1, y1], [x2, y2], crossPoint) === true) {
+          if (this.checkIfPointIsBetweenPoints([x3, y3], [x4, y4], crossPoint) === true) {
+            result.push(crossPoint);
+          }
+        }
+      }
+    }
+    return result;
+  }
+
+  public static getCrossPointOfRoadAndRectangle2(road: Geometry, rectangle: Geometry) {
+    const result = <[[number, number]]>[];
+    console.log(road.coordinates.length)
+    console.log(rectangle.coordinates[0].length);
+
+    for (let i = 0; i < road.coordinates.length - 2; i++) {
+
+      const x1 = road.coordinates[i][0];
+      const y1 = road.coordinates[i][1];
+      const x2 = road.coordinates[i + 1][0];
+      const y2 = road.coordinates[i + 1][1];
+
+      for (let j = 0; j < rectangle.coordinates[0].length - 2; j++) {
         const tmp = rectangle.coordinates[0];
         const x3 = tmp[j][0];
         const y3 = tmp[j][1];

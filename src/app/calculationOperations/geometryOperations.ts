@@ -4,7 +4,7 @@ import {Feature} from '../models/feature';
 import {DataService} from '../services/data.service';
 
 export class GeometryOperations {
-  public static getCoordinatesBeforePoint(point: [number, number], streetCoordinates: [[number, number]], distanceBefore: number): [number, number] {
+  public static getCoordinatesBeforePoint2(point: [number, number], streetCoordinates: [[number, number]], distanceBefore: number): [number, number] {
     for (let i = 0; i < streetCoordinates.length - 1; i++) {
       if (Mathematical.isBetweenPoint(streetCoordinates[i][0], streetCoordinates[i + 1][0], point[0])
         && Mathematical.isBetweenPoint(streetCoordinates[i][1], streetCoordinates[i + 1][1], point[1])) {
@@ -40,7 +40,7 @@ export class GeometryOperations {
     return [-1, -1];
   }
 
-  public static getCoordinatesAfterPoint(point: [number, number], streetCoordinates: [[number, number]], distanceAfter: number): [number, number] {
+  public static getCoordinatesAfterPoint2(point: [number, number], streetCoordinates: [[number, number]], distanceAfter: number): [number, number] {
     const reversedCoordinates = Mathematical.revertCoordinates(streetCoordinates);
     return this.getCoordinatesBeforePoint(point, reversedCoordinates, distanceAfter);
   }
@@ -90,23 +90,64 @@ export class GeometryOperations {
     return [[minLong, minLat], [maxLong, minLat], [maxLong, maxLat], [minLong, maxLat], [minLong, minLat]];
   }
 
-  // tylko bardzo blisko wspolrzedne
-  public static calculateCoordinatesBetweenPoint(streetCoordinates: [[number, number]], point: [number, number]) {
-    let xToCalculate = 0;
-    let yToCalculate = 0;
+  public static getCoordinatesAfterPoint(point: [number, number], streetCoordinates: [[number, number]], distanceInMeters: number) {
     for (let i = 0; i < streetCoordinates.length - 1; i++) {
-      if (Mathematical.isBetweenPoint(streetCoordinates[i][0], streetCoordinates[i + 1][0], point[0]) && Mathematical.isBetweenPoint(streetCoordinates[i][1], streetCoordinates[i + 1][1], point[1])) {
-        xToCalculate = streetCoordinates[i][0] + 0.00000001;
-        if (! Mathematical.isBetweenPoint(streetCoordinates[i][0], streetCoordinates[i + 1][0], xToCalculate)) {
-          xToCalculate = streetCoordinates[i][0] - 0.00000001;
+      if (Mathematical.checkIfPointIsBetweenPoints(streetCoordinates[i], streetCoordinates[i + 1], point)) {
+        while (true) {
+          if (Mathematical.distanceBetweenPoints(point, streetCoordinates[i + 1]) >= distanceInMeters) {
+            return this.getCoordinatesOfPointAfterDistance(point, streetCoordinates[i + 1], distanceInMeters);
+          } else {
+            if (i >= streetCoordinates.length - 2) {
+              return streetCoordinates[streetCoordinates.length - 1];
+            }
+            distanceInMeters = distanceInMeters - Mathematical.distanceBetweenPoints(point, streetCoordinates[i + 1]);
+            i = i + 1;
+            point = streetCoordinates[i];
+          }
         }
-        yToCalculate = streetCoordinates[i][1] + 0.00000001;
-        if (! Mathematical.isBetweenPoint(streetCoordinates[i][1], streetCoordinates[i + 1][1], yToCalculate)) {
-          yToCalculate = streetCoordinates[i][1] - 0.00000001;
-        }
+        // console.log('distance: ' + distanceInMeters + ' ' +Mathematical.distanceBetweenPoints(streetCoordinates[i], result));
       }
     }
-    return [xToCalculate, yToCalculate];
+    console.log('error')
+    return [-1, -1];
+  }
+
+  public static getCoordinatesBeforePoint(point: [number, number], streetCoordinates: [[number, number]], distanceAfter: number): [number, number] {
+    const reversedCoordinates = Mathematical.revertCoordinates(streetCoordinates);
+    return this.getCoordinatesAfterPoint(point, reversedCoordinates, distanceAfter);
+  }
+
+  private static getCoordinatesOfPointAfterDistance(coordinatesFrom: [number, number], coordinatesTo: [number, number], distanceInMeters: number) {
+    let pointFrom = coordinatesFrom;
+    let pointTo = coordinatesTo;
+    let result;
+    let distance;
+    let counter = 0;
+    while ( true ) {
+      counter++;
+      result = this.getMidpointBetweenTwoPoint(pointFrom, pointTo);
+      distance = Mathematical.distanceBetweenPoints(<any>pointFrom, <any>result);
+      if (distance <= distanceInMeters + 0.1 && distance >= distanceInMeters) {
+        console.log('finish');
+        return result;
+      } else if (distance >= distanceInMeters + 0.1 ) {
+        console.log('+');
+        pointTo = <any>result;
+      } else if (distance < distanceInMeters - 0.1) {
+        console.log('-');
+        pointFrom = <any>result;
+        distanceInMeters = distanceInMeters - distance;
+      }
+      if (counter > 50) {
+        return result;
+      }
+    }
+  }
+
+  public static getMidpointBetweenTwoPoint(pointFrom: [number, number], pointTo: [number, number]) {
+    const xResult = (pointFrom[0] + pointTo[0]) / 2;
+    const yResult = (pointFrom[1] + pointTo[1]) / 2;
+    return [xResult, yResult];
   }
 
 }

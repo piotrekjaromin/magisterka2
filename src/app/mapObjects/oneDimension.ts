@@ -72,22 +72,20 @@ export class OneDimension {
 
     for (const feature of features) {
       for (const customMarker of feature.markers) {
-        if (+feature.properties.defaultSpeedLimit > customMarker.speed) {
-
+         if (+feature.properties.defaultSpeedLimit > customMarker.speed) {
           const beforeCoordinates = GeometryOperations.getCoordinatesBeforePoint([customMarker.lat, customMarker.long], feature.geometry.coordinates, 50);
-
           markers.push(
             BaseLayerManager.prepareMarker(beforeCoordinates[1], beforeCoordinates[0], feature.markers[0].speed.toString())
               .on('click', (data) => console.log(1)));
 
-          // if (Mathematical.getDistanceBetweenPointAndEndOfRoad([customMarker.lat, customMarker.long], Mathematical.revertCoordinates(feature.geometry.coordinates)) > 100) {
-          const afterCoordinates = GeometryOperations.getCoordinatesAfterPoint([customMarker.lat, customMarker.long], feature.geometry.coordinates, 10);
+          if (Mathematical.getDistanceBetweenPointAndEndOfRoad([customMarker.lat, customMarker.long], feature.geometry.coordinates) > 100) {
+            const afterCoordinates = GeometryOperations.getCoordinatesAfterPoint([customMarker.lat, customMarker.long], feature.geometry.coordinates, 10);
 
-          markers.push(
-            BaseLayerManager.prepareMarker(afterCoordinates[1], afterCoordinates[0], feature.properties.defaultSpeedLimit)
-              .on('click', (data) => console.log(2)));
-          // }
-        }
+            markers.push(
+              BaseLayerManager.prepareMarker(afterCoordinates[1], afterCoordinates[0], feature.properties.defaultSpeedLimit)
+                .on('click', (data) => console.log(2)));
+            }
+         }
       }
     }
     return new LayerGroup(markers);

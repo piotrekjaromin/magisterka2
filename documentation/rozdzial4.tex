@@ -153,6 +153,7 @@ Algorytm umieszcza znaki ograniczenia prędkości w następujący spasób:
 \item 50m przed sygnalizacją na drodze z ograniczeniem prędkości do 60 km/h
 \item 150m przed sygnalizacją na drodze z ograniczeniem prędkości powyżej 60 km/h
 \item w przypadku drogi dwukierunkowej, zarówno przed, jak i za przejazdem
+\item bezpośrednio za przejazdem zostanie ustawiony znak przywracającą poprzednie ograniczenie prędkości, za wyjątkiem sytuacji, gdy droga za sygnalizacją świetlną jest krótsza niż 100m. W takim wypadku, nie ma sensu zmieniać prędkości.
 \end{itemize}
 
 
@@ -162,7 +163,7 @@ Rys. \ref{sec:znakiSwiatla} obrazuje fragment skrzyżowania na której znajduje 
 \caption{Ograniczenie predkości przed i za światłami drogowymi}
 \label{sec:znakiSwiatla}
 \centering
-\includegraphics[width=0.8\textwidth]{speedBeforeSignals}
+\includegraphics[width=0.6\textwidth]{speedBeforeSignals}
 \end{figure}
 
 \newpage
@@ -181,16 +182,58 @@ Na rys. \ref{sec:busStopBorder} zostały przedstawione przystanki autobusowe i t
 \newpage
 \subsection{Wyznaczanie prędkości i umieszczanie jej w odpowiednim miejscu na mapie}
 
-Najczęściej przystanki autobusowe i tramwajowe znajdują się na drogach o niezbyt wysokiej dopuszczalnej prędkości. W przypadku gdy dopuszczalna prędkość na drodze nie przekracza 30 km/h, nie ma sensu stawiać znak. W przypadku większej prędkości znak zostanie postawiony w odległości 20 metrów od powiększonego obszaru wokół przystanku, a znak przywracający poprzednią prędkość zaraz za nim. Opisana sytuacja została przedstawiona na rys. ...
+Najczęściej przystanki autobusowe i tramwajowe znajdują się na drogach o niezbyt wysokiej dopuszczalnej prędkości. W przypadku gdy dopuszczalna prędkość na drodze nie przekracza 30 km/h. nie ma sensu stawiać znaku. W przypadku większej prędkości znak zostanie postawiony w odległości 50 metrów od powiększonego obszaru wokół przystanku w przypadku gdy dopuszczalna prędkość nie przekracza 60 km/h. W przeciwnym razie znak zostanie postawiony w odległości 150 metrów. Znak przywracający poprzednią prędkość zaraz za nim. Opisana sytuacja została przedstawiona na rys. \ref{sec:busStopSpeed}
+
+\begin{figure}[h]
+\caption{Rozmieszczenie znaków w okolicy przystanków autobusowych}
+\label{sec:busStopSpeed}
+\centering
+\includegraphics[width=0.9\textwidth]{busStopSpeed}
+\end{figure}
 
 \newpage
-\section{Szkoły i miesca zabaw}
+\section{Szkoły i miejsca zabaw}
 
+Podobnie jak miało to miejsce w przypadku przystanków komunikacji miejskiej, dopuszczalna prędkość, z jaką pojazdy mogą się przenieszczać w pobliżu szkół, placów zabaw lub innych miejsc, przy których mogą znajdować się osoby niepełnoletnie, wynosi 30 km/h. Jest to niezbędne minimal, aby kierowca zdążył zareagować na czas. Rys. \ref{sec:schoolBorder} po lewej stronie przedstawia przedstawia przedszkole z placem zabaw przylegającym do niego. Natomiast po prawej znajduje się szkoła podstawowa otoczony wokół niej teren. Jak widać, zostały zaznaczone minimalnym obszarem pokrywającym, powiększonym dodatkowo o 30 metrów z każdej strony
+
+\begin{figure}[h]
+\caption{Szkoły i miejsca zabaw}
+\label{sec:schoolBorder}
+\centering
+\includegraphics[width=0.9\textwidth]{schoolsBorder}
+\end{figure}
+
+\newpage
+\subsection{Wyznaczanie prędkości i umieszczanie jej w odpowiednim miejscu na mapie}
+
+Znaki ograniczające dopuszczalną prędkość zostają ustawione w odległości 50 metrów, w przypadku gdy szkoła, znajduje się w poblizu drogi z ograniczeniem prędkości do 60 km/h. Powyżej tej prędkości znaki zostają umieszczone w odległości 150m. Jest ono umieszczane tylko wtedy, gdy ograniczenie prędkości na drodze jest większe niż 30 km/h. Znak przywrocenia poprzedniego ograniczenia prędkości jest umieszczany bezpośrednio po obszarze w którym znajduje się szkoła. Zostało to przedstawione na rys. \ref{sec:schoolsSpeed}.
+
+\begin{figure}[h]
+\caption{Szkoły i miejsca zabaw}
+\label{sec:schoolsSpeed}
+\centering
+\includegraphics[width=0.95\textwidth]{schoolsSpeed}
+\end{figure}
 
 \newpage
 \section{Sklepy i miejsca kultów religijnych}
 
+\begin{figure}[h]
+\caption{Szkoły i miesjca religijne}
+\label{sec:shopsBorder}
+\centering
+\includegraphics[width=0.9\textwidth]{shopsBorder}
+\end{figure}
 
+\newpage
+\subsection{Wyznaczanie prędkości i umieszczanie jej w odpowiednim miejscu na mapie}
+
+\begin{figure}[h]
+\caption{Szkoły i miesjca religijne}
+\label{sec:shopsSpeed}
+\centering
+\includegraphics[width=0.9\textwidth]{shopsSpeed}
+\end{figure}
 \newpage
 \section{Liczba pasów ruchu}
 
@@ -231,18 +274,15 @@ Dla dróg dojazdowych i lokalnych ograniczenie prędkość wyznaczone przez algo
 \centering
 \includegraphics[width=0.7\textwidth]{typeOfRoad}
 \end{figure}
+
+\newpage
+\section{Zakręty}
+
 \newpage
 \section{Płynna zmiana prędkości pojazdów}
 
 
 \newpage
-\section{Historia wypadków}
-
-
-\newpage
-\section{Zakręty}
-
-
 \section{Umiejscowienie znaków na drodze}
 \label{sec:speedLimitLocalization}
 Znaki drogowe ograniczenia prędkości są ustawione według następujących kryteriów:

@@ -210,11 +210,17 @@ export class DataService {
     const result: Geojsonmodel = JSON.parse(JSON.stringify(geoModel));
     const features: [Feature] = result.features;
     const filteredFeatures: [Feature] = <[Feature]>[];
+    let counter = 0;
 
     for (const feature of features) {
       if ( feature.properties.highway === 'bus_stop'  || feature.properties.bus === 'yes') {
-        feature.properties.description = 'bus_stop';
-        filteredFeatures.push(feature);
+        // if (counter === 5) {
+          feature.properties.description = 'bus_stop';
+          filteredFeatures.push(feature);
+        //   break;
+       //  }
+        counter++;
+
       }
     }
     result.features = filteredFeatures;

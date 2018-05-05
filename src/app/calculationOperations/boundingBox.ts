@@ -26,28 +26,22 @@ export class BoundingBox {
     return objectsGeoModel;
   }
 
-  public static getStreetContainsBoundingBox(objects: Geojsonmodel, distanceInMeters: number, streetFeatures: [Feature]) {
-    const boundingBoxFeatures = this.getBoundingBox(objects, distanceInMeters).features;
-    // const allStreetFeatures = this.dataService.getOnlyStreet(this.data).features;
-    const allStreetFeatures = streetFeatures;
-    const coordinates: [[number, number]] = <[[number, number]]>[];
+  public static getStreetContainsBoundingBox(type: string, allStreetWithObjects: Geojsonmodel) {
 
-    for (const street of allStreetFeatures) {
-      for (const boundingBoxFeature of boundingBoxFeatures) {
-        for (const coordinate of Mathematical.getCrossPointOfRoadAndRectangle(street.geometry, boundingBoxFeature.geometry)) {
-          coordinates.push(coordinate);
+      const result = new Geojsonmodel('FeatureCollection', <[Feature]>[]);
+
+      for (const feature of allStreetWithObjects.features) {
+        if (feature.markers === undefined) {
+          continue;
+        }
+        for (const marker2 of feature.markers) {
+          if (marker2.type === type + '_start' || marker2.type === type + '_end') {
+            result.features.push(feature);
+            break;
+          }
         }
       }
-    }
-
-    const markers: [Marker] = <[Marker]>[];
-
-    for (const coordinate of coordinates) {
-      markers.push(
-        this.prepareMarker(coordinate[1], coordinate[0], '10')
-          .on('click', (data) => console.log(data)));
-    }
-    return new LayerGroup(markers);
+      return result;
   }
 
   public static getCombinedBoundingBox(objects: Geojsonmodel, distanceInMeters: number) {

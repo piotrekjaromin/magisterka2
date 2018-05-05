@@ -44,7 +44,7 @@ export class TwoDimensions {
       result
         .set(type[0], BaseLayerManager.parseGeoJsonToGeojsonmodel(this.getObject(all2dObjects, type[0])))
         .set(type[0] + ' bounding box', BaseLayerManager.parseGeoJsonToGeojsonmodel(BoundingBox.getCombinedBoundingBox(this.getObject(all2dObjects, type[0]), type[1])))
-        .set(type[0] + ' street', BoundingBox.getStreetContainsBoundingBox(this.getObject(all2dObjects, type[0]), type[1], allStreetWithObjects.features));
+        .set(type[0] + ' street', BaseLayerManager.parseGeoJsonToGeojsonmodel(BoundingBox.getStreetContainsBoundingBox(type[0], allStreetWithObjects)));
     }
     return result;
   }
@@ -64,13 +64,12 @@ export class TwoDimensions {
     const markers: [Marker] = <[Marker]>[];
     const onlyStreetGeoModel: Geojsonmodel = OneDimension.getStreetsContains(type, allStreetWithObjects);
     const features = onlyStreetGeoModel.features;
-    console.log(features);
 
     for (const feature of features) {
       for (const customMarker of feature.markers) {
         if (customMarker.type === type) {
           markers.push(
-            BaseLayerManager.prepareMarker(customMarker.long, customMarker.lat, '20')
+            BaseLayerManager.prepareMarker(customMarker.long, customMarker.lat, '' + customMarker.speed)
               .on('click', (data) => customMarker));
         }
       }
@@ -78,38 +77,60 @@ export class TwoDimensions {
     return new LayerGroup(markers);
   }
 
-  public static add2dObjectToStreet(type: string, streets: Geojsonmodel, distance: number, all2dObjects: Geojsonmodel) {
+  public static add2dObjectToStreet(type: string, speed: number, streets: Geojsonmodel, distance: number, all2dObjects: Geojsonmodel) {
     let result = false;
-    let description = '';
     const boundingBoxObjects = BoundingBox.getCombinedBoundingBox(TwoDimensions.getObject(all2dObjects, type), distance);
     const boundingBoxesNotCombined = BoundingBox.getBoundingBox(TwoDimensions.getObject(all2dObjects, type), distance);
+    let counter = 0;
     for (const street of streets.features) {
+      if (speed >= +street.properties.defaultSpeedLimit) {
+        continue;
+      }
       for (const boundingBoxObject of boundingBoxObjects.features) {
+
         const numberOfCrossPoint = Mathematical.getCrossPointOfRoadAndRectangle(street.geometry, boundingBoxObject.geometry);
+
         for (const point of numberOfCrossPoint) {
-          const coordinatesAfter = GeometryOperations.calculateCoordinatesBetweenPoint(street.geometry.coordinates, point);
+          const coordinatesAfter = GeometryOperations.getCoordinatesAfterPoint(point, street.geometry.coordinates, 10);
+
           for (const notCombined of boundingBoxesNotCombined.features) {
             if (Mathematical.checkIfPointInRectangle(<any>coordinatesAfter, notCombined.geometry.coordinates)) {
               result = true;
             }
           }
-          if (result) {
-            description = type + '_start';
-          } else {
-            description = type + '_end';
-          }
+          const customMarker = this.prepareMarker(type, street, 30, result, point);
+          const customMarker2 = this.prepareMarker(type, street, 40, result, coordinatesAfter);
+          counter = counter + 50;
           result = false;
-
-          const customMarker = new CustomMarker(point[0], <any>point[1], description, Number(10));
           if (street.markers === undefined) {
             const customMarkers: [CustomMarker] = <[CustomMarker]>[];
             customMarkers.push(customMarker);
+         //   customMarkers.push(customMarker2);
             street.markers = customMarkers;
           } else {
             street.markers.push(customMarker);
+        //    street.markers.push(customMarker2);
           }
         }
       }
       }
   }
+
+  private static prepareMarker(type: string, street: Feature, speed: number, isStart: boolean, point: [number, number]) {
+    let coordinates;
+    if (isStart) {
+      type = type + '_start';
+      if (+street.properties.defaultSpeedLimit <= 60) {
+        coordinates = GeometryOperations.getCoordinatesBeforePoint(point, street.geometry.coordinates, 50);
+      } else {
+        coordinates = GeometryOperations.getCoordinatesBeforePoint(point, street.geometry.coordinates, 150);
+      }
+    } else {
+      speed = +street.properties.defaultSpeedLimit;
+      type = type + '_end';
+      coordinates = point;
+     }
+    return new CustomMarker(coordinates[0], coordinates[1], type, speed);
+  }
+
 }
