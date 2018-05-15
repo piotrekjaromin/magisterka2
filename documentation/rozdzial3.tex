@@ -485,7 +485,7 @@ Wynik powyższych krókow został przestawiony na rys. \ref{fig:mergedKrawedzieK
 
 \newpage
 \section{Znajdowanie punktów przecięcia drogi i powiększonego obszaru}
-
+\label{sec:ZnajdowaniePunktówPrzecięciaDrogiIPowiększonegoObszaru}
 W celu znalezienia punktów przecięcia, wykorzystam fakt, że droga reprezentowana jest zbiór odcinków.
 
 W pierwszej kolejności algorytm będzie iterował po zbiorze odcinków. Każdy odcinek lub bok obszaru reprezentowany jest przez dwie współrzędne:
@@ -541,6 +541,7 @@ y = \frac{(y_a - \frac{y_a - y_b}{x_a - x_b}x_a)(\frac{y_c - y_d}{x_c - x_d}) - 
 
 \newpage
 \section{Sprawdzanie, czy punkt przecięcia należy do odcinka}
+\label{sec:SprawdzanieCzyPunktPrzecięciaNależyDoOdcinka}
 
 W celu sprawdzenia, czy punkt przecięcia należy do odcinka, posłużę się własnością, że suma długości mierzonej od początku odcinka do danego punktu oraz od danego punktu, do końca odcinka jest równa całkowitej długości odcinka.
 
@@ -599,32 +600,98 @@ W niniejszej sekcji skupię się na rozwiązaniu problemu przyporządkowania obi
 \item miejsca kultu
 \end{itemize}
 
-
-W pierwszej kolejności algorytm znajduje minimalny obszar pokrywający (eng. minimum bounding box) dany obiekt. Dokładny opis został przedstawiony w sekcji \ref{sec:Wyznaczanieminimalnegoobszarupokrywającego}
-
-Następnie, następuje powiększenie wyznaczonego obszaru pokrywającego w celu poszerzenia strefy ograniczonej prędkości. Szczegóły znajdują się w sekcji \ref{sec:Powiększanie wyznaczonegoobszarupokrywającego}
-
-Po wykonaniu powyższych operacji, w celu optymalizacji algorytmu, następuje łączenie nachodzących na siebie powiększonych obszarów.  Zostało dokładnie omówione w sekcji \ref{sec:laczeniepowiekszonychobszarwwpokrywajacych}
-
-
-Ostatnim krokiem jest wyliczenie, które drogi znajdują się o obrębie danego obszaru. Należy zaznaczyć, że Open Street Map, w przypadku łuków czy zakrętów, przedstawia je jako zbiór odcinków. Możemy tutaj wyróżnić dwa przypadki:
+Algorytm przyporządkowania obiektów reprezentowanych przez wielokąty do poszczególnych dróg wygląda następująco.
+\begin{enumerate}
+\item W pierwszej kolejności algorytm znajduje minimalny obszar pokrywający (eng. minimum bounding box) dany obiekt. Dokładny opis został przedstawiony w sekcji \ref{sec:Wyznaczanieminimalnegoobszarupokrywającego}
+\item Następnie zostaje powiększony obszar wyznaczony w poprzednim kroku, w celu poszerzenia strefy ograniczonej prędkości. Szczegóły znajdują się w sekcji \ref{sec:Powiększanie wyznaczonegoobszarupokrywającego}
+\item Po wykonaniu powyższych operacji, w celu optymalizacji algorytmu, następuje łączenie nachodzących na siebie powiększonych obszarów.  Zostało dokładnie omówione w sekcji \ref{sec:laczeniepowiekszonychobszarwwpokrywajacych}
+\item kolejnym krokiem jest znalezienie punktu przecięcia drogi z powiększonym obszarem. Etap ten został podzielony na dwie części:
 \begin{itemize}
-\item żaden ze zbioru odcinków nie należy do danego obszaru
-\item jeden lub pewna część odcinków znajduje się w obrębie danego obszaru. W takiej sytuacji należy wyznaczyć wszystkie współrzędne przecięcia, a później określić interesujące nas fragmenty drogi.
+\item W pierwszej kolejności znajdujemy punkt przecięcia drogi i powiększonego obszaru. Opis w sekcji \ref{sec:ZnajdowaniePunktówPrzecięciaDrogiIPowiększonegoObszaru}
+\item Następnie sprawdzamy czy znaleziony punkt zawiera się w interesującej nas drodze. Szczegóły znajduja się w sekcji \ref{sec:SprawdzanieCzyPunktPrzecięciaNależyDoOdcinka}
 \end{itemize}
+\item Gdy został już wyliczony punkt przecięcia drogi i powiększonego obszaru, następuje sprawdzenie czy ten punkt jest początkiem, czy końcem strefy ograniczonej prędkości. Etam ten został podzielony na dwie części
+\begin{itemize}
+\item Najpierw obliczany współrzędne punku na drodze znajdującego się 1 metr od punktu przecięcia w kierunku zgodnym z ruchem jazdy. Do tego celu został wykorzystany wzór z rozdziału \ref{sec:pointCoordinatesFromAnotherPoint}.
+\item Dla wyznaczonego punktu sprawdzane jest, czy znajduje on w powiększonym obszare pokrywającym.
+\end{itemize}
+\item Jeśli wyznaczony punkt zawiera się w danym obszare, to znaczy ze punkt przecięcia jest początkiem strefy ograniczonej prędkości
+\item W przeciwnym wypadku punkt przecięcia jest zakończeniem strefy ograniczonej prędkości.
+\end{enumerate}
 
-
-
-
-\subsubsection{Wyznaczenie obszarów drogi znajdujących się w pobliżu danego obiektu}
-
-
-
-\newpage
+Na rys. \ref{sec:minBoundingBoxWay} została przedstawiona droga przebiegająca przez strefę ograniczonej prędkości. Punktem A zostało zaznaczone początek strefy, natomiast punktem B, jej koniec. 
 \begin{figure}[h]
 \caption{Droga przebiegająca przez wybrany obszar}
-\label{sec:fourthBB}
+\label{sec:minBoundingBoxWay}
 \centering
 \includegraphics[width=0.8\textwidth]{minBoundingBoxWay}
 \end{figure}
+
+\newpage
+
+\section{Obliczanie, po której stronie drogi znajduje się konkretny punkt}
+Algorytm obliczania po której stronie odcinka znajduje się dany punkt został opracowany następująco. Odcinek reprezentujący drogę posiada swój kierunek, dlatego traktowany będzie jako wektor AB. Opisana sytuacja została przedstawiona na rysunku \ref{sec:VectorPoint}
+
+
+\begin{figure}[h]
+\caption{Vektor reprezentujący odcinek drogi i punkt reprezentujący zakończenie następnego odcinka drogi}
+\label{sec:VectorPoint}
+\centering
+\includegraphics[width=0.45\textwidth]{vectorPoint}
+\end{figure}
+
+
+W celu obliczenia, po której stronie wektora znajduje się dany punkt, tworze wektor o początkowej współrzędnej równej początkowej współrzędnej wektora AB. Sytuacja została przedstawion na rys. \ref{sec:VectorVector}
+
+
+\begin{figure}[h]
+\caption{Wektor reprezentujący odcinek drogi i wektor}
+\label{sec:VectorVector}
+\centering
+\includegraphics[width=0.45\textwidth]{vectorVector}
+\end{figure}
+
+Współrzędne wektora AB wynoszą:
+\begin{equation}
+AB = (xb - xa, yb - ya, 0)
+\end{equation}
+
+
+Oraz współrzędne wektora AC wynoszą:
+\begin{equation}
+AC = (xc - xa, yc - ya, 0)
+\end{equation}
+
+Mając podane współrzędne obu wektorów, można wyliczyć iloczyn wektorowy: AB x AC:
+
+\begin{equation}
+AB \times AC = (0, 0, (xb - xa) * (yc - ya) - (yb - ya) * (xc - xa))
+\end{equation}
+gdzie wartość $xa * yb - xb * ya$ określa po której stronie wektora AB punkt C się znaduje w zależności od jej znaku. 
+
+\newpage
+\section{Wyznaczanie promienia skrętu dla zakrętów danej drogi}
+\label{sec:WyznaczaniePromieniaSkrętuDlaZakrętówDanejDrogi}
+
+Ostatnim czynnikiem wpływającym na algorym wyznaczania dopuszczalnej prędkości jest promień skrętu danego odcinka drogi. Jak opisywałem w poprzednich rozdziałach OpenStreetMap przedstawia drogę jako zbiór odcinków, dlatego algorytm wygląda następująco:
+\begin{enumerate}
+\item Bierzemy pierwszy i drugi odcinek drogi.
+\item Określamy w którą stronę skierowany jest zakręt
+\item Zapisujemy kolejne odcinki drogi skierowanej w są samą stronę
+\item Powtarzamy krok 3. dopóki:
+\begin{itemize}
+\item nie kończy się droga
+\item odcinek drogi jest dłuższy niż 30 metrów
+\item droga skręca w innym kierunku
+\end{itemize} 
+\item W przypadku gdy pierwszy lub ostatni odcinek są dłuższe niż 30 metrów, zostają skrócone do 30 metrów.
+\end{enumerate}
+
+Mając wyznaczony promień skrętu, algorytm obniża dopuszczalną prędkość:
+\begin{itemize}
+\item o 10 km/h w przypadku gdy promień skrętu jest z miedziału między 50 a 100 metrów
+\item o 20 km/h w przypadku gdy promień skrętu jest z miedziału między 100 a 200 metrów
+\item o 30 km/h w przypadku gdy promień skrętu jest powyżej 200 metrów
+\end{itemize}
+
 

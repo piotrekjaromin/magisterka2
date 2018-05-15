@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.3.3)  5 MAY 2018 20:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.3.3)  15 MAY 2018 20:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1900,32 +1900,32 @@ Overfull \hbox (45.52718pt too wide) in paragraph at lines 483--484
 <pointInSegment.png, id=176, 408.52625pt x 214.8025pt>
 File: pointInSegment.png Graphic file (type png)
 <use pointInSegment.png>
-Package pdftex.def Info: pointInSegment.png  used on input line 557. on input l
-ine 557.
+Package pdftex.def Info: pointInSegment.png  used on input line 558. on input l
+ine 558.
 Package pdftex.def Info: Requested size: 364.19667pt x 191.50465pt on input lin
-e 557.
+e 558.
 
-Underfull \hbox (badness 10000) in paragraph at lines 563--564
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 569--570
+Underfull \hbox (badness 10000) in paragraph at lines 564--565
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 574--575
+Underfull \hbox (badness 10000) in paragraph at lines 570--571
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 579--580
+Underfull \hbox (badness 10000) in paragraph at lines 575--576
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 580--581
 
  []
 
 [40 <./pointInSegment.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 585--586
+Underfull \hbox (badness 10000) in paragraph at lines 586--587
 
  []
 
@@ -1933,61 +1933,79 @@ Underfull \hbox (badness 10000) in paragraph at lines 585--586
 <minBoundingBoxWay.png, id=187, 659.46375pt x 428.60126pt>
 File: minBoundingBoxWay.png Graphic file (type png)
 <use minBoundingBoxWay.png>
-Package pdftex.def Info: minBoundingBoxWay.png  used on input line 628. on inpu
-t line 628.
+Package pdftex.def Info: minBoundingBoxWay.png  used on input line 627. on inpu
+t line 627.
 Package pdftex.def Info: Requested size: 364.19667pt x 236.70586pt on input lin
-e 628.
-) [43 <./minBoundingBoxWay.png>]
+e 627.
+ [43 <./minBoundingBoxWay.png>]
+<vectorPoint.png, id=193, 373.395pt x 394.47375pt>
+File: vectorPoint.png Graphic file (type png)
+<use vectorPoint.png>
+Package pdftex.def Info: vectorPoint.png  used on input line 640. on input line
+ 640.
+Package pdftex.def Info: Requested size: 204.85846pt x 216.4195pt on input line
+ 640.
+<vectorVector.png, id=194, 373.395pt x 382.42876pt>
+File: vectorVector.png Graphic file (type png)
+<use vectorVector.png>
+Package pdftex.def Info: vectorVector.png  used on input line 651. on input lin
+e 651.
+Package pdftex.def Info: Requested size: 204.85846pt x 209.81126pt on input lin
+e 651.
+
+Underfull \vbox (badness 5578) has occurred while \output is active []
+
+ [44 <./vectorPoint.png> <./vectorVector.png>] [45]) [46]
 \openout2 = `rozdzial4.aux'.
 
- (./rozdzial4.tex [44
+ (./rozdzial4.tex
+Rozdzia\l  4.
+[47
 
 
 
 ]
-Rozdzia\l  4.
-[45]
-<PrzejscieDrogi.png, id=199, 671.50874pt x 529.98pt>
+<PrzejscieDrogi.png, id=209, 671.50874pt x 529.98pt>
 File: PrzejscieDrogi.png Graphic file (type png)
 <use PrzejscieDrogi.png>
 Package pdftex.def Info: PrzejscieDrogi.png  used on input line 25. on input li
 ne 25.
 Package pdftex.def Info: Requested size: 409.71692pt x 323.36009pt on input lin
 e 25.
- [46 <./PrzejscieDrogi.png>]
-<pedestrian_speed.png, id=204, 920.43875pt x 715.67375pt>
+ [48 <./PrzejscieDrogi.png>]
+<pedestrian_speed.png, id=214, 920.43875pt x 715.67375pt>
 File: pedestrian_speed.png Graphic file (type png)
 <use pedestrian_speed.png>
 Package pdftex.def Info: pedestrian_speed.png  used on input line 49. on input 
 line 49.
 Package pdftex.def Info: Requested size: 318.66948pt x 247.78133pt on input lin
 e 49.
- [47 <./pedestrian_speed.png>] [48]
-<surfaceType.png, id=212, 557.08125pt x 532.99126pt>
+ [49 <./pedestrian_speed.png>] [50]
+<surfaceType.png, id=224, 557.08125pt x 532.99126pt>
 File: surfaceType.png Graphic file (type png)
 <use surfaceType.png>
 Package pdftex.def Info: surfaceType.png  used on input line 79. on input line 
 79.
 Package pdftex.def Info: Requested size: 409.71692pt x 392.0082pt on input line
  79.
- [49 <./surfaceType.png>]
-<railCrossing.png, id=218, 808.01875pt x 610.28pt>
+ [51 <./surfaceType.png>]
+<railCrossing.png, id=229, 808.01875pt x 610.28pt>
 File: railCrossing.png Graphic file (type png)
 <use railCrossing.png>
 Package pdftex.def Info: railCrossing.png  used on input line 95. on input line
  95.
 Package pdftex.def Info: Requested size: 455.24411pt x 343.84038pt on input lin
 e 95.
- [50 <./railCrossing.png>]
-<streetBeforeRail.png, id=224, 679.53876pt x 588.1975pt>
+ [52 <./railCrossing.png>]
+<streetBeforeRail.png, id=234, 679.53876pt x 588.1975pt>
 File: streetBeforeRail.png Graphic file (type png)
 <use streetBeforeRail.png>
 Package pdftex.def Info: streetBeforeRail.png  used on input line 123. on input
  line 123.
 Package pdftex.def Info: Requested size: 273.14923pt x 236.43262pt on input lin
 e 123.
- [51 <./streetBeforeRail.png>]
-<traffic_sight.png, id=229, 883.3pt x 612.2875pt>
+ [53 <./streetBeforeRail.png>]
+<traffic_sight.png, id=239, 883.3pt x 612.2875pt>
 File: traffic_sight.png Graphic file (type png)
 <use traffic_sight.png>
 Package pdftex.def Info: traffic_sight.png  used on input line 138. on input li
@@ -1999,104 +2017,109 @@ Overfull \hbox (45.52718pt too wide) in paragraph at lines 138--139
  [][] 
  []
 
-[52 <./traffic_sight.png>]
-<speedBeforeSignals.png, id=234, 502.87875pt x 540.0175pt>
+[54 <./traffic_sight.png>]
+<speedBeforeSignals.png, id=244, 502.87875pt x 540.0175pt>
 File: speedBeforeSignals.png Graphic file (type png)
 <use speedBeforeSignals.png>
 Package pdftex.def Info: speedBeforeSignals.png  used on input line 166. on inp
 ut line 166.
 Package pdftex.def Info: Requested size: 273.14923pt x 293.31902pt on input lin
 e 166.
- [53 <./speedBeforeSignals.png>]
-<busStopBorder.png, id=239, 681.54625pt x 638.385pt>
+ [55 <./speedBeforeSignals.png>]
+<busStopBorder.png, id=250, 681.54625pt x 638.385pt>
 File: busStopBorder.png Graphic file (type png)
 <use busStopBorder.png>
 Package pdftex.def Info: busStopBorder.png  used on input line 178. on input li
 ne 178.
 Package pdftex.def Info: Requested size: 409.71692pt x 383.77426pt on input lin
 e 178.
- [54 <./busStopBorder.png>]
-<busStopSpeed.png, id=244, 597.23125pt x 593.21625pt>
+ [56 <./busStopBorder.png>]
+<busStopSpeed.png, id=255, 597.23125pt x 593.21625pt>
 File: busStopSpeed.png Graphic file (type png)
 <use busStopSpeed.png>
 Package pdftex.def Info: busStopSpeed.png  used on input line 191. on input lin
 e 191.
 Package pdftex.def Info: Requested size: 409.71692pt x 406.9662pt on input line
  191.
- [55 <./busStopSpeed.png>]
-<schoolsBorder.png, id=250, 570.13pt x 652.4375pt>
+ [57 <./busStopSpeed.png>]
+<schoolsBorder.png, id=260, 570.13pt x 652.4375pt>
 File: schoolsBorder.png Graphic file (type png)
 <use schoolsBorder.png>
 Package pdftex.def Info: schoolsBorder.png  used on input line 203. on input li
 ne 203.
 Package pdftex.def Info: Requested size: 409.71692pt x 468.8686pt on input line
  203.
- [56 <./schoolsBorder.png>]
-<schoolsSpeed.png, id=255, 746.79pt x 662.475pt>
+ [58 <./schoolsBorder.png>]
+<schoolsSpeed.png, id=265, 746.79pt x 662.475pt>
 File: schoolsSpeed.png Graphic file (type png)
 <use schoolsSpeed.png>
 Package pdftex.def Info: schoolsSpeed.png  used on input line 215. on input lin
 e 215.
 Package pdftex.def Info: Requested size: 432.48051pt x 383.64948pt on input lin
 e 215.
- [57 <./schoolsSpeed.png>]
-<shopsBorder.png, id=260, 721.69624pt x 643.40375pt>
+ [59 <./schoolsSpeed.png>]
+<shopsBorder.png, id=270, 721.69624pt x 643.40375pt>
 File: shopsBorder.png Graphic file (type png)
 <use shopsBorder.png>
 Package pdftex.def Info: shopsBorder.png  used on input line 225. on input line
  225.
 Package pdftex.def Info: Requested size: 409.71692pt x 365.27132pt on input lin
 e 225.
- [58 <./shopsBorder.png>]
-<shopsSpeed.png, id=265, 553.06625pt x 662.475pt>
+ [60 <./shopsBorder.png>]
+<shopsSpeed.png, id=275, 553.06625pt x 662.475pt>
 File: shopsSpeed.png Graphic file (type png)
 <use shopsSpeed.png>
 Package pdftex.def Info: shopsSpeed.png  used on input line 235. on input line 
 235.
 Package pdftex.def Info: Requested size: 409.71692pt x 490.7697pt on input line
  235.
- [59 <./shopsSpeed.png>]
-<laneNumber.png, id=270, 587.19376pt x 626.34pt>
+ [61 <./shopsSpeed.png>]
+<laneNumber.png, id=281, 587.19376pt x 626.34pt>
 File: laneNumber.png Graphic file (type png)
 <use laneNumber.png>
 Package pdftex.def Info: laneNumber.png  used on input line 246. on input line 
 246.
 Package pdftex.def Info: Requested size: 409.71692pt x 437.03009pt on input lin
 e 246.
- [60 <./laneNumber.png>]
-<laneNumberAfter.png, id=275, 575.14874pt x 641.39626pt>
+ [62 <./laneNumber.png>]
+<laneNumberAfter.png, id=286, 575.14874pt x 641.39626pt>
 File: laneNumberAfter.png Graphic file (type png)
 <use laneNumberAfter.png>
 Package pdftex.def Info: laneNumberAfter.png  used on input line 255. on input 
 line 255.
 Package pdftex.def Info: Requested size: 409.71692pt x 456.92128pt on input lin
 e 255.
-[61 <./laneNumberAfter.png>]
-<typeOfRoad.png, id=281, 785.93625pt x 757.83125pt>
+[63 <./laneNumberAfter.png>]
+<typeOfRoad.png, id=291, 785.93625pt x 757.83125pt>
 File: typeOfRoad.png Graphic file (type png)
 <use typeOfRoad.png>
 Package pdftex.def Info: typeOfRoad.png  used on input line 275. on input line 
 275.
 Package pdftex.def Info: Requested size: 318.66948pt x 307.27844pt on input lin
 e 275.
- [62 <./typeOfRoad.png>] [63] [64]) [65] [66
+ [64 <./typeOfRoad.png>]
+<zakrety.png, id=296, 688.5725pt x 760.8425pt>
+File: zakrety.png Graphic file (type png)
+<use zakrety.png>
+Package pdftex.def Info: zakrety.png  used on input line 286. on input line 286
+.
+Package pdftex.def Info: Requested size: 409.71692pt x 452.72432pt on input lin
+e 286.
+ [65 <./zakrety.png>]
+[66]) [67] [68
 
 
-]
-[67] [68] [69] (./praca.aux (./rozdzial1.aux) (./rozdzial2.aux)
-(./rozdzial3.aux) (./rozdzial4.aux))
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
+] [69] [70] [71] (./praca.aux (./rozdzial1.aux) (./rozdzial2.aux) (./rozdzial3.
+aux) (./rozdzial4.aux))
 Package logreq Info: Writing requests to 'praca.run.xml'.
 \openout1 = `praca.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 26315 strings out of 492990
- 491261 string characters out of 6135006
+ 26334 strings out of 492990
+ 491697 string characters out of 6135006
  730257 words of memory out of 5000000
- 29467 multiletter control sequences out of 15000+600000
+ 29483 multiletter control sequences out of 15000+600000
  607886 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  45i,15n,50p,10383b,2723s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2114,10 +2137,10 @@ ve/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8
 a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on praca.pdf (69 pages, 5950023 bytes).
+Output written on praca.pdf (71 pages, 6573563 bytes).
 PDF statistics:
- 360 PDF objects out of 1000 (max. 8388607)
- 201 compressed objects within 3 object streams
+ 372 PDF objects out of 1000 (max. 8388607)
+ 205 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
- 181 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 196 words of extra memory for PDF output out of 10000 (max. 10000000)
 

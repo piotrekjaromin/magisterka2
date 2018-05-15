@@ -5,6 +5,7 @@ import {Geojsonmodel} from '../models/geojsonmodel';
 import {TwoDimensions} from '../mapObjects/twoDimensions';
 import {OneDimension} from '../mapObjects/oneDimension';
 import {OtherObjects} from '../mapObjects/otherObjects';
+import {Curves} from '../calculationOperations/curves';
 
 export class FileLayerManager {
   public layersControl: any;
@@ -22,6 +23,12 @@ export class FileLayerManager {
     TwoDimensions.add2dObjectToStreet('bus_stop', 30, this.allStreetWithObjects, 5, this.all2dObjects);
     TwoDimensions.add2dObjectToStreet('school', 30,  this.allStreetWithObjects, 30, this.all2dObjects);
     TwoDimensions.add2dObjectToStreet('shops_churches', 40,  this.allStreetWithObjects, 30, this.all2dObjects);
+    const curveGeojson = Curves.getCurvesGeojson(this.allStreetWithObjects.features);
+    const curveLayers = new Map().set('Curves', BaseLayerManager.parseGeoJsonToGeojsonmodel(curveGeojson));
+    Curves.addCurvesToStreet(curveGeojson.features, this.allStreetWithObjects);
+    for (let feature of this.allStreetWithObjects.features) {
+      console.log(feature.markers);
+    }
 
     this.options = BaseLayerManager.prepareOptions(BaseLayerManager.prepareMainLayer());
 
@@ -42,7 +49,8 @@ export class FileLayerManager {
         ...overlaysMapOneDimension,
         ...overlaysMapTwoDimensions,
         ...overlaysMapOther,
-        ...overlaysMapTwoDimensionsPoint])};
+        ...overlaysMapTwoDimensionsPoint,
+        ...curveLayers])};
   }
 
 }

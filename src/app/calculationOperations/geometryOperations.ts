@@ -128,13 +128,10 @@ export class GeometryOperations {
       result = this.getMidpointBetweenTwoPoint(pointFrom, pointTo);
       distance = Mathematical.distanceBetweenPoints(<any>pointFrom, <any>result);
       if (distance <= distanceInMeters + 0.1 && distance >= distanceInMeters) {
-        console.log('finish');
         return result;
       } else if (distance >= distanceInMeters + 0.1 ) {
-        console.log('+');
         pointTo = <any>result;
       } else if (distance < distanceInMeters - 0.1) {
-        console.log('-');
         pointFrom = <any>result;
         distanceInMeters = distanceInMeters - distance;
       }

@@ -32,7 +32,7 @@ export class Mathematical {
     const first = ((point2[0] - point1[0]) * (point1[1] - point0[1]) )
     const second = ( (point1[0] - point0[0]) * (point2[1] - point1[1]) );
     let licznik =  Math.abs(first - second);
-    licznik = licznik * 100;
+    // licznik = licznik * 100;
     const mianownik = Math.sqrt( Math.pow((point2[0] - point1[0]), 2 ) + Math.pow((point2[1] - point1[1]), 2 ));
     const distance = licznik / mianownik;
 
@@ -112,8 +112,6 @@ export class Mathematical {
 
   public static getCrossPointOfRoadAndRectangle2(road: Geometry, rectangle: Geometry) {
     const result = <[[number, number]]>[];
-    console.log(road.coordinates.length)
-    console.log(rectangle.coordinates[0].length);
 
     for (let i = 0; i < road.coordinates.length - 2; i++) {
 
