@@ -24,11 +24,8 @@ export class FileLayerManager {
     TwoDimensions.add2dObjectToStreet('school', 30,  this.allStreetWithObjects, 30, this.all2dObjects);
     TwoDimensions.add2dObjectToStreet('shops_churches', 40,  this.allStreetWithObjects, 30, this.all2dObjects);
     const curveGeojson = Curves.getCurvesGeojson(this.allStreetWithObjects.features);
-    const curveLayers = new Map().set('Curves', BaseLayerManager.parseGeoJsonToGeojsonmodel(curveGeojson));
-    Curves.addCurvesToStreet(curveGeojson.features, this.allStreetWithObjects);
-    for (let feature of this.allStreetWithObjects.features) {
-      console.log(feature.markers);
-    }
+    Curves.addCurvesToStreet(curveGeojson, this.allStreetWithObjects);
+    const curveLayers = Curves.getCurvesLayers(curveGeojson, this.allStreetWithObjects);
 
     this.options = BaseLayerManager.prepareOptions(BaseLayerManager.prepareMainLayer());
 

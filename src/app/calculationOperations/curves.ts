@@ -5,20 +5,22 @@ import {Geojsonmodel} from '../models/geojsonmodel';
 import {Mathematical} from './mathematical';
 import {DataService} from '../services/data.service';
 import {GeometryOperations} from './geometryOperations';
+import {BaseLayerManager} from '../layerManagers/baseLayerManager';
+import {TwoDimensions} from '../mapObjects/twoDimensions';
 
 export class Curves {
 
-  public static addCurvesToStreet(curves: [Feature], streets: Geojsonmodel) {
+  public static addCurvesToStreet(curves: Geojsonmodel, streets: Geojsonmodel) {
     for (const street of streets.features) {
-      for (const curve of curves) {
+      for (const curve of curves.features) {
         const customMarker: [CustomMarker] = <[CustomMarker]>[];
-        if (Mathematical.pointInRectangle(street.geometry.coordinates, curve.geometry.coordinates[0])) {
-          console.log('curve start');
-          customMarker.push(new CustomMarker(<any>curve.geometry.coordinates[0][0], <any>curve.geometry.coordinates[0][1], 'curve_start', Number(0)));
-        }
-        if (Mathematical.pointInRectangle(street.geometry.coordinates, curve.geometry.coordinates[curve.geometry.coordinates.length - 1])) {
-          console.log('curve end')
-          customMarker.push(new CustomMarker(<any>curve.geometry.coordinates[curve.geometry.coordinates.length - 1][0], <any>curve.geometry.coordinates[curve.geometry.coordinates.length - 1][1], 'curve_end', Number(0)));
+        for (let i = 0; i < street.geometry.coordinates.length - 1; i = i + 1) {
+          if (Mathematical.checkIfPointIsBetweenPoints(street.geometry.coordinates[i], street.geometry.coordinates[i + 1], curve.geometry.coordinates[0])) {
+            customMarker.push(new CustomMarker(<any>curve.geometry.coordinates[0][0], <any>curve.geometry.coordinates[0][1], 'curve_start', Number(street.properties.defaultSpeedLimit) - 10));
+          }
+          if (Mathematical.checkIfPointIsBetweenPoints(street.geometry.coordinates[i], street.geometry.coordinates[i + 1], curve.geometry.coordinates[curve.geometry.coordinates.length - 1])) {
+            customMarker.push(new CustomMarker(<any>curve.geometry.coordinates[curve.geometry.coordinates.length - 1][0], <any>curve.geometry.coordinates[curve.geometry.coordinates.length - 1][1], 'curve_end', Number(street.properties.defaultSpeedLimit)));
+          }
         }
         if (customMarker.length > 0) {
           if (street.markers === undefined) {
@@ -31,6 +33,15 @@ export class Curves {
         }
       }
     }
+  }
+
+  public static getCurvesLayers(curves: Geojsonmodel, streets: Geojsonmodel) {
+    const result = new Map();
+    result
+      .set('Curves', BaseLayerManager.parseGeoJsonToGeojsonmodel(curves))
+      .set('Curves speed start', TwoDimensions.markerOnePoint('curve_start', streets))
+      .set('Curves speed end', TwoDimensions.markerOnePoint('curve_end', streets));
+    return result;
   }
 
   public static getCurvesGeojson(features: [Feature]) {
