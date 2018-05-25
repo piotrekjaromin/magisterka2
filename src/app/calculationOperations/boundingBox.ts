@@ -26,11 +26,11 @@ export class BoundingBox {
     return objectsGeoModel;
   }
 
-  public static getStreetContainsBoundingBox(type: string, allStreetWithObjects: Geojsonmodel) {
+  public static getStreetContainsBoundingBox(type: string, allStreetWithObjects: [Feature]) {
 
       const result = new Geojsonmodel('FeatureCollection', <[Feature]>[]);
 
-      for (const feature of allStreetWithObjects.features) {
+      for (const feature of allStreetWithObjects) {
         if (feature.markers === undefined) {
           continue;
         }

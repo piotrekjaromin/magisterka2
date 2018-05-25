@@ -10,7 +10,9 @@
   lon: <input [(ngModel)]="lat" disabled>
   lat: <input [(ngModel)]="long" disabled>
   type: <select [(ngModel)]="type">
-      <option value="pedestrian crossing">pedestrian crossing</option>
+      <option value="traffic_signal">traffic_signal</option>
+      <option value="pedestrian_crossing">pedestrian_crossing</option>
+      <option value="rail_crossing">rail_crossing</option>
     </select>
-  <button (click)="addMarker()">Add threat</button>
+  <button (click)="addThreat()">Add threat</button>
 </div>

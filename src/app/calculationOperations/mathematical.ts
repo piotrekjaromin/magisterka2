@@ -4,17 +4,28 @@ import {Geometry} from '../models/geometry';
 export class Mathematical {
 
   // traktujemy ulice jako prostokąt, poprzed
-  public static pointInRectangle(streetCoordinates: [[number, number]], crossingCoordinates: [number, number]) {
-
+  public static pointInRectangle(streetCoordinates: [[number, number]], crossingCoordinates: [number, number], type: string) {
+    // const array = <[number, number]>[]
+    // if ( (<any>crossingCoordinates[0]).length === 1 ) {
+    //   crossingCoordinates = [<number>crossingCoordinates[0][0], <number>crossingCoordinates[1][0]];
+    //   array.push(<number>crossingCoordinates[0][0]);
+    //   array.push(<number>crossingCoordinates[1][0]);
+    //
+    // }
     let result = 10000;
     for (let i = 1; i < streetCoordinates.length; i ++) {
       const distanceFromPointToLine =
         Mathematical.distanceBetweenPointAndStreet(streetCoordinates[i], streetCoordinates[i - 1], crossingCoordinates);
-      if (distanceFromPointToLine < result) {
+      const isBetween = Mathematical.checkIfPointIsBetweenPoints(streetCoordinates[i], streetCoordinates[i - 1], crossingCoordinates);
+      if (distanceFromPointToLine < result && isBetween) {
         result = distanceFromPointToLine;
       }
     }
-    return result === 0;
+    if (type === 'addedByUser') {
+      return result < 0.000009;
+    } else {
+      return result === 0;
+    }
   }
 
   public static checkIfPointInRectangle(point: [number, number], rectangle: [[number, number]]) {

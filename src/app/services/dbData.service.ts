@@ -7,6 +7,7 @@ import {Geometry} from '../models/geometry';
 import {FeatureFromDB} from '../models/featureFromDB';
 import {SimpleObject} from '../models/simpleObject';
 import {CustomMarker} from '../models/customMarker';
+import {SpeedService} from './speed.service';
 
 @Injectable()
 export class DbDataService {
@@ -24,8 +25,8 @@ export class DbDataService {
 
   saveRoadToDB(feature: Feature) {
     const geometryModel = new Geometry(feature.geometry.type, feature.geometry.coordinates);
-    const propertiesModel = new PropertiesFromDB(feature.properties.highway, feature.properties.surface);
-    const object =  new FeatureFromDB(feature.id, feature.type, propertiesModel, geometryModel, feature.markers);
+    const properties = new PropertiesFromDB(feature.properties.highway, feature.properties.surface, feature.properties.oneway, feature.properties.lanes, 'road');
+    const object =  new FeatureFromDB(feature.id, 'Feature', geometryModel, properties);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.roadHttp, object, {headers}).subscribe();
   }
@@ -38,7 +39,9 @@ export class DbDataService {
 
   saveObjectToDB(feature: Feature) {
     const geometryModel = new Geometry(feature.geometry.type, feature.geometry.coordinates);
-    const object = new SimpleObject(feature.id, feature.type, geometryModel);
+    const properties = new PropertiesFromDB(feature.properties.highway, '', '', '', feature.properties.description);
+    const object =  new FeatureFromDB(feature.id, 'Feature', geometryModel, properties);
+    console.log(object);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.objectHttp, object, {headers}).subscribe();
   }
@@ -52,8 +55,8 @@ export class DbDataService {
     return this.http.get(url);
   }
 
-  saveAllDataToDB(onlyStreetFeatures: [Feature], objectFeatures: [Feature]) {
-    this.saveRoadsToDB(onlyStreetFeatures);
-    this.saveObjectsToDB(objectFeatures);
-  }
+  // saveAllDataToDB(onlyStreetFeatures: [Feature], objectFeatures: [Feature]) {
+  //   this.saveRoadsToDB(onlyStreetFeatures);
+  //   this.saveObjectsToDB(objectFeatures);
+  // }
 }

@@ -25,21 +25,22 @@ export class TwoDimensions {
     return allObjects;
   }
 
-  public static getObject(objects: Geojsonmodel, description: string) {
+  public static getObject(objects: [Feature], description: string) {
     const result = new Geojsonmodel('FeatureCollection', <[Feature]>[]);
     let counter = 0;
-    for (const feature of objects.features) {
+    for (const feature of objects) {
+      feature.type = 'Feature';
       if (feature.properties.description === description) {
         counter++;
         result.features.push(feature);
       }
     }
+    BaseLayerManager.parseGeoJsonToGeojsonmodel(result);
     return result;
   }
 
-  public static createLayers(types: [[string, number]], all2dObjects: Geojsonmodel, allStreetWithObjects: Geojsonmodel) {
+  public static createLayers(types: [[string, number]], allStreetWithObjects: [Feature], all2dObjects: [Feature]) {
     const result = new Map();
-
     for (const type of types) {
       result
         .set(type[0], BaseLayerManager.parseGeoJsonToGeojsonmodel(this.getObject(all2dObjects, type[0])))
@@ -77,17 +78,16 @@ export class TwoDimensions {
     return new LayerGroup(markers);
   }
 
-  public static add2dObjectToStreet(type: string, speed: number, streets: Geojsonmodel, distance: number, all2dObjects: Geojsonmodel) {
+  public static add2dObjectToStreet(type: string, speed: number, streets: [Feature], distance: number, all2dObjects: [Feature]) {
     let result = false;
     const boundingBoxObjects = BoundingBox.getCombinedBoundingBox(TwoDimensions.getObject(all2dObjects, type), distance);
     const boundingBoxesNotCombined = BoundingBox.getBoundingBox(TwoDimensions.getObject(all2dObjects, type), distance);
     let counter = 0;
-    for (const street of streets.features) {
+    for (const street of streets) {
       if (speed >= +street.properties.defaultSpeedLimit) {
         continue;
       }
       for (const boundingBoxObject of boundingBoxObjects.features) {
-
         const numberOfCrossPoint = Mathematical.getCrossPointOfRoadAndRectangle(street.geometry, boundingBoxObject.geometry);
 
         for (const point of numberOfCrossPoint) {
@@ -99,17 +99,14 @@ export class TwoDimensions {
             }
           }
           const customMarker = this.prepareMarker(type, street, 30, result, point);
-          const customMarker2 = this.prepareMarker(type, street, 40, result, coordinatesAfter);
           counter = counter + 50;
           result = false;
           if (street.markers === undefined) {
             const customMarkers: [CustomMarker] = <[CustomMarker]>[];
             customMarkers.push(customMarker);
-         //   customMarkers.push(customMarker2);
             street.markers = customMarkers;
           } else {
             street.markers.push(customMarker);
-        //    street.markers.push(customMarker2);
           }
         }
       }

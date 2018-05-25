@@ -6,6 +6,11 @@ import {FileLayerManager} from '../layerManagers/fileLayerManager';
 import {DbDataService} from '../services/dbData.service';
 import {DbLayerManager} from '../layerManagers/dbLayerManager';
 import {CustomMarker} from '../models/customMarker';
+import {FeatureFromDB} from '../models/featureFromDB';
+import {Feature} from '../models/feature';
+import {Geometry} from '../models/geometry';
+import {Properties} from '../models/properties';
+import {PropertiesFromDB} from '../models/propertiesFromDB';
 
 declare var $: any;
 
@@ -23,8 +28,8 @@ export class AppComponent implements OnInit {
   type: string;
   mymap: L.Map;
   popup = L.popup();
-  isShowedField = false;
-  isShowedAddButton = false;
+  isShowedField = true;
+  isShowedAddButton = true;
   drawOptions: any;
 
   constructor(private dataService: DataService, private dbDataService: DbDataService) {
@@ -33,17 +38,45 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     // this.getDataFromDB();
-     this.getDataFromFile();
+    // this.getDataFromFile();
     // this.exportRoadsAndObjectsToDB();
+    // this.saveStreetToDB();
+    // this.saveObjectsToDB();
+    this.getDataFromDB();
+  }
+
+  saveObjectsToDB() {
+    this.dataService.getJson().subscribe(data => {
+      const trafficSignals = this.dataService.getTrafficSignal(<any>data);
+      const railCrossing = this.dataService.getRailCrossing(<any>data);
+      const pedestrialCrossing = this.dataService.getPedestrialCrossing(<any>data);
+      const busStops = this.dataService.getBusStops(<any>data);
+      const schools = this.dataService.getSchools(<any>data);
+      const shopAndChurches = this.dataService.getShopsAndChurches(<any>data);
+      this.dbDataService.saveObjectsToDB(trafficSignals.features);
+      this.dbDataService.saveObjectsToDB(railCrossing.features);
+      this.dbDataService.saveObjectsToDB(pedestrialCrossing.features);
+      this.dbDataService.saveObjectsToDB(busStops.features);
+      this.dbDataService.saveObjectsToDB(schools.features);
+      this.dbDataService.saveObjectsToDB(shopAndChurches.features);
+    });
+  }
+
+  saveStreetToDB() {
+    this.dataService.getJson().subscribe(data => {
+      const streets = this.dataService.getOnlyStreet(<any>data);
+      this.dbDataService.saveRoadsToDB(streets.features);
+    });
   }
 
   getDataFromDB() {
     this.dbDataService.loadDataFromDB(this.dbDataService.roadHttp).subscribe(roadsData => {
       this.dbDataService.loadDataFromDB(this.dbDataService.objectHttp).subscribe(objectData => {
-        this.dbDataService.loadDataFromDB(this.dbDataService.customMarkerHttp).subscribe(customMarkerData => {
-          const layerManager = new DbLayerManager(this.dataService, <any>roadsData, <any> objectData, customMarkerData);
-          this.prepareDataToGenerateMap(layerManager);
-        });
+        const roads: [FeatureFromDB] = <any>roadsData;
+        const objects: [FeatureFromDB] = <any>objectData;
+        console.log(objects)
+        const layerManager = new DbLayerManager(<any>roads, <any>objects);
+        this.prepareDataToGenerateMap(layerManager);
       });
     });
   }
@@ -79,9 +112,12 @@ export class AppComponent implements OnInit {
     this.isShowedField = true;
   }
 
-  addMarker() {
-    L.marker({lat: this.lat, lng: this.long}).addTo(this.mymap);
-    const customMarker = new CustomMarker(this.lat, this.long, this.type, 0);
-    this.dbDataService.saveCustomMarkerToDB(customMarker);
+  addThreat() {
+    const coordinates = <[number, number]>[];
+    coordinates.push(this.long, this.lat);
+    const properties = new PropertiesFromDB('addedByUser', '', '', '', this.type);
+    const geometry: Geometry = new Geometry('Point', <any>coordinates);
+    const feature: Feature = new Feature(new Date().getTime().toString(), 'Feature', <any>properties, geometry, <[CustomMarker]>[]);
+    this.dbDataService.saveObjectToDB(feature);
   }
 }

@@ -6,22 +6,18 @@ var geometrySchema = new Schema({
   coordinates: [[Number, Number]]
 });
 
-var markersSchema = new Schema({
-  lat: Number,
-  long: Number,
-  speed: Number,
-  type: String
-});
+var propertiesSchema = new Schema({
+  surface: String,
+  highway: String,
+  oneway: String,
+  lanes: String,
+  description: String
 
+});
 var Road = new Schema({
   id: String,
-  type: String,
-  properties: {
-    highway: String,
-    surface: String
-  },
   geometry: geometrySchema,
-  markers: [markersSchema]
+  properties: propertiesSchema
 });
 
 module.exports = mongoose.model("Road", Road);

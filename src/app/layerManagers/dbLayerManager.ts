@@ -1,71 +1,47 @@
-import {geoJSON, icon, LayerGroup, Marker, marker} from 'leaflet';
 import {DataService} from '../services/data.service';
-import {GeojsonFromDbModel} from '../models/geojsonFromDbModel';
+import {DbDataService} from '../services/dbData.service';
 import {BaseLayerManager} from './baseLayerManager';
-import {CustomMarker} from '../models/customMarker';
+import {Geojsonmodel} from '../models/geojsonmodel';
+import {TwoDimensions} from '../mapObjects/twoDimensions';
+import {OneDimension} from '../mapObjects/oneDimension';
+import {OtherObjects} from '../mapObjects/otherObjects';
+import {Curves} from '../calculationOperations/curves';
+import {Feature} from '../models/feature';
 
 export class DbLayerManager {
   public layersControl: any;
   public options: any;
+  public allStreetWithObjects: Geojsonmodel;
 
-  constructor(private dataService: DataService, roadsData: any, objectData: any, customMarkers: any) {
+  constructor(private streets: [Feature], private objects: [Feature]) {
+
+    this.allStreetWithObjects = OneDimension.addAllObjectsToStreets(streets, objects);
+    TwoDimensions.add2dObjectToStreet('bus_stop', 30, this.allStreetWithObjects.features, 5, this.objects);
+    TwoDimensions.add2dObjectToStreet('school', 30,  this.allStreetWithObjects.features, 30, this.objects);
+    TwoDimensions.add2dObjectToStreet('shops_churches', 40,  this.allStreetWithObjects.features, 30, this.objects);
+    const curveGeojson = Curves.getCurvesGeojson(this.allStreetWithObjects.features);
+    Curves.addCurvesToStreet(curveGeojson, this.allStreetWithObjects);
+    const curveLayers = Curves.getCurvesLayers(curveGeojson, this.allStreetWithObjects);
+
     this.options = BaseLayerManager.prepareOptions(BaseLayerManager.prepareMainLayer());
+    const baseLayersMap = new Map().set('Open Street Map',  BaseLayerManager.prepareMainLayer());
+
+    const overlaysMapBase = BaseLayerManager.createBaseLayers(this.allStreetWithObjects.features);
+    const overlaysMapOneDimension =  OneDimension.createLayers(['pedestrian_crossing', 'rail_crossing', 'traffic_signal'], this.allStreetWithObjects);
+    const overlaysMapTwoDimensions = TwoDimensions. createLayers([['bus_stop', 5], ['school', 30], ['shops_churches', 30]], this.allStreetWithObjects.features, this.objects);
+    const overlaysMapTwoDimensionsPoint = TwoDimensions.createLayersOnlyPoints(['bus_stop', 'school', 'shops_churches'], this.allStreetWithObjects);
+    const overlaysMapOther = OtherObjects.prepareOtherLayers(this.allStreetWithObjects);
 
     this.layersControl = {
-      baseLayers: {
-        'Open Street Map': BaseLayerManager.prepareMainLayer()
-      },
-      overlays: {
-        'Only street': this.prepareOnlyStreetLayer(roadsData),
-        'Speed limit': this.prepareSpeedLimitMarkersLayer(roadsData),
-        'Objects': this.prepareObjectLayer(objectData),
-        'Custom objects': this.prepareCustomMarkersLayer(customMarkers)
-      }
-    };
-  }
-
-  private prepareSpeedLimitMarkersLayer(roadsData: any): LayerGroup {
-    const streetsGeojsonFromDbModel = new GeojsonFromDbModel('FeatureCollection', roadsData);
-    const markers: [Marker] = <[Marker]>[];
-
-    for (const feature of streetsGeojsonFromDbModel.features) {
-      for (const markerFromDb of feature.markers) {
-        const tmpMarker = marker([markerFromDb.lat, markerFromDb.long], {
-          icon: icon({
-            iconSize: [25, 25],
-            iconAnchor: [0, 0],
-            iconUrl: 'assets/' + markerFromDb.speed + '.png'
-          })});
-        markers.push(tmpMarker.on('click', (data) => console.log(data)));
-      }
-    }
-    return new LayerGroup(markers);
-  }
-
-  private prepareOnlyStreetLayer(roadsData: any) {
-    const streetsGeojsonFromDbModel = new GeojsonFromDbModel('FeatureCollection', roadsData);
-    return geoJSON(JSON.parse(JSON.stringify(streetsGeojsonFromDbModel)));
-  }
-
-  private prepareObjectLayer(objectData: any) {
-    const objectGeojsonFromDbModel = new GeojsonFromDbModel('FeatureCollection', objectData);
-    return geoJSON(JSON.parse(JSON.stringify(objectGeojsonFromDbModel)));
-  }
-
-  private prepareCustomMarkersLayer(customMarkers: [CustomMarker]) {
-    const markers: [Marker] = <[Marker]>[];
-
-    for (const customMarker of customMarkers) {
-      const tmpMarker = marker([customMarker.lat, customMarker.long], {
-        icon: icon({
-          iconSize: [25, 25],
-          iconAnchor: [0, 0],
-          iconUrl: 'assets/' + 130 + '.png'
-        })});
-      markers.push(tmpMarker.on('click', (data) => console.log(data)));
-    }
-
-    return new LayerGroup(markers);
+      baseLayers: baseLayersMap,
+      overlays: new Map([
+        ...overlaysMapBase,
+        ...overlaysMapOneDimension,
+        ...overlaysMapTwoDimensions,
+        ...overlaysMapOther,
+        ...overlaysMapTwoDimensionsPoint,
+        ...curveLayers
+      ])};
   }
 
 }

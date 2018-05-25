@@ -5,11 +5,19 @@ var geometrySchema = new Schema({
   type: String,
   coordinates: [[[Number, Number]]]
 });
+var propertiesSchema = new Schema({
+  surface: String,
+  highway: String,
+  oneway: String,
+  lanes: String,
+  description: String
+
+});
 
 var Object = new Schema({
   id: String,
-  type: String,
-  geometry: geometrySchema
+  geometry: geometrySchema,
+  properties: propertiesSchema
 });
 
 module.exports = mongoose.model("Object", Object);

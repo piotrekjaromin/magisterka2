@@ -10,6 +10,7 @@ import {icon} from 'leaflet';
 import {Geojsonmodel} from '../models/geojsonmodel';
 import {geoJSON} from 'leaflet';
 import {DataService} from '../services/data.service';
+import {Feature} from '../models/feature';
 
 export class BaseLayerManager {
 
@@ -56,10 +57,10 @@ export class BaseLayerManager {
     };
   }
 
-  public static prepareSpeedLimitMarkersLayer(allStreetWithObjects: Geojsonmodel): LayerGroup {
+  public static prepareSpeedLimitMarkersLayer(allStreetWithObjects: [Feature]): LayerGroup {
     const markers: [Marker] = <[Marker]>[];
 
-    for (const feature of allStreetWithObjects.features) {
+    for (const feature of allStreetWithObjects) {
       const coordinates = GeometryOperations.getBeginningCoordinates(feature.geometry.coordinates);
       markers.push(
         this.prepareMarker(coordinates[1], coordinates[0], feature.properties.defaultSpeedLimit)
@@ -76,6 +77,7 @@ export class BaseLayerManager {
     } else {
       iconSize = 25;
     }
+
     return marker([lat, long], {
       icon: icon({
         iconSize: [iconSize, iconSize],
@@ -89,12 +91,21 @@ export class BaseLayerManager {
     return geoJSON(JSON.parse(JSON.stringify(data)));
   }
 
-  public static createBaseLayers(data: any, allStreetWithObjects: Geojsonmodel, oneWayRoads: Geojsonmodel, twoWaysRoads: Geojsonmodel) {
+  public static createBaseLayers(allStreetWithObjects: [Feature]) {
+    const streets = <[Feature]>[];
+    const oneWay = <[Feature]>[];
+    for (const street of allStreetWithObjects) {
+      if (street.properties.description === 'road') {
+        streets.push(street);
+      }
+      if (street.properties.oneway === 'yes') {
+        oneWay.push(street);
+      }
+    }
     return new Map()
-      .set('All objects', geoJSON(data))
-      .set('Only streets', this.parseGeoJsonToGeojsonmodel(allStreetWithObjects))
-      .set('One way streets', geoJSON(JSON.parse(JSON.stringify(oneWayRoads))))
-      .set('Two ways streets', geoJSON(JSON.parse(JSON.stringify(twoWaysRoads))))
+      .set('Only streets', this.parseGeoJsonToGeojsonmodel(new Geojsonmodel('FeatureCollection', streets)))
+      .set('One way streets', geoJSON(JSON.parse(JSON.stringify(oneWay))))
+      // .set('Two ways streets', geoJSON(JSON.parse(JSON.stringify(twoWaysRoads))))
       .set('Speed limit', this.prepareSpeedLimitMarkersLayer(allStreetWithObjects));
   }
 }
