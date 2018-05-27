@@ -29,7 +29,6 @@ export class Mathematical {
   }
 
   public static checkIfPointInRectangle(point: [number, number], rectangle: [[number, number]]) {
-
     if (rectangle[0][0][0] <= point[0] && point[0] <= rectangle[0][1][0]) {
       if (rectangle[0][0][1] <= point[1] && point[1] <= rectangle[0][2][1]) {
         return true;

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.3.3)  15 MAY 2018 20:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.3.3)  27 MAY 2018 20:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1384,7 +1384,14 @@ LaTeX Warning: Unused global option(s):
     [11pt].
 
 (./praca.aux (./rozdzial1.aux) (./rozdzial2.aux) (./rozdzial3.aux)
-(./rozdzial4.aux))
+(./rozdzial4.aux
+
+LaTeX Warning: Label `sec:laneNumber' multiply defined.
+
+
+LaTeX Warning: Label `sec:typeOfRoad' multiply defined.
+
+))
 \openout1 = `praca.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 154.
@@ -2077,49 +2084,68 @@ Package pdftex.def Info: Requested size: 409.71692pt x 490.7697pt on input line
 <laneNumber.png, id=281, 587.19376pt x 626.34pt>
 File: laneNumber.png Graphic file (type png)
 <use laneNumber.png>
-Package pdftex.def Info: laneNumber.png  used on input line 246. on input line 
-246.
+Package pdftex.def Info: laneNumber.png  used on input line 247. on input line 
+247.
 Package pdftex.def Info: Requested size: 409.71692pt x 437.03009pt on input lin
-e 246.
+e 247.
  [62 <./laneNumber.png>]
 <laneNumberAfter.png, id=286, 575.14874pt x 641.39626pt>
 File: laneNumberAfter.png Graphic file (type png)
 <use laneNumberAfter.png>
-Package pdftex.def Info: laneNumberAfter.png  used on input line 255. on input 
-line 255.
+Package pdftex.def Info: laneNumberAfter.png  used on input line 256. on input 
+line 256.
 Package pdftex.def Info: Requested size: 409.71692pt x 456.92128pt on input lin
-e 255.
+e 256.
 [63 <./laneNumberAfter.png>]
 <typeOfRoad.png, id=291, 785.93625pt x 757.83125pt>
 File: typeOfRoad.png Graphic file (type png)
 <use typeOfRoad.png>
-Package pdftex.def Info: typeOfRoad.png  used on input line 275. on input line 
-275.
+Package pdftex.def Info: typeOfRoad.png  used on input line 277. on input line 
+277.
 Package pdftex.def Info: Requested size: 318.66948pt x 307.27844pt on input lin
-e 275.
+e 277.
  [64 <./typeOfRoad.png>]
 <zakrety.png, id=296, 688.5725pt x 760.8425pt>
 File: zakrety.png Graphic file (type png)
 <use zakrety.png>
-Package pdftex.def Info: zakrety.png  used on input line 286. on input line 286
+Package pdftex.def Info: zakrety.png  used on input line 288. on input line 288
 .
 Package pdftex.def Info: Requested size: 409.71692pt x 452.72432pt on input lin
-e 286.
+e 288.
  [65 <./zakrety.png>]
-[66]) [67] [68
+
+LaTeX Warning: Reference `sec:LengthOfRoad' on page 66 undefined on input line 
+302.
+
+[66]
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 325.
+
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 325.
+) [67] [68
 
 
-] [69] [70] [71] (./praca.aux (./rozdzial1.aux) (./rozdzial2.aux) (./rozdzial3.
-aux) (./rozdzial4.aux))
+]
+[69] [70] [71] (./praca.aux (./rozdzial1.aux) (./rozdzial2.aux)
+(./rozdzial3.aux) (./rozdzial4.aux))
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package logreq Info: Writing requests to 'praca.run.xml'.
 \openout1 = `praca.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 26334 strings out of 492990
- 491697 string characters out of 6135006
+ 26354 strings out of 492990
+ 492045 string characters out of 6135006
  730257 words of memory out of 5000000
- 29483 multiletter control sequences out of 15000+600000
+ 29500 multiletter control sequences out of 15000+600000
  607886 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  45i,15n,50p,10383b,2723s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2137,7 +2163,7 @@ ve/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8
 a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on praca.pdf (71 pages, 6573563 bytes).
+Output written on praca.pdf (71 pages, 6575865 bytes).
 PDF statistics:
  372 PDF objects out of 1000 (max. 8388607)
  205 compressed objects within 3 object streams

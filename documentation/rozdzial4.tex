@@ -236,6 +236,7 @@ Znaki ograniczające dopuszczalną prędkość zostają ustawione w odległości
 \end{figure}
 \newpage
 \section{Liczba pasów ruchu}
+\label{sec:laneNumber}
 
 Maksymalna dozwolona prędkość jest zależna również od liczby pasów ruchu. Im jest ich więcej, tym większą prędkość można rozwijać. Dlatego algorytm zwiększa dopuszczalną prędkość o 10 km/h w przypadku gdy liczba pasów ruchu jest większa niż jeden. Na rys \ref{sec:laneNumber} zostały zaznaczone ulice, których liczba pasów ruchu wynosi przynajmniej 2, oraz prędkości nie uwzględniające pasów ruchu. 
 
@@ -257,6 +258,7 @@ Na rys. \ref{sec:laneNumberAfter} zostały przedstawione prędkości już z uwzl
 
 \newpage
 \section{Rodzaj drogi}
+\label{sec:typeOfRoad}
 Algorytm rozróżnia sześć podstawowych typów dróg, w skład których wchodzą:
 \begin{itemize}
 \item dojazdowe
@@ -286,20 +288,51 @@ Na rys. \ref{sec:zakrety} zostały zakręty, dla których promień skrętu jest 
 \includegraphics[width=0.9\textwidth]{zakrety}
 \end{figure}
 
-\newpage
-\section{Płynna zmiana prędkości pojazdów}
-
 
 \newpage
-\section{Umiejscowienie znaków na drodze}
+\section{Działanie algorytmu}
 \label{sec:speedLimitLocalization}
-Znaki drogowe ograniczenia prędkości są ustawione według następujących kryteriów:
+
+
+
+Na początku wyliczane jest domyślne ograniczenie ograniczenie prędkości dla każdej drogi na podstawie poniższych kryteriów:
 \begin{itemize}
-\item na początku każdej drogi
-\item przed nieoznakowanymi przejściami dla pieszych
-\item przed wjazdem do obszaru, w pobliżu którego znajdują się szkoły, place zabaw, duże sklepy handlowe i miejsca kultów religijnych
-\item przed zakrętami
-\item między znakami ograniczenia prędkości, dla których występują duże różnice prędkości
+\item Typ nawierzchni - szczegóły w rozdziale \ref{sec:surfaceType}
+\item Rodzaj drogi - szczegóły w rodziale \ref{sec:typeOfRoad}
+\item Długość drogi - szegóły w rodziale \ref{sec:LengthOfRoad}
+\item Liczby pasów ruchu - szczegóły w rodziale \ref{sec:laneNumber}
 \end{itemize}
+
+Następnie algorytm przystępuje do umieszczania znaków na drodze według następującej kolejności:
+\begin{itemize}
+\item jeśli droga jest krótsza niż 50m, nie ustawia znaku
+\item jeśli domyślna prędkość jest mniejsza bądź równa ograniczeniu prędkości wymaganym przez obiekt typu przejście dla pieszych, szkoła, zakręt itp, nie ustawia znaku
+\item jeśli droga lub jej fragment znajdują się w strefie ograniczonej prędkości, to wewnątrz tej strefy nie są ustawiane żadne inne ograniczenia prędkości.
+\item na początku drogi ustawia znak domyślnego ograniczenia prędkości, chyba że zachodzą następujące czynniki:
+\begin{itemize}
+\item gdy domyślna prędkości jest mniejsza bądź równa 60 km/h i obiekt typu przejście dla pieszych, szkoła, zakręt itp znajduje się w  odległości mniejszej bądź równej 50m
+\item gdy domyślna prędkości przekracza 60 km/h i obiekt znajduje się w  odległości mniejszej bądź równej 150m 
+\end{itemize}
+w takim przypadku na początku drogi ustawiane jest ograniczenie prędkości dla danego obiektu.
+\item w odłegłości 50 metrów od obietków jednowymiarowych typu przejście dla pieszych itp, lub 50 metrów przed początkiem strefy ograniczonej prędości, gdy dopuszczalna prędkość jest mniejsza bądź równa 60 km/h. Dotyczy sytuacji, gdy w odległości nie większej niż 50 metrów przed obiektem, nie znajduje się inny obiekt. W przeciwnym razie, ograniczenie prędkości nie jest ustawiane.
+\item w odłegłości 150 metrów od obietków jednowymiarowych typu przejście dla pieszych itp, lub 150 metrów przed początkiem strefy ograniczonej prędości, gdy dopuszczalna prędkość przekracza 60 km/h. Dotyczy sytuacji, gdy w odległości nie większej niż 150 metrów przed obiektem, nie znajduje się inny obiekt. W przeciwnym razie, ograniczenie prędkości nie jest ustawiane.
+\item jeśli za obiektem typu przejście dla pieszych lub za strefą ograniczonej prędkości znajduje się inny obiekt ustawiony w odległości:
+\begin{itemize}
+\item 50 metrów, w przypadku domyślnej prędkości na drodze nie przekraczającej 60 km/h
+\item 150 metrów, w przypadku domyślnej prędkości większej niż 60 km/h
+to bezpośrednio za tym obiektem ustawia znak ograniczenia prędkości wymagany przez następny obiekt. Chyba że
+\begin{itemize}
+\item ograniczenie predkości dopuszczalne dla następnego obiektu jest mniejsze bądź równe aktualnemu
+\end{itemize}
+W takim przypadku nie ustawia znaku
+\end{itemize}
+\item bezpośrednio za obiektem przywracana jest domyślna prędkość na drodze, chyba że 
+\begin{itemize}
+\item długość drogi za obiektem jest mniejsza niż 50 metrów
+\item domyślne ogranicznie prędkośći jest mniejsze bądź równe ograniczeniu wymaganemu przed dany obiekt
+\end{itemize}
+W takich przypadkach nie przywraca domyślnej prędkości.
+\end{itemize}
+
 
 

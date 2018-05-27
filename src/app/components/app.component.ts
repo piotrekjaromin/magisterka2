@@ -74,7 +74,6 @@ export class AppComponent implements OnInit {
       this.dbDataService.loadDataFromDB(this.dbDataService.objectHttp).subscribe(objectData => {
         const roads: [FeatureFromDB] = <any>roadsData;
         const objects: [FeatureFromDB] = <any>objectData;
-        console.log(objects)
         const layerManager = new DbLayerManager(<any>roads, <any>objects);
         this.prepareDataToGenerateMap(layerManager);
       });

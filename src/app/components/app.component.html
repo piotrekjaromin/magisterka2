@@ -1,3 +1,5 @@
+
+
 <div id="map" *ngIf="options != null " class="map"
      leaflet
      [leafletOptions]="options"
@@ -5,14 +7,15 @@
      [leafletLayers]="layers"
      [leafletLayersControl]="layersControl">
 </div>
-<button *ngIf="" (click)="showFields()">Add</button>
-<div *ngIf="isShowedField">
+<div class="coordinates">
   lon: <input [(ngModel)]="lat" disabled>
   lat: <input [(ngModel)]="long" disabled>
+</div>
+
+
   type: <select [(ngModel)]="type">
       <option value="traffic_signal">traffic_signal</option>
       <option value="pedestrian_crossing">pedestrian_crossing</option>
       <option value="rail_crossing">rail_crossing</option>
     </select>
   <button (click)="addThreat()">Add threat</button>
-</div>

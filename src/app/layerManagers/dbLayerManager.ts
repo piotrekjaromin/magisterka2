@@ -22,6 +22,8 @@ export class DbLayerManager {
     const curveGeojson = Curves.getCurvesGeojson(this.allStreetWithObjects.features);
     Curves.addCurvesToStreet(curveGeojson, this.allStreetWithObjects);
     const curveLayers = Curves.getCurvesLayers(curveGeojson, this.allStreetWithObjects);
+    const finishedSpeed = OtherObjects.finishedSpeedLayer(this.allStreetWithObjects, this.objects);
+
 
     this.options = BaseLayerManager.prepareOptions(BaseLayerManager.prepareMainLayer());
     const baseLayersMap = new Map().set('Open Street Map',  BaseLayerManager.prepareMainLayer());
@@ -32,6 +34,7 @@ export class DbLayerManager {
     const overlaysMapTwoDimensionsPoint = TwoDimensions.createLayersOnlyPoints(['bus_stop', 'school', 'shops_churches'], this.allStreetWithObjects);
     const overlaysMapOther = OtherObjects.prepareOtherLayers(this.allStreetWithObjects);
 
+
     this.layersControl = {
       baseLayers: baseLayersMap,
       overlays: new Map([
@@ -40,7 +43,8 @@ export class DbLayerManager {
         ...overlaysMapTwoDimensions,
         ...overlaysMapOther,
         ...overlaysMapTwoDimensionsPoint,
-        ...curveLayers
+        ...curveLayers,
+        ...finishedSpeed
       ])};
   }
 

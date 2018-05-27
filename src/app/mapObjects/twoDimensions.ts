@@ -69,6 +69,18 @@ export class TwoDimensions {
     for (const feature of features) {
       for (const customMarker of feature.markers) {
         if (customMarker.type === type) {
+          let coordinates;
+          if ( type.includes('start')) {
+            if (+feature.properties.defaultSpeedLimit <= 60) {
+              coordinates = GeometryOperations.getCoordinatesBeforePoint([customMarker.lat, customMarker.long], feature.geometry.coordinates, 50);
+              customMarker.long = coordinates[1];
+              customMarker.lat = coordinates[0];
+            } else {
+              coordinates = GeometryOperations.getCoordinatesBeforePoint([customMarker.lat, customMarker.long], feature.geometry.coordinates, 150);
+              customMarker.long = coordinates[1];
+              customMarker.lat = coordinates[0];
+            }
+          }
           markers.push(
             BaseLayerManager.prepareMarker(customMarker.long, customMarker.lat, '' + customMarker.speed)
               .on('click', (data) => customMarker));
@@ -98,7 +110,7 @@ export class TwoDimensions {
               result = true;
             }
           }
-          const customMarker = this.prepareMarker(type, street, 30, result, point);
+          const customMarker = this.prepareMarker(type, street, speed, result, point);
           counter = counter + 50;
           result = false;
           if (street.markers === undefined) {
@@ -118,9 +130,9 @@ export class TwoDimensions {
     if (isStart) {
       type = type + '_start';
       if (+street.properties.defaultSpeedLimit <= 60) {
-        coordinates = GeometryOperations.getCoordinatesBeforePoint(point, street.geometry.coordinates, 50);
+        coordinates = GeometryOperations.getCoordinatesBeforePoint(point, street.geometry.coordinates, 10);
       } else {
-        coordinates = GeometryOperations.getCoordinatesBeforePoint(point, street.geometry.coordinates, 150);
+        coordinates = GeometryOperations.getCoordinatesBeforePoint(point, street.geometry.coordinates, 10);
       }
     } else {
       speed = +street.properties.defaultSpeedLimit;

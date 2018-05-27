@@ -105,10 +105,10 @@ export class Curves {
     for (let i = 0; i < features.length; i++) {
       const length = features[i].geometry.coordinates.length;
       if (Mathematical.distanceBetweenPoints(features[i].geometry.coordinates[0], features[i].geometry.coordinates[1]) > 30) {
-        features[i].geometry.coordinates[0] = GeometryOperations.getCoordinatesBeforePoint(features[i].geometry.coordinates[1], features[i].geometry.coordinates, 30);
+        features[i].geometry.coordinates[0] = GeometryOperations.getCoordinatesBeforePoint(features[i].geometry.coordinates[1], features[i].geometry.coordinates, 1);
       }
       if (Mathematical.distanceBetweenPoints(features[i].geometry.coordinates[length - 2], features[i].geometry.coordinates[length - 1]) > 30) {
-        features[i].geometry.coordinates[length - 1] = GeometryOperations.getCoordinatesAfterPoint(features[i].geometry.coordinates[length - 2], features[i].geometry.coordinates, 30);
+        features[i].geometry.coordinates[length - 1] = GeometryOperations.getCoordinatesAfterPoint(features[i].geometry.coordinates[length - 2], features[i].geometry.coordinates, 1);
       }
     }
     return features;
