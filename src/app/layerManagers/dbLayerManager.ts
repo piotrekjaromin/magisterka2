@@ -16,6 +16,7 @@ export class DbLayerManager {
   constructor(private streets: [Feature], private objects: [Feature]) {
 
     this.allStreetWithObjects = OneDimension.addAllObjectsToStreets(streets, objects);
+    const overlaysMapOneDimension =  OneDimension.createLayers(['pedestrian_crossing', 'rail_crossing', 'traffic_signal'], this.allStreetWithObjects);
     TwoDimensions.add2dObjectToStreet('bus_stop', 30, this.allStreetWithObjects.features, 5, this.objects);
     TwoDimensions.add2dObjectToStreet('school', 30,  this.allStreetWithObjects.features, 30, this.objects);
     TwoDimensions.add2dObjectToStreet('shops_churches', 40,  this.allStreetWithObjects.features, 30, this.objects);
@@ -29,7 +30,6 @@ export class DbLayerManager {
     const baseLayersMap = new Map().set('Open Street Map',  BaseLayerManager.prepareMainLayer());
 
     const overlaysMapBase = BaseLayerManager.createBaseLayers(this.allStreetWithObjects.features);
-    const overlaysMapOneDimension =  OneDimension.createLayers(['pedestrian_crossing', 'rail_crossing', 'traffic_signal'], this.allStreetWithObjects);
     const overlaysMapTwoDimensions = TwoDimensions. createLayers([['bus_stop', 5], ['school', 30], ['shops_churches', 30]], this.allStreetWithObjects.features, this.objects);
     const overlaysMapTwoDimensionsPoint = TwoDimensions.createLayersOnlyPoints(['bus_stop', 'school', 'shops_churches'], this.allStreetWithObjects);
     const overlaysMapOther = OtherObjects.prepareOtherLayers(this.allStreetWithObjects);

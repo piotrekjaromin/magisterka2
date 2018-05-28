@@ -83,7 +83,7 @@ export class TwoDimensions {
           }
           markers.push(
             BaseLayerManager.prepareMarker(customMarker.long, customMarker.lat, '' + customMarker.speed)
-              .on('click', (data) => customMarker));
+              .on('click', (data) => console.log(customMarker)));
         }
       }
     }
@@ -96,9 +96,9 @@ export class TwoDimensions {
     const boundingBoxesNotCombined = BoundingBox.getBoundingBox(TwoDimensions.getObject(all2dObjects, type), distance);
     let counter = 0;
     for (const street of streets) {
-      if (speed >= +street.properties.defaultSpeedLimit) {
-        continue;
-      }
+      // if (speed >= +street.properties.defaultSpeedLimit) {
+      //   continue;
+      // }
       for (const boundingBoxObject of boundingBoxObjects.features) {
         const numberOfCrossPoint = Mathematical.getCrossPointOfRoadAndRectangle(street.geometry, boundingBoxObject.geometry);
 

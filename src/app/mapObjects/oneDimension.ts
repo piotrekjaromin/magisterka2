@@ -26,9 +26,8 @@ export class OneDimension {
   private static insertObjectsToStreets(streets: Geojsonmodel, objects: [Feature]) {
     const objectFeatures = objects;
     const streetFeatures = streets.features;
-
-    for (const objectFeature of objectFeatures) {
-      for (const streetFeature of streetFeatures) {
+    for (const streetFeature of streetFeatures) {
+      for (const objectFeature of objectFeatures) {
         let speed = 0;
         let description = '';
         if (objectFeature.properties !== undefined) {
@@ -40,21 +39,22 @@ export class OneDimension {
         if (description === 'traffic_signal') {
           speed = 50;
         } else if (description === 'pedestrian_crossing') {
-          speed = 50;
+          speed = 30;
         } else if (description === 'rail_crossing') {
           speed = 30;
         }
+        if (description === 'traffic_signal' || description === 'pedestrian_crossing' || description === 'rail_crossing') {
+          const streetContainsObject = Mathematical.pointInRectangle(streetFeature.geometry.coordinates, <any>objectFeature.geometry.coordinates, objectFeature.properties.highway);
+          if (streetContainsObject) {
+            const customMarker = new CustomMarker(<any>objectFeature.geometry.coordinates[0], <any>objectFeature.geometry.coordinates[1], description, Number(speed));
 
-        const streetContainsObject = Mathematical.pointInRectangle(streetFeature.geometry.coordinates, <any>objectFeature.geometry.coordinates, objectFeature.properties.highway);
-        if (streetContainsObject) {
-          const customMarker = new CustomMarker(<any>objectFeature.geometry.coordinates[0], <any>objectFeature.geometry.coordinates[1], description, Number(speed));
-
-          if (streetFeature.markers === undefined) {
-            const customMarkers: [CustomMarker] = <[CustomMarker]>[];
-            customMarkers.push(customMarker);
-            streetFeature.markers = customMarkers;
-          } else {
-            streetFeature.markers.push(customMarker);
+            if (streetFeature.markers === undefined) {
+              const customMarkers: [CustomMarker] = <[CustomMarker]>[];
+              customMarkers.push(customMarker);
+              streetFeature.markers = customMarkers;
+            } else {
+              streetFeature.markers.push(customMarker);
+            }
           }
         }
       }
@@ -92,25 +92,33 @@ export class OneDimension {
 
     for (const feature of features) {
       for (const customMarker of feature.markers) {
-        // if (+feature.properties.defaultSpeedLimit > customMarker.speed) {
+        if (customMarker.type === type) {
+          let distanceBefore = 0;
+          if (Number(feature.properties.defaultSpeedLimit) <= 60) {
+            distanceBefore = 50;
+          } else {
+            distanceBefore = 150;
+          }
+          // if (+feature.properties.defaultSpeedLimit > customMarker.speed) {
 
-          const beforeCoordinates = GeometryOperations.getCoordinatesBeforePoint([customMarker.lat, customMarker.long], feature.geometry.coordinates, 10);
+          const beforeCoordinates = GeometryOperations.getCoordinatesBeforePoint([customMarker.lat, customMarker.long], feature.geometry.coordinates, distanceBefore);
           if (!isNaN(beforeCoordinates[0])) {
             markers.push(
               BaseLayerManager.prepareMarker(beforeCoordinates[1], beforeCoordinates[0], feature.markers[0].speed.toString())
-                .on('click', (data) => console.log(1)));
+                .on('click', (data) => console.log(customMarker)));
           }
-         // if (Mathematical.getDistanceBetweenPointAndEndOfRoad([customMarker.lat, customMarker.long], feature.geometry.coordinates) > 100) {
-            const afterCoordinates = GeometryOperations.getCoordinatesAfterPoint([customMarker.lat, customMarker.long], feature.geometry.coordinates, 50);
-            if (!isNaN(afterCoordinates[0])) {
-              markers.push(
-                BaseLayerManager.prepareMarker(afterCoordinates[1], afterCoordinates[0], feature.properties.defaultSpeedLimit)
-                  .on('click', (data) => console.log(2)));
-            }
-        //  }
+          // if (Mathematical.getDistanceBetweenPointAndEndOfRoad([customMarker.lat, customMarker.long], feature.geometry.coordinates) > 100) {
+          const afterCoordinates = GeometryOperations.getCoordinatesAfterPoint([customMarker.lat, customMarker.long], feature.geometry.coordinates, 10);
+          if (!isNaN(afterCoordinates[0])) {
+            markers.push(
+              BaseLayerManager.prepareMarker(afterCoordinates[1], afterCoordinates[0], feature.properties.defaultSpeedLimit)
+                .on('click', (data) => console.log(feature)));
+          }
+          //  }
 
         }
-     // }
+      }
+      // }
     }
     return new LayerGroup(markers);
   }
@@ -146,13 +154,13 @@ export class OneDimension {
     const result = new Map();
 
     for (const type of types) {
-        result
-          .set(type, this.prepareObjectMarkersLayer(type, allStreetWithObjects));
-        result
-          .set(type + ' street', BaseLayerManager.parseGeoJsonToGeojsonmodel(this.getStreetsContains(type, allStreetWithObjects)));
-          result
-          .set(type + ' speed', OneDimension.prepareSpeedLimitBeforeBeforeAndAfterMarkersLayer(type, allStreetWithObjects)
-          );
+      result
+        .set(type, this.prepareObjectMarkersLayer(type, allStreetWithObjects));
+      result
+        .set(type + ' street', BaseLayerManager.parseGeoJsonToGeojsonmodel(this.getStreetsContains(type, allStreetWithObjects)));
+      result
+        .set(type + ' speed', OneDimension.prepareSpeedLimitBeforeBeforeAndAfterMarkersLayer(type, allStreetWithObjects)
+        );
     }
     return result;
   }
