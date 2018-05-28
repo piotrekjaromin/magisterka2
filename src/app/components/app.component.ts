@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
   layers = null;
   lat = 0;
   long = 0;
+  coordinates = <[[[number, number]]]>[];
   type: string;
   mymap: L.Map;
   popup = L.popup();
@@ -111,11 +112,23 @@ export class AppComponent implements OnInit {
     this.isShowedField = true;
   }
 
+  addCoordinates() {
+    console.log(this.lat, this.long);
+    this.coordinates.push([[this.long, this.lat]]);
+  }
+
   addThreat() {
-    const coordinates = <[number, number]>[];
-    coordinates.push(this.long, this.lat);
+
     const properties = new PropertiesFromDB('addedByUser', '', '', '', this.type);
-    const geometry: Geometry = new Geometry('Point', <any>coordinates);
+    let geometry: Geometry;
+    console.log(this.coordinates.length);
+    if (this.coordinates.length === 1) {
+      geometry = new Geometry('Point', <any>this.coordinates);
+    } else if (this.coordinates.length > 1) {
+      this.coordinates.push(this.coordinates[0]);
+      geometry = new Geometry('Polygon', <any>this.coordinates);
+    }
+
     const feature: Feature = new Feature(new Date().getTime().toString(), 'Feature', <any>properties, geometry, <[CustomMarker]>[]);
     this.dbDataService.saveObjectToDB(feature);
   }

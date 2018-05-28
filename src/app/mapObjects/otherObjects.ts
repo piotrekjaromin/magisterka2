@@ -78,8 +78,9 @@ export class OtherObjects {
     for (const street of allStreetWithObjects.features) {
       // jeśli droga jest krótsza niż 50m, nie ustawia znaku
       if (Mathematical.getDistanceBetweenPointAndEndOfRoad(street.geometry.coordinates[0], street.geometry.coordinates) > 50) {
+        let markersToStreet: [Marker] = <[Marker]>[];
         for (const markerTmp of this.prepareMarkersOfBeginningStreet(street, objects)) {
-          markers.push(markerTmp);
+          markersToStreet.push(markerTmp);
         }
         this.sortMarkersOfStreet(street);
         streetTmp.push(street);
@@ -100,31 +101,29 @@ export class OtherObjects {
                 } else {
                   distanceBetweenObjectAndNext = Math.abs(Mathematical.getDistanceBetweenPointAndEndOfRoad([this.getNumberFromType(street.markers[counter].lat), this.getNumberFromType(street.markers[counter].long)], street.geometry.coordinates) - Mathematical.getDistanceBetweenPointAndEndOfRoad([this.getNumberFromType(street.markers[counter + 1].lat), this.getNumberFromType(street.markers[counter + 1].long)], street.geometry.coordinates));
                 }
-
-                console.log(distanceBetweenObjectAndNext);
                 if ( Number(street.properties.defaultSpeedLimit) <= 60) {
-                  if (distanceBetweenObjectAndPrevious > 50) {
+                  if (distanceBetweenObjectAndPrevious > 50 && (marker.type.includes('start') || marker.type === 'traffic_signal' || marker.type === 'pedestrian_crossing' || marker.type === 'rail_crossing')) {
                     const coordinates = GeometryOperations.getCoordinatesBeforePoint([lat, long], street.geometry.coordinates, 50);
-                    markers.push(
+                    markersToStreet.push(
                       BaseLayerManager.prepareMarker(coordinates[1], coordinates[0], '' + marker.speed)
                         .on('click', (data) => console.log(street)));
                   }
-                  if (distanceBetweenObjectAndNext > 50) {
+                  if (distanceBetweenObjectAndNext > 50 && (marker.type.includes('end') || marker.type === 'traffic_signal' || marker.type === 'pedestrian_crossing' || marker.type === 'rail_crossing')) {
                     const coordinates = GeometryOperations.getCoordinatesAfterPoint([lat, long], street.geometry.coordinates, 10);
-                    markers.push(
+                    markersToStreet.push(
                       BaseLayerManager.prepareMarker(coordinates[1], coordinates[0], '' + marker.speed)
                         .on('click', (data) => console.log(street)));
                   }
                 } else {
-                  if (distanceBetweenObjectAndPrevious > 150) {
+                  if (distanceBetweenObjectAndPrevious > 150 && (marker.type.includes('start') || marker.type === 'traffic_signal' || marker.type === 'pedestrian_crossing' || marker.type === 'rail_crossing')) {
                     const coordinates = GeometryOperations.getCoordinatesBeforePoint([lat, long], street.geometry.coordinates, 150);
-                    markers.push(
+                    markersToStreet.push(
                       BaseLayerManager.prepareMarker(coordinates[1], coordinates[0], '' + marker.speed)
                         .on('click', (data) => console.log(street)));
                   }
-                  if (distanceBetweenObjectAndNext > 150) {
+                  if (distanceBetweenObjectAndNext > 150 && (marker.type.includes('end') || marker.type === 'traffic_signal' || marker.type === 'pedestrian_crossing' || marker.type === 'rail_crossing')) {
                     const coordinates = GeometryOperations.getCoordinatesAfterPoint([lat, long], street.geometry.coordinates, 10);
-                    markers.push(
+                    markersToStreet.push(
                       BaseLayerManager.prepareMarker(coordinates[1], coordinates[0], '' + marker.speed)
                         .on('click', (data) => console.log(street)));
                   }
@@ -134,9 +133,13 @@ export class OtherObjects {
           }
          counter = counter + 1;
         }
+        for (const marker of markersToStreet) {
+          markers.push(marker);
+        }
       }
       counter = 0;
     }
+    console.log(markers.length);
     return new Map()
       .set('finished speed', new LayerGroup(markers))
       .set('finished speed street', BaseLayerManager.parseGeoJsonToGeojsonmodel(new Geojsonmodel('FeatureCollection', streetTmp)));
@@ -152,7 +155,6 @@ export class OtherObjects {
   }
 
   private static sortMarkersOfStreet(street: Feature) {
-    const result = new Map();
     let flag = 1;
     while (flag > 0) {
       flag = 0;
@@ -167,9 +169,22 @@ export class OtherObjects {
         }
       }
     }
+  }
 
-    for (const marker of street.markers) {
-      result.set(marker, Mathematical.getDistanceBetweenPointAndEndOfRoad([marker.lat, marker.long], street.geometry.coordinates));
+  private static sortMarkers(markers: [Marker], street: Feature) {
+    let flag = 1;
+    while (flag > 0) {
+      flag = 0;
+      for (let i = 0; i < markers.length - 1; i++) {
+        const first = Mathematical.getDistanceBetweenPointAndEndOfRoad([markers[i].getLatLng().lng, markers[i].getLatLng().lat], street.geometry.coordinates);
+        const second = Mathematical.getDistanceBetweenPointAndEndOfRoad([markers[i + 1].getLatLng().lng, markers[i + 1].getLatLng().lat], street.geometry.coordinates);
+        if (first < second) {
+          const temp = markers[i + 1];
+          markers[i + 1] = markers[i];
+          markers[i] = temp;
+          flag++;
+        }
+      }
     }
   }
 
