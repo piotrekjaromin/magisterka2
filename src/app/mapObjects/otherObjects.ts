@@ -72,7 +72,6 @@ export class OtherObjects {
   public static finishedSpeedLayer(allStreetWithObjects: Geojsonmodel, objects: [Feature]) {
     const markers: [Marker] = <[Marker]>[];
     const streetTmp: [Feature] = <[Feature]>[];
-    console.log(objects);
     let counter = 0;
 
     for (const street of allStreetWithObjects.features) {
@@ -101,7 +100,7 @@ export class OtherObjects {
                 } else {
                   distanceBetweenObjectAndNext = Math.abs(Mathematical.getDistanceBetweenPointAndEndOfRoad([this.getNumberFromType(street.markers[counter].lat), this.getNumberFromType(street.markers[counter].long)], street.geometry.coordinates) - Mathematical.getDistanceBetweenPointAndEndOfRoad([this.getNumberFromType(street.markers[counter + 1].lat), this.getNumberFromType(street.markers[counter + 1].long)], street.geometry.coordinates));
                 }
-                if ( Number(street.properties.defaultSpeedLimit) <= 60) {
+                if (Number(street.properties.defaultSpeedLimit) <= 60) {
                   if (distanceBetweenObjectAndPrevious > 50 && (marker.type.includes('start') || marker.type === 'traffic_signal' || marker.type === 'pedestrian_crossing' || marker.type === 'rail_crossing')) {
                     const coordinates = GeometryOperations.getCoordinatesBeforePoint([lat, long], street.geometry.coordinates, 50);
                     markersToStreet.push(
@@ -131,9 +130,22 @@ export class OtherObjects {
               }
             }
           }
-         counter = counter + 1;
+          counter = counter + 1;
         }
+        this.sortMarkers(markersToStreet, street);
+        const markersRemovesDuplicates: [Marker] = <[Marker]>[];
+
+        let isRemoved = false;
+        let previousSpeed = '0';
         for (const marker of markersToStreet) {
+          if (previousSpeed !== marker.options.icon.options.iconUrl) {
+            markersRemovesDuplicates.push(marker);
+          } else {
+            isRemoved = true;
+          }
+          previousSpeed = marker.options.icon.options.iconUrl;
+        }
+        for (const marker of markersRemovesDuplicates) {
           markers.push(marker);
         }
       }
@@ -197,7 +209,7 @@ export class OtherObjects {
       if (object.geometry.type === 'Polygon') {
         const lat = this.getNumberFromType(marker.lat);
         const long = this.getNumberFromType(marker.long);
-        if (Mathematical.checkIfPointInRectangle([lat, long], object.geometry.coordinates) === true ) {
+        if (Mathematical.checkIfPointInRectangle([lat, long], object.geometry.coordinates) === true) {
           flag = true;
         }
       }
@@ -214,17 +226,17 @@ export class OtherObjects {
         return markers;
       }
     }
-     if (street.markers.length === 0) {
-       markers.push(
-         BaseLayerManager.prepareMarker(street.geometry.coordinates[0][1], street.geometry.coordinates[0][0], '' + street.properties.defaultSpeedLimit)
-           .on('click', (data) => console.log(street)));
-       return markers;
-     }
+    if (street.markers.length === 0) {
+      markers.push(
+        BaseLayerManager.prepareMarker(street.geometry.coordinates[0][1], street.geometry.coordinates[0][0], '' + street.properties.defaultSpeedLimit)
+          .on('click', (data) => console.log(street)));
+      return markers;
+    }
     const lat = this.getNumberFromType(street.markers[0].lat);
     const long = this.getNumberFromType(street.markers[0].long);
     const distanceFromBeginningStreetToFirstMarker = Mathematical.getDistanceBetweenPointAndEndOfRoad(street.geometry.coordinates[0], street.geometry.coordinates) -
       Mathematical.getDistanceBetweenPointAndEndOfRoad([lat, long], street.geometry.coordinates);
-    if (Number(street.properties.defaultSpeedLimit) <= 60 ) {
+    if (Number(street.properties.defaultSpeedLimit) <= 60) {
       if (distanceFromBeginningStreetToFirstMarker <= 50) {
         markers.push(
           BaseLayerManager.prepareMarker(street.geometry.coordinates[0][1], street.geometry.coordinates[0][0], '' + street.markers[0].speed)

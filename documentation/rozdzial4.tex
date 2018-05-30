@@ -320,18 +320,15 @@ w takim przypadku na początku drogi ustawiane jest ograniczenie prędkości dla
 \begin{itemize}
 \item 50 metrów, w przypadku domyślnej prędkości na drodze nie przekraczającej 60 km/h
 \item 150 metrów, w przypadku domyślnej prędkości większej niż 60 km/h
-to bezpośrednio za tym obiektem ustawia znak ograniczenia prędkości wymagany przez następny obiekt. Chyba że
-\begin{itemize}
-\item ograniczenie predkości dopuszczalne dla następnego obiektu jest mniejsze bądź równe aktualnemu
 \end{itemize}
-W takim przypadku nie ustawia znaku
-\end{itemize}
+to bezpośrednio za tym obiektem ustawia znak ograniczenia prędkości wymagany przez następny obiekt. Chyba że ograniczenie predkości dopuszczalne dla następnego obiektu jest mniejsze bądź równe aktualnemu. W takim przypadku nie ustawia znaku
 \item bezpośrednio za obiektem przywracana jest domyślna prędkość na drodze, chyba że 
 \begin{itemize}
 \item długość drogi za obiektem jest mniejsza niż 50 metrów
 \item domyślne ogranicznie prędkośći jest mniejsze bądź równe ograniczeniu wymaganemu przed dany obiekt
 \end{itemize}
 W takich przypadkach nie przywraca domyślnej prędkości.
+\item Jeśli koło siebie znajdują się znaki prędkości z takim samym ograniczeniem - algorytm zostawia pierwszy, kolejne usuwa
 \end{itemize}
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.3.3)  27 MAY 2018 20:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.3.3)  30 MAY 2018 08:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2117,20 +2117,11 @@ e 288.
 LaTeX Warning: Reference `sec:LengthOfRoad' on page 66 undefined on input line 
 302.
 
-[66]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 325.
-
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
-File: omsptm.fd 
-)
-LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 325.
-) [67] [68
+[66]) [67] [68
 
 
-]
-[69] [70] [71] (./praca.aux (./rozdzial1.aux) (./rozdzial2.aux)
-(./rozdzial3.aux) (./rozdzial4.aux))
+] [69] [70] [71] (./praca.aux (./rozdzial1.aux) (./rozdzial2.aux) (./rozdzial3.
+aux) (./rozdzial4.aux))
 
 LaTeX Warning: There were undefined references.
 
@@ -2142,10 +2133,10 @@ Package logreq Info: Writing requests to 'praca.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 26354 strings out of 492990
- 492045 string characters out of 6135006
+ 26335 strings out of 492990
+ 491715 string characters out of 6135006
  730257 words of memory out of 5000000
- 29500 multiletter control sequences out of 15000+600000
+ 29484 multiletter control sequences out of 15000+600000
  607886 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  45i,15n,50p,10383b,2723s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2163,7 +2154,7 @@ ve/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8
 a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on praca.pdf (71 pages, 6575865 bytes).
+Output written on praca.pdf (71 pages, 6575948 bytes).
 PDF statistics:
  372 PDF objects out of 1000 (max. 8388607)
  205 compressed objects within 3 object streams
