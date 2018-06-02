@@ -48,3 +48,6 @@
 \contentsline {section}{\numberline {4.2}Menu wyboru warstw}{59}
 \contentsline {section}{\numberline {4.3}Widok zaznaczonych ulic}{61}
 \contentsline {section}{\numberline {4.4}Dodawanie w\IeC {\l }asnych obiekt\IeC {\'o}w}{62}
+\contentsline {subsection}{\numberline {4.4.1}Dodawanie obiekt\IeC {\'o}w reprezentowanych przez pojedy\IeC {\'n}czy punkt}{63}
+\contentsline {subsection}{\numberline {4.4.2}Dodawanie obiekt\IeC {\'o}w reprezentowanych przez zbi\IeC {\'o}r punkt\IeC {\'o}w}{63}
+\contentsline {chapter}{\numberline {5}Wnioski}{65}

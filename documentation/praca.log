@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.3.3)  1 JUN 2018 22:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.3.3)  2 JUN 2018 16:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1383,14 +1383,14 @@ Package csquotes Info: Redefining alias 'default' -> 'polish'.
 LaTeX Warning: Unused global option(s):
     [11pt].
 
-(./praca.aux (./rozdzial1.aux) (./rozdzial3.aux) (./rozdzial4.aux
+(./praca.aux (./rozdzial1.aux) (./rozdzial2.aux) (./rozdzial3.aux
 
 LaTeX Warning: Label `sec:laneNumber' multiply defined.
 
 
 LaTeX Warning: Label `sec:typeOfRoad' multiply defined.
 
-) (./rozdzial5.aux))
+) (./rozdzial4.aux) (./rozdzial5.aux))
 \openout1 = `praca.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 154.
@@ -1406,7 +1406,8 @@ LaTeX Font Info:    ... okay on input line 154.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 154.
 LaTeX Font Info:    ... okay on input line 154.
 LaTeX Font Info:    Try loading font information for T1+ptm on input line 154.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -1661,9 +1662,9 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [13])
 [14]
-\openout2 = `rozdzial3.aux'.
+\openout2 = `rozdzial2.aux'.
 
- (./rozdzial3.tex
+ (./rozdzial2.tex
 Rozdzia\l  2.
 [15
 
@@ -1895,9 +1896,9 @@ e 667.
 Package pdftex.def Info: Requested size: 204.85846pt x 209.81126pt on input lin
 e 667.
  [33 <./vectorPoint.png> <./vectorVector.png>]) [34]
-\openout2 = `rozdzial4.aux'.
+\openout2 = `rozdzial3.aux'.
 
- (./rozdzial4.tex
+ (./rozdzial3.tex
 Rozdzia\l  3.
 <surfaceType.png, id=158, 557.08125pt x 532.99126pt>
 File: surfaceType.png Graphic file (type png)
@@ -2053,9 +2054,9 @@ Package pdftex.def Info: Requested size: 318.66948pt x 360.87564pt on input lin
 e 314.
  [53 <./CurvesSpeed.png>]
 [54]) [55]
-\openout2 = `rozdzial5.aux'.
+\openout2 = `rozdzial4.aux'.
 
- (./rozdzial5.tex [56
+ (./rozdzial4.tex [56
 
 
 
@@ -2095,10 +2096,32 @@ Overfull \hbox (13.65675pt too wide) in paragraph at lines 77--78
  [][] 
  []
 
-[61 <./onlyStreet.png>]) [62] [63
+[61 <./onlyStreet.png>]
+<addObject.png, id=287, 909.3975pt x 918.43124pt>
+File: addObject.png Graphic file (type png)
+<use addObject.png>
+Package pdftex.def Info: addObject.png  used on input line 90. on input line 90
+.
+Package pdftex.def Info: Requested size: 487.11452pt x 491.95146pt on input lin
+e 90.
+
+Overfull \hbox (31.8704pt too wide) in paragraph at lines 90--91
+ [][] 
+ []
+
+[62 <./addObject.png>]) [63]
+\openout2 = `rozdzial5.aux'.
+
+ (./rozdzial5.tex [64
 
 
-] [64] [65] (./praca.aux (./rozdzial1.aux)
+
+]
+Rozdzia\l  5.
+) [65] [66
+
+
+] [67] [68] [69] (./praca.aux (./rozdzial1.aux) (./rozdzial2.aux)
 (./rozdzial3.aux) (./rozdzial4.aux) (./rozdzial5.aux))
 
 LaTeX Warning: There were multiply-defined labels.
@@ -2108,10 +2131,10 @@ Package logreq Info: Writing requests to 'praca.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 26332 strings out of 492990
- 491701 string characters out of 6135006
- 733284 words of memory out of 5000000
- 29482 multiletter control sequences out of 15000+600000
+ 26347 strings out of 492990
+ 491918 string characters out of 6135006
+ 734112 words of memory out of 5000000
+ 29489 multiletter control sequences out of 15000+600000
  607886 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  45i,15n,50p,10383b,2723s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2129,10 +2152,10 @@ ve/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8
 a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on praca.pdf (65 pages, 7541066 bytes).
+Output written on praca.pdf (69 pages, 8332434 bytes).
 PDF statistics:
- 350 PDF objects out of 1000 (max. 8388607)
- 192 compressed objects within 2 object streams
+ 366 PDF objects out of 1000 (max. 8388607)
+ 201 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
- 191 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 196 words of extra memory for PDF output out of 10000 (max. 10000000)
 

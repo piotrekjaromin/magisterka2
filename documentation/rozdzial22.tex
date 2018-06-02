@@ -1,0 +1,19 @@
+\chapter{Algorytm - ogólny zarys}
+\label{cha:ogolnyzarys}
+Niniejszy rozdział przedstawia sposób, w jaki algorytm wylicza dopuszczalne ograniczenia prędkości na drogach. Od samego pobrania danych, poprzez przetworzenie ich, kończąc na wyświetlaniu wyników. 
+
+W pierwszej kolejności, należy dostarczyć plik z danymi geograficznymi interesującego nas obszaru. Można go pobrać ze strony: www.openstreetmap.org.  
+
+Po wczytaniu pliku przez program, następuje jego parsowanie. Odbywa się to poprzez rzutowanie na wcześniej przygotowaną klasę o takiej samej strukturze jak poszczególne obiekty z pliku. Gdy dane zostały już sparsowane i wczytanie do pamięci komputera, następuje odfiltrowanie potrzebnych obietków na dwie kategorie:
+\begin{itemize}
+\item ulice, przedstawiane jako zbiór odcinków
+\item obiekty, które mogą być punktami lub obiektami geometrycznymi dwuwymiarowymi.
+\end{itemize}
+Po tej operacji następuje ich zapis do serwisu hostującego: www.mlab.com
+
+
+Następną czynnością jest pobranie wcześniej przygotowanych danych z bazy i zapis ich do dwóch kolecji: ulic i obiektów. W dalszej kolejności algorytm iteruje po tych dwóch kolekcjach i przypisuje obiekty do poszczególnych dróg. Gdy wszystkie obiekty zostały przypisane do dróg, następuje ich wypisanie.
+
+\newpage
+\section{Pobieranie danych z bazy, przetwarzanie ich i wyświetlanie}
+Gdy wszystkie dane niezbędne do działania algorytmu umieszczone są w bazie, następuje ich wczytanie do pamięci programu. Gdy ten proces zakończy się powodzeniem, następuje odfiltrowanie 
