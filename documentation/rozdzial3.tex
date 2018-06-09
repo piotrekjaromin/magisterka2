@@ -4,23 +4,23 @@
 \section{Typ nawierzchni}
 \label{sec:surfaceType}
 
-W celu zadbania o bezpieczeństwo osób, ale również o dobrą kondycję techniczną pojazdów poruszających się po drogach, niezbędne jest uwzględnienie typu nawierzchni. Nie można dopuścić do sytuacji, gdy na nawierzchni składającej się głównie że żwiru, znajdowało się znak ograniczenia prędkości o wysokiej wartości. Wtedy ulec awarii może zarówno zawieszenie, jak również jadące przed nimi pojazdami. Aby zapobiec tego typu problemom, algorytm dzieli typ nawierzchni na kilka rodzajów:
+W celu zadbania o bezpieczeństwo osób, ale również o dobrą kondycję techniczną pojazdów poruszających się po drogach, niezbędne jest uwzględnienie typu nawierzchni. Nie można dopuścić do sytuacji, gdy na nawierzchni składającej się głównie że żwiru, znajdowało się znak ograniczenia prędkości o wysokiej wartości. Wtedy ulec awarii może zarówno zawieszenie, jak również jadące przed nimi pojazdy. Aby zapobiec tego typu problemom, algorytm dzieli typ nawierzchni na kilka rodzajów:
 
 \begin{itemize}
 \item kostka brukowa
 \item żwir
 \item drobny żwir
-\item nieutwardzana
+\item nieutwardzona
 \item błotnista
-\item płyty  betowowe
+\item płyty betonowe
 \item droga gruntowa
 \item piasek
 \item asfalt
 \end{itemize}
 
-Najbardziej problematyczna dla kierowów droga to taka, która pokryta jest żwirem, drobnym żwirem, składająca się z piasku lub jest błotnista. W takich przypadkach ograniczenie prędkości wynosi 10 km/h. Niewiele lepsza nawierzchnia to taka, która wyłożona jest zarówno kostką brukową oraz płytami betonowymi. Dla nich, odpowiednia prędkość wynosi 20 km/h. W przypadku drogi nieutwardzanej oraz gruntowej, ograniczenie prędkości wynosi 30 km/h. Dla asfaltu, ze względu na jego strukturę, ograniczenie prędkości praktycznie nie występuje.
+Najbardziej problematyczna dla kierowców droga to taka, która pokryta jest żwirem, drobnym żwirem, składająca się z piasku lub jest błotnista. W takich przypadkach ograniczenie prędkości wynosi 10 km/h. Niewiele lepsza nawierzchnia to taka, która wyłożona jest zarówno kostką brukową oraz płytami betonowymi. Dla nich, odpowiednia prędkość wynosi 20 km/h. W przypadku drogi nieutwardzonej oraz gruntowej, ograniczenie prędkości wynosi 30 km/h. Dla asfaltu, ze względu na jego strukturę, ograniczenie prędkości praktycznie nie występuje.
 
-Na Rys. \ref{sec:surfaceTypePhoto} zostały umieszczone ograniczenia prędkości dla dróg, których nawierzchnia pokryta jest materiałem innym niż asfalt. Dla celów demonstracyjnych, został on specjalnie pominięty, ponieważ więszkość dróg jest nim pokryta, przez co Rys. \ref{sec:surfaceTypePhoto} stałby się mało czytelny. Oczywiście ogólny algorytm uwzględnia asfalt.
+Na Rys. \ref{sec:surfaceTypePhoto} zostały umieszczone ograniczenia prędkości dla dróg, których nawierzchnia pokryta jest materiałem innym niż asfalt. Dla celów demonstracyjnych, został on specjalnie pominięty, ponieważ większość dróg jest nim pokryta, przez co Rys. \ref{sec:surfaceTypePhoto} stałby się mało czytelny. Oczywiście ogólny algorytm uwzględnia asfalt.
 
 \begin{figure}[h]
 \caption{Ograniczenia prędkości ze względu na rodzaj nawierzchni.}
@@ -34,7 +34,7 @@ Na Rys. \ref{sec:surfaceTypePhoto} zostały umieszczone ograniczenia prędkości
 \label{sec:pedestrialCrossing}
 \subsection{Przyporządkowywanie przejść dla pieszych do poszczególnych dróg}
 
-Bardzo ważnym czynnikiem doboru prędkości jest obecność przejść dla pieszych. Te z sygnalizacją świetlną nie stanowią problemu, ponieważ ruch pieszych poruszających się na nich jest ograniczony tylko do sytuacji, gdy sygnalizacja świeci się na zielono. W przypadku przejść bez sygnalizacji, sprawa się komplikuje, ponieważ kierowca jest zobowiązany do zachowania szczególnej ostrożności i zmiejszenia prędkości od 30 km/h.
+Bardzo ważnym czynnikiem doboru prędkości jest obecność przejść dla pieszych. Te z sygnalizacją świetlną nie stanowią problemu, ponieważ ruch pieszych poruszających się na nich jest ograniczony tylko do sytuacji, gdy sygnalizacja świeci się na zielono. W przypadku przejść bez sygnalizacji, sprawa się komplikuje, ponieważ kierowca jest zobowiązany do zachowania szczególnej ostrożności i zmniejszenia prędkości od 30 km/h.
 
 Do przyporządkowania przejść dla pieszych, do poszczególnych dróg, został wykorzystany wzór \ref{eq:distancePointLineal} na odległość punktu od prostej, przedstawionym w sekcji \ref{sec:ObiektyPunktDrogi}.
 
@@ -53,11 +53,11 @@ Wynik został przedstawiony na Rys. \ref{sec:PrzejscieDrogi}:
 \includegraphics[width=0.9\textwidth]{PrzejscieDrogi}
 \end{figure}
 
-Dzięki tak zobrazowanej sytuacji, można ocenić skuteczność algorytmu przyporządkowującego przejścia dla pieszych do określonych dróg.
+Dzięki tak zobrazowanej sytuacji, można ocenić skuteczność algorytmu przyporządkowującemu przejścia dla pieszych do określonych dróg.
 
 \subsection{Wyznaczanie prędkości i umieszczanie jej w odpowiednim miejscu na mapie}
 
-Bezpieczna prędkość w pobliżu nieoznakowanych przejść dla pieszych wynosi ok. 30 km/h. Zapewnia ona zarówno wystarczajacy czas reakcji, odpowiednio krótką drogę hamowania oraz zmiejsza ryzyko wystąpień potrąceń pieszych.
+Bezpieczna prędkość w pobliżu nie oznakowanych przejść dla pieszych wynosi ok. 30 km/h. Zapewnia ona zarówno wystarczający czas reakcji, odpowiednio krótką drogę hamowania oraz zmniejsza ryzyko wystąpień potrąceń pieszych.
 
 Algorytm umieszcza znaki ograniczenia prędkości:
 \begin{itemize}
@@ -78,11 +78,11 @@ Algorytm umieszcza znaki ograniczenia prędkości:
 \newpage
 \section{Przystanki autobusowe i tramwajowe}
 \label{sec:busStopsMain}
-Kolejnymi obiektami, uwzględnionymi przez algorytm są przystanki autobusowe i tramwajowe. W ich pobliżu przeważnie znajduje się dość duża grupa ludzi w różnym przedziale wieku. Ponadto zdażają się sytuacje, że piesi wbiegają na drogę w celu zdążenia na komunikację miejską. Ze względu na takie zachowanie, algorytm ogranicza prędkość przy przystankach autobusowych i tramwajowych do 30 km/h.
+Kolejnymi obiektami, uwzględnionymi przez algorytm są przystanki autobusowe i tramwajowe. W ich pobliżu przeważnie znajduje się dość duża grupa ludzi w różnym przedziale wieku. Ponadto zdarzają się sytuacje, że piesi wbiegają na drogę w celu zdążenia na komunikację miejską. Ze względu na takie zachowanie, algorytm ogranicza prędkość przy przystankach autobusowych i tramwajowych do 30 km/h.
 
 Na rys. \ref{sec:busStopBorder} zostały przedstawione przystanki autobusowe i tramwajowe. Wokół nich znajdują się powiększone o 5 metrów obszary pokrywający te obiekty.
 \begin{figure}[h]
-\caption{Ograniczenie predkości przed i za światłami drogowymi}
+\caption{Ograniczenie prędkości przed i za światłami drogowymi}
 \label{sec:busStopBorder}
 \centering
 \includegraphics[width=0.9\textwidth]{busStopBorder}
@@ -92,7 +92,7 @@ Na rys. \ref{sec:busStopBorder} zostały przedstawione przystanki autobusowe i t
 \newpage
 \subsection{Wyznaczanie prędkości i umieszczanie jej w odpowiednim miejscu na mapie}
 
-Najczęściej przystanki autobusowe i tramwajowe znajdują się na drogach o niezbyt wysokiej dopuszczalnej prędkości. W przypadku gdy dopuszczalna prędkość na drodze nie przekracza 30 km/h. nie ma sensu stawiać znaku. W przypadku gdy ograniczenie prędkości na drodze nie przekracza 60 km/h, znak zostanie postawiony w odległości 50 metrów od początku powiększonego obszaru wokół przystanku. Gdy ograniczenie prędkości przekracza 60 km/h, znak zostaje ustawionyw odległości 150 metrów od początku obszaru. 
+Najczęściej przystanki autobusowe i tramwajowe znajdują się na drogach o niezbyt wysokiej dopuszczalnej prędkości. W przypadku gdy dopuszczalna prędkość na drodze nie przekracza 30 km/h. nie ma sensu stawiać znaku. W przypadku gdy ograniczenie prędkości na drodze nie przekracza 60 km/h, znak zostanie postawiony w odległości 50 metrów od początku powiększonego obszaru wokół przystanku. Gdy ograniczenie prędkości przekracza 60 km/h, znak zostaje ustawiony w odległości 150 metrów od początku obszaru. 
 Znak przywracający poprzednią prędkość, algorytm umieszcza zaraz za obszarem stanowiącym przystanek. Opisana sytuacja została przedstawiona na rys. \ref{sec:busStopSpeed}
 
 \begin{figure}[h]
@@ -107,7 +107,7 @@ Znak przywracający poprzednią prędkość, algorytm umieszcza zaraz za obszare
 \label{sec:railCrossingMain}
 \subsection{Przyporządkowywanie przejazdów kolejowych do poszczególnych dróg}
 
-Istotnych parametrem algorytmu wyznaczającego dopuszczalne prędkości jest obecność przejazdów kolejowych. Jak wiadomo, pociąg nie zatrzyma się w miejscu. Jego droga chamowania w głównej mierze zależy od masy oraz prędkości z jaką się porusza. Dla przykładu, pociąg towarowy o masie ok. 1800 ton, jadący z prędkością ok. 50 km/h, zatrzyma sie po około 500m. Dlatego ważne jest określenie prędkości, z jaką samochód moze się przemieszczać przed takim przejazdem.
+Istotnych parametrem algorytmu wyznaczającego dopuszczalne prędkości jest obecność przejazdów kolejowych. Jak wiadomo, pociąg nie zatrzyma się w miejscu. Jego droga hamowania w głównej mierze zależy od masy oraz prędkości z jaką się porusza. Dla przykładu, pociąg towarowy o masie ok. 1800 ton, jadący z prędkością ok. 50 km/h, zatrzyma się po około 500 m. Dlatego ważne jest określenie prędkości, z jaką samochód może się przemieszczać przed takim przejazdem.
 
 Do przyporządkowania przejazdów kolejowych do poszczególnych dróg, został wykorzystany wzór \ref{eq:distancePointLineal} znajdujący się w rozdziale \ref{sec:pedestrialCrossing}
 
@@ -121,7 +121,7 @@ Do przyporządkowania przejazdów kolejowych do poszczególnych dróg, został w
 
 Rys. \ref{sec:PrzejazdyKolejowe} obrazuje wynik przypisania przejazdów kolejowych do poszczególnych dróg:
 \begin{itemize}
-\item kolorem niebieskim drogi, na ktorych znajdują przejazdy kolejowe
+\item kolorem niebieskim drogi, na których znajdują przejazdy kolejowe
 \item znakiem ''A-10'' zostały oznaczone przejazdy kolejowe, pobrane z OpenStreetMap
 \end{itemize}
 
@@ -150,7 +150,7 @@ Rys. \ref{sec:PrzejazdyKolejowe1} obrazuje przejazd kolejowy znajdujący się na
 \section{Szkoły i miejsca zabaw}
 \label{sec:schoolsMain}
 
-Dopuszczalna prędkość, z jaką pojazdy mogą się przenieszczać w pobliżu szkół, placów zabaw lub innych miejsc, przy których mogą znajdować się osoby niepełnoletnie, wynosi 30 km/h. Jest to niezbędne minimum, aby kierowca zdążył zareagować na czas. Na rys. \ref{sec:schoolBorder} po lewej stronie zostało przedstawione przedszkole z placem zabaw przylegającym do niego. Natomiast po prawej znajduje się szkoła podstawowa oraz otoczony wokół niej teren. Jak widać, zostały zaznaczone minimalnym obszarem pokrywającym, powiększonym dodatkowo o 30 metrów z każdej strony
+Dopuszczalna prędkość, z jaką pojazdy mogą się przemieszczać w pobliżu szkół, placów zabaw lub innych miejsc, przy których mogą znajdować się osoby niepełnoletnie, wynosi 30 km/h. Jest to niezbędne minimum, aby kierowca zdążył zareagować na czas. Na rys. \ref{sec:schoolBorder} po lewej stronie zostało przedstawione przedszkole z placem zabaw przylegającym do niego. Natomiast po prawej znajduje się szkoła podstawowa oraz otoczony wokół niej teren. Jak widać, zostały zaznaczone minimalnym obszarem pokrywającym, powiększonym dodatkowo o 30 metrów z każdej strony
 
 \begin{figure}[h]
 \caption{Szkoły i miejsca zabaw}
@@ -162,7 +162,7 @@ Dopuszczalna prędkość, z jaką pojazdy mogą się przenieszczać w pobliżu s
 \newpage
 \subsection{Wyznaczanie prędkości i umieszczanie jej w odpowiednim miejscu na mapie}
 
-Znaki ograniczające dopuszczalną prędkość zostają ustawione w odległości 50 metrów, w przypadku gdy szkoła, znajduje się w poblizu drogi z ograniczeniem prędkości do 60 km/h. Powyżej tej prędkości znaki zostają umieszczone w odległości 150m. Jest ono umieszczane tylko wtedy, gdy ograniczenie prędkości na drodze jest większe niż 30 km/h. Znak przywracający poprzednie ograniczenia prędkości jest umieszczany bezpośrednio po obszarze w którym znajduje się szkoła. Zostało to przedstawione na rys. \ref{sec:schoolsSpeed}.
+Znaki ograniczające dopuszczalną prędkość zostają ustawione w odległości 50 metrów, w przypadku gdy szkoła, znajduje się w pobliżu drogi z ograniczeniem prędkości do 60 km/h. Powyżej tej prędkości znaki zostają umieszczone w odległości 150m. Jest ono umieszczane tylko wtedy, gdy ograniczenie prędkości na drodze jest większe niż 30 km/h. Znak przywracający poprzednie ograniczenia prędkości jest umieszczany bezpośrednio po obszarze w którym znajduje się szkoła. Zostało to przedstawione na rys. \ref{sec:schoolsSpeed}.
 
 \begin{figure}[h]
 \caption{Szkoły i miejsca zabaw}
@@ -177,7 +177,7 @@ Znaki ograniczające dopuszczalną prędkość zostają ustawione w odległości
 \label{sec:trafficSignalMain}
 \subsection{Przyporządkowywanie sygnalizacji świetlnej do poszczególnych dróg}
 
-Aby kierowca bez problemu mógł zdążyć zareagować na zmieniające się swiatło sygnalizacji świetlnej, niezbędne jest zredukowanie prędkości do odpowiedniej wartości. Ze względu na fakt iż sygnalizacja widoczna jest z relatywnie dużej odległości, prędkość przed sygnalizacją zostanie ograniczona do ok. 50 km/h.
+Aby kierowca bez problemu mógł zdążyć zareagować na zmieniające się światła sygnalizacji świetlnej, niezbędne jest zredukowanie prędkości do odpowiedniej wartości. Ze względu na fakt iż sygnalizacja widoczna jest z relatywnie dużej odległości, prędkość przed sygnalizacją zostanie ograniczona do ok. 50 km/h.
 
 
 \begin{figure}[h]
@@ -189,14 +189,14 @@ Aby kierowca bez problemu mógł zdążyć zareagować na zmieniające się swia
 
 Rys. \ref{sec:PrzejazdyKolejowe2} ukazuje sposób działania algorytmu przypisującego do drogi sygnalizację świetlną. Zaznaczono na nim:
 \begin{itemize}
-\item kolorem niebieskim drogi, na ktorych znajduje się sygnalizacja świetlna
+\item kolorem niebieskim drogi, na których znajduje się sygnalizacja świetlna
 \item znakiem ''A-29'' zostały oznaczone sygnalizacje świetlne, pobrane z OpenStreetMap
 \end{itemize}
 
 \newpage
 \subsection{Wyznaczanie prędkości i umieszczanie jej w odpowiednim miejscu na mapie}
 
-Algorytm umieszcza znaki ograniczenia prędkości w następujący spasób:
+Algorytm umieszcza znaki ograniczenia prędkości w następujący sposób:
 \begin{itemize}
 \item w przypadku gdy maksymalna prędkość na drodze jest mniejsza bądź równo 50 km/h, nie ma sensu wstawiać znaku
 \item 50m przed sygnalizacją na drodze z ograniczeniem prędkości do 60 km/h
@@ -209,7 +209,7 @@ Algorytm umieszcza znaki ograniczenia prędkości w następujący spasób:
 Rys. \ref{sec:znakiSwiatla} obrazuje fragment skrzyżowania na której znajduje się sygnalizacja świetlna. Ograniczenie prędkości na drogach wynosi od 70 do 80 km/h, dlatego algorytm umieścił znak ograniczenia prędkości do 50 km/h, 150m przed sygnalizacją oraz znak przywracający poprzednią prędkość zaraz za sygnalizacją.
 
 \begin{figure}[h]
-\caption{Ograniczenie predkości przed i za światłami drogowymi}
+\caption{Ograniczenie prędkości przed i za światłami drogowymi}
 \label{sec:znakiSwiatla}
 \centering
 \includegraphics[width=0.65\textwidth]{speedBeforeSignals}
@@ -219,16 +219,16 @@ Rys. \ref{sec:znakiSwiatla} obrazuje fragment skrzyżowania na której znajduje 
 \section{Sklepy i miejsca kultów religijnych}
 \label{sec:shoopsChurchesMain}
 
-Zwiększone ruch samochodów oraz pieszych przy sklepach najczęściej zauważalny jest w godzinach wieczornych i w weekendy. Natomiast większenie ruchu w miejscach kultu religijnego widoczne jest w czasie świąt. Z tego powodu, algorytm musi uwzględniać takie miejsca. Zostały one przedstawione na rys. \ref{sec:shopsBorder}.
+Zwiększone ruch samochodów oraz pieszych przy sklepach najczęściej zauważalny jest w godzinach wieczornych i w weekendy. Natomiast zwiększenie ruchu w miejscach kultu religijnego widoczne jest w czasie świąt. Z tego powodu, algorytm musi uwzględniać takie miejsca. Zostały one przedstawione na rys. \ref{sec:shopsBorder}.
 
 \begin{figure}[h]
-\caption{Szkoły i miesjca religijne}
+\caption{Szkoły i miejsca religijne}
 \label{sec:shopsBorder}
 \centering
 \includegraphics[width=0.9\textwidth]{shopsBorder}
 \end{figure}
 
-Na rys. \ref{sec:shopsBorder} widzoczne są obramowania kościołów i sklepów. Ponadto otoczone są powiększonym obszarem pokrywającym, reprezentującym strefę ograniczenia prędkości.
+Na rys. \ref{sec:shopsBorder} widoczne są obramowania kościołów i sklepów. Ponadto otoczone są powiększonym obszarem pokrywającym, reprezentującym strefę ograniczenia prędkości.
 
 \newpage
 \subsection{Wyznaczanie prędkości i umieszczanie jej w odpowiednim miejscu na mapie}
@@ -248,14 +248,14 @@ Dopuszczalna prędkość z jaką można się poruszać w obrębie sklepów i mie
 Maksymalna dozwolona prędkość jest zależna również od liczby pasów ruchu. Im jest ich więcej, tym większą prędkość można rozwijać. Dlatego algorytm zwiększa dopuszczalną prędkość o 10 km/h w przypadku gdy liczba pasów ruchu jest większa niż jeden. Na rys \ref{sec:laneNumber} zostały zaznaczone ulice, których liczba pasów ruchu wynosi przynajmniej 2, oraz prędkości nie uwzględniające pasów ruchu. 
 
 \begin{figure}[h]
-\caption{Prędkość przy nie uwgzględnieniu liczby pasów ruchu}
+\caption{Prędkość przy nieuwzględnieniu liczby pasów ruchu}
 \label{sec:laneNumber}
 \centering
 \includegraphics[width=0.95\textwidth]{laneNumber}
 \end{figure}
 
 \newpage
-Na rys. \ref{sec:laneNumberAfter} zostały przedstawione prędkości już z uwzlędnioną liczbą pasów ruchu. Zauważyć można, że tam, gdzie liczba pasów jest większa niż jeden, prędkość została zwiększone, a tam gdzie występuje tylko jeden pas ruchu, prędkość pozostała niezmieniona. Ograniczenie prędkości dotyczy całego odcinka drogi, dlatego znak ograniczenia prędkości jest umieszczany na początku każdej drogi.
+Na rys. \ref{sec:laneNumberAfter} zostały przedstawione prędkości już z uwzględnioną liczbą pasów ruchu. Zauważyć można, że tam, gdzie liczba pasów jest większa niż jeden, prędkość została zwiększone, a tam gdzie występuje tylko jeden pas ruchu, prędkość pozostała niezmieniona. Ograniczenie prędkości dotyczy całego odcinka drogi, dlatego znak ograniczenia prędkości jest umieszczany na początku każdej drogi.
 \begin{figure}[h]
 \caption{Prędkość uwzględniająca liczbę pasów ruchu}
 \label{sec:laneNumberAfter}
@@ -298,13 +298,13 @@ Na rys. \ref{sec:zakrety} zostały zakręty, dla których promień skrętu jest 
 
 \newpage
 \subsection{Wyznaczanie prędkości i umieszczanie jej w odpowiednim miejscu na mapie}
-Algorytm uzględna trzy rodzaje promieni skrętów: 
+Algorytm uwzględnia trzy rodzaje promieni skrętów: 
 \begin{itemize}
 \item mały promień skrętu o długości promienia nie przekraczającej 300 metrów
 \item średni promień skrętu o długości promienia między 300 a 600 metrów
 \item duży promień skrętu o długości promienia powyżej 600 metrów.
 \end{itemize}
-Ograniczenie prędkośći w przypadku małego promienia skrętu jest zmiejszane o 10 km/h, w przypadku średniego promienia skrętu, dopuszczalna prędkość zmiejsza się o 20 km/h, natomiast przy dużym promieniu skrętu, prędkość redukowana jest o 30 km/h. 
+Ograniczenie prędkości w przypadku małego promienia skrętu jest zmniejszane o 10 km/h, w przypadku średniego promienia skrętu, dopuszczalna prędkość zmniejsza się o 20 km/h, natomiast przy dużym promieniu skrętu, prędkość zredukowana jest o 30 km/h. 
 
 Znak ustawiany jest 50 metrów od początku skrętu, w przypadku gdy dopuszczalna prędkość nie przekracza 60 km/h. W przeciwnym wypadku, znak umieszczany jest 150 metrów od początku skrętu. Bezpośrednio na końcu zakrętu, umieszczany jest znak przywracający poprzednią prędkość. Sytuację tą obrazuje rys \ref{sec:zakretySpeed}
 \begin{figure}[h]
@@ -320,12 +320,12 @@ Znak ustawiany jest 50 metrów od początku skrętu, w przypadku gdy dopuszczaln
 
 
 
-Na początku wyliczane jest domyślne ograniczenie ograniczenie prędkości dla każdej drogi na podstawie poniższych kryteriów:
+Na początku wyliczane jest domyślne ograniczenie prędkości dla każdej drogi na podstawie poniższych kryteriów:
 \begin{itemize}
 \item Typ nawierzchni - szczegóły w rozdziale \ref{sec:surfaceType}
-\item Rodzaj drogi - szczegóły w rodziale \ref{sec:typeOfRoad}
+\item Rodzaj drogi - szczegóły w rozdziale \ref{sec:typeOfRoad}
 \item Długość drogi
-\item Liczby pasów ruchu - szczegóły w rodziale \ref{sec:laneNumber}
+\item Liczby pasów ruchu - szczegóły w rozdziale \ref{sec:laneNumber}
 \end{itemize}
 
 Następnie algorytm przystępuje do umieszczania znaków na drodze według następującej kolejności:
@@ -339,18 +339,18 @@ Następnie algorytm przystępuje do umieszczania znaków na drodze według nast�
 \item gdy domyślna prędkości przekracza 60 km/h i obiekt znajduje się w  odległości mniejszej bądź równej 150m 
 \end{itemize}
 w takim przypadku na początku drogi ustawiane jest ograniczenie prędkości dla danego obiektu.
-\item w odłegłości 50 metrów od obietków jednowymiarowych typu przejście dla pieszych itp, lub 50 metrów przed początkiem strefy ograniczonej prędości, gdy dopuszczalna prędkość jest mniejsza bądź równa 60 km/h. Dotyczy sytuacji, gdy w odległości nie większej niż 50 metrów przed obiektem, nie znajduje się inny obiekt. W przeciwnym razie, ograniczenie prędkości nie jest ustawiane.
-\item w odłegłości 150 metrów od obietków jednowymiarowych typu przejście dla pieszych itp, lub 150 metrów przed początkiem strefy ograniczonej prędości, gdy dopuszczalna prędkość przekracza 60 km/h. Dotyczy sytuacji, gdy w odległości nie większej niż 150 metrów przed obiektem, nie znajduje się inny obiekt. W przeciwnym razie, ograniczenie prędkości nie jest ustawiane.
+\item w odległości 50 metrów od obiektów jednowymiarowych typu przejście dla pieszych itp, lub 50 metrów przed początkiem strefy ograniczonej prędkości, gdy dopuszczalna prędkość jest mniejsza bądź równa 60 km/h. Dotyczy sytuacji, gdy w odległości nie większej niż 50 metrów przed obiektem, nie znajduje się inny obiekt. W przeciwnym razie, ograniczenie prędkości nie jest ustawiane.
+\item w odległości 150 metrów od obiektów jednowymiarowych typu przejście dla pieszych itp, lub 150 metrów przed początkiem strefy ograniczonej prędkości, gdy dopuszczalna prędkość przekracza 60 km/h. Dotyczy sytuacji, gdy w odległości nie większej niż 150 metrów przed obiektem, nie znajduje się inny obiekt. W przeciwnym razie, ograniczenie prędkości nie jest ustawiane.
 \item jeśli za obiektem typu przejście dla pieszych lub za strefą ograniczonej prędkości znajduje się inny obiekt ustawiony w odległości:
 \begin{itemize}
 \item 50 metrów, w przypadku domyślnej prędkości na drodze nie przekraczającej 60 km/h
 \item 150 metrów, w przypadku domyślnej prędkości większej niż 60 km/h
 \end{itemize}
-to bezpośrednio za tym obiektem ustawia znak ograniczenia prędkości wymagany przez następny obiekt. Chyba że ograniczenie predkości dopuszczalne dla następnego obiektu jest mniejsze bądź równe aktualnemu. W takim przypadku nie ustawia znaku
+to bezpośrednio za tym obiektem ustawia znak ograniczenia prędkości wymagany przez następny obiekt. Chyba że ograniczenie prędkości dopuszczalne dla następnego obiektu jest mniejsze bądź równe aktualnemu. W takim przypadku nie ustawia znaku
 \item bezpośrednio za obiektem przywracana jest domyślna prędkość na drodze, chyba że 
 \begin{itemize}
 \item długość drogi za obiektem jest mniejsza niż 50 metrów
-\item domyślne ogranicznie prędkośći jest mniejsze bądź równe ograniczeniu wymaganemu przed dany obiekt
+\item domyślne ograniczenie prędkości jest mniejsze bądź równe ograniczeniu wymaganemu przed dany obiekt
 \end{itemize}
 W takich przypadkach nie przywraca domyślnej prędkości.
 \item Jeśli koło siebie znajdują się znaki prędkości z takim samym ograniczeniem - algorytm zostawia pierwszy, kolejne usuwa

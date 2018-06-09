@@ -1,53 +1,69 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \select@language {polish}
-\contentsline {chapter}{\numberline {1}Wprowadzenie}{7}
-\contentsline {section}{\numberline {1.1}Wst\IeC {\k e}p}{7}
-\contentsline {section}{\numberline {1.2}Cele pracy}{8}
-\contentsline {section}{\numberline {1.3}Wykorzystane technologie}{10}
-\contentsline {section}{\numberline {1.4}Przegl\IeC {\k a}d literatury}{11}
-\contentsline {section}{\numberline {1.5}Uk\IeC {\l }ad pracy}{14}
-\contentsline {chapter}{\numberline {2}Algorytm - opracowanie teoretyczne}{15}
-\contentsline {section}{\numberline {2.1}Og\IeC {\'o}lny zarys algorytmu}{15}
-\contentsline {section}{\numberline {2.2}Przyporz\IeC {\k a}dkowanie obiekt\IeC {\'o}w reprezentowanych przez punkty, do poszczeg\IeC {\'o}lnych dr\IeC {\'o}g}{16}
-\contentsline {section}{\numberline {2.3}Wyznaczanie wsp\IeC {\'o}\IeC {\l }rz\IeC {\k e}dnych punktu znajduj\IeC {\k a}cego si\IeC {\k e} na drodze, odleg\IeC {\l }ego o n metr\IeC {\'o}w od innego punktu}{17}
-\contentsline {section}{\numberline {2.4}Wyznaczanie minimalnego obszaru pokrywaj\IeC {\k a}cego}{19}
-\contentsline {section}{\numberline {2.5}Powi\IeC {\k e}kszanie wyznaczonego obszaru pokrywaj\IeC {\k a}cego}{21}
-\contentsline {section}{\numberline {2.6}\IeC {\L }\IeC {\k a}czenie powi\IeC {\k e}kszonych obszar\IeC {\'o}w pokrywaj\IeC {\k a}cych}{22}
-\contentsline {subsection}{\numberline {2.6.1}\IeC {\L }\IeC {\k a}czenie powi\IeC {\k e}kszonych obszar\IeC {\'o}w pokrywaj\IeC {\k a}cych w przypadku gdy jeden obszar w ca\IeC {\l }o\IeC {\'s}ci znajduje si\IeC {\k e} w drugim}{22}
-\contentsline {subsection}{\numberline {2.6.2}\IeC {\L }\IeC {\k a}czenie powi\IeC {\k e}kszonych obszar\IeC {\'o}w pokrywaj\IeC {\k a}cych w przypadku gdy jeden obszar nachodzi w ca\IeC {\l }o\IeC {\'s}ci tylko jednym bokiem }{24}
-\contentsline {subsection}{\numberline {2.6.3}\IeC {\L }\IeC {\k a}czenie powi\IeC {\k e}kszonych obszar\IeC {\'o}w pokrywaj\IeC {\k a}cych w przypadku gdy jeden obszar nachodzi tylko jednym rogiem }{27}
-\contentsline {section}{\numberline {2.7}Znajdowanie punkt\IeC {\'o}w przeci\IeC {\k e}cia drogi i powi\IeC {\k e}kszonego obszaru}{29}
-\contentsline {section}{\numberline {2.8}Sprawdzanie, czy punkt przeci\IeC {\k e}cia nale\IeC {\.z}y do odcinka}{30}
-\contentsline {section}{\numberline {2.9}Przyporz\IeC {\k a}dkowanie obiekt\IeC {\'o}w reprezentowanych przez wielok\IeC {\k a}ty, do poszczeg\IeC {\'o}lnych dr\IeC {\'o}g}{31}
-\contentsline {section}{\numberline {2.10}Obliczanie, po kt\IeC {\'o}rej stronie drogi znajduje si\IeC {\k e} konkretny punkt}{33}
-\contentsline {section}{\numberline {2.11}Wyznaczanie promienia skr\IeC {\k e}tu dla zakr\IeC {\k e}t\IeC {\'o}w danej drogi}{34}
-\contentsline {chapter}{\numberline {3}Algorytm - poszczeg\IeC {\'o}lne sk\IeC {\l }adowe oraz przyk\IeC {\l }ady zastosowania}{35}
-\contentsline {section}{\numberline {3.1}Typ nawierzchni}{35}
-\contentsline {section}{\numberline {3.2}Przej\IeC {\'s}cia dla pieszych}{37}
-\contentsline {subsection}{\numberline {3.2.1}Przyporz\IeC {\k a}dkowywanie przej\IeC {\'s}\IeC {\'c} dla pieszych do poszczeg\IeC {\'o}lnych dr\IeC {\'o}g}{37}
-\contentsline {subsection}{\numberline {3.2.2}Wyznaczanie pr\IeC {\k e}dko\IeC {\'s}ci i umieszczanie jej w odpowiednim miejscu na mapie}{38}
-\contentsline {section}{\numberline {3.3}Przystanki autobusowe i tramwajowe}{39}
-\contentsline {subsection}{\numberline {3.3.1}Wyznaczanie pr\IeC {\k e}dko\IeC {\'s}ci i umieszczanie jej w odpowiednim miejscu na mapie}{40}
-\contentsline {section}{\numberline {3.4}Przejazdy kolejowe}{41}
-\contentsline {subsection}{\numberline {3.4.1}Przyporz\IeC {\k a}dkowywanie przejazd\IeC {\'o}w kolejowych do poszczeg\IeC {\'o}lnych dr\IeC {\'o}g}{41}
-\contentsline {subsection}{\numberline {3.4.2}Wyznaczanie pr\IeC {\k e}dko\IeC {\'s}ci i umieszczanie jej w odpowiednim miejscu na mapie}{42}
-\contentsline {section}{\numberline {3.5}Szko\IeC {\l }y i miejsca zabaw}{43}
-\contentsline {subsection}{\numberline {3.5.1}Wyznaczanie pr\IeC {\k e}dko\IeC {\'s}ci i umieszczanie jej w odpowiednim miejscu na mapie}{44}
-\contentsline {section}{\numberline {3.6}Sygnalizacja \IeC {\'s}wietlna}{45}
-\contentsline {subsection}{\numberline {3.6.1}Przyporz\IeC {\k a}dkowywanie sygnalizacji \IeC {\'s}wietlnej do poszczeg\IeC {\'o}lnych dr\IeC {\'o}g}{45}
-\contentsline {subsection}{\numberline {3.6.2}Wyznaczanie pr\IeC {\k e}dko\IeC {\'s}ci i umieszczanie jej w odpowiednim miejscu na mapie}{46}
-\contentsline {section}{\numberline {3.7}Sklepy i miejsca kult\IeC {\'o}w religijnych}{47}
-\contentsline {subsection}{\numberline {3.7.1}Wyznaczanie pr\IeC {\k e}dko\IeC {\'s}ci i umieszczanie jej w odpowiednim miejscu na mapie}{48}
-\contentsline {section}{\numberline {3.8}Liczba pas\IeC {\'o}w ruchu}{49}
-\contentsline {section}{\numberline {3.9}Rodzaj drogi}{51}
-\contentsline {section}{\numberline {3.10}Zakr\IeC {\k e}ty}{52}
-\contentsline {subsection}{\numberline {3.10.1}Wyznaczanie pr\IeC {\k e}dko\IeC {\'s}ci i umieszczanie jej w odpowiednim miejscu na mapie}{53}
-\contentsline {section}{\numberline {3.11}Dzia\IeC {\l }anie algorytmu}{54}
-\contentsline {chapter}{\numberline {4}Interfejs u\IeC {\.z}ytkownika}{57}
-\contentsline {section}{\numberline {4.1}Widok g\IeC {\l }\IeC {\'o}wny aplikacji}{57}
-\contentsline {section}{\numberline {4.2}Menu wyboru warstw}{59}
-\contentsline {section}{\numberline {4.3}Widok zaznaczonych ulic}{61}
-\contentsline {section}{\numberline {4.4}Dodawanie w\IeC {\l }asnych obiekt\IeC {\'o}w}{62}
-\contentsline {subsection}{\numberline {4.4.1}Dodawanie obiekt\IeC {\'o}w reprezentowanych przez pojedy\IeC {\'n}czy punkt}{63}
-\contentsline {subsection}{\numberline {4.4.2}Dodawanie obiekt\IeC {\'o}w reprezentowanych przez zbi\IeC {\'o}r punkt\IeC {\'o}w}{63}
-\contentsline {chapter}{\numberline {5}Wnioski}{65}
+\contentsline {chapter}{\numberline {1}Wprowadzenie}{9}
+\contentsline {section}{\numberline {1.1}Wst\IeC {\k e}p}{9}
+\contentsline {section}{\numberline {1.2}Cele pracy}{10}
+\contentsline {section}{\numberline {1.3}Wykorzystane technologie}{12}
+\contentsline {section}{\numberline {1.4}Przegl\IeC {\k a}d literatury}{13}
+\contentsline {section}{\numberline {1.5}Uk\IeC {\l }ad pracy}{16}
+\contentsline {chapter}{\numberline {2}Koncepcja i projekt systemu}{17}
+\contentsline {section}{\numberline {2.1}Og\IeC {\'o}lny opis systemu}{17}
+\contentsline {subsection}{\numberline {2.1.1}Cele}{17}
+\contentsline {subsection}{\numberline {2.1.2}Udzia\IeC {\l }owcy i u\IeC {\.z}ytkownicy}{17}
+\contentsline {subsection}{\numberline {2.1.3}Granice systemu (wej\IeC {\'s}cia, wyj\IeC {\'s}cia)}{17}
+\contentsline {subsection}{\numberline {2.1.4}Podstawowe cele udzia\IeC {\l }owc\IeC {\'o}w i u\IeC {\.z}ytkownik\IeC {\'o}w}{18}
+\contentsline {subsection}{\numberline {2.1.5}Lista mo\IeC {\.z}liwo\IeC {\'s}ci}{18}
+\contentsline {subsection}{\numberline {2.1.6}Diagram klas}{19}
+\contentsline {section}{\numberline {2.2}Opis klas aplikacji}{19}
+\contentsline {subsection}{\numberline {2.2.1}CalculationOperations}{20}
+\contentsline {subsection}{\numberline {2.2.2}components}{20}
+\contentsline {subsection}{\numberline {2.2.3}layerManagers}{20}
+\contentsline {subsection}{\numberline {2.2.4}mapObjects}{20}
+\contentsline {subsection}{\numberline {2.2.5}models}{21}
+\contentsline {subsection}{\numberline {2.2.6}services}{21}
+\contentsline {section}{\numberline {2.3}Architektura systemu}{21}
+\contentsline {chapter}{\numberline {3}Algorytm - opracowanie teoretyczne}{23}
+\contentsline {section}{\numberline {3.1}Og\IeC {\'o}lny zarys algorytmu}{23}
+\contentsline {section}{\numberline {3.2}Przyporz\IeC {\k a}dkowanie obiekt\IeC {\'o}w reprezentowanych przez punkty, do poszczeg\IeC {\'o}lnych dr\IeC {\'o}g}{24}
+\contentsline {section}{\numberline {3.3}Wyznaczanie wsp\IeC {\'o}\IeC {\l }rz\IeC {\k e}dnych punktu znajduj\IeC {\k a}cego si\IeC {\k e} na drodze, odleg\IeC {\l }ego o n metr\IeC {\'o}w od innego punktu}{25}
+\contentsline {section}{\numberline {3.4}Wyznaczanie minimalnego obszaru pokrywaj\IeC {\k a}cego}{27}
+\contentsline {section}{\numberline {3.5}Powi\IeC {\k e}kszanie wyznaczonego obszaru pokrywaj\IeC {\k a}cego}{29}
+\contentsline {section}{\numberline {3.6}\IeC {\L }\IeC {\k a}czenie powi\IeC {\k e}kszonych obszar\IeC {\'o}w pokrywaj\IeC {\k a}cych}{30}
+\contentsline {subsection}{\numberline {3.6.1}\IeC {\L }\IeC {\k a}czenie powi\IeC {\k e}kszonych obszar\IeC {\'o}w pokrywaj\IeC {\k a}cych w przypadku gdy jeden obszar w ca\IeC {\l }o\IeC {\'s}ci znajduje si\IeC {\k e} w drugim}{30}
+\contentsline {subsection}{\numberline {3.6.2}\IeC {\L }\IeC {\k a}czenie powi\IeC {\k e}kszonych obszar\IeC {\'o}w pokrywaj\IeC {\k a}cych w przypadku gdy jeden obszar nachodzi w ca\IeC {\l }o\IeC {\'s}ci tylko jednym bokiem }{32}
+\contentsline {subsection}{\numberline {3.6.3}\IeC {\L }\IeC {\k a}czenie powi\IeC {\k e}kszonych obszar\IeC {\'o}w pokrywaj\IeC {\k a}cych w przypadku gdy jeden obszar nachodzi tylko jednym rogiem }{35}
+\contentsline {section}{\numberline {3.7}Znajdowanie punkt\IeC {\'o}w przeci\IeC {\k e}cia drogi i powi\IeC {\k e}kszonego obszaru}{37}
+\contentsline {section}{\numberline {3.8}Sprawdzanie, czy punkt przeci\IeC {\k e}cia nale\IeC {\.z}y do odcinka}{38}
+\contentsline {section}{\numberline {3.9}Przyporz\IeC {\k a}dkowanie obiekt\IeC {\'o}w reprezentowanych przez wielok\IeC {\k a}ty, do poszczeg\IeC {\'o}lnych dr\IeC {\'o}g}{39}
+\contentsline {section}{\numberline {3.10}Obliczanie, po kt\IeC {\'o}rej stronie drogi znajduje si\IeC {\k e} konkretny punkt}{41}
+\contentsline {section}{\numberline {3.11}Wyznaczanie promienia skr\IeC {\k e}tu dla zakr\IeC {\k e}t\IeC {\'o}w danej drogi}{42}
+\contentsline {chapter}{\numberline {4}Algorytm - poszczeg\IeC {\'o}lne sk\IeC {\l }adowe oraz przyk\IeC {\l }ady zastosowania}{43}
+\contentsline {section}{\numberline {4.1}Typ nawierzchni}{43}
+\contentsline {section}{\numberline {4.2}Przej\IeC {\'s}cia dla pieszych}{45}
+\contentsline {subsection}{\numberline {4.2.1}Przyporz\IeC {\k a}dkowywanie przej\IeC {\'s}\IeC {\'c} dla pieszych do poszczeg\IeC {\'o}lnych dr\IeC {\'o}g}{45}
+\contentsline {subsection}{\numberline {4.2.2}Wyznaczanie pr\IeC {\k e}dko\IeC {\'s}ci i umieszczanie jej w odpowiednim miejscu na mapie}{46}
+\contentsline {section}{\numberline {4.3}Przystanki autobusowe i tramwajowe}{47}
+\contentsline {subsection}{\numberline {4.3.1}Wyznaczanie pr\IeC {\k e}dko\IeC {\'s}ci i umieszczanie jej w odpowiednim miejscu na mapie}{48}
+\contentsline {section}{\numberline {4.4}Przejazdy kolejowe}{49}
+\contentsline {subsection}{\numberline {4.4.1}Przyporz\IeC {\k a}dkowywanie przejazd\IeC {\'o}w kolejowych do poszczeg\IeC {\'o}lnych dr\IeC {\'o}g}{49}
+\contentsline {subsection}{\numberline {4.4.2}Wyznaczanie pr\IeC {\k e}dko\IeC {\'s}ci i umieszczanie jej w odpowiednim miejscu na mapie}{50}
+\contentsline {section}{\numberline {4.5}Szko\IeC {\l }y i miejsca zabaw}{51}
+\contentsline {subsection}{\numberline {4.5.1}Wyznaczanie pr\IeC {\k e}dko\IeC {\'s}ci i umieszczanie jej w odpowiednim miejscu na mapie}{52}
+\contentsline {section}{\numberline {4.6}Sygnalizacja \IeC {\'s}wietlna}{53}
+\contentsline {subsection}{\numberline {4.6.1}Przyporz\IeC {\k a}dkowywanie sygnalizacji \IeC {\'s}wietlnej do poszczeg\IeC {\'o}lnych dr\IeC {\'o}g}{53}
+\contentsline {subsection}{\numberline {4.6.2}Wyznaczanie pr\IeC {\k e}dko\IeC {\'s}ci i umieszczanie jej w odpowiednim miejscu na mapie}{54}
+\contentsline {section}{\numberline {4.7}Sklepy i miejsca kult\IeC {\'o}w religijnych}{55}
+\contentsline {subsection}{\numberline {4.7.1}Wyznaczanie pr\IeC {\k e}dko\IeC {\'s}ci i umieszczanie jej w odpowiednim miejscu na mapie}{56}
+\contentsline {section}{\numberline {4.8}Liczba pas\IeC {\'o}w ruchu}{57}
+\contentsline {section}{\numberline {4.9}Rodzaj drogi}{59}
+\contentsline {section}{\numberline {4.10}Zakr\IeC {\k e}ty}{60}
+\contentsline {subsection}{\numberline {4.10.1}Wyznaczanie pr\IeC {\k e}dko\IeC {\'s}ci i umieszczanie jej w odpowiednim miejscu na mapie}{61}
+\contentsline {section}{\numberline {4.11}Dzia\IeC {\l }anie algorytmu}{62}
+\contentsline {chapter}{\numberline {5}Interfejs u\IeC {\.z}ytkownika}{65}
+\contentsline {section}{\numberline {5.1}Widok g\IeC {\l }\IeC {\'o}wny aplikacji}{65}
+\contentsline {section}{\numberline {5.2}Menu wyboru warstw}{67}
+\contentsline {section}{\numberline {5.3}Widok zaznaczonych ulic}{69}
+\contentsline {section}{\numberline {5.4}Dodawanie w\IeC {\l }asnych obiekt\IeC {\'o}w}{70}
+\contentsline {subsection}{\numberline {5.4.1}Dodawanie obiekt\IeC {\'o}w reprezentowanych przez pojedynczy punkt}{71}
+\contentsline {subsection}{\numberline {5.4.2}Dodawanie obiekt\IeC {\'o}w reprezentowanych przez zbi\IeC {\'o}r punkt\IeC {\'o}w}{71}
+\contentsline {chapter}{\numberline {6}Wnioski}{73}

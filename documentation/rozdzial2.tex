@@ -6,7 +6,7 @@ Niniejszy rozdział skupia się na opracowaniu teoretycznym algorytmu służące
 \item przyporządkowanie obiektów reprezentowanych przez punkty, do poszczególnych dróg
 \item przyporządkowanie obiektów reprezentowanych przez dwuwymiarowe figury geometryczne, do poszczególnych dróg
 \item wyznaczanie dopuszczalnej prędkości
-\item odpowienie umiejscowienie znaków
+\item odpowiednie umiejscowienie znaków
 \item wyznaczanie minimalnych obszarów pokrywających obiekty dwuwymiarowe
 \end{itemize}
 
@@ -17,7 +17,7 @@ Dodatkowo, w celu lepszej wizualizacji problemu, zostały umieszczone zdjęcia p
 
 W pierwszej kolejności, na potrzeby działania algorytmu, należy dostarczyć plik z danymi geograficznymi interesującego nas obszaru. Można go pobrać ze strony: www.openstreetmap.org.  
 
-Po wczytaniu pliku przez program, następuje jego parsowanie. Odbywa się to poprzez rzutowanie na wcześniej przygotowaną klasę o takiej samej strukturze jak poszczególne obiekty z pliku. Gdy dane zostały już sparsowane i wczytanie do pamięci komputera, następuje odfiltrowanie potrzebnych obietków na dwie kategorie:
+Po wczytaniu pliku przez program, następuje jego parsowanie. Odbywa się to poprzez rzutowanie na wcześniej przygotowaną klasę o takiej samej strukturze jak poszczególne obiekty z pliku. Gdy dane zostały już sparsowane i wczytanie do pamięci komputera, następuje odfiltrowanie potrzebnych obiektów na dwie kategorie:
 \begin{itemize}
 \item ulice, przedstawiane jako zbiór odcinków
 \item obiekty, które mogą być punktami lub obiektami geometrycznymi dwuwymiarowymi.
@@ -25,7 +25,7 @@ Po wczytaniu pliku przez program, następuje jego parsowanie. Odbywa się to pop
 Po tej operacji następuje ich zapis do serwisu hostującego: www.mlab.com
 
 
-Następną czynnością jest pobranie wcześniej przygotowanych danych z bazy i zapis ich do dwóch kolecji: ulic i obiektów. W dalszej kolejności algorytm iteruje po tych kolekcjach i przypisuje obiekty do poszczególnych dróg. Gdy wszystkie obiekty zostały przypisane do ulic, następuje wyznaczanie prędkości w postaci markerków na wcześniej przygotowaną mapę.
+Następną czynnością jest pobranie wcześniej przygotowanych danych z bazy i zapis ich do dwóch kolekcji: ulic i obiektów. W dalszej kolejności algorytm iteruje po tych kolekcjach i przypisuje obiekty do poszczególnych dróg. Gdy wszystkie obiekty zostały przypisane do ulic, następuje wyznaczanie prędkości w postaci markerów na wcześniej przygotowaną mapę.
 
 \newpage
 \section{Przyporządkowanie obiektów reprezentowanych przez punkty, do poszczególnych dróg}
@@ -59,7 +59,7 @@ d = \frac{| (x_2 - x_1)(y_1 - y_0) - (x_1 - x_0)(y_2 - y_1) |}{\sqrt{(x_2 - x_1)
 \begin{itemize}
 \item Zmienne: x1, y1, x2, y2 oznaczają współrzędne geograficzne odpowiednio początku i końca drogi.
 \item Zmienne x0, y0 oznaczają współrzędne punktu reprezentujące obiekt drogowy.
-\item Zmienna d oznacza najkrótszą odleglość punktu od drogi.
+\item Zmienna d oznacza najkrótszą odległość punktu od drogi.
 \end{itemize}
 
 
@@ -124,7 +124,7 @@ to równanie współrzędnej y0 wynosi:
 y0 = y2 - \frac{d_2*(y2 - y1)}{d_1}
 \end{equation}\newline
 
-Przez powyższe obliczenia, wyznaczone zostały wspórzędne poszukiwanego punktu:
+Przez powyższe obliczenia, wyznaczone zostały współrzędne poszukiwanego punktu:
 
 \begin{equation} \label{eq:calculatedCoordinates}
 (x2 - \frac{d_2*(x2 - x1)}{d_1}, y2 - \frac{d_2*(y2 - y1)}{d_1})
@@ -145,7 +145,7 @@ Rys. \ref{sec:minBoundingBoxFirst} przedstawia przykładowy wielokąt reprezentu
 \includegraphics[width=0.8\textwidth]{minBoundingBoxFirst}
 \end{figure}
 
-W celu znalezienia minimalnego obszaru pokrywający niezbędne jest wyznaczenie czterech współrzędnych (x1, y1), (x2, y2), (x3, y3), (x4, y4) reprezentuących cztery wierzchołki prostokąta.
+W celu znalezienia minimalnego obszaru pokrywający niezbędne jest wyznaczenie czterech współrzędnych (x1, y1), (x2, y2), (x3, y3), (x4, y4) reprezentujących cztery wierzchołki prostokąta.
 
 W celu wyznaczenia wierzchołka północno-zachodniego, należy obliczyć minimalną wartość współrzędnej x oraz maksymalną wartość współrzędnej y.
 
@@ -238,18 +238,18 @@ Rys. \ref{sec:thirdBB} przedstawia minimalny obszar pokrywający powiększony o 
 \section{Łączenie powiększonych obszarów pokrywających}
 \label{sec:laczeniepowiekszonychobszarwwpokrywajacych}
 
-W celu przyszpieszenia części algorytmu odpowiedzialnego za przypisywanie danego odcinka drogi do obszaru w którym obowiązuje ograniczenie prędkości, niezbędne jest połączenie nachodzących na siebie obszarów oraz wyznaczenie jego konturu. Można rozróżnić kilka przypadków:
+W celu przyspieszenia części algorytmu odpowiedzialnego za przypisywanie danego odcinka drogi do obszaru w którym obowiązuje ograniczenie prędkości, niezbędne jest połączenie nachodzących na siebie obszarów oraz wyznaczenie jego konturu. Można rozróżnić kilka przypadków:
 \begin{itemize}
 \item gdy jeden obszar całkowicie znajduje się wewnątrz drugiego
-\item gdy dwa rogi obszaru mającego kształt prostokątu znajdują się wewnątrz innego obszaru
-\item gdy tylko jeden róg obszaru mającego kształt prostokątu znajdje się wewnątrz innego obszaru
+\item gdy dwa rogi obszaru mającego kształt prostokąta znajdują się wewnątrz innego obszaru
+\item gdy tylko jeden róg obszaru mającego kształt prostokątu znajduje się wewnątrz innego obszaru
 \end{itemize}
 W niniejszych podrozdziale skupię na dokładnej metodzie wyznaczania konturu dla każdego z powyższych przypadków.
 
 \subsection{Łączenie powiększonych obszarów pokrywających w przypadku gdy jeden obszar w całości znajduje się w drugim}
 
 Do sytuacji w której dany obszar pokrywający w całości znajduje się wewnątrz innego obszaru dochodzi gdy np. wokół przedszkola znajduje się plac zabaw. W takiej sytuacji
-można pominąć wewnętrzy obszar. Na rys \ref{fig:boundingBoxInside} został przedstawiony taki przypadek.
+można pominąć wewnętrzny obszar. Na rys \ref{fig:boundingBoxInside} został przedstawiony taki przypadek.
 
 \begin{figure}[h]
 \caption{Obszar pokrywający wewnątrz innego obszaru}
@@ -294,7 +294,7 @@ W przypadku gdy jeden obszar pokrywający w całości nachodzi tylko jednym boki
 
 W pierwszym kroku należy znaleźć takie obszary. W tym celu algorytm iteruje po wszystkich obszarach i sprawdza, czy współrzędne spełniają wszystkie niżej przedstawione warunki.
 
-Dla pierwszej ćwiarki z rys. \ref{fig:OneSideBounding}
+Dla pierwszej ćwiartki z rys. \ref{fig:OneSideBounding}
 \begin{equation}
 \begin{split}
 x11 <= x15 <= x13 \\
@@ -304,7 +304,7 @@ x13 < x16 \\
 \end{split}
 \end{equation}
 
-Dla drugiej ćwiarki z rys. \ref{fig:OneSideBounding}
+Dla drugiej ćwiartki z rys. \ref{fig:OneSideBounding}
 \begin{equation}
 \begin{split}
 x24 <= x26 <= x22 \\
@@ -314,7 +314,7 @@ x25 < x21 \\
 \end{split}
 \end{equation}
 
-Dla trzeciej ćwiarki z rys. \ref{fig:OneSideBounding}
+Dla trzeciej ćwiartki z rys. \ref{fig:OneSideBounding}
 \begin{equation}
 \begin{split}
 x31 <= x35 <= x33 \\
@@ -324,7 +324,7 @@ y38 < x34 \\
 \end{split}
 \end{equation}
 
-Dla czwartek ćwiarki z rys. \ref{fig:OneSideBounding}
+Dla czwartek ćwiartki z rys. \ref{fig:OneSideBounding}
 \begin{equation}
 \begin{split}
 x41 <= x48 <= x43 \\
@@ -336,7 +336,7 @@ y46 > x42 \\
 
 W następnym kroku algorytm wyznacza punkty przecięcia. Z racji tego, że nachodzące obszary są prostokątami zrotowanymi pod takim samym kątem, to do ich wyznaczenia pobiera odpowiednie współrzędne już wyznaczonych obszarów.
 
-Dla pierwszej ćwiarki z rys. \ref{fig:OneSideBounding}
+Dla pierwszej ćwiartki z rys. \ref{fig:OneSideBounding}
 
 \begin{equation}
 \begin{split}
@@ -345,7 +345,7 @@ B = (x12, y16)
 \end{split}
 \end{equation}
 
-Dla drugiej ćwiarki z rys. \ref{fig:OneSideBounding}
+Dla drugiej ćwiartki z rys. \ref{fig:OneSideBounding}
 
 \begin{equation}
 \begin{split}
@@ -354,7 +354,7 @@ D = (x21, y28)
 \end{split}
 \end{equation}
 
-Dla trzeciej ćwiarki z rys. \ref{fig:OneSideBounding}
+Dla trzeciej ćwiartki z rys. \ref{fig:OneSideBounding}
 
 \begin{equation}
 \begin{split}
@@ -364,7 +364,7 @@ F = (x36, y34)
 \end{equation}
 
 
-Dla czwartej ćwiarki z rys. \ref{fig:OneSideBounding}
+Dla czwartej ćwiartki z rys. \ref{fig:OneSideBounding}
 
 \begin{equation}
 \begin{split}
@@ -373,9 +373,9 @@ H = (x45, y42)
 \end{split}
 \end{equation}
 
-W ostatnim kroku algorytm wyznacza kontur tak przygodowanej figury, poprzez połączenie współrzędnych w odpowiedniej kolejności. Zostało to przedstawione w poniższym równaniu:
+W ostatnim kroku algorytm wyznacza kontur tak przygotowanej figury, poprzez połączenie współrzędnych w odpowiedniej kolejności. Zostało to przedstawione w poniższym równaniu:
 
-Dla pierwszej ćwiarki z rys. \ref{fig:OneSideBounding}
+Dla pierwszej ćwiartki z rys. \ref{fig:OneSideBounding}
 
 \begin{equation}
 \begin{split}
@@ -384,7 +384,7 @@ Dla pierwszej ćwiarki z rys. \ref{fig:OneSideBounding}
 \end{split}
 \end{equation}
 
-Dla drugiej ćwiarki z rys. \ref{fig:OneSideBounding}
+Dla drugiej ćwiartki z rys. \ref{fig:OneSideBounding}
 
 \begin{equation}
 \begin{split}
@@ -393,7 +393,7 @@ Dla drugiej ćwiarki z rys. \ref{fig:OneSideBounding}
 \end{split}
 \end{equation}
 
-Dla trzeciej ćwiarki z rys. \ref{fig:OneSideBounding}
+Dla trzeciej ćwiartki z rys. \ref{fig:OneSideBounding}
 
 \begin{equation}
 \begin{split}
@@ -402,7 +402,7 @@ Dla trzeciej ćwiarki z rys. \ref{fig:OneSideBounding}
 \end{split}
 \end{equation}
 
-Dla czwartej ćwiarki z rys. \ref{fig:OneSideBounding}
+Dla czwartej ćwiartki z rys. \ref{fig:OneSideBounding}
 
 \begin{equation}
 \begin{split}
@@ -490,7 +490,7 @@ A w drugim:
 \end{split}
 \end{equation}
 
-Wynik powyższych krókow został przestawiony na rys. \ref{fig:mergedKrawedzieKontur}
+Wynik powyższych kroków został przedstawiony na rys. \ref{fig:mergedKrawedzieKontur}
 
 \begin{figure}[h]
 \caption{Kontur nachodzących na siebie obszarów}
@@ -537,7 +537,7 @@ W wyniku czego otrzymujemy:
 x = \frac{(y_a - \frac{y_a - y_b}{x_a - x_b}x_a) - (y_c - \frac{y_c - y_d}{x_c - x_d}x_c)}{\frac{y_c - y_d}{x_c - x_d} - \frac{y_a - y_b}{x_a - x_b}}
 \end{equation}
 
-Aby wyznaczyc współrzędną y, należy przekształcić równanie \ref{sec:prostaKierunkowa} do postaci:
+Aby wyznaczyć współrzędną y, należy przekształcić równanie \ref{sec:prostaKierunkowa} do postaci:
 
 \begin{equation}
 x=\frac{y - (y_a - \frac{y_a - y_b}{x_a - x_b}x_a)}{\frac{y_a - y_b}{x_a - x_b}}
@@ -623,14 +623,14 @@ Algorytm przyporządkowania obiektów reprezentowanych przez wielokąty do poszc
 \item Kolejnym krokiem jest znalezienie punktu przecięcia drogi z powiększonym obszarem. Etap ten został podzielony na dwie części:
 \begin{itemize}
 \item W pierwszej kolejności znajdujemy punkt przecięcia drogi i powiększonego obszaru. Opis w sekcji \ref{sec:ZnajdowaniePunktówPrzecięciaDrogiIPowiększonegoObszaru}
-\item Następnie sprawdzamy czy znaleziony punkt zawiera się w interesującej nas drodze. Szczegóły znajduja się w sekcji \ref{sec:SprawdzanieCzyPunktPrzecięciaNależyDoOdcinka}
+\item Następnie sprawdzamy czy znaleziony punkt zawiera się w interesującej nas drodze. Szczegóły znajdują się w sekcji \ref{sec:SprawdzanieCzyPunktPrzecięciaNależyDoOdcinka}
 \end{itemize}
 \item Gdy został już wyliczony punkt przecięcia drogi i powiększonego obszaru, następuje sprawdzenie czy ten punkt jest początkiem, czy końcem strefy ograniczonej prędkości. Etap ten został podzielony na dwie części
 \begin{itemize}
-\item Najpierw obliczane zostają współrzędne punku na drodze znajdującego się 1 metr od punktu przecięcia w kierunku zgodnym z ruchem jazdy. Do tego celu został wykorzystany wzór z rozdziału \ref{sec:pointCoordinatesFromAnotherPoint}.
-\item Dla wyznaczonego punktu sprawdzane jest, czy znajduje on w powiększonym obszare pokrywającym.
+\item Najpierw obliczane zostają współrzędne punktu na drodze znajdującego się 1 metr od punktu przecięcia w kierunku zgodnym z ruchem jazdy. Do tego celu został wykorzystany wzór z rozdziału \ref{sec:pointCoordinatesFromAnotherPoint}.
+\item Dla wyznaczonego punktu sprawdzane jest, czy znajduje on w powiększonym obszarze pokrywającym.
 \end{itemize}
-\item Jeśli wyznaczony punkt zawiera się w danym obszare, to znaczy ze punkt przecięcia jest początkiem strefy ograniczonej prędkości
+\item Jeśli wyznaczony punkt zawiera się w danym obszarze, to znaczy że punkt przecięcia jest początkiem strefy ograniczonej prędkości
 \item W przeciwnym wypadku punkt przecięcia jest zakończeniem strefy ograniczonej prędkości.
 \end{enumerate}
 
@@ -683,17 +683,17 @@ Mając podane współrzędne obu wektorów, można wyliczyć iloczyn wektorowy: 
 \begin{equation}
 AB \times AC = (0, 0, (xb - xa) * (yc - ya) - (yb - ya) * (xc - xa))
 \end{equation}
-gdzie wartość $xa * yb - xb * ya$ określa po której stronie wektora AB punkt C się znaduje w zależności od jej znaku. 
+gdzie wartość $xa * yb - xb * ya$ określa po której stronie wektora AB punkt C się znajduje w zależności od jej znaku. 
 
 \section{Wyznaczanie promienia skrętu dla zakrętów danej drogi}
 \label{sec:WyznaczaniePromieniaSkrętuDlaZakrętówDanejDrogi}
 
-Ostatnim czynnikiem wpływającym na algorym wyznaczania dopuszczalnej prędkości jest promień skrętu danego odcinka drogi. Jak zostało opisane w poprzednich rozdziałach OpenStreetMap przedstawia drogę jako zbiór odcinków, dlatego algorytm wygląda następująco:
+Ostatnim czynnikiem wpływającym na algorytm wyznaczania dopuszczalnej prędkości jest promień skrętu danego odcinka drogi. Jak zostało opisane w poprzednich rozdziałach OpenStreetMap przedstawia drogę jako zbiór odcinków, dlatego algorytm wygląda następująco:
 \begin{enumerate}
 \item Pobierany jest pierwszy i drugi odcinek drogi.
-\item Zostaje określony, w którą stronę skierowany jest zakręt - szczegóły w rodziale \ref{sec:VectorWay}
+\item Zostaje określony, w którą stronę skierowany jest zakręt - szczegóły w rozdziale \ref{sec:VectorWay}
 \item Zapisywane są kolejne odcinki drogi skierowanej w są samą stronę
-\item Następnie zostaje potwórzony krok krok 3. dopóki:
+\item Następnie zostaje powtórzony krok krok 3. dopóki:
 \begin{itemize}
 \item nie kończy się droga
 \item odcinek drogi jest dłuższy niż 30 metrów
